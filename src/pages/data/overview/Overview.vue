@@ -80,63 +80,8 @@
             <i>数据归集总量</i>
             <i v-for="(item, index) in countNumList" :key="index" class="total-num" :class="'num' + item"></i>
           </div>
-          <div class="cube">
-            <div class="inner-float"></div>
-            <div class="cir-box">
-              <div class="cir1">
-                <img src="~@/assets/images/overview/yuan01.png" alt="">
-              </div>
-              <div class="cir2">
-                <img src="~@/assets/images/overview/yuan02.png" alt="">
-              </div>
-              <div class="cir"></div>
-            </div>
-          </div>
-          <div class="rotate">
-            <div class="rotate-inner">
-              <div class="inner-item">
-                <p><i>{{ rotateData[0].name }}</i></p>
-                <p><i class="num">{{ rotateData[0].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-              <div class="inner-item">
-                <p><i>{{ rotateData[1].name }}</i></p>
-                <p><i class="num">{{ rotateData[1].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-              <div class="inner-item">
-                <p><i>{{ rotateData[2].name }}</i></p>
-                <p><i class="num">{{ rotateData[2].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-              <div class="inner-item">
-                <p><i>{{ rotateData[3].name }}</i></p>
-                <p><i class="num">{{ rotateData[3].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-              <div class="inner-item">
-                <p><i>{{ rotateData[4].name }}</i></p>
-                <p><i class="num">{{ rotateData[4].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-              <div class="inner-item">
-                <p><i>{{ rotateData[5].name }}</i></p>
-                <p><i class="num">{{ rotateData[5].value }}</i><i>(个)</i></p>
-                <div>
-                  <img src="~@/assets/images/overview/data.png" alt="">
-                </div>
-              </div>
-            </div>
+          <div id="map">
+
           </div>
         </div>
       </template>
