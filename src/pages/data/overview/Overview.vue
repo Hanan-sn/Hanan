@@ -22,15 +22,15 @@
           <div class="title" flex="main:justify">
             <span> 数据交换流向分析</span>
             <span class="handle-btn" flex>
-              <i class="btn" :class="handleBtnTab === 0 ? 'active' : ''" @click="handleBtnTab = 0">本月</i>
-              <i class="btn" :class="handleBtnTab === 1 ? 'active' : ''" @click="handleBtnTab = 1">本年</i>
+              <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
+              <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>
               <b-date-picker type="date"
                              :open="dateOpen1"
                              :value="date1"
                              confirm
                              @on-change="handleChange1"
-                             @on-clear="handleClear"
-                             @on-ok="handleOk"
+                             @on-clear="handleClear1"
+                             @on-ok="handleOk1"
                              placeholder="Select date">
                 <a style="display: block;width: 76px;" href="javascript:void(0)" @click="handleClick('dateOpen1')">
                   <template v-if="date1 === ''">选择日期</template>
@@ -64,8 +64,8 @@
             <span class="square-bg data-change mt-5">
               <span style="padding-bottom: 0; padding-top: 0;">
                 <i>任务监控</i><br>
-                <i style="line-height: 40px;">正常任务</i>&nbsp;<i class="num">{{ dataExchange.dockedNormal }}</i>&nbsp;<i
-                style="line-height: 40px;">异常</i>&nbsp;<i class="num">{{ dataExchange.dockedAbnormal }}</i>
+                <i style="line-height: 40px;">正常任务</i>&nbsp;<i class="num">{{ dataExchange.dockedNormal }}</i>&nbsp;
+                <i style="line-height: 40px;">异常</i>&nbsp;<i class="num">{{ dataExchange.dockedAbnormal }}</i>
               </span>
             </span>
           </div>
@@ -195,15 +195,15 @@
           <div class="title" style="margin-top: 10px;" flex="main:justify">
             <span>信用报告查询趋势分析</span>
             <span class="handle-btn" flex>
-              <i class="btn" :class="handleBtnTab === 0 ? 'active' : ''" @click="handleBtnTab = 0">本月</i>
-              <i class="btn" :class="handleBtnTab === 1 ? 'active' : ''" @click="handleBtnTab = 1">本年</i>
+              <i class="btn" :class="handleBtnTab2 === 0 ? 'active' : ''" @click="handleBtnTab2 = 0">本月</i>
+              <i class="btn" :class="handleBtnTab2 === 1 ? 'active' : ''" @click="handleBtnTab2 = 1">本年</i>
               <b-date-picker type="date"
                              :open="dateOpen2"
                              :value="date2"
                              confirm
                              @on-change="handleChange2"
-                             @on-clear="handleClear"
-                             @on-ok="handleOk"
+                             @on-clear="handleClear2"
+                             @on-ok="handleOk2"
                              placeholder="Select date">
                 <a style="display: block;width: 76px;"
                    href="javascript:void(0)"
@@ -240,6 +240,7 @@
 <script>
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
+  import RangeSelect from '../../../components/RangeSelect/RangeSelect'
   import {mapState} from 'vuex'
   // 统一变量
   const xyLineColor = '#535e83'
@@ -279,14 +280,14 @@
             ]
           },
           xAxis: {
-            type: 'value',
             boundaryGap: [0, 0.01],
             axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
             },
-            splitLine: { lineStyle: { color: splitLineColor } }
+            axisTick: { show: false },
+            splitLine: { show: false }
           },
           yAxis: {
             type: 'category',
@@ -295,7 +296,7 @@
                 color: xyLineColor
               }
             },
-            inverse: true
+            axisTick: {}
           },
           series: [
             {
@@ -303,8 +304,7 @@
               barWidth: 10,
               itemStyle: {
                 barBorderRadius: 8
-              },
-              data: [1100, 800, 550, 350, 200, 100, 80]
+              }
             }
           ]
         },
@@ -367,93 +367,70 @@
         deptList: [
           { name: '部门名称', count: 56987, percent: '95%' }
         ],
-        handleBtnTab: 0,
+
+        // 左右侧时间选择
+        handleBtnTab1: 0,
+        handleBtnTab2: 0,
         date1: '',
         date2: '',
         dateOpen1: false,
         dateOpen2: false,
 
         // 动态数据
-        countNumList: [3, 9, 6, 3, 6, 0, 5, 8],
+        countNumList: [0, 0, 0, 0, 0, 0, 0, 0],
         union:{
-          memoCount:8848,
-          measureCount:9527,
-          deptCount:996,
+          memoCount:0,
+          measureCount:0,
+          deptCount:0,
           pieData: {
             inner: [
-              { value: 1000, name: '惩戒' },
-              { value: 2000, name: '激励' }
+              { value: 0, name: '惩戒' },
+              { value: 0, name: '激励' }
             ],
             outer: [
-              { value: 400, name: '法人惩戒' },
-              { value: 600, name: '自然人惩戒' },
-              { value: 1400, name: '法人激励' },
-              { value: 600, name: '自然人激励' }
+              { value: 0, name: '法人惩戒' },
+              { value: 0, name: '自然人惩戒' },
+              { value: 0, name: '法人激励' },
+              { value: 0, name: '自然人激励' }
             ]
           }
         },
         dataExchange: {
           // total: 8848,
-          getIn: 4480,
-          getInCorrect: '60%',
-          getOut: 4480,
-          getOutCorrect: '40%',
-          dockedNormal: 120,
-          dockedAbnormal: 80,
+          getIn: 0,
+          getInCorrect: '0%',
+          getOut: 0,
+          getOutCorrect: '0%',
+          dockedNormal: 0,
+          dockedAbnormal: 0,
           barData: [
-            { product: '1月', 'collection': 100, 'output': 100 },
-            { product: '2月', 'collection': 83.1, 'output': 73.4 },
-            { product: '3月', 'collection': 86.4, 'output': 65.2 },
-            { product: '4月', 'collection': 72.4, 'output': 53.9 },
-            { product: '5月', 'collection': 72.4, 'output': 53.9 },
-            { product: '6月', 'collection': 72.4, 'output': 53.9 },
-            { product: '7月', 'collection': 72.4, 'output': 53.9 },
-            { product: '8月', 'collection': 72.4, 'output': 53.9 },
-            { product: '9月', 'collection': 72.4, 'output': 53.9 },
-            { product: '10月', 'collection': 72.4, 'output': 53.9 },
-            { product: '11月', 'collection': 72.4, 'output': 53.9 },
-            { product: '12月', 'collection': 72.4, 'output': 53.9 }
+            ['product', '归集', '输出'],
+            ['1月', 100, 120],
+            ['2月', 100, 120],
+            ['3月', 100, 120],
+            ['4月', 100, 120],
+            ['5月', 100, 120],
+            ['6月', 100, 120],
+            ['7月', 100, 120],
+            ['8月', 100, 120],
+            ['9月', 100, 120],
+            ['10月', 100, 120],
+            ['11月', 100, 120],
+            ['12月', 100, 120]
           ]
         },
-        rotateData: [
-          {
-            name:'自然人基础信息',
-            value:'264531'
-          },
-          {
-            name:'自然人人均数量',
-            value:'14'
-          },
-          {
-            name:'法人人均数量',
-            value:'16'
-          },
-          {
-            name:'法人信用信息',
-            value:'23655'
-          },
-          {
-            name:'自然人信用信息',
-            value:'36542'
-          },
-          {
-            name:'法人基础信息',
-            value:'32456'
-          },
-        ],
         redList:{ signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 },
         blackList:{ performed: 236, case: 713, unpaid:112, lose:141 }
       }
     },
     components: {
-      Panel
+      Panel, RangeSelect
     },
     created() {
       for (let i = 0; i < 5; i++) {
         this.deptList.push(this.deptList[0])
       }
       this.$store.dispatch('getOverview').then(()=>{
-        // console.log(this.overview)
         this.initData()
       })
     },
@@ -461,29 +438,57 @@
       classify (){
         return { lv1:10, lv2: 15, lv3: 18, lv4:13 }
       },
-      ...mapState(['overview'])
+      ...mapState({ overview: state => state.overview })
     },
     watch: {
-      date1: (n,o) => {
-        console.log(n)
+      date1: function(n,o){
+        // console.log(n)
         if(n !== ''){
-          this.handleBtnTab = 2
+          this.handleBtnTab1 = 2
         }
       },
-      handleBtnTab: () => {
-
+      handleBtnTab1: function(n){
+        switch(n){
+          case 0:
+            this.setExchangeData('本月')
+            this.date1 = ''
+            break
+          case 1:
+            this.setExchangeData('本年')
+            this.date1 = ''
+            break
+        }
+      },
+      handleBtnTab2: function(n, o){
+        switch(n){
+          case 0:
+            // this.setExchangeData('本月')
+            break
+          case 1:
+            // this.setExchangeData('本年')
+            break
+        }
       }
     },
     methods: {
       initData(){
-        this.countNumList = this.overview.countNumList
-        this.union = this.overview.union
-        this.dataExchange = this.overview.dataExchange
-        this.rotateData = this.overview.rotateData
-        this.redList = this.overview.redList
-        this.blackList = this.overview.blackList
-
+        const {countNumList,union,dataExchange,redList,blackList} = this.overview
+        this.countNumList = countNumList
+        this.union = union
+        this.dataExchange = dataExchange
+        this.redList = redList
+        this.blackList = blackList
         this.numChange()
+      },
+      setExchangeData(tab){
+        // console.log(tab)
+        this.$store.dispatch('getOverviewExchangeData',tab).then((res)=>{
+          const {exchangeData} = res.data
+          this.exchangeData = {}
+          this.exchangeData = exchangeData
+          console.log(this.exchangeData)
+          // this.exchangeData = JSON.parse()
+        })
       },
       reSum(arr, key) {
         let sum = 0
@@ -501,12 +506,19 @@
       handleChange2(date) {
         this.date2 = date
       },
-      handleClear() {
+      handleClear1() {
         this.dateOpen1 = false
-        this.dateOpen2 = false
+        this.handleBtnTab1 = 0
       },
-      handleOk() {
+      handleClear2() {
+        this.dateOpen2 = false
+        this.handleBtnTab2 = 0
+      },
+      handleOk1() {
         this.dateOpen1 = false
+        this.setExchangeData(this.date1)
+      },
+      handleOk2() {
         this.dateOpen2 = false
       },
       // 渲染pie图
@@ -590,8 +602,7 @@
           },
           tooltip: {},
           dataset: {
-            dimensions: ['product', 'collection', 'output'],
-              source: data
+            source: data
           },
           xAxis: {
             type: 'category',

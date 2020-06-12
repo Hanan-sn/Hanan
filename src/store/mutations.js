@@ -1,5 +1,6 @@
 import {
   Overview,
+  OverviewExchangeData,
   Map,
   Union,
   Summary,
@@ -12,19 +13,25 @@ export default {
     state.overview = data
   },
   [Map](state, { result }) {
-    const {map} = result
+    const {data} = result
     state.map = map
   },
   [Union](state, { result }) {
-    const {union} = result
+    const {data} = result
     state.union = union
   },
   [Summary](state, { result }) {
-    const {summary} = result
+    const {data} = result
     state.summary = summary
   },
   [Public](state, { result }) {
-    const {publicState} = result
+    const {data} = result
     state.public = publicState
+  },
+  [OverviewExchangeData](state, {result}){
+    const {data} = result
+    let copy = JSON.parse(JSON.stringify(state.overview))
+    copy.exchangeData = data.exchangeData
+    state.overview = JSON.parse(JSON.stringify(copy))
   }
 }

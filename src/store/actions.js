@@ -1,5 +1,6 @@
 import {
   reqOverviewData,
+  reqOverviewExchangeData,
   reqUnionData,
   reqSummaryData,
   reqMapData,
@@ -7,6 +8,7 @@ import {
 } from '../api'
 import {
   Overview,
+  OverviewExchangeData,
   Summary,
   Union,
   Public,
@@ -18,6 +20,12 @@ export default {
     const result = await reqOverviewData()
     commit(Overview, { result })
     typeof cb === 'function' && cb()
+  },
+  async getOverviewExchangeData({ commit }, cb){
+    const result = await reqOverviewExchangeData()
+    commit(OverviewExchangeData, { result })
+    typeof cb === 'function' && cb()
+    return result
   },
   async getSummary({ commit }, cb) {
     const result = await reqSummaryData()

@@ -1,4 +1,5 @@
 export const Overview = 'overview'
+export const OverviewExchangeData = 'overviewExchangeData'
 export const Union = 'union'
 export const Public = 'publicState'
 export const Summary = 'summary'
