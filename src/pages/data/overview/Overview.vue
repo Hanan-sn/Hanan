@@ -176,22 +176,22 @@
           <div class="count-wrapper">
             <div class="count-item square-bg">
               <i class="white-font" style="line-height: 40px;">一级分类</i><br>
-              <i class="num">{{ classify.lv1 }}</i><i>（个）</i>
+              <i class="num">{{ classStatistic.lv1 }}</i><i>（个）</i>
             </div>
             <div class="count-item square-bg">
               <i class="white-font" style="line-height: 40px;">二级分类</i><br>
-              <i class="num">{{ classify.lv2 }}</i><i>（个）</i>
+              <i class="num">{{ classStatistic.lv2 }}</i><i>（个）</i>
             </div>
             <div class="count-item square-bg">
               <i class="white-font" style="line-height: 40px;">资源数</i>
-              <i class="num">{{ classify.lv3 }}</i><i>（个）</i>
+              <i class="num">{{ classStatistic.resourceCount }}</i><i>（个）</i>
             </div>
             <div class="count-item square-bg">
               <i class="white-font" style="line-height: 40px;">部门数</i>
-              <i class="num">{{ classify.lv4 }}</i><i>（个）</i>
+              <i class="num">{{ classStatistic.deptCount }}</i><i>（个）</i>
             </div>
           </div>
-          <chart ref="chart2" :options="classifyChart" style="width: 100%; height: 220px;display:block;"></chart>
+          <chart ref="chart2" :options="reBarChart(classStatistic.chartData)" style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" style="margin-top: 10px;" flex="main:justify">
             <span>信用报告查询趋势分析</span>
             <span class="handle-btn" flex>
@@ -214,8 +214,10 @@
               </b-date-picker>
             </span>
           </div>
-          <div class="chart-msg-bar">信用报告查询总次数：{{ reSum(area.dataset.source, 'count') }}（次）</div>
-          <chart ref="chart2" :options="area" style="width: 100%; height: 220px;display:block;"></chart>
+          <div class="chart-msg-bar">信用报告查询总次数：
+            {{ reSum(trendAnalysis, 'count') }}
+            （次）</div>
+          <chart ref="chart2" :options="reAreaChart(trendAnalysis)" style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title">
             数据提报部门
           </div>
@@ -225,7 +227,7 @@
               <span class="list-header" flex-box="1">数量</span>
               <span class="list-header" flex-box="1">入库率</span>
             </div>
-            <div class="body-wrapper" flex="main:justify" v-for="(item, index) in deptList" :key="index">
+            <div class="body-wrapper" flex="main:justify" v-for="(item, index) in submitDeptList" :key="index">
               <span flex-box="1">{{item.name}}</span>
               <span flex-box="1">{{item.count}}</span>
               <span flex-box="1">{{item.percent}}</span>
@@ -250,124 +252,6 @@
     data() {
       return {
         color: ['#1167e2', '#4dcea7', '#fc9530', '#ff3b3c', '#563cff', '#0fbce0', '#0c31e2'],
-        // chart
-        classifyChart: {
-          color: '#00abfb',
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: { // 坐标轴指示器，坐标轴触发有效
-              type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-            }
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: 0,
-            top: '12%',
-            containLabel: true
-          },
-          dataset: {
-            source: [
-              ['product', '信息量'],
-              ['基础信息', 80],
-              ['业务信息', 100],
-              ['司法信息', 20],
-              ['行政执法信息', 300],
-              ['公共事业信息', 400],
-              ['信用评级信息', 500],
-              ['其他信息', 600],
-              ['累计', 700]
-            ]
-          },
-          xAxis: {
-            boundaryGap: [0, 0.01],
-            axisLine: {
-              lineStyle: {
-                color: xyLineColor
-              }
-            },
-            axisTick: { show: false },
-            splitLine: { show: false }
-          },
-          yAxis: {
-            type: 'category',
-            axisLine: {
-              lineStyle: {
-                color: xyLineColor
-              }
-            },
-            axisTick: {}
-          },
-          series: [
-            {
-              type: 'bar',
-              barWidth: 10,
-              itemStyle: {
-                barBorderRadius: 8
-              }
-            }
-          ]
-        },
-        area: {
-          dataset: {
-            source: [
-              { product: '1月', count: 1006 },
-              { product: '2月', count: 1006 },
-              { product: '3月', count: 1007 },
-              { product: '4月', count: 1002 },
-              { product: '5月', count: 1010 },
-              { product: '6月', count: 1007 },
-              { product: '7月', count: 1008 },
-              { product: '8月', count: 1010 },
-              { product: '9月', count: 1006 },
-              { product: '10月', count: 1011 },
-              { product: '11月', count: 1006 },
-              { product: '12月', count: 1003 }
-            ]
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            top: '6%',
-            containLabel: true
-          },
-          xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            axisLine: { lineStyle: { color: xyLineColor } }
-          },
-          yAxis: {
-            type: 'value',
-            axisLine: { lineStyle: { color: xyLineColor } },
-            splitLine: { lineStyle: { color: splitLineColor } },
-            max: function (value) {
-              return value.min - 1
-            },
-            min: function (value) {
-              return value.max + 1
-            }
-          },
-          series: [{
-            type: 'line',
-            itemStyle: {
-              color: 'rgba(2,203,255,1)'
-            },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(2,203,255,0.8)'
-              }, {
-                offset: 1,
-                color: 'rgba(2,203,255,0.2)'
-              }])
-            }
-          }]
-        },
-        deptList: [
-          { name: '部门名称', count: 56987, percent: '95%' }
-        ],
-
         // 左右侧时间选择
         handleBtnTab1: 0,
         handleBtnTab2: 0,
@@ -377,7 +261,7 @@
         dateOpen2: false,
 
         // 动态数据
-        countNumList: [0, 0, 0, 0, 0, 0, 0, 0],
+        countNumList: [0, 0, 0, 0, 0, 0, 0, 0],// 归集总量
         union:{
           memoCount:0,
           measureCount:0,
@@ -394,7 +278,7 @@
               { value: 0, name: '自然人激励' }
             ]
           }
-        },
+        }, // 联合奖惩
         dataExchange: {
           // total: 8848,
           getIn: 0,
@@ -418,20 +302,56 @@
             ['11月', 100, 120],
             ['12月', 100, 120]
           ]
-        },
-        redList:{ signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 },
-        blackList:{ performed: 236, case: 713, unpaid:112, lose:141 }
+        }, // 数据交换流向分析
+        redList:{ signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 }, // 红名单
+        blackList:{ performed: 236, case: 713, unpaid:112, lose:141 }, // 黑名单
+        classStatistic:{
+          lv1:0,
+          lv2:0,
+          resourceCount:0,
+          deptCount:0,
+          chartData: [
+            ['product', '信息量'],
+            ['基础信息', 80],
+            ['业务信息', 100],
+            ['司法信息', 20],
+            ['行政执法信息', 300],
+            ['公共事业信息', 400],
+            ['信用评级信息', 500],
+            ['其他信息', 600],
+            ['累计', 700]
+          ]
+        }, // 资源信息分类统计
+        trendAnalysis: [
+          { product: '1月', count: 1006 },
+          { product: '2月', count: 1006 },
+          { product: '3月', count: 1007 },
+          { product: '4月', count: 1002 },
+          { product: '5月', count: 1010 },
+          { product: '6月', count: 1007 },
+          { product: '7月', count: 1008 },
+          { product: '8月', count: 1010 },
+          { product: '9月', count: 1006 },
+          { product: '10月', count: 1011 },
+          { product: '11月', count: 1006 },
+          { product: '12月', count: 1003 }
+        ],
+        submitDeptList: [
+          { name: '部门名称1', count: 56987, percent: '95%' },
+          { name: '部门名称2', count: 56987, percent: '95%' },
+          { name: '部门名称3', count: 56987, percent: '95%' },
+          { name: '部门名称4', count: 56987, percent: '95%' },
+          { name: '部门名称5', count: 56987, percent: '95%' },
+          { name: '部门名称6', count: 56987, percent: '95%' }
+        ]
       }
     },
     components: {
       Panel, RangeSelect
     },
     created() {
-      for (let i = 0; i < 5; i++) {
-        this.deptList.push(this.deptList[0])
-      }
       this.$store.dispatch('getOverview').then(()=>{
-        this.initData()
+        // this.initData()
       })
     },
     computed: {
@@ -471,6 +391,100 @@
       }
     },
     methods: {
+      reBarChart(data){
+        return {
+          color: '#00abfb',
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+              type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: 0,
+            top: '12%',
+            containLabel: true
+          },
+          dataset: {
+            source: data
+          },
+          xAxis: {
+            boundaryGap: [0, 0.01],
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
+              }
+            },
+            axisTick: { show: false },
+            splitLine: { show: false }
+          },
+          yAxis: {
+            type: 'category',
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
+              }
+            },
+            axisTick: {}
+          },
+          series: [
+            {
+              type: 'bar',
+              barWidth: 10,
+              itemStyle: {
+                barBorderRadius: 8
+              }
+            }
+          ]
+        }
+      },
+      reAreaChart(data){
+        return {
+          dataset: {
+            source: data
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            top: '6%',
+            containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            axisLine: { lineStyle: { color: xyLineColor } }
+          },
+          yAxis: {
+            type: 'value',
+            axisLine: { lineStyle: { color: xyLineColor } },
+            splitLine: { lineStyle: { color: splitLineColor } },
+            max: function (value) {
+              return value.min - 1
+            },
+            min: function (value) {
+              return value.max + 1
+            }
+          },
+          series: [{
+            type: 'line',
+            itemStyle: {
+              color: 'rgba(2,203,255,1)'
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: 'rgba(2,203,255,0.8)'
+              }, {
+                offset: 1,
+                color: 'rgba(2,203,255,0.2)'
+              }])
+            }
+          }]
+        }
+      },
       initData(){
         const {countNumList,union,dataExchange,redList,blackList} = this.overview
         this.countNumList = countNumList

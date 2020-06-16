@@ -146,4 +146,14 @@ Mock.mock(
     }
   }
 )
+Mock.mock(
+  '/overviewRedBlackList',
+  {
+    code: 2,
+    data: {
+      redList: { signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 },
+      blackList: { performed: 236, case: 713, unpaid:112, lose:141 }
+    }
+  }
+)
 Mock.setup({ timeout: 2000 })
