@@ -1,8 +1,7 @@
 export default {
-  overview: {},
   // overview
   // 联合奖惩
-  unionPunish: {
+  union: {
     memoCount: 0,
     measure: 0,
     executeDept: 0,
@@ -19,9 +18,28 @@ export default {
       ]
     }
   },
-
-  union: {},
-  map: {},
-  summary: {},
-  public: {}
+  exchangeData: {
+    // total: 8848,
+    getIn: 0,
+    getInCorrect: '0%',
+    getOut: 0,
+    getOutCorrect: '0%',
+    dockedNormal: 0,
+    dockedAbnormal: 0,
+    chartData: [
+      ['product', '归集', '输出'],
+      ['1月', 100, 120],
+      ['2月', 100, 120],
+      ['3月', 100, 120],
+      ['4月', 100, 120],
+      ['5月', 100, 120],
+      ['6月', 100, 120],
+      ['7月', 100, 120],
+      ['8月', 100, 120],
+      ['9月', 100, 120],
+      ['10月', 100, 120],
+      ['11月', 100, 120],
+      ['12月', 100, 120]
+    ]
+  }
 }

@@ -1,6 +1,6 @@
 export const Overview = 'overview'
 export const OverviewExchangeData = 'overviewExchangeData'
-export const OverviewUnion = 'overviewUnion'
+export const OverviewUnionData = 'overviewUnionData'
 export const OverviewRedBlackList = 'overviewRedBlackList'
 // export const OverviewRedBlackList = 'overviewRedBlackList'
 

@@ -1,7 +1,7 @@
 import {
   reqOverviewData,
   reqOverviewExchangeData,
-  reqUnionData,
+  reqOverviewUnionData,
   reqSummaryData,
   reqMapData,
   reqPublicData
@@ -9,6 +9,7 @@ import {
 import {
   Overview,
   OverviewExchangeData,
+  OverviewUnionData,
   Summary,
   Union,
   Public,
@@ -16,35 +17,14 @@ import {
 } from './mutation-types'
 
 export default {
-  async getOverview({ commit }, cb) {
-    const result = await reqOverviewData()
-    commit(Overview, { result })
-    typeof cb === 'function' && cb()
-  },
-  async getOverviewExchangeData({ commit }, cb) {
-    const result = await reqOverviewExchangeData()
+  async getOverviewExchangeData({ commit }, params) {
+    const result = await reqOverviewExchangeData(params)
     commit(OverviewExchangeData, { result })
-    typeof cb === 'function' && cb()
     return result
   },
-  async getSummary({ commit }, cb) {
-    const result = await reqSummaryData()
-    commit(Summary, { result })
-    typeof cb === 'function' && cb()
-  },
-  async getUnion({ commit }, cb) {
-    const result = await reqUnionData()
-    commit(Union, { result })
-    typeof cb === 'function' && cb()
-  },
-  async getPublic({ commit }, cb) {
-    const result = await reqPublicData()
-    commit(Public, { result })
-    typeof cb === 'function' && cb()
-  },
-  async getMap({ commit }, cb) {
-    const result = await reqMapData()
-    commit(Map, { result })
-    typeof cb === 'function' && cb()
+  async getOverviewUnionData({ commit }) {
+    const result = await reqOverviewUnionData()
+    commit(OverviewUnionData, { result })
+    return result
   }
 }

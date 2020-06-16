@@ -18,14 +18,14 @@
               <i class="num">{{ union.deptCount }}</i><i class="white-font">（个）</i>
             </span>
           </div>
-          <chart ref="chart1" :options="returnPie(union.pieData)"
+          <chart ref="chart1" :options="returnPie(union.chartData)"
                  style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" flex="main:justify">
             <span> 数据交换流向分析</span>
             <span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
               <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>
-              <b-date-picker type="date"
+              <!--<b-date-picker type="date"
                              :open="dateOpen1"
                              :value="date1"
                              confirm
@@ -37,40 +37,40 @@
                   <template v-if="date1 === ''">选择日期</template>
                   <template v-else>{{ date1 }}</template>
                 </a>
-              </b-date-picker>
+              </b-date-picker>-->
             </span>
           </div>
           <div class="count-wrapper nowrap" style="padding: 0 8px 20px">
             <span class="square-bg data-change">
               <img src="~@/assets/images/overview/icon_data.png" alt=""><br>
               <i>交换数据总量</i><br>
-              <i class="num">{{ dataExchange.getIn + dataExchange.getOut }}</i><i>（个）</i>
+              <i class="num">{{ exchangeData.getIn + exchangeData.getOut }}</i><i>（个）</i>
             </span>
             <span class="square-bg data-change" flex>
               <span>
-                <i class="num">{{ dataExchange.getIn }}</i><i>（个）</i><br>
+                <i class="num">{{ exchangeData.getIn }}</i><i>（个）</i><br>
                 <i>归集数据量</i><br>
-                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ dataExchange.getInCorrect }}</i><br>
+                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ exchangeData.getInCorrect }}</i><br>
               </span>
               <span>
-                <i class="num">{{ dataExchange.getOut }}</i><i>（个）</i><br>
+                <i class="num">{{ exchangeData.getOut }}</i><i>（个）</i><br>
                 <i>输出数据量</i><br>
-                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ dataExchange.getOutCorrect }}</i><br>
+                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ exchangeData.getOutCorrect }}</i><br>
               </span>
             </span>
             <span class="square-bg data-change mt-5" style="padding-top: 12px;">
               <i>已对接部门数</i><br>
-              <i class="num">{{ dataExchange.dockedNormal + dataExchange.dockedAbnormal }}</i><i>（个）</i>
+              <i class="num">{{ exchangeData.dockedNormal + exchangeData.dockedAbnormal }}</i><i>（个）</i>
             </span>
             <span class="square-bg data-change mt-5">
               <span style="padding-bottom: 0; padding-top: 0;">
                 <i>任务监控</i><br>
-                <i style="line-height: 40px;">正常任务</i>&nbsp;<i class="num">{{ dataExchange.dockedNormal }}</i>&nbsp;
-                <i style="line-height: 40px;">异常</i>&nbsp;<i class="num">{{ dataExchange.dockedAbnormal }}</i>
+                <i style="line-height: 40px;">正常任务</i>&nbsp;<i class="num">{{ exchangeData.dockedNormal }}</i>&nbsp;
+                <i style="line-height: 40px;">异常</i>&nbsp;<i class="num">{{ exchangeData.dockedAbnormal }}</i>
               </span>
             </span>
           </div>
-          <chart ref="chart2" :options="returnBar(dataExchange.barData)"
+          <chart ref="chart2" :options="returnBar(exchangeData.chartData)"
                  style="width: 100%; height: 300px;display:block;"></chart>
         </div>
       </template>
@@ -200,7 +200,7 @@
             <span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab2 === 0 ? 'active' : ''" @click="handleBtnTab2 = 0">本月</i>
               <i class="btn" :class="handleBtnTab2 === 1 ? 'active' : ''" @click="handleBtnTab2 = 1">本年</i>
-              <b-date-picker type="date"
+              <!--<b-date-picker type="date"
                              :open="dateOpen2"
                              :value="date2"
                              confirm
@@ -214,7 +214,7 @@
                   <template v-if="date2 === ''">选择日期</template>
                   <template v-else>{{ date2 }}</template>
                 </a>
-              </b-date-picker>
+              </b-date-picker>-->
             </span>
           </div>
           <div class="chart-msg-bar">信用报告查询总次数：
@@ -247,7 +247,7 @@
 <script>
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
-  import RangeSelect from '../../../components/RangeSelect/RangeSelect'
+  // import RangeSelect from '../../../components/RangeSelect/RangeSelect'
   import { mapState } from 'vuex'
   // 统一变量
   const xyLineColor = '#535e83'
@@ -267,47 +267,6 @@
 
         // 动态数据
         countNumList: [0, 0, 0, 0, 0, 0, 0, 0], // 归集总量
-        union: {
-          memoCount: 0,
-          measureCount: 0,
-          deptCount: 0,
-          pieData: {
-            inner: [
-              { value: 0, name: '惩戒' },
-              { value: 0, name: '激励' }
-            ],
-            outer: [
-              { value: 0, name: '法人惩戒' },
-              { value: 0, name: '自然人惩戒' },
-              { value: 0, name: '法人激励' },
-              { value: 0, name: '自然人激励' }
-            ]
-          }
-        }, // 联合奖惩
-        dataExchange: {
-          // total: 8848,
-          getIn: 0,
-          getInCorrect: '0%',
-          getOut: 0,
-          getOutCorrect: '0%',
-          dockedNormal: 0,
-          dockedAbnormal: 0,
-          barData: [
-            ['product', '归集', '输出'],
-            ['1月', 100, 120],
-            ['2月', 100, 120],
-            ['3月', 100, 120],
-            ['4月', 100, 120],
-            ['5月', 100, 120],
-            ['6月', 100, 120],
-            ['7月', 100, 120],
-            ['8月', 100, 120],
-            ['9月', 100, 120],
-            ['10月', 100, 120],
-            ['11月', 100, 120],
-            ['12月', 100, 120]
-          ]
-        }, // 数据交换流向分析
         redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 }, // 红名单
         blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }, // 黑名单
         classStatistic: {
@@ -356,12 +315,13 @@
       // RangeSelect
     },
     created() {
-      this.$store.dispatch('getOverview').then(() => {
-        // this.initData()
-      })
+      this.initData()
     },
     computed: {
-      ...mapState({ overview: state => state.overview })
+      ...mapState({
+        union: state => state.union,
+        exchangeData: state => state.exchangeData
+      })
     },
     watch: {
       date1: function (n, o) {
@@ -395,13 +355,14 @@
     },
     methods: {
       initData() {
-        const { countNumList, union, dataExchange, redList, blackList } = this.overview
-        this.countNumList = countNumList
-        this.union = union
-        this.dataExchange = dataExchange
-        this.redList = redList
-        this.blackList = blackList
-        this.numChange()
+        this.$store.dispatch('getOverviewExchangeData').then((res) => {
+          // console.log(res)
+          // _self.dataExchange = JSON.parse(JSON.stringify(res.data))
+        })
+        this.$store.dispatch('getOverviewUnionData').then((res)=>{
+          // console.log(res)
+          // _self.union = JSON.parse(JSON.stringify(res.data))
+        })
       },
       reBarChart(data) {
         return {
@@ -499,12 +460,15 @@
       },
       setExchangeData(tab) {
         // console.log(tab)
-        var _self = this
-        this.$store.dispatch('getOverviewExchangeData', tab).then((res) => {
-          const { exchangeData } = res.data
-          _self.dataExchange = JSON.parse(JSON.stringify(exchangeData))
-          // this.exchangeData = JSON.parse()
-        })
+        const _self = this
+        let param = ''
+        switch (tab) {
+          case '本月':
+            param = 'thisMonth'; break;
+          case '本年':
+            param = 'thisYear'; break;
+        }
+        this.$store.dispatch('getOverviewExchangeData', param).then()
       },
       reSum(arr, key) {
         let sum = 0
@@ -539,126 +503,126 @@
       },
       // 渲染pie图
       returnPie(data) {
-        return {
-          color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
-          tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
-          },
-          series: [
-            {
-              name: '访问来源',
-              type: 'pie',
-              selectedMode: 'single',
-              radius: [0, '50%'],
-              label: {
-                position: 'inner'
-              },
-              labelLine: {
-                show: false
-              },
-              /* data: [
-                { value: 1000, name: '惩戒' },
-                { value: 2000, name: '激励' }
-              ] */
-              data: data.inner
+        if(data){
+          return {
+            color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
+            tooltip: {
+              trigger: 'item',
+              formatter: '{a} <br/>{b}: {c} ({d}%)'
             },
-            {
-              name: '访问来源',
-              type: 'pie',
-              selectedMode: 'single',
-              radius: ['60%', '75%'],
-              label: {
-                formatter: '  {a|{a}}  \n    {d}%   ',
-                rich: {
-                  a: {
-                    color: '#fff',
-                    lineHeight: 22,
-                    align: 'center'
-                  },
-                  hr: {
-                    borderColor: '#aaa',
-                    width: '100%',
-                    borderWidth: 0.5,
-                    height: 0
-                  },
-                  b: {
-                    fontSize: 16,
-                    lineHeight: 33
-                  },
-                  per: {
-                    color: '#eee',
-                    backgroundColor: '#334455',
-                    padding: [2, 4],
-                    borderRadius: 2
-                  }
-                }
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                selectedMode: 'single',
+                radius: [0, '50%'],
+                label: {
+                  position: 'inner'
+                },
+                labelLine: {
+                  show: false
+                },
+                data: data.inner
               },
-              /* data: [
-                { value: 400, name: '法人惩戒' },
-                { value: 600, name: '自然人惩戒' },
-                { value: 1400, name: '法人激励' },
-                { value: 600, name: '自然人激励' }
-              ], */
-              data: data.outer
-            }
-          ]
+              {
+                name: '访问来源',
+                type: 'pie',
+                selectedMode: 'single',
+                radius: ['60%', '75%'],
+                label: {
+                  formatter: '  {a|{a}}  \n    {d}%   ',
+                  rich: {
+                    a: {
+                      color: '#fff',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                },
+                /* data: [
+                  { value: 400, name: '法人惩戒' },
+                  { value: 600, name: '自然人惩戒' },
+                  { value: 1400, name: '法人激励' },
+                  { value: 600, name: '自然人激励' }
+                ], */
+                data: data.outer
+              }
+            ]
+          }
         }
       },
       returnBar(data) {
-        return {
-          grid: {
-            top: 20,
-            left: 50,
-            right: 10
-          },
-          legend: {
-            bottom: '2%',
-            textStyle: { color: '#fff' }
-          },
-          tooltip: {},
-          dataset: {
-            source: data
-          },
-          xAxis: {
-            type: 'category',
-            axisLine: { lineStyle: { color: xyLineColor } },
-            boundaryGap: ['20%', '20%']
-          },
-          yAxis: {
-            boundaryGap: ['20%', '20%'],
-            axisLine: { lineStyle: { color: xyLineColor } },
-            splitLine: { lineStyle: { color: splitLineColor } }
-          },
-          series: [
-            {
-              type: 'bar',
-              barWidth: 8,
-              barGap: 0,
-              itemStyle: {
-                color: new echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#00befc' },
-                    { offset: 1, color: '#00befc33' }
-                  ]
-                )
-              }
+        if (data) {
+          return {
+            grid: {
+              top: 20,
+              left: 50,
+              right: 10
             },
-            {
-              type: 'bar',
-              barWidth: 8,
-              itemStyle: {
-                color: new echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#294bd5' },
-                    { offset: 1, color: '#294bd533' }
-                  ]
-                )
+            legend: {
+              bottom: '2%',
+              textStyle: { color: '#fff' }
+            },
+            tooltip: {},
+            dataset: {
+              source: data
+            },
+            xAxis: {
+              type: 'category',
+              axisLine: { lineStyle: { color: xyLineColor } },
+              boundaryGap: ['20%', '20%']
+            },
+            yAxis: {
+              boundaryGap: ['20%', '20%'],
+              axisLine: { lineStyle: { color: xyLineColor } },
+              splitLine: { lineStyle: { color: splitLineColor } }
+            },
+            series: [
+              {
+                type: 'bar',
+                barWidth: 8,
+                barGap: 0,
+                itemStyle: {
+                  color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#00befc' },
+                      { offset: 1, color: '#00befc33' }
+                    ]
+                  )
+                }
+              },
+              {
+                type: 'bar',
+                barWidth: 8,
+                itemStyle: {
+                  color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#294bd5' },
+                      { offset: 1, color: '#294bd533' }
+                    ]
+                  )
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       },
       numChange() {
