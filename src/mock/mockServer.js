@@ -2,13 +2,11 @@ import Mock from 'mockjs'
 // import data from './data.json'
 // import data_nav from './data_nav.json'
 // import home_data from './home_data.json'
-// import shiwutuijian_data from './shiwutuijian_data.json'
-// import shiwu_data from './shiwu_data.json'
-// import shouye_data from './shouye_data.json'
 
 // 返回data的接口
 Mock.mock('/overview', {
-  code: 0, data: {
+  code: 0,
+  data: {
     countNumList: [1, 0, 0, 0, 4, 0, 6, 0],
     union: {
       memoCount: 6666,
@@ -75,7 +73,7 @@ Mock.mock('/overview', {
       {
         name: '法人基础信息',
         value: '32456'
-      },
+      }
     ],
     redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 },
     blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }
@@ -83,34 +81,9 @@ Mock.mock('/overview', {
 })
 Mock.mock(
   '/overviewExchangeData',
-  {
-    code: 0,
-    data: {
-      exchangeData: {
-        // total: 8848,
-        getIn: 4480,
-        getInCorrect: '60%',
-        getOut: 4480,
-        getOutCorrect: '40%',
-        dockedNormal: 120,
-        dockedAbnormal: 80,
-        barData: [
-          ['product', '归集', '输出'],
-          ['1月', 100, 120],
-          ['2月', 100, 120],
-          ['3月', 100, 120],
-          ['4月', 100, 120],
-          ['5月', 100, 120],
-          ['6月', 100, 120],
-          ['7月', 100, 120],
-          ['8月', 100, 120],
-          ['9月', 100, 120],
-          ['10月', 100, 120],
-          ['11月', 100, 120],
-          ['12月', 100, 120]
-        ]
-      }
-    }
+  'GET',
+  options => {
+    console.log(options)
   }
 )
 Mock.mock(
@@ -133,16 +106,6 @@ Mock.mock(
           { value: 0, name: '自然人激励' }
         ]
       }
-    },
-  }
-)
-Mock.mock(
-  '/overviewRedBlackList',
-  {
-    code: 2,
-    data: {
-      redList: { signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 },
-      blackList: { performed: 236, case: 713, unpaid:112, lose:141 }
     }
   }
 )
@@ -151,8 +114,18 @@ Mock.mock(
   {
     code: 2,
     data: {
-      redList: { signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 },
-      blackList: { performed: 236, case: 713, unpaid:112, lose:141 }
+      redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 },
+      blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }
+    }
+  }
+)
+Mock.mock(
+  '/overviewRedBlackList',
+  {
+    code: 2,
+    data: {
+      redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 },
+      blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }
     }
   }
 )

@@ -1,5 +1,9 @@
 export const Overview = 'overview'
 export const OverviewExchangeData = 'overviewExchangeData'
+export const OverviewUnion = 'overviewUnion'
+export const OverviewRedBlackList = 'overviewRedBlackList'
+// export const OverviewRedBlackList = 'overviewRedBlackList'
+
 export const Union = 'union'
 export const Public = 'publicState'
 export const Summary = 'summary'

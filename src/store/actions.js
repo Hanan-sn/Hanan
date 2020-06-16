@@ -21,7 +21,7 @@ export default {
     commit(Overview, { result })
     typeof cb === 'function' && cb()
   },
-  async getOverviewExchangeData({ commit }, cb){
+  async getOverviewExchangeData({ commit }, cb) {
     const result = await reqOverviewExchangeData()
     commit(OverviewExchangeData, { result })
     typeof cb === 'function' && cb()

@@ -1,8 +1,8 @@
 export default {
-  overview:{},
+  overview: {},
   // overview
   // 联合奖惩
-  unionPunish:{
+  unionPunish: {
     memoCount: 0,
     measure: 0,
     executeDept: 0,
@@ -20,8 +20,8 @@ export default {
     }
   },
 
-  union:{},
-  map:{},
-  summary:{},
-  public:{}
+  union: {},
+  map: {},
+  summary: {},
+  public: {}
 }

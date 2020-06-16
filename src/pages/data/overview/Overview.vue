@@ -18,7 +18,8 @@
               <i class="num">{{ union.deptCount }}</i><i class="white-font">（个）</i>
             </span>
           </div>
-          <chart ref="chart1" :options="returnPie(union.pieData)" style="width: 100%; height: 220px;display:block;"></chart>
+          <chart ref="chart1" :options="returnPie(union.pieData)"
+                 style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" flex="main:justify">
             <span> 数据交换流向分析</span>
             <span class="handle-btn" flex>
@@ -69,7 +70,8 @@
               </span>
             </span>
           </div>
-          <chart ref="chart2" :options="returnBar(dataExchange.barData)" style="width: 100%; height: 300px;display:block;"></chart>
+          <chart ref="chart2" :options="returnBar(dataExchange.barData)"
+                 style="width: 100%; height: 300px;display:block;"></chart>
         </div>
       </template>
     </Panel>
@@ -191,7 +193,8 @@
               <i class="num">{{ classStatistic.deptCount }}</i><i>（个）</i>
             </div>
           </div>
-          <chart ref="chart2" :options="reBarChart(classStatistic.chartData)" style="width: 100%; height: 220px;display:block;"></chart>
+          <chart ref="chart2" :options="reBarChart(classStatistic.chartData)"
+                 style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" style="margin-top: 10px;" flex="main:justify">
             <span>信用报告查询趋势分析</span>
             <span class="handle-btn" flex>
@@ -216,8 +219,10 @@
           </div>
           <div class="chart-msg-bar">信用报告查询总次数：
             {{ reSum(trendAnalysis, 'count') }}
-            （次）</div>
-          <chart ref="chart2" :options="reAreaChart(trendAnalysis)" style="width: 100%; height: 220px;display:block;"></chart>
+            （次）
+          </div>
+          <chart ref="chart2" :options="reAreaChart(trendAnalysis)"
+                 style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title">
             数据提报部门
           </div>
@@ -243,7 +248,7 @@
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
   import RangeSelect from '../../../components/RangeSelect/RangeSelect'
-  import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
   // 统一变量
   const xyLineColor = '#535e83'
   const splitLineColor = '#283353'
@@ -261,11 +266,11 @@
         dateOpen2: false,
 
         // 动态数据
-        countNumList: [0, 0, 0, 0, 0, 0, 0, 0],// 归集总量
-        union:{
-          memoCount:0,
-          measureCount:0,
-          deptCount:0,
+        countNumList: [0, 0, 0, 0, 0, 0, 0, 0], // 归集总量
+        union: {
+          memoCount: 0,
+          measureCount: 0,
+          deptCount: 0,
           pieData: {
             inner: [
               { value: 0, name: '惩戒' },
@@ -303,13 +308,13 @@
             ['12月', 100, 120]
           ]
         }, // 数据交换流向分析
-        redList:{ signCom: 4456, taxpayer: 7413, corp:1142, volunteer:5541 }, // 红名单
-        blackList:{ performed: 236, case: 713, unpaid:112, lose:141 }, // 黑名单
-        classStatistic:{
-          lv1:0,
-          lv2:0,
-          resourceCount:0,
-          deptCount:0,
+        redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 }, // 红名单
+        blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }, // 黑名单
+        classStatistic: {
+          lv1: 0,
+          lv2: 0,
+          resourceCount: 0,
+          deptCount: 0,
           chartData: [
             ['product', '信息量'],
             ['基础信息', 80],
@@ -347,28 +352,26 @@
       }
     },
     components: {
-      Panel, RangeSelect
+      Panel
+      // RangeSelect
     },
     created() {
-      this.$store.dispatch('getOverview').then(()=>{
+      this.$store.dispatch('getOverview').then(() => {
         // this.initData()
       })
     },
     computed: {
-      classify (){
-        return { lv1:10, lv2: 15, lv3: 18, lv4:13 }
-      },
       ...mapState({ overview: state => state.overview })
     },
     watch: {
-      date1: function(n,o){
+      date1: function (n, o) {
         // console.log(n)
-        if(n !== ''){
+        if (n !== '') {
           this.handleBtnTab1 = 2
         }
       },
-      handleBtnTab1: function(n){
-        switch(n){
+      handleBtnTab1: function (n) {
+        switch (n) {
           case 0:
             this.setExchangeData('本月')
             this.date1 = ''
@@ -379,8 +382,8 @@
             break
         }
       },
-      handleBtnTab2: function(n, o){
-        switch(n){
+      handleBtnTab2: function (n, o) {
+        switch (n) {
           case 0:
             // this.setExchangeData('本月')
             break
@@ -391,7 +394,16 @@
       }
     },
     methods: {
-      reBarChart(data){
+      initData() {
+        const { countNumList, union, dataExchange, redList, blackList } = this.overview
+        this.countNumList = countNumList
+        this.union = union
+        this.dataExchange = dataExchange
+        this.redList = redList
+        this.blackList = blackList
+        this.numChange()
+      },
+      reBarChart(data) {
         return {
           color: '#00abfb',
           tooltip: {
@@ -440,7 +452,7 @@
           ]
         }
       },
-      reAreaChart(data){
+      reAreaChart(data) {
         return {
           dataset: {
             source: data
@@ -485,22 +497,12 @@
           }]
         }
       },
-      initData(){
-        const {countNumList,union,dataExchange,redList,blackList} = this.overview
-        this.countNumList = countNumList
-        this.union = union
-        this.dataExchange = dataExchange
-        this.redList = redList
-        this.blackList = blackList
-        this.numChange()
-      },
-      setExchangeData(tab){
+      setExchangeData(tab) {
         // console.log(tab)
-        this.$store.dispatch('getOverviewExchangeData',tab).then((res)=>{
-          const {exchangeData} = res.data
-          this.exchangeData = {}
-          this.exchangeData = exchangeData
-          console.log(this.exchangeData)
+        var _self = this
+        this.$store.dispatch('getOverviewExchangeData', tab).then((res) => {
+          const { exchangeData } = res.data
+          _self.dataExchange = JSON.parse(JSON.stringify(exchangeData))
           // this.exchangeData = JSON.parse()
         })
       },
@@ -536,12 +538,12 @@
         this.dateOpen2 = false
       },
       // 渲染pie图
-      returnPie(data){
+      returnPie(data) {
         return {
           color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
-            tooltip: {
+          tooltip: {
             trigger: 'item',
-              formatter: '{a} <br/>{b}: {c} ({d}%)'
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
           series: [
             {
@@ -555,10 +557,10 @@
               labelLine: {
                 show: false
               },
-              /*data: [
+              /* data: [
                 { value: 1000, name: '惩戒' },
                 { value: 2000, name: '激励' }
-              ]*/
+              ] */
               data: data.inner
             },
             {
@@ -592,27 +594,27 @@
                   }
                 }
               },
-              /*data: [
+              /* data: [
                 { value: 400, name: '法人惩戒' },
                 { value: 600, name: '自然人惩戒' },
                 { value: 1400, name: '法人激励' },
                 { value: 600, name: '自然人激励' }
-              ],*/
+              ], */
               data: data.outer
             }
           ]
         }
       },
-      returnBar(data){
+      returnBar(data) {
         return {
           grid: {
             top: 20,
-              left: 50,
-              right: 10
+            left: 50,
+            right: 10
           },
           legend: {
             bottom: '2%',
-              textStyle: { color: '#fff' }
+            textStyle: { color: '#fff' }
           },
           tooltip: {},
           dataset: {
@@ -659,7 +661,7 @@
           ]
         }
       },
-      numChange(){
+      numChange() {
         let copy = JSON.parse(JSON.stringify(this.countNumList))
         let change = setInterval(() => {
           let arr = []
@@ -792,7 +794,7 @@
     .inner
       position relative
       width ($rotateW) px
-      height: 640 px
+      height: 640px
       margin 0 auto
 
       .total-count
@@ -947,13 +949,16 @@
 
         .msg-list
           padding-top: 20px
+
           .msg-list-item
             width: 50%
             margin-top: 15px
+
             .rb-icon
               margin-right: 10px
               width: 52px
               height: 52px
+
             span
               width: 112px
 
@@ -998,6 +1003,7 @@
           text-align center
           transform rotateX(10deg) scaleY(2)
           height: 32px;
+
         div
           position absolute
           left: 50%
