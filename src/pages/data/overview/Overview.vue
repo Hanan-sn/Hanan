@@ -7,7 +7,7 @@
           <div class="count-wrapper">
             <span class="square-bg">
               <i class="count-title">备忘录数量</i><br>
-              <i class="num">{{ union.memoCount }}</i><i class="white-font">（个）</i>
+              <i class="num">{{ 2 }}</i><i class="white-font">（个）</i>
             </span>
             <span class="square-bg">
               <i class="count-title">措施数量</i><br>
