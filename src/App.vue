@@ -28,6 +28,8 @@
             return '联合奖惩专题'
           case '/map':
             return '区域数据归集'
+          case '/affair':
+            return '政务诚信看板'
         }
       }
     }

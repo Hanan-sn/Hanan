@@ -15,15 +15,15 @@
                 <div class="status-wrapper" flex>
                   <div class="status-item">
                     <p class="title">总计奖惩</p>
-                    <p><i class="num">8848</i><i>（次）</i></p>
+                    <p><i class="num">0</i><i>（次）</i></p>
                   </div>
                   <div class="status-item">
                     <p class="title">备忘录总数</p>
-                    <p><i class="num">8848</i><i>（个）</i></p>
+                    <p><i class="num">2</i><i>（个）</i></p>
                   </div>
                   <div class="status-item">
                     <p class="title">实施部门数量</p>
-                    <p><i class="num">8848</i><i>（个）</i></p>
+                    <p><i class="num">55</i><i>（个）</i></p>
                   </div>
                 </div>
                 <div class="type-wrapper" flex="main:justify">
@@ -33,25 +33,25 @@
                       <!--                    <span><i class="iconfont icon-ren"></i></span>-->
                       <span flex-box="1">
                         <i class="simple-i">自然人</i><br>
-                        <i class="num">9527</i>
+                        <i class="num">0</i>
                         <i class="simple-i">（个）</i>
                       </span>
                     </div>
-                    <div class="reward"><i>激励</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">8848</i><i>（个）</i></div>
-                    <div class="punish"><i>惩戒</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">8848</i><i>（个）</i></div>
+                    <div class="reward"><i>激励</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">0</i><i>（个）</i></div>
+                    <div class="punish"><i>惩戒</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">0</i><i>（个）</i></div>
                   </div>
                   <div class="type-item">
                     <div class="total" flex="cross:center">
-                    <span style="margin-right: 20px;"><img src="~@/assets/images/union/icon_fr.png" alt=""></span>
+                      <span style="margin-right: 20px;"><img src="~@/assets/images/union/icon_fr.png" alt=""></span>
                       <!--                    <span><i class="iconfont icon-ren"></i></span>-->
                       <span flex-box="1">
-                      <i class="simple-i">自然人</i><br>
-                      <i class="num">9527</i>
+                      <i class="simple-i">法人</i><br>
+                      <i class="num">0</i>
                       <i class="simple-i">（个）</i>
                     </span>
                     </div>
-                    <div class="reward"><i>激励</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">8848</i><i>（个）</i></div>
-                    <div class="punish"><i>惩戒</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">8848</i><i>（个）</i></div>
+                    <div class="reward"><i>激励</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">0</i><i>（个）</i></div>
+                    <div class="punish"><i>惩戒</i>&nbsp;&nbsp;&nbsp;<i class="scale-num">0</i><i>（个）</i></div>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@
                   <div class="red-list">
                     <img src="~@/assets/images/overview/icon_hong.png" alt="">
                     <i class="white-font">红名单</i>
-                    <i class="num">12566</i>
+                    <i class="num">0</i>
                     <i class="white-font">（个）</i>
                   </div>
                   <div class="msg-list" flex="wrap:wrap">
@@ -79,28 +79,28 @@
                       <img class="rb-icon" src="~@/assets/images/overview/icon_hgrz.png" alt="">
                       <span>
                   <p class="white-font">有关认证企业</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_ajnsr.png" alt="">
                       <span>
                   <p class="white-font">A级纳税人</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_shfr.png" alt="">
                       <span>
                   <p class="white-font">守信社会法人</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_zyz.png" alt="">
                       <span>
                   <p class="white-font">优秀青年志愿者</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                   </div>
@@ -109,7 +109,7 @@
                   <div class="red-list">
                     <img src="~@/assets/images/overview/icon_hei.png" alt="">
                     <i class="white-font">黑名单</i>
-                    <i class="num">12566</i>
+                    <i class="num">0</i>
                     <i class="white-font">（个）</i>
                   </div>
                   <div class="msg-list" flex="wrap:wrap">
@@ -117,29 +117,29 @@
                       <img class="rb-icon" src="~@/assets/images/overview/icon_hgrz.png" alt="">
                       <span>
                   <p class="white-font">有关认证企业</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_ajnsr.png" alt="">
                       <span>
                   <p class="white-font">有关认证企业</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">0</i><i class="white-font">（个）</i></p>
                 </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_shfr.png" alt="">
                       <span>
-                  <p class="white-font">有关认证企业</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
-                </span>
+                        <p class="white-font">有关认证企业</p>
+                        <p><i class="num">0</i><i class="white-font">（个）</i></p>
+                      </span>
                     </div>
                     <div class="msg-list-item" flex="main:center">
                       <img class="rb-icon" src="~@/assets/images/overview/icon_zyz.png" alt="">
                       <span>
-                  <p class="white-font">有关认证企业</p>
-                  <p><i class="num">1501</i><i class="white-font">（个）</i></p>
-                </span>
+                        <p class="white-font">有关认证企业</p>
+                        <p><i class="num">0</i><i class="white-font">（个）</i></p>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -258,10 +258,10 @@
                   <swiper ref="mySwiper" style="height: 100%;" :options="swiperOptions">
                     <swiper-slide class="row" flex="space:around" :key="index"
                                   v-for="(item,index) in punishRewardList">
-                        <div class="col">{{item.name}}</div>
-                        <div class="col">{{item.info}}</div>
-                        <div class="col">{{item.dept}}</div>
-                        <div class="col">{{item.time}}</div>
+                      <div class="col">{{item.name}}</div>
+                      <div class="col">{{item.info}}</div>
+                      <div class="col">{{item.dept}}</div>
+                      <div class="col">{{item.time}}</div>
                     </swiper-slide>
                   </swiper>
                 </div>
@@ -343,7 +343,7 @@
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
               boundaryGap: false,
-              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+              data: [ '6月']
             }
           ],
           yAxis: [
@@ -379,7 +379,7 @@
                 }])
               },
               yAxisIndex: 1,
-              data: [120, 132, 101, 134, 90, 230, 210, 101, 134, 90, 230, 210],
+              data: [0],
               symbol: 'none'
             },
             {
@@ -395,7 +395,7 @@
                   color: 'rgba(45,82,233,0)'
                 }])
               },
-              data: [220, 182, 191, 234, 290, 330, 310, 191, 234, 290, 330, 310],
+              data: [0],
               symbol: 'none'
             }
           ]
@@ -421,7 +421,7 @@
               boundaryGap: ['20%', '20%'],
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
-              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+              data: [ '6月' ]
             }
           ],
           yAxis: [
@@ -446,7 +446,7 @@
                   color: 'rgba(2,176,234,0)'
                 }])
               },
-              data: [120, 132, 101, 134, 90, 230, 210, 101, 134, 90, 230, 210],
+              data: [0],
               symbol: 'none'
             }
           ]
@@ -474,7 +474,7 @@
               splitLine: { show: true, lineStyle: { color: splitLineColor } },
               type: 'category',
               boundaryGap: false,
-              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+              data: ['6月']
             }
           ],
           yAxis: [
@@ -495,13 +495,13 @@
             {
               name: '奖',
               type: 'line',
-              data: [120, 132, 101, 134, 90, 230, 210, 101, 134, 90, 230, 210],
+              data: [0],
               symbol: 'none'
             },
             {
               name: '惩',
               type: 'line',
-              data: [220, 182, 191, 234, 290, 330, 310, 191, 234, 290, 330, 310],
+              data: [0],
               symbol: 'none'
             }
           ]
@@ -527,7 +527,7 @@
           },
           yAxis: {
             type: 'category',
-            data: ['部门1', '部门2', '部门3', '部门4', '部门5', '部门6', '部门7', '部门8'],
+            data: ['市统计局', '市商务局', '镇江海关', '市地方金融监督管理局', '市银保监分局', '人行镇江市中心支行', '市组织部', '市发改委'],
             axisLine: {
               show: false,
               lineStyle: {
@@ -554,7 +554,7 @@
                   ]
                 )
               },
-              data: [1100, 800, 550, 350, 350, 200, 100, 80]
+              data: [0, 0, 0, 0, 0, 0, 0, 0]
             }
           ]
         },
@@ -576,7 +576,7 @@
           },
           yAxis: {
             type: 'category',
-            data: ['部门1', '部门2', '部门3', '部门4', '部门5', '部门6', '部门7', '部门8'],
+            data: ['市统计局', '市商务局', '镇江海关', '市地方金融监督管理局', '市银保监分局', '人行镇江市中心支行', '市组织部', '市发改委'],
             show: false,
             inverse: true
           },
@@ -604,12 +604,12 @@
                   ]
                 )
               },
-              data: [1100, 800, 550, 350, 350, 200, 100, 80]
+              data: [0, 0, 0, 0, 0, 0, 0, 0]
             }
           ]
         },
         punishRewardList: [
-          { name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
+          /*{ name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
@@ -618,13 +618,13 @@
           { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-          { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' }
+          { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' }*/
         ],
         memoStatusList: [
-          { name: '房产交易', count: 8848, time: 9527 },
+          /*{ name: '房产交易', count: 8848, time: 9527 },
           { name: '规划设计方案', count: 8848, time: 9527 },
           { name: '股票交易', count: 8848, time: 9527 },
-          { name: '不动产转移', count: 8848, time: 9527 }
+          { name: '不动产转移', count: 8848, time: 9527 }*/
         ],
         swiperOptions: {
           direction: 'vertical',
@@ -726,6 +726,7 @@
 
         .total
           margin-bottom: 10px
+
           .icon-person
             width: 50px
             height: 50px
@@ -783,8 +784,10 @@
       .container
         width 100%
         padding-top: 10px
+
         .white-font
           color #fff
+
         .red-list
           padding-bottom: 10px
           text-align center
@@ -802,6 +805,7 @@
           .msg-list-item
             width: 50%
             padding-top: 15px
+
             .rb-icon
               margin-right: 10px
               width: 52px

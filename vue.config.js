@@ -9,7 +9,7 @@ module.exports = {
   // 配置基础链接地址，根据发布环境添加 '/preview/bin-admin'
   publicPath: process.env.NODE_ENV === 'production'
     ? './'
-    : '/',
+    : './',
   // dev跨域问题
   devServer: {
     proxy: {

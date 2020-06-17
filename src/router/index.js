@@ -10,6 +10,7 @@ const Summary = () => import('../pages/data/summary/Summary')
 const SummaryMap = () => import('../pages/data/summary/SummaryCopy')
 const Public = () => import('../pages/data/public/Public')
 const Union = () => import('../pages/data/union/Union')
+const Affair = () => import('../pages/data/map/Affair')
 // const Map = () => import('../pages/data/map/Map')
 
 Vue.use(BinUI)
@@ -45,6 +46,10 @@ const router = new VueRouter({
     {
       path: '/union',
       component: Union
+    },
+    {
+      path: '/affair',
+      component: Affair
     },
     {
       path: '/map',

@@ -3,25 +3,26 @@
     <Panel>
       <template slot="inner">
         <div style="height: 100%" flex="main:justify dir:top">
-          <div class="title">联合奖惩</div>
+          <div class="title">全市公务员基本情况</div>
           <div class="count-wrapper">
-            <span class="square-bg">
-              <i class="count-title">备忘录数量</i><br>
-              <i class="num">{{ union.memoCount }}</i><i class="white-font">（个）</i>
-            </span>
-            <span class="square-bg">
-              <i class="count-title">措施数量</i><br>
-              <i class="num">{{ union.measureCount }}</i><i class="white-font">（个）</i>
-            </span>
-            <span class="square-bg">
-              <i class="count-title">实施部门数量</i><br>
-              <i class="num">{{ union.deptCount }}</i><i class="white-font">（个）</i>
-            </span>
+            <div class="square-bg" style="padding: 0 10px">
+              <img src="~@/assets/images/summary/icon_01.png" alt="">
+              <span>
+                <i class="count-title">全市公务员</i><br>
+                <i class="count-title">总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数</i><br>
+              </span>
+            </div>
+            <div class="square-bg" style="flex: 1; padding: 0 10px; line-height: 76px; color: #fff; text-align: right">
+              <i>0</i><i>（人）</i>
+            </div>
           </div>
-          <chart ref="chart1" :options="returnPie(union.chartData)"
+          <chart ref="chart1" :options="returnRing(servantChartData)"
+                 style="width: 100%; height: 120px;display:block;"></chart>
+          <div class="title">公务员分布情况</div>
+          <chart ref="chart1" :options="returnPie(servantDistributeChartData)"
                  style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" flex="main:justify">
-            <span> 数据交换流向分析</span>
+            <span>数据报送情况</span>
             <span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
               <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>
@@ -40,37 +41,7 @@
               </b-date-picker>-->
             </span>
           </div>
-          <div class="count-wrapper nowrap" style="padding: 0 8px 20px">
-            <span class="square-bg data-change">
-              <img src="~@/assets/images/overview/icon_data.png" alt=""><br>
-              <i>交换数据总量</i><br>
-              <i class="num">{{ exchangeData.getIn + exchangeData.getOut }}</i><i>（个）</i>
-            </span>
-            <span class="square-bg data-change" flex>
-              <span>
-                <i class="num">{{ exchangeData.getIn }}</i><i>（个）</i><br>
-                <i>归集数据量</i><br>
-                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ exchangeData.getInCorrect }}</i><br>
-              </span>
-              <span>
-                <i class="num">{{ exchangeData.getOut }}</i><i>（个）</i><br>
-                <i>输出数据量</i><br>
-                <i style="line-height: 40px;">正确率</i><i style="color: #00ccff; line-height: 40px;">&nbsp;{{ exchangeData.getOutCorrect }}</i><br>
-              </span>
-            </span>
-            <span class="square-bg data-change mt-5" style="padding-top: 12px;">
-              <i>已对接部门数</i><br>
-              <i class="num">0</i><i>（个）</i>
-            </span>
-            <span class="square-bg data-change mt-5">
-              <span style="padding-bottom: 0; padding-top: 0;">
-                <i>任务监控</i><br>
-                <i style="line-height: 40px;">正常任务</i>&nbsp;<i class="num">{{ exchangeData.dockedNormal }}</i>&nbsp;
-                <i style="line-height: 40px;">异常</i>&nbsp;<i class="num">{{ exchangeData.dockedAbnormal }}</i>
-              </span>
-            </span>
-          </div>
-          <chart ref="chart2" :options="returnBar(exchangeData.chartData)"
+          <chart ref="chart2" :options="returnBar(submission)"
                  style="width: 100%; height: 300px;display:block;"></chart>
         </div>
       </template>
@@ -78,9 +49,46 @@
     <Panel style="padding-left: 0; padding-right: 0;" flex="main:justify dir:top">
       <template slot="outer">
         <div class="inner" style="overflow: hidden; width: 800px">
-          <div class="total-count">
-            <i>数据归集总量</i>
-            <i v-for="(item, index) in countNumList" :key="index" class="total-num" :class="'num' + item"></i>
+          <div class="tip-wrapper" flex="space:around">
+            <div class="tip-item">
+              <div class="tip-item-inner" flex="space:around cross:center">
+                <img src="~@/assets/images/summary/icon_zyxx.png" alt="">
+                <span class="tip-item-font">
+                  <i>资源信息数量</i><br>
+                  <i class="num">7,108,657</i><i>（个）</i>
+                </span>
+              </div>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+            </div>
+            <div class="tip-item">
+              <div class="tip-item-inner" flex="space:around cross:center">
+                <img src="~@/assets/images/summary/icon_sjgj.png" alt="">
+                <span class="tip-item-font">
+                  <i>资源信息数量</i><br>
+                  <i class="num">0</i><i>（个）</i>
+                </span>
+              </div>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+            </div>
+            <div class="tip-item">
+              <div class="tip-item-inner" flex="space:around cross:center">
+                <img src="~@/assets/images/summary/icon_bygj.png" alt="">
+                <span class="tip-item-font">
+                  <i>资源信息数量</i><br>
+                  <i class="num">187</i><i>（个）</i>
+                </span>
+              </div>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+              <span class="light-corner"></span>
+            </div>
           </div>
 
           <div class="map-container">
@@ -95,80 +103,21 @@
         </div>
       </template>
       <template slot="inner">
-        <div class="title">红黑名单统计</div>
-        <div class="red-black-wrapper" flex>
-          <div class="container">
+        <div class="title">数据提报情况</div>
+        <div class="red-black-wrapper" flex="space:around">
+          <div v-for="(item, index) in submissionList" class="container">
             <div class="red-list">
-              <img src="~@/assets/images/overview/icon_hong.png" alt="">
-              <i class="white-font">红名单</i>
-              <i class="num">0</i>
-              <i class="white-font">（个）</i>
+              <i class="white-font">{{item.name}}</i>
             </div>
             <div class="msg-list" flex="wrap:wrap">
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_hgrz.png" alt="">
-                <span>
-                  <p class="white-font">有关认证企业</p>
-                  <p><i class="num">{{ redList.signCom }}</i><i class="white-font">（个）</i></p>
+              <div class="msg-list-item" flex style="flex-direction: column">
+                <span flex="space:around" style="align-items: center">
+                  <p class="white-font">总量</p>
+                  <p><i class="num">{{ item.total }}</i></p>
                 </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_ajnsr.png" alt="">
-                <span>
-                  <p class="white-font">A级纳税人</p>
-                  <p><i class="num">{{ redList.taxpayer  }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_shfr.png" alt="">
-                <span>
-                  <p class="white-font">社会法人诚实守信</p>
-                  <p><i class="num">{{ redList.corp }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_zyz.png" alt="">
-                <span>
-                  <p class="white-font">优秀青年志愿者</p>
-                  <p><i class="num">{{ redList.volunteer }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="red-list">
-              <img src="~@/assets/images/overview/icon_hei.png" alt="">
-              <i class="white-font">黑名单</i>
-              <i class="num">0</i>
-              <i class="white-font">（个）</i>
-            </div>
-            <div class="msg-list" flex="wrap:wrap">
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_hgrz.png" alt="">
-                <span>
-                  <p class="white-font">失信被执行人</p>
-                  <p><i class="num">{{ blackList.performed }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_ajnsr.png" alt="">
-                <span>
-                  <p class="white-font">重大税收违法案件</p>
-                  <p><i class="num">{{ blackList.case }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_shfr.png" alt="">
-                <span>
-                  <p class="white-font">拖欠农民工工资</p>
-                  <p><i class="num">{{ blackList.unpaid }}</i><i class="white-font">（个）</i></p>
-                </span>
-              </div>
-              <div class="msg-list-item" flex="main:center">
-                <img class="rb-icon" src="~@/assets/images/overview/icon_zyz.png" alt="">
-                <span>
-                  <p class="white-font">严重失信债务人</p>
-                  <p><i class="num">{{ blackList.lose }}</i><i class="white-font">（个）</i></p>
+                <span flex="space:around" style="align-items: center">
+                  <p class="white-font">本月新增</p>
+                  <p><i class="num">{{ item.new }}</i></p>
                 </span>
               </div>
             </div>
@@ -180,34 +129,24 @@
       <template slot="inner">
         <div style="height: 100%" flex="main:justify dir:top">
           <div class="title">
-            资源信息分类统计
+            事业单位评价Top100
           </div>
-          <div class="count-wrapper">
-            <div class="count-item square-bg">
-              <i class="white-font" style="line-height: 40px;">一级分类</i><br>
-              <i class="num">{{ classStatistic.lv1 }}</i><i>（个）</i>
+          <div class="dept-list" style="margin-bottom: 10px;">
+            <div class="header-wrapper" flex="main:justify">
+              <span class="list-header" flex-box="1">单位名称</span>
+              <span class="list-header" style="width: 120px;">等级</span>
             </div>
-            <div class="count-item square-bg">
-              <i class="white-font" style="line-height: 40px;">二级分类</i><br>
-              <i class="num">{{ classStatistic.lv2 }}</i><i>（个）</i>
-            </div>
-            <div class="count-item square-bg">
-              <i class="white-font" style="line-height: 40px;">资源数</i>
-              <i class="num">{{ classStatistic.resourceCount }}</i><i>（个）</i>
-            </div>
-            <div class="count-item square-bg">
-              <i class="white-font" style="line-height: 40px;">部门数</i>
-              <i class="num">{{ classStatistic.deptCount }}</i><i>（个）</i>
+            <div class="body-wrapper" flex="main:justify" v-for="(item, index) in evaluateDeptList" :key="index">
+              <span flex-box="1">{{item.name}}</span>
+              <span style="width: 120px;">{{item.lv}}</span>
             </div>
           </div>
-          <chart ref="chart2" :options="reBarChart(classStatistic.chartData)"
-                 style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" style="margin-top: 10px;" flex="main:justify">
-            <span>信用报告查询趋势分析</span>
-            <span class="handle-btn" flex>
+            <span>事业单位评价情况</span>
+            <!--<span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab2 === 0 ? 'active' : ''" @click="handleBtnTab2 = 0">本月</i>
               <i class="btn" :class="handleBtnTab2 === 1 ? 'active' : ''" @click="handleBtnTab2 = 1">本年</i>
-              <!--<b-date-picker type="date"
+              &lt;!&ndash;<b-date-picker type="date"
                              :open="dateOpen2"
                              :value="date2"
                              confirm
@@ -221,30 +160,11 @@
                   <template v-if="date2 === ''">选择日期</template>
                   <template v-else>{{ date2 }}</template>
                 </a>
-              </b-date-picker>-->
-            </span>
+              </b-date-picker>&ndash;&gt;
+            </span>-->
           </div>
-          <div class="chart-msg-bar">信用报告查询总次数：
-            {{ reSum(trendAnalysis, 'count') }}
-            （次）
-          </div>
-          <chart ref="chart2" :options="reAreaChart(trendAnalysis)"
-                 style="width: 100%; height: 220px;display:block;"></chart>
-          <div class="title">
-            数据提报部门
-          </div>
-          <div class="dept-list" style="margin-bottom: 10px;">
-            <div class="header-wrapper" flex="main:justify">
-              <span class="list-header" flex-box="1">部门名称</span>
-              <span class="list-header" style="width: 120px;">数量</span>
-              <span class="list-header" style="width: 120px;">入库率</span>
-            </div>
-            <div class="body-wrapper" flex="main:justify" v-for="(item, index) in submitDeptList" :key="index">
-              <span flex-box="1">{{item.name}}</span>
-              <span style="width: 120px;">{{item.count}}</span>
-              <span style="width: 120px;">{{item.percent}}</span>
-            </div>
-          </div>
+          <chart ref="chart2" :options="reBarChart(evaluateDept)"
+                 style="width: 100%; height: 320px;display:block;"></chart>
         </div>
       </template>
     </Panel>
@@ -261,9 +181,21 @@
   const xyLineColor = '#535e83'
   const splitLineColor = '#283353'
   export default {
-    name: 'Overview',
+    name: 'Affair',
     data() {
       return {
+        evaluateDept: [
+          ['product', '数量'],
+          ['A', 748],
+          ['B', 3],
+          ['C', 0]
+        ],
+        submissionList: [
+          {name:'机关单位登记（变更）',total:187,new:187},
+          {name:'事业单位登记（变更）',total:0,new:0},
+          {name:'事业单位评价',total:753,new:753},
+          {name:'公务人员基本信息',total:0,new:0},
+        ],
         color: ['#1167e2', '#4dcea7', '#fc9530', '#ff3b3c', '#563cff', '#0fbce0', '#0c31e2'],
         // 左右侧时间选择
         handleBtnTab1: 0,
@@ -318,6 +250,44 @@
           { name: '市审计局', count: 0, percent: '0%' },
           { name: '市政务服务办', count: 0, percent: '0%' },
           { name: '市市场监督管理局', count: 0, percent: '0%' }
+        ],
+        evaluateDeptList: [
+          { name: '镇江市财政干部培训中心', lv: 'A' },
+          { name: '镇江市标准化研究中心', lv: 'A' },
+          { name: '镇江消费报社', lv: 'A' },
+          { name: '江苏科技大学海洋装备研究院', lv: 'A' },
+          { name: '镇江市殡葬管理处', lv: 'A' },
+          { name: '镇江市公共信用信息中心', lv: 'A' },
+          { name: '长江镇江航道处', lv: 'A' },
+          { name: '京口区江苏大学社区卫生服务站', lv: 'A' },
+          { name: '镇江市消费者申诉举报受理中心', lv: 'A' },
+          { name: '江苏省丹徒中等专业学校', lv: 'A' },
+        ],
+        servantChartData: [
+          { value: 0, name: '行政编制' },
+          { value: 0, name: '事业编制' },
+          { value: 0, name: '其他' }
+        ],
+        servantDistributeChartData:{
+          inner: [
+            { value: 0, name: '总数' }
+          ],
+          outer: [
+            { value: 0, name: '基本信息' },
+            { value: 0, name: '业务信息' },
+            { value: 0, name: '司法信息' },
+            { value: 0, name: '行政执法信息' },
+            { value: 0, name: '信用评价信息' },
+            { value: 0, name: '公共事业信息' },
+            { value: 0, name: '其他信息' }
+          ],
+        },
+        submission: [
+          ['product', '信息类别'],
+          ['公务员（含参公事业编）基本信息（变更）', '0'],
+          ['机关单位登记（变更）信息', '0'],
+          ['事业单位登记（变更）信息', '0'],
+          ['事业单位（变更）信息', '0'],
         ]
       }
     },
@@ -329,7 +299,6 @@
       // this.initData()
     },
     mounted(){
-      this.numChange(this.countNumList)
       this.renderMap({ id: 'map' })
     },
     computed: {
@@ -379,7 +348,7 @@
           // _self.union = JSON.parse(JSON.stringify(res.data))
         })
       },
-      reBarChart(data) {
+      reDeptBarChart(data) {
         return {
           color: '#00abfb',
           tooltip: {
@@ -405,11 +374,6 @@
                 color: xyLineColor
               }
             },
-            axisLabel:{
-              align: 'center',
-              margin: 24,
-              rotate: 20
-            },
             // axisTick: { show: false },
             splitLine: { show: false }
           },
@@ -421,6 +385,59 @@
               }
             },
             axisTick: {}
+          },
+          series: [
+            {
+              type: 'bar',
+              barWidth: 10,
+              itemStyle: {
+                barBorderRadius: 8
+              }
+            }
+          ]
+        }
+      },
+      reBarChart(data) {
+        return {
+          color: '#00abfb',
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+              type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '3%',
+            bottom: '10%',
+            top: '12%',
+            containLabel: true
+          },
+          dataset: {
+            source: data
+          },
+          xAxis: {
+            name: '（等级）',
+            type: 'category',
+            boundaryGap: [0, 0.01],
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
+              }
+            },
+            axisTick: { show: false },
+            splitLine: { show: false }
+          },
+          yAxis: {
+            name: '（个）',
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
+              }
+            },
+            splitLine: {show: false},
+            axisTick: { show: false }
           },
           series: [
             {
@@ -517,6 +534,41 @@
         this.dateOpen2 = false
       },
       // 渲染pie图
+      returnRing(data) {
+        if(data){
+          return {
+            color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
+            tooltip: {
+              trigger: 'item',
+              formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+              icon: 'circle',
+              right: 60,
+              top: 'center',
+              orient: 'vertical',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                selectedMode: 'single',
+                center: ['30%','50%'],
+                radius: ['45%', '75%'],
+                label: {
+                  show: false,
+                  position: 'center'
+                },
+                data: data
+              }
+            ]
+          }
+        }
+      },
+      // 渲染pie图
       returnPie(data) {
         if(data){
           return {
@@ -527,7 +579,6 @@
             },
             series: [
               {
-                name: '访问来源',
                 type: 'pie',
                 selectedMode: 'single',
                 radius: [0, '50%'],
@@ -540,35 +591,11 @@
                 data: data.inner
               },
               {
-                name: '访问来源',
                 type: 'pie',
                 selectedMode: 'single',
                 radius: ['60%', '75%'],
                 label: {
-                  formatter: '  {a|{a}}  \n    {d}%   ',
-                  rich: {
-                    a: {
-                      color: '#fff',
-                      lineHeight: 22,
-                      align: 'center'
-                    },
-                    hr: {
-                      borderColor: '#aaa',
-                      width: '100%',
-                      borderWidth: 0.5,
-                      height: 0
-                    },
-                    b: {
-                      fontSize: 16,
-                      lineHeight: 33
-                    },
-                    per: {
-                      color: '#eee',
-                      backgroundColor: '#334455',
-                      padding: [2, 4],
-                      borderRadius: 2
-                    }
-                  }
+                  formatter: p => p.name + ' : ' +  p.value,
                 },
                 /* data: [
                   { value: 400, name: '法人惩戒' },
@@ -587,7 +614,7 @@
           return {
             grid: {
               top: 20,
-              left: 50,
+              left: '28%',
               right: 10
             },
             legend: {
@@ -599,15 +626,59 @@
               source: data
             },
             xAxis: {
-              type: 'category',
+              type: 'value',
               axisLine: { lineStyle: { color: xyLineColor } },
-              boundaryGap: ['20%', '20%']
+              boundaryGap: ['20%', '20%'],
+              splitLine: {
+                show: false
+              },
+              axisTick: {
+                show: false
+              }
             },
             yAxis: {
+              type: 'category',
               min: 0,
               boundaryGap: ['20%', '20%'],
               axisLine: { lineStyle: { color: xyLineColor } },
-              splitLine: { lineStyle: { color: splitLineColor } }
+              splitLine: { lineStyle: { color: splitLineColor } },
+              axisLabel: {
+                width: 100,
+                formatter: function(params){
+                  var newParamsName = "";// 最终拼接成的字符串
+                  var paramsNameNumber = params.length;// 实际标签的个数
+                  var provideNumber = 7;// 每行能显示的字的个数
+                  var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+
+                  // 条件等同于rowNumber>1
+                  if (paramsNameNumber > provideNumber) {
+
+                    for (var p = 0; p < rowNumber; p++) {
+                      var tempStr = "";// 表示每一次截取的字符串
+                      var start = p * provideNumber;// 开始截取的位置
+                      var end = start + provideNumber;// 结束截取的位置
+                      // 此处特殊处理最后一行的索引值
+                      if (p == rowNumber - 1) {
+                        // 最后一次不换行
+                        tempStr = params.substring(start, paramsNameNumber);
+                      } else {
+                        // 每一次拼接字符串并换行
+                        tempStr = params.substring(start, end) + "\n";
+                      }
+                      newParamsName += tempStr;// 最终拼成的字符串
+                    }
+
+                  } else {
+                    // 将旧标签的值赋给新标签
+                    newParamsName = params;
+                  }
+                  //将最终的字符串返回
+                  return newParamsName
+                }
+              },
+              axisTick: {
+                show: false
+              }
             },
             series: [
               {
@@ -673,19 +744,19 @@
         var chinaDatas = [
           [{
             name: '句容区',
-            value: 1
+            value: 0
           }], [{
             name: '丹徒区',
-            value: 1
+            value: 0
           }], [{
             name: '润州区',
-            value: 1
-          }], [{
+            value: 0
+          }],[{
             name: '扬中市',
-            value: 1
+            value: 0
           }], [{
             name: '丹阳市',
-            value: 1
+            value: 0
           }]
         ]
         var convertData = function (data) {
@@ -866,7 +937,7 @@
   $rotateW = 4 * $p
   $rotateH = 3.46 * $p
 
-  [flex~="content:around"]
+  [flex~="space:around"]
     -webkit-box-pack: justify;
     -webkit-justify-content: space-around;
     -ms-flex-pack: justify;
@@ -891,8 +962,8 @@
         font-weight: 700
 
       div
-        height 28px
-        line-height: 28px
+        height 42px
+        line-height: 42px
 
         &:nth-child(odd)
           background-color: #001739
@@ -974,7 +1045,7 @@
     .inner
       position relative
       width ($rotateW) px
-      height: 640px
+      height: 740px
       margin 0 auto
 
       .total-count
@@ -1114,7 +1185,7 @@
 
     .red-black-wrapper
       .container
-        width 50%
+        width 22%
 
         .red-list
           padding-bottom: 10px
@@ -1122,7 +1193,8 @@
           background-image: url('~@/assets/images/overview/tuopan.png')
           background-repeat: no-repeat
           background-position: bottom center
-
+          -webkit-background-size: contain
+          background-size: contain
           img, i
             vertical-align middle
             padding 10px
@@ -1131,8 +1203,7 @@
           padding-top: 20px
 
           .msg-list-item
-            width: 50%
-            margin-top: 15px
+            width: 100%
 
             .rb-icon
               margin-right: 10px
@@ -1140,7 +1211,7 @@
               height: 52px
 
             span
-              width: 112px
+              width: 100%
 
   .rotate
     position absolute
@@ -1259,6 +1330,88 @@
 
   .handle-btn >>> .bin-date-picker-rel
     line-height: 32px
+
+  .tip-wrapper
+    position absolute
+    top: 0
+    left: 0
+    width: 100%
+
+    .tip-item
+      width: 28%
+      height: 100px
+      background-image: url('~@/assets/images/summary/data_bg.png')
+      position relative
+
+      .light-corner
+        content: ''
+        display block
+        position absolute
+        width 8px
+        height: 8px
+
+        &:nth-of-type(1)
+          top: 0
+          left: 0
+          border-top: $bdh solid $fontColor
+          border-left: $bdw solid $fontColor
+          -webkit-border-radius: 2px 0 0 0
+          -moz-border-radius: 2px 0 0 0
+          border-radius: 2px 0 0 0
+
+        &:nth-of-type(2)
+          top: 0
+          right: 0
+          border-top: $bdh solid $fontColor
+          border-right: $bdw solid $fontColor
+          -webkit-border-radius: 0 2px 0 0
+          -moz-border-radius: 0 2px 0 0
+          border-radius: 0 2px 0 0
+
+        &:nth-of-type(3)
+          bottom: 0
+          left: 0
+          border-bottom: $bdh solid $fontColor
+          border-left: $bdw solid $fontColor
+          -webkit-border-radius: 0 0 0 2px
+          -moz-border-radius: 0 0 0 2px
+          border-radius: 0 0 0 2px
+
+        &:nth-of-type(4)
+          bottom: 0
+          right: 0
+          border-bottom: $bdh solid $fontColor
+          border-right: $bdw solid $fontColor
+          -webkit-border-radius: 0 0 2px 0
+          -moz-border-radius: 0 0 2px 0
+          border-radius: 0 0 2px 0
+
+      .tip-item-inner
+        height: 100%
+        padding-left: 20px
+        line-height: 30px
+
+      &:nth-of-type(1)
+        .tip-item-font
+          color #17d2e8
+
+          .num
+            color inherit
+
+      &:nth-of-type(2)
+        .tip-item-font
+          color #02fbec
+
+          .num
+            color inherit
+
+      &:nth-of-type(3)
+        .tip-item-font
+          color #065bf7
+
+          .num
+            color inherit
+
 
   @keyframes rotate3d {
     0% {

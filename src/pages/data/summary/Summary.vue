@@ -12,17 +12,17 @@
               <span class="count-wrapper-item" flex="main:justify dir:top">
               <img src="~@/assets/images/summary/icon_01.png" alt="">
               <i class="font">归集数量</i>
-              <i class="num">560</i>
+              <i class="num">57</i>
             </span>
                 <span class="count-wrapper-item" flex="main:justify dir:top">
               <img src="~@/assets/images/summary/icon_02.png" alt="">
               <i class="font">归集数量</i>
-              <i class="num">560</i>
+              <i class="num">0</i>
             </span>
                 <span class="count-wrapper-item" flex="main:justify dir:top">
               <img src="~@/assets/images/summary/icon_03.png" alt="">
               <i class="font">归集数量</i>
-              <i class="num">560</i>
+              <i class="num">0</i>
             </span>
               </div>
             </template>
@@ -35,19 +35,19 @@
               <div flex="main:justify">
               <span class="count-wrapper-item" flex="main:justify dir:top">
               <i class="font">一级分类（个）</i>
-              <i class="num">560</i>
+              <i class="num">8</i>
             </span>
                 <span class="count-wrapper-item" flex="main:justify dir:top">
               <i class="font">二级分类（个）</i>
-              <i class="num">560</i>
+              <i class="num">40</i>
             </span>
                 <span class="count-wrapper-item" flex="main:justify dir:top">
               <i class="font">资源数（个）</i>
-              <i class="num">560</i>
+              <i class="num">57</i>
             </span>
                 <span class="count-wrapper-item" flex="main:justify dir:top">
               <i class="font">部门数（个）</i>
-              <i class="num">560</i>
+              <i class="num">55</i>
             </span>
               </div>
               <div>
@@ -62,7 +62,7 @@
                 <span class="handle-date" flex="main:justify">
                 <i class="tab" :class="dateTab === 0 ? 'active' : ''" @click="dateTab = 0">本月</i>
                 <i class="tab" :class="dateTab === 1 ? 'active' : ''" @click="dateTab = 1">本年</i>
-                <b-date-picker
+                <!--<b-date-picker
                   placement="bottom-end"
                   :open="open"
                   :value="date"
@@ -74,22 +74,21 @@
                       <template v-if="date === ''">请选择日期</template>
                       <template v-else>{{ date }}</template>
                     </a>
-                  </b-date-picker
-                  >
+                  </b-date-picker>-->
               </span>
               </div>
             </template>
             <template slot="content">
               <div class="table">
                 <div class="table-row" flex="main:justify">
-                  <span>部门名称</span>
-                  <span>轨迹数量（个）</span>
+                  <span style="width: 140px">部门名称</span>
+                  <span style="width: 120px">轨迹数量（个）</span>
                   <span>占比</span>
                 </div>
                 <div class="table-row" v-for="(item, index) in classifyList" :key="index" flex="main:justify">
-                  <span>{{ item.name }}</span>
-                  <span>{{ item.count }}</span>
-                  <span>{{ item.percent }}%</span>
+                  <span style="width: 140px">{{ item.name }}</span>
+                  <span style="width: 120px">{{ item.count }}</span>
+                  <span>{{ item.percent }}</span>
                 </div>
               </div>
             </template>
@@ -106,7 +105,7 @@
                 <img src="~@/assets/images/summary/icon_zyxx.png" alt="">
                 <span class="tip-item-font">
                   <i>资源信息数量</i><br>
-                  <i class="num">16,589</i><i>（个）</i>
+                  <i class="num">57</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -119,7 +118,7 @@
                 <img src="~@/assets/images/summary/icon_sjgj.png" alt="">
                 <span class="tip-item-font">
                   <i>资源信息数量</i><br>
-                  <i class="num">16,589</i><i>（个）</i>
+                  <i class="num">8,720,016</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -133,7 +132,7 @@
                 <img src="~@/assets/images/summary/icon_bygj.png" alt="">
                 <span class="tip-item-font">
                   <i>资源信息数量</i><br>
-                  <i class="num">16,589</i><i>（个）</i>
+                  <i class="num">4,497,783</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -146,25 +145,25 @@
             <span class="float-tip-wrapper-item" flex="dir:top cross:center">
               <img src="~@/assets/images/summary/icon_zrr.png" alt=""><br>
               <span><i>自然人数据总量</i></span>
-              <span><i class="num">565，854</i><i>（个）</i></span>
+              <span><i class="num">7,108,675</i><i>（个）</i></span>
             </span>
             <span class="float-tip-wrapper-item" flex="dir:top cross:center">
               <img src="~@/assets/images/summary/icon_fr.png" alt=""><br>
-              <span><i>自然人数据总量</i></span>
-              <span><i class="num">565，854</i><i>（个）</i></span>
+              <span><i>法人数据总量</i></span>
+              <span><i class="num">1,611,359</i><i>（个）</i></span>
             </span>
           </div>
           <div class="float-tip-wrapper float-2" flex="main:justify">
 
             <span class="float-tip-wrapper-item" flex="dir:top cross:center">
               <img src="~@/assets/images/summary/icon_zdrq.png" alt=""><br>
-              <span><i>自然人数据总量</i></span>
-              <span><i class="num">565，854</i><i>（个）</i></span>
+              <span><i>重点人群数据总量</i></span>
+              <span><i class="num">0</i><i>（个）</i></span>
             </span>
             <span class="float-tip-wrapper-item" flex="dir:top cross:center">
               <img src="~@/assets/images/summary/icon_yztg.png" alt=""><br>
-              <span><i>自然人数据总量</i></span>
-              <span><i class="num">565，854</i><i>（个）</i></span>
+              <span><i>验证通过率</i></span>
+              <span><i class="num">99.41</i><i>%</i></span>
             </span>
           </div>
           <div id="cvsBg" style="margin-top: 12px;width: 100%; height: 500px;"></div>
@@ -197,12 +196,12 @@
             <template slot="title">
               <div flex="main:justify">
                 <span>数据归集来源对比</span>
-                <span class="handle-date" flex="main:justify">
+                <!--<span class="handle-date" flex="main:justify">
                   <i class="tab active" v-show="dateTab === 0" @click="dateTab = 1"><i class="iconfont icon-ios-repeat"
                                                                                        style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>法人</i>
                   <i class="tab active" v-show="dateTab === 1" @click="dateTab = 0"><i class="iconfont icon-ios-repeat"
                                                                                        style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>自然人</i>
-                </span>
+                </span>-->
               </div>
             </template>
             <template slot="content">
@@ -221,7 +220,7 @@
                 </div>
                 <div class="table-row" v-for="(item, index) in newClassifyList" :key="index" flex="main:justify">
                   <span>{{ item.name }}</span>
-                  <span>{{ item.count }}</span>
+                  <span>{{ item.msg }}</span>
                 </div>
               </div>
             </template>
@@ -254,22 +253,22 @@
           },
           grid: {
             left: '3%',
-            right: '4%',
-            bottom: '6%',
+            right: '10%',
+            bottom: '3%',
             top: '3%',
             containLabel: true
           },
           dataset: {
             source: [
-              ['product', '辅助', '生活费'],
-              ['基础信息', 0, 100],
-              ['业务信息', 100, 100],
-              ['司法信息', 200, 100],
-              ['行政执法信息', 300, 100],
-              ['公共事业信息', 400, 100],
-              ['信用评级信息', 500, 100],
-              ['其他信息', 600, 100],
-              ['累计', 0, 700]
+              ['product', '信息量'],
+              ['基础信息', 4794115],
+              ['业务信息', 1883668],
+              ['行政执法信息',1685166],
+              ['政务信息', 0],
+              ['司法信息', 0],
+              ['公共事业信息', 0],
+              ['信用评级信息', 0],
+              ['其他信息', 0]
             ]
           },
           xAxis: {
@@ -280,11 +279,15 @@
                 color: xyLineColor
               }
             },
+            axisLabel:{
+              align: 'center',
+              margin: 24,
+              rotate: 20
+            },
             splitLine: { lineStyle: { color: splitLineColor } }
           },
           yAxis: {
             type: 'category',
-            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息'],
             axisLine: {
               lineStyle: {
                 color: xyLineColor
@@ -307,7 +310,6 @@
                   ]
                 )
               },
-              data: [1100, 800, 550, 350, 200, 100, 80]
             }
           ]
         },
@@ -315,20 +317,24 @@
         date: '',
         dateTab: 0,
         classifyList: [
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 }
+          { name: '镇江市', count: 6834299, percent: '78%' },
+          { name: '扬中市人社局', count: 1883650, percent: '22%' },
+          { name: '市编办', count: 2067, percent: '0%' },
+          { name: '市农业农村局', count: 0, percent: '0%' },
+          { name: '市教育局', count: 0, percent: '0%' },
+          { name: '市卫健委', count: 0, percent: '0%' },
+          { name: '市审计局', count: 0, percent: '0%' },
+          { name: '市政务服务办', count: 0, percent: '0%' },
+          { name: '市市场监督管理局', count: 0, percent: '0%' }
         ],
         newClassifyList: [
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 }
+          { name: '市编办', msg: '机关事业单位登记（变更）信息' },
+          { name: '镇江市', msg: '社会法人分布信息表' },
+          { name: '扬中市人社局', msg: '自然人社保缴纳信息' },
+          { name: '扬中市人社局', msg: '自然人社保缴纳信息' },
+          { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
+          { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
+          { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
         ],
         trend: {
           color: ['#02b7f4', '#2646c5'],
@@ -356,7 +362,7 @@
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
               boundaryGap: false,
-              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+              data: ['6月']
             }
           ],
           yAxis: [
@@ -380,18 +386,18 @@
           series: [
             {
               smooth: true,
-              name: '奖',
+              name: '自然人',
               type: 'line',
               areaStyle: {},
               yAxisIndex: 1,
-              data: [120, 132, 101, 134, 90, 230, 210]
+              data: [4497783]
             },
             {
               smooth: true,
-              name: '惩',
+              name: '法人及其他组织',
               type: 'line',
               areaStyle: {},
-              data: [220, 182, 191, 234, 290, 330, 310]
+              data: [0]
             }
           ]
         },
@@ -409,10 +415,9 @@
               center: ['50%', '50%'],
               roseType: 'area',
               data: [
-                { value: 10, name: '手工填报' },
-                { value: 5, name: 'et对接' },
-                { value: 15, name: '内部接口' },
-                { value: 25, name: '其他' }
+                { value: 1885717, name: '手工填报' },
+                { value: 0, name: '内部接口' },
+                { value: 8730171, name: '其他' }
               ]
             }
           ]
@@ -440,13 +445,13 @@
                 show: false
               },
               data: [
-                { value: 335, name: '业务信息' },
-                { value: 310, name: '司法信息' },
-                { value: 234, name: '行政执法信息' },
-                { value: 235, name: '信用评价信息' },
-                { value: 248, name: '公共事业信息' },
-                { value: 248, name: '其他信息' },
-                { value: 248, name: '基本信息' }
+                { value: 0, name: '业务信息' },
+                { value: 0, name: '司法信息' },
+                { value: 0, name: '行政执法信息' },
+                { value: 0, name: '信用评价信息' },
+                { value: 0, name: '公共事业信息' },
+                { value: 0, name: '其他信息' },
+                { value: 4794115, name: '基本信息' }
               ]
             },
             {
@@ -594,6 +599,7 @@
     height: 1000px
     padding 20px 0
     box-sizing border-box
+
     > div
       &:nth-child(1)
         width 460px
@@ -761,8 +767,9 @@
     .table
       margin-top: 10px
       padding-bottom: 14px
+
       .table-row
-        line-height: 32px
+        line-height: 28px
 
         &:nth-child(odd)
           background-color: #001739

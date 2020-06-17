@@ -10,7 +10,7 @@
                 <span class="handle-date" flex="main:justify">
                   <i class="tab" :class="dateTab === 0 ? 'active' : ''" @click="dateTab = 0">本月</i>
                   <i class="tab" :class="dateTab === 1 ? 'active' : ''" @click="dateTab = 1">本年</i>
-                  <b-date-picker
+                  <!--<b-date-picker
                     placement="bottom-end"
                     :open="open"
                     :value="date"
@@ -22,7 +22,7 @@
                         <template v-if="date === ''">请选择日期</template>
                         <template v-else>{{ date }}</template>
                       </a>
-                    </b-date-picker>
+                    </b-date-picker>-->
                 </span>
               </div>
             </template>
@@ -41,7 +41,7 @@
           </Card>
           <Card>
             <template slot="title">
-              <span>双公示数据7天提报率</span>
+              <span>双公示数据7天提报数量</span>
             </template>
             <template slot="content">
               <chart ref="chart1" :options="classify" style="width: 100%; height: 326px;"></chart>
@@ -55,7 +55,7 @@
         <div class="center">
           <div class="cloud">
             <i>双公示信息总数</i><br>
-            <i class="num">88480</i><i>（个）</i>
+            <i class="num">1,685,166</i><i>（个）</i>
           </div>
           <img src="~@/assets/images/public/guangshu.png" alt="" class="light">
           <img src="~@/assets/images/public/huan1.png" alt="" class="cir cir-1">
@@ -70,7 +70,7 @@
                   <img src="~@/assets/images/public/icon01.png" alt="">
                   <span>
                     <i>自然人行政许可</i><br>
-                    <i class="num">88480</i><i>（个）</i>
+                    <i class="num">1,649,373</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -85,8 +85,8 @@
                 <div class="inner" flex="space:around cross:center">
                   <img src="~@/assets/images/public/icon02.png" alt="">
                   <span>
-                    <i>自然人行政许可</i><br>
-                    <i class="num">88480</i><i>（个）</i>
+                    <i>法人行政许可</i><br>
+                    <i class="num">30,404</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -101,8 +101,8 @@
                 <div class="inner" flex="space:around cross:center">
                   <img src="~@/assets/images/public/icon03.png" alt="">
                   <span>
-                    <i>自然人行政许可</i><br>
-                    <i class="num">88480</i><i>（个）</i>
+                    <i>自然人行政处罚</i><br>
+                    <i class="num">3,224</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -117,8 +117,8 @@
                 <div class="inner" flex="space:around cross:center">
                   <img src="~@/assets/images/public/icon04.png" alt="">
                   <span>
-                    <i>自然人行政许可</i><br>
-                    <i class="num">88480</i><i>（个）</i>
+                    <i>法人行政处罚</i><br>
+                    <i class="num">2,165</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -159,14 +159,14 @@
                     <img src="~@/assets/images/public/xuke.png" alt="">
                     <span>
                       <i class="white-font">行政许可数量</i><br>
-                      <i class="num">3566</i><i>个</i>
+                      <i class="num">1,679,777</i><i>个</i>
                     </span>
                   </div>
                   <div class="new-item" flex="space:around cross:center">
                     <img src="~@/assets/images/public/chufa.png" alt="">
                     <span>
-                      <i class="white-font">行政许可数量</i><br>
-                      <i class="num">3566</i><i>个</i>
+                      <i class="white-font">行政处罚数量</i><br>
+                      <i class="num">5,389</i><i>个</i>
                     </span>
                   </div>
                 </div>
@@ -215,16 +215,16 @@
         open: false,
         date: '',
         newClassifyList: [
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 },
-          { name: '部门名称一', count: 8848, percent: 10 }
+          { name: '镇江市公安局', count: 1644424, percent: 10 },
+          { name: '句容市行政审批局', count: 8398, percent: 10 },
+          { name: '国家税务总局扬中市税务局', count: 3492, percent: 10 },
+          { name: '国家税务总局句容市税务局第一税务分局', count: 2861, percent: 10 },
+          { name: '丹阳市城管局', count: 2355, percent: 10 },
+          { name: '镇江市卫生健康委员会', count: 2083, percent: 10 },
+          { name: '镇江市城区地方海事处', count: 1907, percent: 10 },
+          { name: '丹阳地方海事处', count: 917, percent: 10 },
+          { name: '丹阳市住房和城乡建设局镇江市', count: 875, percent: 10 },
+          { name: '丹阳市公安局', count: 777, percent: 10 }
         ],
         trend: {
           color: ['#02b7f4', '#2646c5'],
@@ -248,7 +248,7 @@
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
               boundaryGap: false,
-              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+              data: ['6月']
             }
           ],
           yAxis: [
@@ -272,18 +272,18 @@
           series: [
             {
               smooth: true,
-              name: '奖',
+              name: '行政许可',
               type: 'line',
               areaStyle: {},
               yAxisIndex: 1,
-              data: [120, 132, 101, 134, 90, 230, 210]
+              data: [1679777]
             },
             {
               smooth: true,
-              name: '惩',
+              name: '行政处罚',
               type: 'line',
               areaStyle: {},
-              data: [220, 182, 191, 234, 290, 330, 310]
+              data: [5389]
             }
           ]
         },
@@ -303,15 +303,14 @@
           },
           dataset: {
             source: [
-              ['product', '辅助', '生活费'],
-              ['基础信息', 0, 100],
-              ['业务信息', 100, 100],
-              ['司法信息', 200, 100],
-              ['行政执法信息', 300, 100],
-              ['公共事业信息', 400, 100],
-              ['信用评级信息', 500, 100],
-              ['其他信息', 600, 100],
-              ['累计', 0, 700]
+              ['product', '数据量'],
+              ['1天',3],
+              ['2天',14],
+              ['3天',11],
+              ['4天',3],
+              ['5天',1],
+              ['6天',3],
+              ['7天',1]
             ]
           },
           yAxis: {
@@ -327,7 +326,6 @@
           },
           xAxis: {
             type: 'category',
-            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息'],
             axisLine: {
               lineStyle: {
                 color: xyLineColor
@@ -349,7 +347,6 @@
                   ]
                 )
               },
-              data: [1100, 800, 550, 350, 200, 100, 80]
             }
           ]
         },
@@ -369,15 +366,19 @@
           },
           dataset: {
             source: [
-              ['product', '辅助', '生活费'],
-              ['基础信息', 0, 100],
-              ['业务信息', 100, 100],
-              ['司法信息', 200, 100],
-              ['行政执法信息', 300, 100],
-              ['公共事业信息', 400, 100],
-              ['信用评级信息', 500, 100],
-              ['其他信息', 600, 100],
-              ['累计', 0, 700]
+              ['product', '数量'],
+              ['1月', 0],
+              ['2月', 0],
+              ['3月', 0],
+              ['4月', 0],
+              ['5月', 0],
+              ['6月', 0],
+              ['7月', 0],
+              ['8月', 0],
+              ['9月', 0],
+              ['10月', 0],
+              ['11月', 0],
+              ['12月', 0]
             ]
           },
           yAxis: {
@@ -393,13 +394,11 @@
           },
           xAxis: {
             type: 'category',
-            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息'],
             axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
-            },
-            inverse: true
+            }
           },
           series: [
             {
@@ -414,8 +413,7 @@
                     { offset: 1, color: '#070c32' }
                   ]
                 )
-              },
-              data: [1100, 800, 550, 350, 200, 100, 80]
+              }
             }
           ]
         },
@@ -427,7 +425,7 @@
           },
           series: [
             {
-              name: '访问来源',
+              name: '种类',
               type: 'pie',
               radius: ['50%', '65%'],
               avoidLabelOverlap: false,
@@ -442,17 +440,16 @@
                 show: false
               },
               data: [
-                { value: 335, name: '业务信息' },
-                { value: 310, name: '司法信息' },
-                { value: 234, name: '行政执法信息' },
-                { value: 235, name: '信用评价信息' },
-                { value: 248, name: '公共事业信息' },
-                { value: 248, name: '其他信息' },
-                { value: 248, name: '基本信息' }
+                { value: 1678374, name: '普通' },
+                { value: 598, name: '特许' },
+                { value: 350, name: '认可' },
+                { value: 619, name: '核准' },
+                { value: 429, name: '登记' },
+                { value: 8, name: '其他' }
               ]
             },
             {
-              name: '访问来源',
+              name: '合计',
               type: 'pie',
               radius: ['0', '40%'],
               avoidLabelOverlap: false,
@@ -468,7 +465,7 @@
                 show: false
               },
               data: [
-                { value: 335, name: '直接访问' }
+                { value: 885265, name: '行政许可' }
               ]
             }
           ]

@@ -6,7 +6,7 @@ import Summary from '../pages/data/summary/Summary.vue'
 import SummaryMap from '../pages/data/summary/SummaryCopy.vue'
 import Public from '../pages/data/public/Public.vue'
 import Union from '../pages/data/union/Union.vue'
-import Map from '../pages/data/map/Map.vue'
+import Affair from '../pages/data/map/Affair.vue'
 
 export const constantRouterMap = [
   {
@@ -48,6 +48,11 @@ export const constantRouterMap = [
     path: '/map',
     component: SummaryMap,
     redirect: { name: 'SummaryMap' }
+  },
+  {
+    path: '/affair',
+    component: Affair,
+    redirect: { name: 'Affair' }
   },
   // 登录
   // {
