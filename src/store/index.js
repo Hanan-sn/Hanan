@@ -6,6 +6,7 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 import overview from './modules/overview'
+import summary from './modules/summary'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   // actions,
   // getters,
   modules: {
-    overview
+    overview,
+    summary
   }
 })

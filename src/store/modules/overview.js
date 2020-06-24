@@ -1,5 +1,23 @@
-import {reqOverviewData} from '../../api'
-import {Overview} from '../mutation-types'
+import {
+  reqOverviewUnionData,
+  reqOverviewCountNumListData,
+  reqOverviewExchangeData,
+  reqOverviewRedListData,
+  reqOverviewBlackListData,
+  reqOverviewClassStatisticData,
+  reqOverviewTrendAnalysisData,
+  reqOverviewSubmitDeptListData,
+} from '../../api'
+import {
+  OverviewUnionData,
+  OverviewCountNumListData,
+  OverviewExchangeData,
+  OverviewRedListData,
+  OverviewBlackListData,
+  OverviewClassStatisticData,
+  OverviewTrendAnalysisData,
+  OverviewSubmitDeptListData,
+} from '../mutation-types'
 export default {
   state: {
     union: {
@@ -88,5 +106,73 @@ export default {
       { name: '市政务服务办', count: 0, percent: '0%' },
       { name: '市市场监督管理局', count: 0, percent: '0%' }
     ] // 数据提报部门
+  },
+  actions: {
+    async getOverviewUnionData({commit}){
+      const result = await reqOverviewUnionData()
+      commit(OverviewUnionData, {result})
+    },
+    async getOverviewExchangeData({commit}){
+      const result = await reqOverviewExchangeData()
+      commit(OverviewExchangeData, {result})
+    },
+    async getOverviewCountNumListData({commit}){
+      const result = await reqOverviewCountNumListData()
+      commit(OverviewCountNumListData, {result})
+    },
+    async getOverviewRedListData({commit}){
+      const result = await reqOverviewRedListData()
+      commit(OverviewRedListData, {result})
+    },
+    async getOverviewBlackListData({commit}){
+      const result = await reqOverviewBlackListData()
+      commit(OverviewBlackListData, {result})
+    },
+    async getOverviewClassStatisticData({commit}){
+      const result = await reqOverviewClassStatisticData()
+      commit(OverviewClassStatisticData, {result})
+    },
+    async getOverviewTrendAnalysisData({commit}){
+      const result = await reqOverviewTrendAnalysisData()
+      commit(OverviewTrendAnalysisData, {result})
+    },
+    async getOverviewSubmitDeptListData({commit}){
+      const result = await reqOverviewSubmitDeptListData()
+      commit(OverviewSubmitDeptListData, {result})
+    }
+  },
+  mutations: {
+   [OverviewUnionData](state, {result}){
+     const { data } = result
+     state.union = data
+   },
+   [OverviewExchangeData](state, {result}){
+     const { data } = result
+     state.exchangeData = data
+   },
+   [OverviewCountNumListData](state, {result}){
+     const { data } = result
+     state.countNumList = data
+   },
+   [OverviewRedListData](state, {result}){
+     const { data } = result
+     state.redList = data
+   },
+   [OverviewBlackListData](state, {result}){
+     const { data } = result
+     state.blackList = data
+   },
+   [OverviewClassStatisticData](state, {result}){
+     const { data } = result
+     state.classStatistic = data
+   },
+   [OverviewTrendAnalysisData](state, {result}){
+     const { data } = result
+     state.trendAnalysis = data
+   },
+   [OverviewSubmitDeptListData](state, {result}){
+     const { data } = result
+     state.submitDeptList = data
+   }
   }
 }

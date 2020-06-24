@@ -5,15 +5,15 @@
         <div style="height: 100%" flex="main:justify dir:top">
           <div class="title">联合奖惩</div>
           <div class="count-wrapper">
-            <span class="square-bg">
+            <span class="square-bg union-square">
               <i class="count-title">备忘录数量</i><br>
               <i class="num">{{ union.memoCount }}</i><i class="white-font">（个）</i>
             </span>
-            <span class="square-bg">
+            <span class="square-bg union-square">
               <i class="count-title">措施数量</i><br>
               <i class="num">{{ union.measureCount }}</i><i class="white-font">（个）</i>
             </span>
-            <span class="square-bg">
+            <span class="square-bg union-square">
               <i class="count-title">实施部门数量</i><br>
               <i class="num">{{ union.deptCount }}</i><i class="white-font">（个）</i>
             </span>
@@ -80,7 +80,6 @@
         <div class="inner" style="overflow: hidden; width: 800px">
           <div class="total-count">
             <i>数据归集总量</i>
-            <i v-for="(item, index) in countNumList" :key="index">{{item}}</i>
             <i v-for="(item, index) in countNumList" :key="index" class="total-num" :class="'num' + item"></i>
           </div>
 
@@ -254,7 +253,7 @@
 
 <script>
   import echarts from 'echarts'
-  import 'echarts/map/js/china'
+  import 'echarts/map/js/zhenjiang'
   import Panel from '../../../components/Panel/Panel'
   // import RangeSelect from '../../../components/RangeSelect/RangeSelect'
   import { mapState } from 'vuex'
@@ -280,7 +279,7 @@
       // RangeSelect
     },
     created() {
-      // this.initData()
+      this.initData()
     },
     mounted() {
       this.numChange(this.$store.state.overview.countNumList)
@@ -329,15 +328,15 @@
       }
     },
     methods: {
-      initData() {
-        this.$store.dispatch('getOverviewExchangeData').then((res) => {
-          // console.log(res)
-          // _self.dataExchange = JSON.parse(JSON.stringify(res.data))
-        })
-        this.$store.dispatch('getOverviewUnionData').then((res) => {
-          // console.log(res)
-          // _self.union = JSON.parse(JSON.stringify(res.data))
-        })
+      initData(){
+        this.$store.dispatch('getOverviewUnionData')
+        this.$store.dispatch('getOverviewExchangeData')
+        this.$store.dispatch('getOverviewCountNumListData')
+        this.$store.dispatch('getOverviewRedListData')
+        this.$store.dispatch('getOverviewBlackListData')
+        this.$store.dispatch('getOverviewClassStatisticData')
+        this.$store.dispatch('getOverviewTrendAnalysisData')
+        this.$store.dispatch('getOverviewSubmitDeptListData')
       },
       reBarChart(data) {
         return {
@@ -610,11 +609,13 @@
           list.forEach(() => {
             arr.push(parseInt(Math.random() * 10))
           })
-          list = arr
+          list.splice(0,8)
+          list.push(...arr)
         }, 20)
         setTimeout(() => {
           window.clearInterval(change)
-          list = copy
+          list.splice(0,8)
+          list.push(...copy)
         }, 1000)
       },
 
@@ -893,7 +894,8 @@
       display flex
       justify-content space-between
       width: 100%
-
+      .union-square
+        width: 32%
       .count-item
         width 23%
         padding-bottom 8px
