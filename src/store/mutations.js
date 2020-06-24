@@ -15,26 +15,26 @@ export default {
   },
   [Map](state, { result }) {
     const { data } = result
-    state.map = map
+    state.map = data
   },
   [Union](state, { result }) {
     const { data } = result
-    state.union = union
+    state.union = data
   },
   [Summary](state, { result }) {
     const { data } = result
-    state.summary = summary
+    state.summary = data
   },
   [Public](state, { result }) {
     const { data } = result
-    state.public = publicState
+    state.public = data
   },
   [OverviewExchangeData](state, { result }) {
     const { data } = result
-    state.exchangeData = JSON.parse(JSON.stringify(data))
+    state.exchangeData = data
   },
   [OverviewUnionData](state, { result }) {
     const { data } = result
-    state.union = JSON.parse(JSON.stringify(data))
+    state.union = data
   }
 }

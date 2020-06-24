@@ -1,13 +1,9 @@
-import state from '../state'
-import mutations from '../state'
-import actions from '../state'
-import getters from '../state'
-
-
-
+import {reqMapData} from '../../api'
+import {Map} from '../mutation-types'
 export default {
-  namespaced: true,  //多出的一行
-  state,
+  state:{
+
+  },
   mutations,
   actions,
   getters

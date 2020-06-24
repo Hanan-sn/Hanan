@@ -62,19 +62,19 @@
                 <span class="handle-date" flex="main:justify">
                 <i class="tab" :class="dateTab === 0 ? 'active' : ''" @click="dateTab = 0">本月</i>
                 <i class="tab" :class="dateTab === 1 ? 'active' : ''" @click="dateTab = 1">本年</i>
-                <!--<b-date-picker
-                  placement="bottom-end"
-                  :open="open"
-                  :value="date"
-                  confirm
-                  @on-change="handleChange"
-                  @on-clear="handleClear"
-                  @on-ok="handleOk">
-                    <a href="javascript:void(0)" @click="handleClick">
-                      <template v-if="date === ''">请选择日期</template>
-                      <template v-else>{{ date }}</template>
-                    </a>
-                  </b-date-picker>-->
+                  <!--<b-date-picker
+                    placement="bottom-end"
+                    :open="open"
+                    :value="date"
+                    confirm
+                    @on-change="handleChange"
+                    @on-clear="handleClear"
+                    @on-ok="handleOk">
+                      <a href="javascript:void(0)" @click="handleClick">
+                        <template v-if="date === ''">请选择日期</template>
+                        <template v-else>{{ date }}</template>
+                      </a>
+                    </b-date-picker>-->
               </span>
               </div>
             </template>
@@ -263,7 +263,7 @@
               ['product', '信息量'],
               ['基础信息', 4794115],
               ['业务信息', 1883668],
-              ['行政执法信息',1685166],
+              ['行政执法信息', 1685166],
               ['政务信息', 0],
               ['司法信息', 0],
               ['公共事业信息', 0],
@@ -279,7 +279,7 @@
                 color: xyLineColor
               }
             },
-            axisLabel:{
+            axisLabel: {
               align: 'center',
               margin: 24,
               rotate: 20
@@ -309,7 +309,7 @@
                     { offset: 1, color: '#39BBF3' }
                   ]
                 )
-              },
+              }
             }
           ]
         },
@@ -334,7 +334,7 @@
           { name: '扬中市人社局', msg: '自然人社保缴纳信息' },
           { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
           { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
-          { name: '扬中市人社局', msg: '社会法人参保缴费信息' },
+          { name: '扬中市人社局', msg: '社会法人参保缴费信息' }
         ],
         trend: {
           color: ['#02b7f4', '#2646c5'],

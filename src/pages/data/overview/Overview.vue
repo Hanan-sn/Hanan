@@ -80,6 +80,7 @@
         <div class="inner" style="overflow: hidden; width: 800px">
           <div class="total-count">
             <i>数据归集总量</i>
+            <i v-for="(item, index) in countNumList" :key="index">{{item}}</i>
             <i v-for="(item, index) in countNumList" :key="index" class="total-num" :class="'num' + item"></i>
           </div>
 
@@ -272,53 +273,6 @@
         date2: '',
         dateOpen1: false,
         dateOpen2: false,
-
-        // 动态数据
-        countNumList: [0, 8, 7, 2, 0, 0, 1, 6], // 归集总量
-        redList: { signCom: 0, taxpayer: 0, corp: 0, volunteer: 0 }, // 红名单
-        blackList: { performed: 0, case: 0, unpaid: 0, lose: 0 }, // 黑名单
-        classStatistic: {
-          lv1: 8,
-          lv2: 40,
-          resourceCount: 57,
-          deptCount: 55,
-          chartData: [
-            ['product', '信息量'],
-            ['基础信息', 4794115],
-            ['业务信息', 1883668],
-            ['行政执法信息', 1685166],
-            ['政务信息', 2067],
-            ['司法信息', 0],
-            ['公共事业信息', 0],
-            ['信用评级信息', 0],
-            ['其他信息', 0]
-          ]
-        }, // 资源信息分类统计
-        trendAnalysis: [
-          { product: '1月', count: 0 },
-          { product: '2月', count: 0 },
-          { product: '3月', count: 0 },
-          { product: '4月', count: 0 },
-          { product: '5月', count: 0 },
-          { product: '6月', count: 0 },
-          { product: '7月', count: 0 },
-          { product: '8月', count: 0 },
-          { product: '9月', count: 0 },
-          { product: '10月', count: 0 },
-          { product: '11月', count: 0 },
-          { product: '12月', count: 0 }
-        ],
-        submitDeptList: [
-          { name: '镇江市', count: 6834299, percent: '78%' },
-          { name: '扬中市人社局', count: 1883650, percent: '22%' },
-          { name: '市编办', count: 2067, percent: '0%' },
-          { name: '市农业农村局', count: 0, percent: '0%' },
-          { name: '市教育局', count: 0, percent: '0%' },
-          { name: '市卫健委', count: 0, percent: '0%' },
-          { name: '市审计局', count: 0, percent: '0%' },
-          { name: '市政务服务办', count: 0, percent: '0%' },
-          { name: '市市场监督管理局', count: 0, percent: '0%' }
-        ]
       }
     },
     components: {
@@ -328,14 +282,20 @@
     created() {
       // this.initData()
     },
-    mounted(){
-      this.numChange(this.countNumList)
+    mounted() {
+      this.numChange(this.$store.state.overview.countNumList)
       this.renderMap({ id: 'map' })
     },
     computed: {
       ...mapState({
-        union: state => state.union,
-        exchangeData: state => state.exchangeData
+        union: state => state.overview.union,
+        exchangeData: state => state.overview.exchangeData,
+        countNumList: state => state.overview.countNumList,
+        redList: state => state.overview.exchangeData,
+        blackList: state => state.overview.blackList,
+        classStatistic: state => state.overview.classStatistic,
+        trendAnalysis: state => state.overview.trendAnalysis,
+        submitDeptList: state => state.overview.submitDeptList
       })
     },
     watch: {
@@ -374,7 +334,7 @@
           // console.log(res)
           // _self.dataExchange = JSON.parse(JSON.stringify(res.data))
         })
-        this.$store.dispatch('getOverviewUnionData').then((res)=>{
+        this.$store.dispatch('getOverviewUnionData').then((res) => {
           // console.log(res)
           // _self.union = JSON.parse(JSON.stringify(res.data))
         })
@@ -405,7 +365,7 @@
                 color: xyLineColor
               }
             },
-            axisLabel:{
+            axisLabel: {
               align: 'center',
               margin: 24,
               rotate: 20
@@ -479,9 +439,11 @@
         let param = ''
         switch (tab) {
           case '本月':
-            param = 'thisMonth'; break;
+            param = 'thisMonth'
+            break
           case '本年':
-            param = 'thisYear'; break;
+            param = 'thisYear'
+            break
         }
         this.$store.dispatch('getOverviewExchangeData', param).then()
       },
@@ -518,7 +480,7 @@
       },
       // 渲染pie图
       returnPie(data) {
-        if(data){
+        if (data) {
           return {
             color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
             tooltip: {
@@ -641,34 +603,34 @@
           }
         }
       },
-      numChange() {
-        let copy = JSON.parse(JSON.stringify(this.countNumList))
+      numChange(list) {
+        let copy = JSON.parse(JSON.stringify(list))
         let change = setInterval(() => {
           let arr = []
-          this.countNumList.forEach(item => {
+          list.forEach(() => {
             arr.push(parseInt(Math.random() * 10))
           })
-          this.countNumList = arr
+          list = arr
         }, 20)
         setTimeout(() => {
           window.clearInterval(change)
-          this.countNumList = copy
+          list = copy
         }, 1000)
       },
 
       renderMap(paramObj) {
-        var effect='#06eaed'
-        var flyLine='#ffffff'
-        var border='#105689'
-        var bg='rgba(2,10,34,0.8)'
-        var bg1='#040c22'
+        var effect = '#06eaed'
+        var flyLine = '#ffffff'
+        var border = '#105689'
+        var bg = 'rgba(2,10,34,0.8)'
+        var bg1 = '#040c22'
         var chinaGeoCoordMap = {
-          '句容区': [119.167135,31.947355],
-          '丹徒区':[119.433883,32.088972],
-          '润州区':[119.414877,32.213501],
-          '京口区':[119.689571,32.176191],
-          '扬中市':[119.828054,32.237266],
-          '丹阳市':[119.581911,31.991459]
+          '句容区': [119.167135, 31.947355],
+          '丹徒区': [119.433883, 32.088972],
+          '润州区': [119.414877, 32.213501],
+          '京口区': [119.689571, 32.176191],
+          '扬中市': [119.828054, 32.237266],
+          '丹阳市': [119.581911, 31.991459]
         }
         var chinaDatas = [
           [{
@@ -694,7 +656,7 @@
             var dataItem = data[i]
             var fromCoord = chinaGeoCoordMap[dataItem[0].name]
             // 中心点坐标
-            var toCoord = [119.689571,32.176191]
+            var toCoord = [119.689571, 32.176191]
             if (fromCoord && toCoord) {
               res.push([
                 {
@@ -946,7 +908,6 @@
       span
         padding 8px
         display inline-block
-
         .iconfont
           color $fontColor
           font-weight: 700
@@ -1378,9 +1339,7 @@
     transform translateX(-50%)
 
     .mask-inner
-      position relative
-
-      /*
+      position relative /*
       &::before
         position absolute
         left: -94px;
@@ -1393,6 +1352,7 @@
         z-index: 200;
         border-radius: 200px 0 200px 0
       */
+
       .rotate-cir-1
         position absolute
         z-index 1

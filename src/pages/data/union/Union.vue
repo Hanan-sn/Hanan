@@ -343,7 +343,7 @@
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
               boundaryGap: false,
-              data: [ '6月']
+              data: ['6月']
             }
           ],
           yAxis: [
@@ -421,7 +421,7 @@
               boundaryGap: ['20%', '20%'],
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
-              data: [ '6月' ]
+              data: ['6月']
             }
           ],
           yAxis: [
@@ -609,7 +609,7 @@
           ]
         },
         punishRewardList: [
-          /*{ name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
+          /* { name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
@@ -618,13 +618,13 @@
           { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
           { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-          { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' }*/
+          { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' } */
         ],
         memoStatusList: [
-          /*{ name: '房产交易', count: 8848, time: 9527 },
+          /* { name: '房产交易', count: 8848, time: 9527 },
           { name: '规划设计方案', count: 8848, time: 9527 },
           { name: '股票交易', count: 8848, time: 9527 },
-          { name: '不动产转移', count: 8848, time: 9527 }*/
+          { name: '不动产转移', count: 8848, time: 9527 } */
         ],
         swiperOptions: {
           direction: 'vertical',

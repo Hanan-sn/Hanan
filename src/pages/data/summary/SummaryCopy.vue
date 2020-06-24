@@ -208,6 +208,7 @@
 
 <script>
   import echarts from 'echarts'
+  import * as THREE from 'three'
   import Panel from '../../../components/Panel/Panel'
   import Card from '../../../components/Card/Card'
   import 'echarts/map/js/china'

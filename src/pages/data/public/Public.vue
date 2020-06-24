@@ -304,13 +304,13 @@
           dataset: {
             source: [
               ['product', '数据量'],
-              ['1天',3],
-              ['2天',14],
-              ['3天',11],
-              ['4天',3],
-              ['5天',1],
-              ['6天',3],
-              ['7天',1]
+              ['1天', 3],
+              ['2天', 14],
+              ['3天', 11],
+              ['4天', 3],
+              ['5天', 1],
+              ['6天', 3],
+              ['7天', 1]
             ]
           },
           yAxis: {
@@ -346,7 +346,7 @@
                     { offset: 1, color: '#070c32' }
                   ]
                 )
-              },
+              }
             }
           ]
         },
@@ -533,6 +533,7 @@
     padding 20px 0
     height: 1000px
     box-sizing border-box
+
     > div
       &:nth-child(1)
         width 460px
@@ -567,20 +568,24 @@
       &.scroll-list-486
         height: 486px
         overflow-y auto
+
         .table-row
           line-height: 40px
+
     .center
       height: 556px
       position relative
       transform: translateY(48px);
       background-image: url('~@/assets/images/overview/ge.png')
       background-position: center 0
+
       .light
         position absolute
         top: 50%
         left: 50%
         transform translate(-50%, -50%)
         animation shine-light infinite linear 8s
+
       .cloud
         position absolute
         top: 50%
@@ -596,46 +601,59 @@
         text-align center
         padding 50px 0
         line-height: 30px
+
         .num
           color #fff
+
       .cir
         position absolute
         left: 50%
         transform translate(-50%, -50%)
+
         &.cir-1
           animation float-up-1 infinite linear 4s
+
         &.cir-2
           animation float-up-2 infinite linear 4s
+
         &.cir-3
           animation float-up-3 infinite linear 4s
+
         &.cir-4
           animation float-up-4 infinite linear 4s
+
       .liner
         position relative
         width: 100%
         height: 100%
+
       .liner-img
         position absolute
+
         &.liner-img-1
           left: 57%
           top: 40%
           transform-origin bottom
           transform translate(-50%, -50%) scaleY(0.8)
+
         &.liner-img-2
           left: 41%;
           top: 40%;
           transform-origin bottom
           transform translate(-50%, -50%) scaleY(0.8)
+
         &.liner-img-3
           left: 54%;
           top: 28%;
           transform-origin bottom
           transform translate(-50%, -50%) scaleY(0.8)
+
         &.liner-img-4
           left: 44%
           top: 28%
           transform-origin bottom
           transform translate(-50%, -50%) scaleY(0.8)
+
       .liner-item
         width: 240px
         height: 80px
@@ -645,112 +663,216 @@
         -webkit-background-size: cover
         background-size: cover
         background-origin: border-box;
+
         .light-corner
           opacity 0
+
         .light-bg
           background-color: transparent
           box-shadow none
           animation none
           border: none
+
         .cir-light
           animation shine-light-1 infinite linear 4s
+
         .inner
           width 240px
           height: 60px
           padding-right: 30px
           position relative
+
         &.liner-item-1
           left: 29%
           top: 86px
           transform translate(-50%, -50%)
           color #00e4ff
+
           .cir-light
             position absolute
             right: -5px
             top: 25%;
             opacity 1
             z-index 20
+
         &.liner-item-2
           left: 69%
           top: 86px
           transform translate(-50%, -50%)
           color #00efe3
+
           .num
             color #00efe3
+
           .cir-light
             position absolute
             left: -5px
             top: 25%;
             opacity 1
             z-index 20
+
         &.liner-item-3
           left: 24%
           top: 193px;
           transform translate(-50%, -50%)
           color #fc9530
+
           .num
             color #fc9530
+
           .cir-light
             position absolute
             right: -5px
             top: 25%;
             opacity 1
             z-index 20
+
         &.liner-item-4
           left: 74%
           top: 193px;
           transform translate(-50%, -50%)
           color #085af5
+
           .num
             color #085af5
+
           .cir-light
             position absolute
             left: -5px
             top: 25%;
             opacity 1
             z-index 20
+
     .top-wrapper
       height: 114px
+
       .new-container
         width: 100%
+
         .new-item
           width: 48%
           height: 80px
           background-image: url('~@/assets/images/summary/data_bg.png')
-@keyframes float-up-1
-  0% {top:55%;opacity:0}
-  25% {top:70%;opacity:0}
-  50% {top:65%;opacity:1}
-  75% {top:60%;opacity:1}
-  100% {top:55%;opacity:0}
-@keyframes float-up-2
-  0% {top:60%; opacity:1}
-  25% {top:55%; opacity:0}
-  50% {top:70%; opacity:0}
-  75% {top:65%; opacity:1}
-  100% {top:60%; opacity:1}
-@keyframes float-up-3
-  0% {top:65%; opacity:1}
-  25% {top:60%; opacity:1}
-  50% {top:55%; opacity:0}
-  75% {top:70%; opacity:0}
-  100% {top:65%; opacity:1}
-@keyframes float-up-4
-  0% {top:70%; opacity:0}
-  25% {top:65%; opacity:1}
-  50% {top:60%; opacity:1}
-  75% {top:55%; opacity:0}
-  100% {top:70%; opacity:0}
-@keyframes shine-light
-  0% { opacity: 0.2 }
-  25% { opacity: 1 }
-  50% { opacity: 0.2 }
-  75% { opacity: 1 }
-  100% { opacity: 0.2 }
-@keyframes shine-light-1
-  0% { opacity: 0.8 }
-  25% { opacity: 1 }
-  50% { opacity: 0.8 }
-  75% { opacity: 1 }
-  100% { opacity: 0.8 }
+
+  @keyframes float-up-1
+    0% {
+      top: 55%;
+      opacity: 0
+    }
+    25% {
+      top: 70%;
+      opacity: 0
+    }
+    50% {
+      top: 65%;
+      opacity: 1
+    }
+    75% {
+      top: 60%;
+      opacity: 1
+    }
+    100% {
+      top: 55%;
+      opacity: 0
+    }
+
+  @keyframes float-up-2
+    0% {
+      top: 60%;
+      opacity: 1
+    }
+    25% {
+      top: 55%;
+      opacity: 0
+    }
+    50% {
+      top: 70%;
+      opacity: 0
+    }
+    75% {
+      top: 65%;
+      opacity: 1
+    }
+    100% {
+      top: 60%;
+      opacity: 1
+    }
+
+  @keyframes float-up-3
+    0% {
+      top: 65%;
+      opacity: 1
+    }
+    25% {
+      top: 60%;
+      opacity: 1
+    }
+    50% {
+      top: 55%;
+      opacity: 0
+    }
+    75% {
+      top: 70%;
+      opacity: 0
+    }
+    100% {
+      top: 65%;
+      opacity: 1
+    }
+
+  @keyframes float-up-4
+    0% {
+      top: 70%;
+      opacity: 0
+    }
+    25% {
+      top: 65%;
+      opacity: 1
+    }
+    50% {
+      top: 60%;
+      opacity: 1
+    }
+    75% {
+      top: 55%;
+      opacity: 0
+    }
+    100% {
+      top: 70%;
+      opacity: 0
+    }
+
+  @keyframes shine-light
+    0% {
+      opacity: 0.2
+    }
+    25% {
+      opacity: 1
+    }
+    50% {
+      opacity: 0.2
+    }
+    75% {
+      opacity: 1
+    }
+    100% {
+      opacity: 0.2
+    }
+
+  @keyframes shine-light-1
+    0% {
+      opacity: 0.8
+    }
+    25% {
+      opacity: 1
+    }
+    50% {
+      opacity: 0.8
+    }
+    75% {
+      opacity: 1
+    }
+    100% {
+      opacity: 0.8
+    }
 </style>

@@ -105,7 +105,7 @@
       <template slot="inner">
         <div class="title">数据提报情况</div>
         <div class="red-black-wrapper" flex="space:around">
-          <div v-for="(item, index) in submissionList" class="container">
+          <div v-for="(item, index) in submissionList" :key="index" class="container">
             <div class="red-list">
               <i class="white-font">{{item.name}}</i>
             </div>
@@ -191,10 +191,10 @@
           ['C', 0]
         ],
         submissionList: [
-          {name:'机关单位登记（变更）',total:187,new:187},
-          {name:'事业单位登记（变更）',total:0,new:0},
-          {name:'事业单位评价',total:753,new:753},
-          {name:'公务人员基本信息',total:0,new:0},
+          { name: '机关单位登记（变更）', total: 187, new: 187 },
+          { name: '事业单位登记（变更）', total: 0, new: 0 },
+          { name: '事业单位评价', total: 753, new: 753 },
+          { name: '公务人员基本信息', total: 0, new: 0 }
         ],
         color: ['#1167e2', '#4dcea7', '#fc9530', '#ff3b3c', '#563cff', '#0fbce0', '#0c31e2'],
         // 左右侧时间选择
@@ -261,14 +261,14 @@
           { name: '长江镇江航道处', lv: 'A' },
           { name: '京口区江苏大学社区卫生服务站', lv: 'A' },
           { name: '镇江市消费者申诉举报受理中心', lv: 'A' },
-          { name: '江苏省丹徒中等专业学校', lv: 'A' },
+          { name: '江苏省丹徒中等专业学校', lv: 'A' }
         ],
         servantChartData: [
           { value: 0, name: '行政编制' },
           { value: 0, name: '事业编制' },
           { value: 0, name: '其他' }
         ],
-        servantDistributeChartData:{
+        servantDistributeChartData: {
           inner: [
             { value: 0, name: '总数' }
           ],
@@ -280,14 +280,14 @@
             { value: 0, name: '信用评价信息' },
             { value: 0, name: '公共事业信息' },
             { value: 0, name: '其他信息' }
-          ],
+          ]
         },
         submission: [
           ['product', '信息类别'],
           ['公务员（含参公事业编）基本信息（变更）', '0'],
           ['机关单位登记（变更）信息', '0'],
           ['事业单位登记（变更）信息', '0'],
-          ['事业单位（变更）信息', '0'],
+          ['事业单位（变更）信息', '0']
         ]
       }
     },
@@ -298,7 +298,7 @@
     created() {
       // this.initData()
     },
-    mounted(){
+    mounted() {
       this.renderMap({ id: 'map' })
     },
     computed: {
@@ -343,7 +343,7 @@
           // console.log(res)
           // _self.dataExchange = JSON.parse(JSON.stringify(res.data))
         })
-        this.$store.dispatch('getOverviewUnionData').then((res)=>{
+        this.$store.dispatch('getOverviewUnionData').then((res) => {
           // console.log(res)
           // _self.union = JSON.parse(JSON.stringify(res.data))
         })
@@ -436,7 +436,7 @@
                 color: xyLineColor
               }
             },
-            splitLine: {show: false},
+            splitLine: { show: false },
             axisTick: { show: false }
           },
           series: [
@@ -496,9 +496,11 @@
         let param = ''
         switch (tab) {
           case '本月':
-            param = 'thisMonth'; break;
+            param = 'thisMonth'
+            break
           case '本年':
-            param = 'thisYear'; break;
+            param = 'thisYear'
+            break
         }
         this.$store.dispatch('getOverviewExchangeData', param).then()
       },
@@ -535,7 +537,7 @@
       },
       // 渲染pie图
       returnRing(data) {
-        if(data){
+        if (data) {
           return {
             color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
             tooltip: {
@@ -556,7 +558,7 @@
                 name: '访问来源',
                 type: 'pie',
                 selectedMode: 'single',
-                center: ['30%','50%'],
+                center: ['30%', '50%'],
                 radius: ['45%', '75%'],
                 label: {
                   show: false,
@@ -570,7 +572,7 @@
       },
       // 渲染pie图
       returnPie(data) {
-        if(data){
+        if (data) {
           return {
             color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
             tooltip: {
@@ -595,7 +597,7 @@
                 selectedMode: 'single',
                 radius: ['60%', '75%'],
                 label: {
-                  formatter: p => p.name + ' : ' +  p.value,
+                  formatter: p => p.name + ' : ' + p.value
                 },
                 /* data: [
                   { value: 400, name: '法人惩戒' },
@@ -644,35 +646,32 @@
               splitLine: { lineStyle: { color: splitLineColor } },
               axisLabel: {
                 width: 100,
-                formatter: function(params){
-                  var newParamsName = "";// 最终拼接成的字符串
-                  var paramsNameNumber = params.length;// 实际标签的个数
-                  var provideNumber = 7;// 每行能显示的字的个数
-                  var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-
+                formatter: function (params) {
+                  var newParamsName = ''// 最终拼接成的字符串
+                  var paramsNameNumber = params.length// 实际标签的个数
+                  var provideNumber = 7// 每行能显示的字的个数
+                  var rowNumber = Math.ceil(paramsNameNumber / provideNumber)// 换行的话，需要显示几行，向上取整
                   // 条件等同于rowNumber>1
                   if (paramsNameNumber > provideNumber) {
-
                     for (var p = 0; p < rowNumber; p++) {
-                      var tempStr = "";// 表示每一次截取的字符串
-                      var start = p * provideNumber;// 开始截取的位置
-                      var end = start + provideNumber;// 结束截取的位置
+                      var tempStr = ''// 表示每一次截取的字符串
+                      var start = p * provideNumber// 开始截取的位置
+                      var end = start + provideNumber// 结束截取的位置
                       // 此处特殊处理最后一行的索引值
-                      if (p == rowNumber - 1) {
+                      if (p === rowNumber - 1) {
                         // 最后一次不换行
-                        tempStr = params.substring(start, paramsNameNumber);
+                        tempStr = params.substring(start, paramsNameNumber)
                       } else {
                         // 每一次拼接字符串并换行
-                        tempStr = params.substring(start, end) + "\n";
+                        tempStr = params.substring(start, end) + '\n'
                       }
-                      newParamsName += tempStr;// 最终拼成的字符串
+                      newParamsName += tempStr// 最终拼成的字符串
                     }
-
                   } else {
                     // 将旧标签的值赋给新标签
-                    newParamsName = params;
+                    newParamsName = params
                   }
-                  //将最终的字符串返回
+                  // 将最终的字符串返回
                   return newParamsName
                 }
               },
@@ -728,18 +727,18 @@
       },
 
       renderMap(paramObj) {
-        var effect='#06eaed'
-        var flyLine='#ffffff'
-        var border='#105689'
-        var bg='rgba(2,10,34,0.8)'
-        var bg1='#040c22'
+        var effect = '#06eaed'
+        var flyLine = '#ffffff'
+        var border = '#105689'
+        var bg = 'rgba(2,10,34,0.8)'
+        var bg1 = '#040c22'
         var chinaGeoCoordMap = {
-          '句容区': [119.167135,31.947355],
-          '丹徒区':[119.433883,32.088972],
-          '润州区':[119.414877,32.213501],
-          '京口区':[119.689571,32.176191],
-          '扬中市':[119.828054,32.237266],
-          '丹阳市':[119.581911,31.991459]
+          '句容区': [119.167135, 31.947355],
+          '丹徒区': [119.433883, 32.088972],
+          '润州区': [119.414877, 32.213501],
+          '京口区': [119.689571, 32.176191],
+          '扬中市': [119.828054, 32.237266],
+          '丹阳市': [119.581911, 31.991459]
         }
         var chinaDatas = [
           [{
@@ -751,7 +750,7 @@
           }], [{
             name: '润州区',
             value: 0
-          }],[{
+          }], [{
             name: '扬中市',
             value: 0
           }], [{
@@ -765,7 +764,7 @@
             var dataItem = data[i]
             var fromCoord = chinaGeoCoordMap[dataItem[0].name]
             // 中心点坐标
-            var toCoord = [119.689571,32.176191]
+            var toCoord = [119.689571, 32.176191]
             if (fromCoord && toCoord) {
               res.push([
                 {
@@ -1195,6 +1194,7 @@
           background-position: bottom center
           -webkit-background-size: contain
           background-size: contain
+
           img, i
             vertical-align middle
             padding 10px
@@ -1412,7 +1412,6 @@
           .num
             color inherit
 
-
   @keyframes rotate3d {
     0% {
       transform: rotateX(60deg) rotateZ(0)
@@ -1531,9 +1530,7 @@
     transform translateX(-50%)
 
     .mask-inner
-      position relative
-
-      /*
+      position relative /*
       &::before
         position absolute
         left: -94px;
@@ -1546,6 +1543,7 @@
         z-index: 200;
         border-radius: 200px 0 200px 0
       */
+
       .rotate-cir-1
         position absolute
         z-index 1
