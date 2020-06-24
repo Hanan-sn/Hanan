@@ -131,7 +131,7 @@
               <div class="tip-item-inner" flex="space:around cross:center">
                 <img src="~@/assets/images/summary/icon_bygj.png" alt="">
                 <span class="tip-item-font">
-                  <i>资源信息数量</i><br>
+                  <i>本月归集数量</i><br>
                   <i class="num">{{summaryCounts.month}}</i><i>（条）</i>
                 </span>
               </div>
@@ -253,7 +253,7 @@
       // this.$store.dispatch('getSummary')
     },
     mounted() {
-      // this.renderBall()
+      this.renderBall()
     },
     computed: {
       ...mapState({
