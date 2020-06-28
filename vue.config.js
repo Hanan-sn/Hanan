@@ -13,6 +13,11 @@ module.exports = {
   // dev跨域问题
   devServer: {
     proxy: {
+      '/da/data/xtgkzt': { target: 'http://localhost:8082/' },
+      '/da/data/sgszt': { target: 'http://localhost:8082/' },
+      '/da/data/lhjczt': { target: 'http://localhost:8082/' },
+      '/da/data/qysjgj': { target: 'http://localhost:8082/' },
+      '/da/data/sjgjzt': { target: 'http://localhost:8082/' },
       '/overview': { target: 'http://localhost:8082/' },
       '/public': { target: 'http://localhost:8082/' },
       '/union': { target: 'http://localhost:8082/' },

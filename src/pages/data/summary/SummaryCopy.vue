@@ -207,7 +207,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
   import Card from '../../../components/Card/Card'
@@ -227,7 +227,7 @@
     },
     mounted() {
       // this.renderBall()
-      this.renderMap({ id: 'map',mapData: this.mapData})
+      this.renderMap({ id: 'map', mapData: this.mapData })
       this.$store.dispatch('getMap')
     },
     computed: {
@@ -239,7 +239,7 @@
         mapData: state => state.map.mapData,
         sourceData: state => state.map.sourceData,
         naturalPersonData: state => state.map.naturalPersonData,
-        newestList: state => state.map.newestList,
+        newestList: state => state.map.newestList
       })
     },
     components: {
@@ -338,7 +338,7 @@
         init()
         window.onresize = init
       },
-      returnBar(data){
+      returnBar(data) {
         return {
           color: '#00abfb',
             tooltip: {
@@ -395,7 +395,7 @@
           ]
         }
       },
-      returnRose(data){
+      returnRose(data) {
         return {
           color: ['#fbd860', '#35afc6', '#1f74f1', '#00cbfe'],
             tooltip: {
@@ -414,9 +414,9 @@
           ]
         }
       },
-      returnPie(data){
+      returnPie(data) {
         let chartData
-        this.chartTab === 0 ? chartData = data.legalPerson :  chartData = data.naturalPerson
+        this.chartTab === 0 ? chartData = data.legalPerson : chartData = data.naturalPerson
         return {
           color: ['#553cff', '#fe3b3c', '#fb952f', '#4dcea7', '#00ccff', '#0e31e3', '#1167e2'],
             tooltip: {

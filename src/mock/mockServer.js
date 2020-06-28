@@ -1,10 +1,10 @@
 import Mock from 'mockjs'
-// import data from './data.json'
-// import data_nav from './data_nav.json'
-// import home_data from './home_data.json'
-// import shiwutuijian_data from './shiwutuijian_data.json'
-// import shiwu_data from './shiwu_data.json'
-// import shouye_data from './shouye_data.json'
+// import data from "./data.json"
+// import data_nav from "./data_nav.json"
+// import home_data from "./home_data.json"
+// import shiwutuijian_data from "./shiwutuijian_data.json"
+// import shiwu_data from "./shiwu_data.json"
+// import shouye_data from "./shouye_data.json"
 
 // 返回data的接口
 
@@ -125,29 +125,29 @@ Mock.mock(
 
 /*
 Mock.mock(
-  '/overviewDataExchange?2020-06-01',
+  "/overviewDataExchange?2020-06-01",
   {
     code: 0, data: {
       getIn: 10,
       getOut: 10,
-      getInCorrect: '0%',
-      getOutCorrect: '0%',
+      getInCorrect: "0%",
+      getOutCorrect: "0%",
       dockedAbnormal: 0,
       dockedNormal: 0,
       chartData: [
-        ['product', '归集', '输出'],
-        ['1月', 120, 95],
-        ['2月', 83.1, 73.4],
-        ['3月', 86.4, 65.2],
-        ['4月', 72.4, 53.9],
-        ['5月', 72.4, 53.9],
-        ['6月', 72.4, 53.9],
-        ['7月', 72.4, 53.9],
-        ['8月', 72.4, 53.9],
-        ['9月', 72.4, 53.9],
-        ['10月', 72.4, 53.9],
-        ['11月', 72.4, 53.9],
-        ['12月', 72.4, 53.9]
+        ["product", "归集", "输出"],
+        ["1月", 120, 95],
+        ["2月", 83.1, 73.4],
+        ["3月", 86.4, 65.2],
+        ["4月", 72.4, 53.9],
+        ["5月", 72.4, 53.9],
+        ["6月", 72.4, 53.9],
+        ["7月", 72.4, 53.9],
+        ["8月", 72.4, 53.9],
+        ["9月", 72.4, 53.9],
+        ["10月", 72.4, 53.9],
+        ["11月", 72.4, 53.9],
+        ["12月", 72.4, 53.9]
       ]
     }
   })
@@ -162,7 +162,8 @@ Mock.mock(
     switch (param) {
       case '?thisYear':
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             getIn: 10,
             getOut: 10,
             getInCorrect: '0%',
@@ -188,7 +189,8 @@ Mock.mock(
         }
       case '?thisMonth':
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             getIn: 20,
             getOut: 10,
             getInCorrect: '0%',
@@ -214,7 +216,8 @@ Mock.mock(
         }
       default:
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             getIn: 30,
             getOut: 30,
             getInCorrect: '0%',
@@ -250,7 +253,8 @@ Mock.mock(
     switch (param) {
       case '?thisYear':
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             chartData: [
               ['product', '数量'],
               ['1月', 900],
@@ -270,7 +274,8 @@ Mock.mock(
         }
       case '?thisMonth':
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             chartData: [
               ['product', '数量'],
               ['1月', 950],
@@ -290,7 +295,8 @@ Mock.mock(
         }
       default:
         return {
-          code: 0, data: {
+          code: 0,
+data: {
             chartData: [
               ['product', '数量'],
               ['1月', 1006],
@@ -368,7 +374,7 @@ Mock.mock(
           ['9月', 2200, 300],
           ['10月', 1600, 500],
           ['11月', 1700, 600],
-          ['12月', 1400, 400],
+          ['12月', 1400, 400]
         ]
       }, // 中心数据
       source: [
@@ -408,15 +414,15 @@ Mock.mock(
           ]
         }
       ],
-      /*[
-        ['product','分类'],
-        ['基本信息',2365466],
-        ['业务信息',5466],
-        ['司法信息',5638],
-        ['行政执法信息',3256],
-        ['信用评价信息',3256],
-        ['公共事业信息',5456],
-        ['其他信息',5456]
+      /* [
+        ["product","分类"],
+        ["基本信息",2365466],
+        ["业务信息",5466],
+        ["司法信息",5638],
+        ["行政执法信息",3256],
+        ["信用评价信息",3256],
+        ["公共事业信息",5456],
+        ["其他信息",5456]
       ], */
       // 自然人资源数据分类数据分析
       newestFillInDept: [
@@ -476,7 +482,7 @@ Mock.mock(
         naturalPersonPermit: 2,
         legalPersonPermit: 2,
         naturalPersonPunish: 2,
-        legalPersonPunish: 2,
+        legalPersonPunish: 2
       },
       weekCase: {
         permit: 0,
@@ -575,7 +581,7 @@ Mock.mock(
         ['部门5', 600],
         ['部门6', 500],
         ['部门7', 400],
-        ['部门8', 300],
+        ['部门8', 300]
       ],
       feedback: [
         ['product', '次数'],
@@ -586,7 +592,7 @@ Mock.mock(
         ['部门5', 600],
         ['部门6', 500],
         ['部门7', 400],
-        ['部门8', 300],
+        ['部门8', 300]
       ],
       memoTrend: [
         ['product', '趋势'],

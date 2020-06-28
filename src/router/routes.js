@@ -48,7 +48,7 @@ export const constantRouterMap = [
     path: '/map',
     component: SummaryMap,
     redirect: { name: 'SummaryMap' }
-  },
+  }
   // 登录
   // {
   //   path: '/login',

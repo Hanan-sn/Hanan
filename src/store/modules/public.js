@@ -1,4 +1,4 @@
-import { reqPublicData} from '../../api'
+import { reqPublicData } from '../../api'
 import { Public } from '../mutation-types'
 
 export default {
@@ -26,27 +26,27 @@ export default {
       ['7天', 600]
     ],
     gather: [
-      ['product','行政许可','行政处罚'],
-      ['1月',1000,500],
-      ['2月',1400,600],
-      ['3月',2000,700],
-      ['4月',1500,500],
-      ['5月',1200,400],
-      ['6月',1300,500],
-      ['7月',1400,600],
-      ['8月',2000,500],
-      ['9月',2200,300],
-      ['10月',1600,500],
-      ['11月',1700,600],
-      ['12月',1400,400]
+      ['product', '行政许可', '行政处罚'],
+      ['1月', 1000, 500],
+      ['2月', 1400, 600],
+      ['3月', 2000, 700],
+      ['4月', 1500, 500],
+      ['5月', 1200, 400],
+      ['6月', 1300, 500],
+      ['7月', 1400, 600],
+      ['8月', 2000, 500],
+      ['9月', 2200, 300],
+      ['10月', 1600, 500],
+      ['11月', 1700, 600],
+      ['12月', 1400, 400]
     ], // 双公示采集情况
     publicCounts: {
       naturalPersonPermit: 2,
       legalPersonPermit: 2,
       naturalPersonPunish: 2,
-      legalPersonPunish: 2,
+      legalPersonPunish: 2
     },
-    weekCase:{
+    weekCase: {
       permit: 0,
       punish: 0
     },
@@ -83,23 +83,22 @@ export default {
   getters: {},
   actions: {
     // 交互
-    /*async getOverviewDataExchange({ commit }, params) {
+    /* async getOverviewDataExchange({ commit }, params) {
       const result = await reqOverviewDataExchange(params)
       commit(OverviewDataExchange, { result })
-    },*/
+    }, */
     // 初始
     async getPublic({ commit }) {
       const result = await reqPublicData()
       commit(Public, { result })
-    },
+    }
   },
   mutations: {
     [Public](state, { result }) {
       const { data } = result
-      for ( let key in data){
+      for (let key in data) {
         state[key] = data[key]
       }
     }
   }
 }
-

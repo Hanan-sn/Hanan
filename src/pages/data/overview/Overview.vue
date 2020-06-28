@@ -323,11 +323,11 @@
     },
     created() {
       // 初始化页面数据
-      this.$store.dispatch('getOverview').then(()=>{
+      this.$store.dispatch('getOverview').then(() => {
         this.numChange(this.$store.state.overview.total)
       })
     },
-    mounted(){
+    mounted() {
       // this.numChange(this.$store.state.overview.total)
     },
     computed: {
@@ -367,9 +367,9 @@
       },
       reSum(arr, key) {
         let copy = []
-        arr.forEach((item,index)=>{if(index>0){copy.push(item[key])}})
-        let sum = (total, value)=>total + value
-        return copy.reduce(sum,0)
+        arr.forEach((item, index) => { if (index > 0) { copy.push(item[key]) } })
+        let sum = (total, value) => total + value
+        return copy.reduce(sum, 0)
       },
       handleClick(param) {
         this[param] = !this[param]
@@ -386,7 +386,7 @@
       handleOk1() {
         this.dateOpen1 = false
         this.handleBtnTab1 = 2
-        this.$store.dispatch('getOverviewDataExchange',this.date1)
+        this.$store.dispatch('getOverviewDataExchange', this.date1)
       },
       handleClear2() {
         this.dateOpen2 = false
@@ -523,7 +523,7 @@
           ]
         }
       },
-      returnCollection(data){
+      returnCollection(data) {
         return {
           color: '#00abfb',
             tooltip: {
@@ -573,7 +573,7 @@
           ]
         }
       },
-      returnArea(data){
+      returnArea(data) {
         return {
           dataset: {
             source: data
@@ -624,38 +624,38 @@
       },
       numChange(num) {
         let copy = JSON.parse(JSON.stringify(num))
-        let change = setInterval(()=>{
+        let change = setInterval(() => {
           let arr = []
-          num.forEach(()=>{
-            arr.push(parseInt(Math.random()*10))
+          num.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
           })
-          num.splice(0,8)
+          num.splice(0, 8)
           num.push(...arr)
-        },20)
+        }, 20)
         setTimeout(() => {
           window.clearInterval(change)
           this.$store.state.overview.total = copy
         }, 1000)
       },
-      changeReportDataMonth(){
+      changeReportDataMonth() {
         this.handleBtnTab2 = 0
         this.date2 = ''
-        this.$store.dispatch('getOverviewReport','thisMonth')
+        this.$store.dispatch('getOverviewReport', 'thisMonth')
       },
-      changeReportDataYear(){
+      changeReportDataYear() {
         this.handleBtnTab2 = 1
         this.date2 = ''
-        this.$store.dispatch('getOverviewReport','thisYear')
+        this.$store.dispatch('getOverviewReport', 'thisYear')
       },
-      changeExchangeDataMonth(){
+      changeExchangeDataMonth() {
         this.handleBtnTab1 = 0
         this.date1 = ''
-        this.$store.dispatch('getOverviewDataExchange','thisMonth')
+        this.$store.dispatch('getOverviewDataExchange', 'thisMonth')
       },
-      changeExchangeDataYear(){
+      changeExchangeDataYear() {
         this.handleBtnTab1 = 1
         this.date1 = ''
-        this.$store.dispatch('getOverviewDataExchange','thisYear')
+        this.$store.dispatch('getOverviewDataExchange', 'thisYear')
       }
     }
   }

@@ -12,7 +12,7 @@ import 'echarts/lib/chart/bar'
 import { Calendar } from 'element-ui'
 import './assets/styles/calendar.styl'
 // mock
-import './mock/mockServer'
+// import './mock/mockServer'
 
 Vue.use(BinAdmin)
 // Vue.component(Subarea)

@@ -197,7 +197,7 @@
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex'
+  import { mapState, mapActions } from 'vuex'
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
   import Card from '../../../components/Card/Card'
@@ -217,7 +217,7 @@
         date: ''
       }
     },
-    created(){
+    created() {
       this.$store.dispatch('getPublic')
     },
     mounted() {
@@ -227,17 +227,17 @@
     },
     computed: {
       ...mapState({
-        newClassifyList: state=> state.publicModule.newClassifyList,
-        weekSubmit: state=> state.publicModule.weekSubmit,
-        gather: state=> state.publicModule.gather,
-        publicCounts: state=> state.publicModule.publicCounts,
-        weekCase: state=> state.publicModule.weekCase,
-        punishRepair: state=> state.publicModule.punishRepair,
-        permitDistribute: state=> state.publicModule.permitDistribute,
+        newClassifyList: state => state.publicModule.newClassifyList,
+        weekSubmit: state => state.publicModule.weekSubmit,
+        gather: state => state.publicModule.gather,
+        publicCounts: state => state.publicModule.publicCounts,
+        weekCase: state => state.publicModule.weekCase,
+        punishRepair: state => state.publicModule.punishRepair,
+        permitDistribute: state => state.publicModule.permitDistribute
       }),
-      rePublicCountsSum(){
+      rePublicCountsSum() {
         let sum = 0
-        for(let key in this.publicCounts){
+        for (let key in this.publicCounts) {
           sum += this.publicCounts[key]
         }
         return sum
@@ -294,7 +294,7 @@
               },
               inverse: true,
               axisLabel: {
-                interval: 0,
+                interval: 0
                 /*
                 formatter: function(params){
                   var newParamsName = "";// 最终拼接成的字符串
@@ -346,7 +346,7 @@
             ]
           }
       },
-      returnTrend(data){
+      returnTrend(data) {
         return {
           color: ['#02b7f4', '#2646c5'],
           tooltip: {
@@ -411,7 +411,7 @@
           ]
         }
       },
-      returnRepairBar(data){
+      returnRepairBar(data) {
         return {
           color: '#00abfb',
             tooltip: {
@@ -466,7 +466,7 @@
           ]
         }
       },
-      returnPie(data){
+      returnPie(data) {
         return {
           color: ['#553cff', '#fe3b3c', '#fb952f', '#4dcea7', '#00ccff', '#0e31e3', '#1167e2'],
             tooltip: {

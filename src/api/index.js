@@ -2,14 +2,14 @@
 import ajax from './ajax'
 // ajax(url:'', data = {}, type = 'GET')
 // 默认type = 'GET'
-export const reqOverviewData = () => ajax('/overviewData')
-export const reqOverviewDataExchange = (params) => ajax('/overviewDataExchange'+ '?'+ params)
-export const reqOverviewReport = (params) => ajax('/overviewOverviewReport'+ '?' + params)
+export const reqOverviewData = () => ajax('/da/data/xtgkzt/sjgk')
+export const reqOverviewDataExchange = (params) => ajax('/overviewDataExchange' + '?' + params)
+export const reqOverviewReport = (params) => ajax('/overviewOverviewReport' + '?' + params)
 
-export const reqUnionData = () => ajax('/unionData')
+export const reqUnionData = () => ajax('/da/data/lhjczt/lhjc')
 
-export const reqMapData = () => ajax('/mapData')
+export const reqMapData = () => ajax('/da/data/qysjgj/qygj')
 
-export const reqPublicData = () => ajax('/publicData')
+export const reqPublicData = () => ajax('/da/data/sgszt/sgs')
 
-export const reqSummaryData = () => ajax('/summaryData')
+export const reqSummaryData = () => ajax('/da/data/sjgjzt/sjgj')

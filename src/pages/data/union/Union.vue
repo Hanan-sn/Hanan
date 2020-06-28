@@ -341,7 +341,7 @@
         }
       }
     },
-    created(){
+    created() {
       this.$store.dispatch('getUnion')
     },
     computed: {
@@ -401,7 +401,7 @@
             {
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
-              boundaryGap: false,
+              boundaryGap: false
             }
           ],
           yAxis: [
@@ -508,8 +508,8 @@
                   ]
                 )
               },
-              label:{
-                show:true,
+              label: {
+                show: true,
                 position: 'right',
                 color: xyLineColor
               }

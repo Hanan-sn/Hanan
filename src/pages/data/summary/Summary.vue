@@ -51,7 +51,8 @@
             </span>
               </div>
               <div>
-                <chart ref="chart1" :options="returnBar(classifyStatistic.chartData)" style="width: 100%; height: 220px;"></chart>
+                <chart ref="chart1" :options="returnBar(classifyStatistic.chartData)"
+                       style="width: 100%; height: 220px;"></chart>
               </div>
             </template>
           </Card>
@@ -85,7 +86,8 @@
                   <span>归集数量（条）</span>
                   <span>占比</span>
                 </div>
-                <div class="table-row" v-for="(item, index) in classifyStatistic.deptList" :key="index" flex="main:justify">
+                <div class="table-row" v-for="(item, index) in classifyStatistic.deptList" :key="index"
+                     flex="main:justify">
                   <span>{{ item.name }}</span>
                   <span>{{ item.count }}</span>
                   <span>{{ item.percent }}%</span>
@@ -197,14 +199,15 @@
                 <span>{{tab===0? '自然人': '法人'}}资源数据分类统计</span>
                 <span class="handle-date" flex="main:justify">
                   <i class="tab active" v-show="tab === 0" @click="tab = 1"><i class="iconfont icon-ios-repeat"
-                                                                                       style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>法人</i>
+                                                                               style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>法人</i>
                   <i class="tab active" v-show="tab === 1" @click="tab = 0"><i class="iconfont icon-ios-repeat"
-                                                                                       style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>自然人</i>
+                                                                               style="color: #00cbfe; font-size: 18px; vertical-align: top"></i>自然人</i>
                 </span>
               </div>
             </template>
             <template slot="content">
-              <chart ref="chart4" :options="returnPie(naturalPersonAnalysis)" style="width: 100%; height: 280px;"></chart>
+              <chart ref="chart4" :options="returnPie(naturalPersonAnalysis)"
+                     style="width: 100%; height: 280px;"></chart>
             </template>
           </Card>
           <Card>
@@ -249,7 +252,7 @@
         tab: 0
       }
     },
-    created(){
+    created() {
       this.$store.dispatch('getSummary')
     },
     mounted() {
@@ -257,12 +260,12 @@
     },
     computed: {
       ...mapState({
-        monthAnalysis: state=>state.summary.monthAnalysis,
-        classifyStatistic: state=>state.summary.classifyStatistic,
-        summaryCounts: state=> state.summary.summaryCounts,
-        source: state=>state.summary.source,
-        naturalPersonAnalysis: state=>state.summary.naturalPersonAnalysis,
-        newestFillInDept: state=>state.summary.newestFillInDept,
+        monthAnalysis: state => state.summary.monthAnalysis,
+        classifyStatistic: state => state.summary.classifyStatistic,
+        summaryCounts: state => state.summary.summaryCounts,
+        source: state => state.summary.source,
+        naturalPersonAnalysis: state => state.summary.naturalPersonAnalysis,
+        newestFillInDept: state => state.summary.newestFillInDept
       })
     },
     methods: {
@@ -357,34 +360,34 @@
         init()
         window.onresize = init
       },
-      returnTrend(data){
+      returnTrend(data) {
         return {
-          dataset:{
+          dataset: {
             source: data
           },
           color: ['#02b7f4', '#2646c5'],
-            title: {
+          title: {
             text: '资源信息归集趋势',
-              textStyle: { color: '#fff' }
+            textStyle: { color: '#fff' }
           },
           tooltip: {
             trigger: 'axis',
-              axisPointer: {
+            axisPointer: {
               type: 'cross',
-                label: {
+              label: {
                 backgroundColor: '#6a7985'
               }
             }
           },
           grid: {
             left: '3%',
-              right: '4%',
-              bottom: '10%',
-              containLabel: true
+            right: '4%',
+            bottom: '10%',
+            containLabel: true
           },
           legend: {
-            textStyle:{color: '#fff'},
-            bottom:0
+            textStyle: { color: '#fff' },
+            bottom: 0
           },
           xAxis: [
             {
@@ -393,7 +396,7 @@
               boundaryGap: false
             }
           ],
-            yAxis: [
+          yAxis: [
             {
               position: 'left',
               boundaryGap: [0.2, 0.2],
@@ -402,7 +405,7 @@
               type: 'value',
               name: '(条)',
               interval: 500,
-              max:2500
+              max: 2500
             },
             {
               position: 'right',
@@ -412,10 +415,10 @@
               type: 'value',
               name: '(条)',
               interval: 500,
-              max:2500
+              max: 2500
             }
           ],
-            series: [
+          series: [
             {
               smooth: true,
               name: '自然人',
@@ -432,14 +435,14 @@
           ]
         }
       },
-      returnRose(data){
+      returnRose(data) {
         return {
           color: ['#fbd860', '#35afc6', '#1f74f1', '#00cbfe'],
-            tooltip: {
+          tooltip: {
             trigger: 'item',
-              formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
           },
-          dataset:{
+          dataset: {
             source: data
           },
           series: [
@@ -453,12 +456,12 @@
           ]
         }
       },
-      returnPie(data){
+      returnPie(data) {
         return {
           color: ['#553cff', '#fe3b3c', '#fb952f', '#4dcea7', '#00ccff', '#0e31e3', '#1167e2'],
-            tooltip: {
+          tooltip: {
             trigger: 'item',
-              formatter: '{a} <br/>{b}: {c} ({d}%)'
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
           series: [
             {
@@ -476,7 +479,7 @@
               labelLine: {
                 show: false
               },
-              data: this.tab===0?data[0].outer:data[1].outer
+              data: this.tab === 0 ? data[0].outer : data[1].outer
             },
             {
               name: '访问来源',
@@ -494,69 +497,69 @@
               labelLine: {
                 show: false
               },
-              data: this.tab===0?data[0].inner:data[1].inner
+              data: this.tab === 0 ? data[0].inner : data[1].inner
             }
           ]
         }
       },
-      returnBar(data){
-        return  {
-            color: '#00abfb',
-            tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                type: 'shadow'
+      returnBar(data) {
+        return {
+          color: '#00abfb',
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '6%',
+            top: '3%',
+            containLabel: true
+          },
+          dataset: {
+            source: data
+          },
+          xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01],
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
               }
             },
-            grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '6%',
-              top: '3%',
-              containLabel: true
-            },
-            dataset: {
-              source: data
-            },
-            xAxis: {
-              type: 'value',
-              boundaryGap: [0, 0.01],
-              axisLine: {
-                lineStyle: {
-                  color: xyLineColor
-                }
-              },
-              splitLine: { lineStyle: { color: splitLineColor } }
-            },
-            yAxis: {
-              type: 'category',
-              data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息'],
-              axisLine: {
-                lineStyle: {
-                  color: xyLineColor
-                }
-              },
-              inverse: true
-            },
-            series: [
-              {
-                type: 'bar',
-                showBackground: true,
-                barWidth: 10,
-                itemStyle: {
-                  barBorderRadius: 8,
-                  color: new echarts.graphic.LinearGradient(
-                    0, 0, 1, 0,
-                    [
-                      { offset: 0, color: '#2380f2' },
-                      { offset: 1, color: '#39BBF3' }
-                    ]
-                  )
-                },
-                data: [1100, 800, 550, 350, 200, 100, 80]
+            splitLine: { lineStyle: { color: splitLineColor } }
+          },
+          yAxis: {
+            type: 'category',
+            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息'],
+            axisLine: {
+              lineStyle: {
+                color: xyLineColor
               }
-            ]
-          }
+            },
+            inverse: true
+          },
+          series: [
+            {
+              type: 'bar',
+              showBackground: true,
+              barWidth: 10,
+              itemStyle: {
+                barBorderRadius: 8,
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 1, 0,
+                  [
+                    { offset: 0, color: '#2380f2' },
+                    { offset: 1, color: '#39BBF3' }
+                  ]
+                )
+              },
+              data: [1100, 800, 550, 350, 200, 100, 80]
+            }
+          ]
+        }
       }
     },
     components: {
@@ -584,6 +587,7 @@
     height: 1000px
     padding 20px 0
     box-sizing border-box
+
     > div
       &:nth-child(1)
         width 460px
@@ -751,19 +755,23 @@
     .table
       margin-top: 10px
       padding-bottom: 14px
+
       .table-row
         line-height: 32px
         flex 1
+
         &:nth-child(odd)
           background-color: #001739
 
         span
           color #ffffff
           padding 0 10px
+
           &:last-child
             text-align center
             width: 120px
             display block
+
         &:nth-child(n+2)
           span:nth-child(2)
             color #00ccfe
