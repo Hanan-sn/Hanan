@@ -139,9 +139,19 @@ export { default as Sidebar } from './Sidebar'
 系统概况 数据格式：
 ```json
 {
-    "code": 0, 
+    "code": 200, 
     "data": {
         "label": "this is mock value"
     } 
 }
 ```
+
+| code | msg | desc |
+| :--- | :--- | :--- |
+| 200 | success |  |
+
+#### Author
+
+| Coder   | 创建时间 | 更新时间 |联系方式 |
+| :---     | :---| :--- | :--- |
+| mario_20  | 2020.4.28 |2018.5.29  |1025807062@qq.com  |

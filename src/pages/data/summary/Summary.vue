@@ -256,7 +256,7 @@
       this.$store.dispatch('getSummary')
     },
     mounted() {
-      // this.renderBall()
+      this.autoResize()
     },
     computed: {
       ...mapState({
@@ -269,6 +269,21 @@
       })
     },
     methods: {
+      autoResize() {
+        let keys = Object.keys(this.$refs)
+        keys.forEach(item => {
+          if (item.indexOf('chart') !== -1) {
+            window.addEventListener('resize', () => {
+              this.$refs[item].resize()
+            })
+          }
+          this.$once('hook:beforeDestroy', () => {
+            window.removeEventListener('resize', () => {
+              this.$refs[item].resize()
+            })
+          })
+        })
+      },
       handleClick() {
         this.open = !this.open
       },

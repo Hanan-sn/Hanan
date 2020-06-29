@@ -45,8 +45,8 @@
   $bgc = #050819
   .num
     color $fontColor
-    font-weight: 400
-    font-size: 22px
+    font-weight: 700
+    font-size: 24px
 
   .font
     color #fff

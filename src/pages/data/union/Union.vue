@@ -3,7 +3,7 @@
     <Panel flex="main:justify dir:top">
       <template slot="inner">
         <div flex="main:justify dir:top" style="height: 100%;">
-          <Card style="height: 370px;">
+          <Card style="height: 370px; width: 378px">
             <template slot="title">
               <div flex="main:justify">
                 <span>联合奖惩页面</span>
@@ -168,6 +168,7 @@
             </template>
             <template slot="content">
               <div>
+                <!--联合奖惩趋势分析-->
                 <chart ref="chart1" :options="returnTrend(trend)" style="height: 290px;width: 100%;"></chart>
               </div>
             </template>
@@ -211,7 +212,7 @@
             </template>
             <template slot="content">
               <div flex>
-                <chart ref="chart2" :options="returnMemoTrend(memoTrend)" style="height: 200px;width: 60%;"></chart>
+                <chart ref="chart4" :options="returnMemoTrend(memoTrend)" style="height: 200px;width: 60%;"></chart>
                 <div style="width: 40%;">
                   <div class="memo-status">
                     <div class="table">
@@ -344,6 +345,9 @@
     created() {
       this.$store.dispatch('getUnion')
     },
+    mounted() {
+      this.autoResize()
+    },
     computed: {
       ...mapState({
         unionRewardPunish: state => state.union.unionRewardPunish,
@@ -359,6 +363,21 @@
       })
     },
     methods: {
+      autoResize() {
+        let keys = Object.keys(this.$refs)
+        keys.forEach(item => {
+          if (item.indexOf('chart') !== -1) {
+            window.addEventListener('resize', () => {
+              this.$refs[item].resize()
+            })
+          }
+          this.$once('hook:beforeDestroy', () => {
+            window.removeEventListener('resize', () => {
+              this.$refs[item].resize()
+            })
+          })
+        })
+      },
       mySwiper() {
         // mySwiper 是要绑定到标签中的ref属性
         return this.$refs.mySwiper.swiper

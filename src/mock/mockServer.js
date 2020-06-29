@@ -12,7 +12,7 @@ Mock.mock(
   '/overviewData',
   // 返回数据格式
   {
-    code: 0, // 状态码
+    code: 200, // 状态码
     data: {
       union: {
         memoCount: 10,
@@ -163,7 +163,7 @@ Mock.mock(
       case '?thisYear':
         return {
           code: 0,
-data: {
+          data: {
             getIn: 10,
             getOut: 10,
             getInCorrect: '0%',
@@ -190,7 +190,7 @@ data: {
       case '?thisMonth':
         return {
           code: 0,
-data: {
+          data: {
             getIn: 20,
             getOut: 10,
             getInCorrect: '0%',
@@ -216,8 +216,8 @@ data: {
         }
       default:
         return {
-          code: 0,
-data: {
+          code: 200,
+          data: {
             getIn: 30,
             getOut: 30,
             getInCorrect: '0%',
@@ -254,7 +254,7 @@ Mock.mock(
       case '?thisYear':
         return {
           code: 0,
-data: {
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 900],
@@ -275,7 +275,7 @@ data: {
       case '?thisMonth':
         return {
           code: 0,
-data: {
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 950],
@@ -295,8 +295,8 @@ data: {
         }
       default:
         return {
-          code: 0,
-data: {
+          code: 200,
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 1006],
@@ -320,7 +320,7 @@ data: {
 Mock.mock(
   '/summaryData',
   {
-    code: 0,
+    code: 200,
     data: {
       monthAnalysis: {
         collection: 100,
@@ -439,7 +439,7 @@ Mock.mock(
   '/publicData',
   'get',
   {
-    code: 0,
+    code: 200,
     data: {
       newClassifyList: [
         { name: '部门名称一', count: 0, percent: 0 },
@@ -524,7 +524,7 @@ Mock.mock(
   '/unionData',
   'get',
   {
-    code: 0,
+    code: 200,
     data: {
       unionRewardPunish: {
         total: 110,
@@ -615,7 +615,7 @@ Mock.mock(
         { name: '股票交易', count: 8848, time: 9527 },
         { name: '不动产转移', count: 8848, time: 9527 }
       ],
-      punishRewardList: [
+      /* punishRewardList: [
         { name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
         { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
         { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
@@ -626,6 +626,28 @@ Mock.mock(
         { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
         { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
         { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' }
+      ], */
+      'punishRewardList': [
+        { 'name': '万平', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '2007-11-11' },
+        { 'name': '常艳', 'info': '模拟信息1', 'dept': '模拟部门2', 'time': '1973-08-15' },
+        { 'name': '吴洋', 'info': '模拟信息2', 'dept': '模拟部门2', 'time': '2015-08-30' },
+        { 'name': '廖芳', 'info': '模拟信息2', 'dept': '模拟部门2', 'time': '1993-12-01' },
+        { 'name': '沈勇', 'info': '模拟信息1', 'dept': '模拟部门2', 'time': '2019-06-07' },
+        { 'name': '罗娟', 'info': '模拟信息2', 'dept': '模拟部门1', 'time': '1979-02-26' },
+        { 'name': '常军', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '1984-06-09' },
+        { 'name': '龚杰', 'info': '模拟信息2', 'dept': '模拟部门1', 'time': '2004-06-25' },
+        { 'name': '杨霞', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '1993-05-23' },
+        { 'name': '毛刚', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '1970-01-12' },
+        { 'name': '黄超', 'info': '模拟信息1', 'dept': '模拟部门2', 'time': '1990-09-02' },
+        { 'name': '彭静', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '2007-03-05' },
+        { 'name': '龙磊', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '1988-07-07' },
+        { 'name': '胡伟', 'info': '模拟信息2', 'dept': '模拟部门2', 'time': '2017-12-05' },
+        { 'name': '郝芳', 'info': '模拟信息2', 'dept': '模拟部门1', 'time': '2019-11-23' },
+        { 'name': '汪秀英', 'info': '模拟信息2', 'dept': '模拟部门2', 'time': '1993-04-28' },
+        { 'name': '邱军', 'info': '模拟信息1', 'dept': '模拟部门2', 'time': '1986-01-21' },
+        { 'name': '曹娟', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '1993-01-12' },
+        { 'name': '谭霞', 'info': '模拟信息2', 'dept': '模拟部门2', 'time': '1970-07-31' },
+        { 'name': '谢艳', 'info': '模拟信息2', 'dept': '模拟部门1', 'time': '1976-05-25' }
       ],
       measure: [
         ['product', '措施数量'],
@@ -655,7 +677,7 @@ Mock.mock(
   '/mapData',
   'get',
   {
-    code: 0,
+    code: 200,
     data: {
       month: {
         collection: 0,

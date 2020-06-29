@@ -100,42 +100,42 @@
             <div class="rotate-inner">
               <div class="inner-item">
                 <p><i>{{ rotateData[0].name }}</i></p>
-                <p><i class="num">{{ rotateData[0].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[0].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
               </div>
               <div class="inner-item">
                 <p><i>{{ rotateData[1].name }}</i></p>
-                <p><i class="num">{{ rotateData[1].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[1].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
               </div>
               <div class="inner-item">
                 <p><i>{{ rotateData[2].name }}</i></p>
-                <p><i class="num">{{ rotateData[2].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[2].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
               </div>
               <div class="inner-item">
                 <p><i>{{ rotateData[3].name }}</i></p>
-                <p><i class="num">{{ rotateData[3].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[3].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
               </div>
               <div class="inner-item">
                 <p><i>{{ rotateData[4].name }}</i></p>
-                <p><i class="num">{{ rotateData[4].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[4].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
               </div>
               <div class="inner-item">
                 <p><i>{{ rotateData[5].name }}</i></p>
-                <p><i class="num">{{ rotateData[5].value }}</i><i>(条)</i></p>
+                <p><i class="num">{{ rotateData[5].value }}</i><i>（条）</i></p>
                 <div>
                   <img src="~@/assets/images/overview/data.png" alt="">
                 </div>
@@ -328,7 +328,6 @@
       })
     },
     mounted() {
-      // this.numChange(this.$store.state.overview.total)
     },
     computed: {
       ...mapState({
