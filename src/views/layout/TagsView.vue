@@ -38,7 +38,7 @@
       ...mapGetters(['visitedViews', 'routers']),
       // tabs标签，根据显示的views来做格式化，主要追加key，title以及noClose属性用于配合显示tab
       tabs () {
-        return this.visitedViews.map(t => {
+        return this.visitedViews.affair(t => {
           if (t.meta.affix) {
             return {
               key: t.name,

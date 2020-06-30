@@ -2,7 +2,11 @@
 import ajax from './ajax'
 // ajax(url:'', data = {}, type = 'GET')
 // 默认type = 'GET'
-export const reqOverviewData = () => ajax('/overview')
+export const reqOverviewData = () => ajax('/overviewData')
+export const reqSummaryData = () => ajax('/summaryData')
+export const reqUnionData = () => ajax('/unionData')
+export const reqPublicData = () => ajax('/publicData')
+export const reqAffairData = () => ajax('/affairData')
 
 export const reqOverviewUnionData = () => ajax('/overviewUnionData')
 
@@ -24,5 +28,3 @@ export const reqSummarySourceData = () => ajax('/summarySourceData')
 export const reqSummaryNaturalPersonAnalysisData = () => ajax('/summaryNaturalPersonAnalysisData')
 export const reqSummaryNewestFillInDeptData = () => ajax('/summaryNewestFillInDeptData')
 
-export const reqMapData = () => ajax('/map')
-export const reqPublicData = () => ajax('/public')

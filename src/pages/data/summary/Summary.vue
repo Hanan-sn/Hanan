@@ -59,10 +59,10 @@
             <template slot="title">
               <div flex="main:justify">
                 <span>部门数据归集统计分析</span>
-                <span class="handle-date" flex="main:justify">
+                <!--<span class="handle-date" flex="main:justify">
                 <i class="tab" :class="dateTab === 0 ? 'active' : ''" @click="dateTab = 0">本月</i>
                 <i class="tab" :class="dateTab === 1 ? 'active' : ''" @click="dateTab = 1">本年</i>
-                  <!--<b-date-picker
+                  &lt;!&ndash;<b-date-picker
                     placement="bottom-end"
                     :open="open"
                     :value="date"
@@ -74,8 +74,8 @@
                         <template v-if="date === ''">请选择日期</template>
                         <template v-else>{{ date }}</template>
                       </a>
-                    </b-date-picker>-->
-              </span>
+                    </b-date-picker>&ndash;&gt;
+              </span>-->
               </div>
             </template>
             <template slot="content">
@@ -250,7 +250,7 @@
       }
     },
     created(){
-      // this.$store.dispatch('getSummary')
+      this.initData()
     },
     mounted() {
       this.renderBall()
@@ -267,7 +267,7 @@
     },
     methods: {
       initData(){
-        this.$store.dispatch('')
+        this.$store.dispatch('getSummaryData')
       },
       handleClick() {
         this.open = !this.open

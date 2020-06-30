@@ -1,25 +1,29 @@
 import {
-  reqOverviewUnionData,
-  reqOverviewCountNumListData,
-  reqOverviewExchangeData,
-  reqOverviewRedListData,
-  reqOverviewBlackListData,
-  reqOverviewClassStatisticData,
-  reqOverviewTrendAnalysisData,
-  reqOverviewSubmitDeptListData,
+  reqOverviewData
 } from '../../api'
 import {
-  OverviewUnionData,
-  OverviewCountNumListData,
-  OverviewExchangeData,
-  OverviewRedListData,
-  OverviewBlackListData,
-  OverviewClassStatisticData,
-  OverviewTrendAnalysisData,
-  OverviewSubmitDeptListData,
+  OverviewData
 } from '../mutation-types'
 export default {
   state: {
+    mapData: [
+      [{
+        name: '句容区',
+        value: 2
+      }], [{
+        name: '丹徒区',
+        value: 3
+      }], [{
+        name: '润州区',
+        value: 4
+      }], [{
+        name: '扬中市',
+        value: 5
+      }], [{
+        name: '丹阳市',
+        value: 6
+      }]
+    ],
     union: {
       memoCount: 2,
       measureCount: 44,
@@ -47,18 +51,7 @@ export default {
       dockedAbnormal: 1,
       chartData: [
         ['product', '归集', '输出'],
-        // ['1月', 100, 120],
-        // ['2月', 100, 120],
-        // ['3月', 100, 120],
-        // ['4月', 100, 120],
-        // ['5月', 100, 120],
         ['6月', 4497783, 0]
-        // ['7月', 100, 120],
-        // ['8月', 100, 120],
-        // ['9月', 100, 120],
-        // ['10月', 100, 120],
-        // ['11月', 100, 120],
-        // ['12月', 100, 120]
       ]
     },
     countNumList: [0, 8, 7, 2, 0, 0, 1, 6], // 归集总量
@@ -108,71 +101,17 @@ export default {
     ] // 数据提报部门
   },
   actions: {
-    async getOverviewUnionData({commit}){
-      const result = await reqOverviewUnionData()
-      commit(OverviewUnionData, {result})
-    },
-    async getOverviewExchangeData({commit}){
-      const result = await reqOverviewExchangeData()
-      commit(OverviewExchangeData, {result})
-    },
-    async getOverviewCountNumListData({commit}){
-      const result = await reqOverviewCountNumListData()
-      commit(OverviewCountNumListData, {result})
-    },
-    async getOverviewRedListData({commit}){
-      const result = await reqOverviewRedListData()
-      commit(OverviewRedListData, {result})
-    },
-    async getOverviewBlackListData({commit}){
-      const result = await reqOverviewBlackListData()
-      commit(OverviewBlackListData, {result})
-    },
-    async getOverviewClassStatisticData({commit}){
-      const result = await reqOverviewClassStatisticData()
-      commit(OverviewClassStatisticData, {result})
-    },
-    async getOverviewTrendAnalysisData({commit}){
-      const result = await reqOverviewTrendAnalysisData()
-      commit(OverviewTrendAnalysisData, {result})
-    },
-    async getOverviewSubmitDeptListData({commit}){
-      const result = await reqOverviewSubmitDeptListData()
-      commit(OverviewSubmitDeptListData, {result})
+    async getOverviewData({commit}){
+      const result = await reqOverviewData()
+      commit (OverviewData, {result})
     }
   },
   mutations: {
-   [OverviewUnionData](state, {result}){
+   [OverviewData](state, {result}){
      const { data } = result
-     state.union = data
-   },
-   [OverviewExchangeData](state, {result}){
-     const { data } = result
-     state.exchangeData = data
-   },
-   [OverviewCountNumListData](state, {result}){
-     const { data } = result
-     state.countNumList = data
-   },
-   [OverviewRedListData](state, {result}){
-     const { data } = result
-     state.redList = data
-   },
-   [OverviewBlackListData](state, {result}){
-     const { data } = result
-     state.blackList = data
-   },
-   [OverviewClassStatisticData](state, {result}){
-     const { data } = result
-     state.classStatistic = data
-   },
-   [OverviewTrendAnalysisData](state, {result}){
-     const { data } = result
-     state.trendAnalysis = data
-   },
-   [OverviewSubmitDeptListData](state, {result}){
-     const { data } = result
-     state.submitDeptList = data
+     for (let key in data){
+       state[key] = data[key]
+     }
    }
   }
 }

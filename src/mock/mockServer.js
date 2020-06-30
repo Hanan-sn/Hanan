@@ -7,420 +7,523 @@ import Mock from 'mockjs'
 // import shouye_data from './shouye_data.json'
 
 // 返回data的接口
-Mock.mock('/overview', {
-  code: 1,
-  data: {
-    countNumList: [1, 0, 0, 0, 4, 0, 6, 0],
-    union: {
-      memoCount: 6666,
-      measureCount: 7777,
-      deptCount: 400,
-      pieData: {
-        inner: [
-          { value: 1100, name: '惩戒' },
-          { value: 2000, name: '激励' }
-        ],
-        outer: [
-          { value: 400, name: '法人惩戒' },
-          { value: 600, name: '自然人惩戒' },
-          { value: 1400, name: '法人激励' },
-          { value: 600, name: '自然人激励' }
-        ]
-      }
-    },
-    dataExchange: {
-      // total: 8848,
-      getIn: 5480,
-      getInCorrect: '60%',
-      getOut: 5480,
-      getOutCorrect: '40%',
-      dockedNormal: 320,
-      dockedAbnormal: 70,
-      barData: [
-        ['product', '归集', '输出'],
-        ['1月', 100, 120],
-        ['2月', 100, 120],
-        ['3月', 100, 120],
-        ['4月', 100, 120],
-        ['5月', 100, 120],
-        ['6月', 100, 120],
-        ['7月', 100, 120],
-        ['8月', 100, 120],
-        ['9月', 100, 120],
-        ['10月', 100, 120],
-        ['11月', 100, 120],
-        ['12月', 100, 120]
-      ]
-    },
-    rotateData: [
-      {
-        name: '自然人基础信息',
-        value: '264531'
-      },
-      {
-        name: '自然人人均数量',
-        value: '14'
-      },
-      {
-        name: '法人人均数量',
-        value: '16'
-      },
-      {
-        name: '法人信用信息',
-        value: '23655'
-      },
-      {
-        name: '自然人信用信息',
-        value: '36542'
-      },
-      {
-        name: '法人基础信息',
-        value: '32456'
-      }
-    ],
-    redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 },
-    blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }
-  }
-})
-Mock.mock('/overviewUnionData', {
-  code: 1,
-  data: {
-      memoCount: 6666,
-      measureCount: 7777,
-      deptCount: 400,
-      pieData: {
-        inner: [
-          { value: 1100, name: '惩戒' },
-          { value: 2000, name: '激励' }
-        ],
-        outer: [
-          { value: 400, name: '法人惩戒' },
-          { value: 600, name: '自然人惩戒' },
-          { value: 1400, name: '法人激励' },
-          { value: 600, name: '自然人激励' }
-        ]
-      }
-    }
-})
-Mock.mock('/overviewExchangeData', {
-  code: 1,
-  data: {
-    // total: 8848,
-    getIn: 5480,
-    getInCorrect: '60%',
-    getOut: 5480,
-    getOutCorrect: '40%',
-    dockedNormal: 320,
-    dockedAbnormal: 70,
-    chartData: [
-      ['product', '归集', '输出'],
-      ['1月', 100, 190],
-      ['2月', 120, 170],
-      ['3月', 130, 150],
-      ['4月', 140, 130],
-      ['5月', 150, 110],
-      ['6月', 160, 120],
-      ['7月', 170, 130],
-      ['8月', 180, 140],
-      ['9月', 190, 150],
-      ['10月', 170, 160],
-      ['11月', 150, 150],
-      ['12月', 130, 140]
-    ]
-  }
-})
-Mock.mock('/overviewCountNumListData', {
-  code: 1,
-  data: [1, 0, 0, 0, 4, 0, 6, 0]
-})
-Mock.mock('/overviewRedListData', {
-  code: 1,
-  data: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 }
-})
-Mock.mock('/overviewBlackListData', {
-  code: 1,
-  data: { performed: 0, case: 0, unpaid: 0, lose: 0 }
-})
-Mock.mock('/overviewClassStatisticData', {
-  code: 1,
-  data: {
-    lv1: 8,
-    lv2: 40,
-    resourceCount: 57,
-    deptCount: 55,
-    chartData: [
-      ['product', '信息量'],
-      ['基础信息', 4794115],
-      ['业务信息', 1883668],
-      ['行政执法信息', 1685166],
-      ['政务信息', 2067],
-      ['司法信息', 0],
-      ['公共事业信息', 0],
-      ['信用评级信息', 0],
-      ['其他信息', 0]
-    ]
-  }
-})
-Mock.mock('/overviewTrendAnalysisData', {
-  code: 1,
-  data: [
-    { product: '1月', count: 0 },
-    { product: '2月', count: 0 },
-    { product: '3月', count: 0 },
-    { product: '4月', count: 0 },
-    { product: '5月', count: 0 },
-    { product: '6月', count: 0 },
-    { product: '7月', count: 0 },
-    { product: '8月', count: 0 },
-    { product: '9月', count: 0 },
-    { product: '10月', count: 0 },
-    { product: '11月', count: 0 },
-    { product: '12月', count: 0 }
-  ]
-})
-Mock.mock('/overviewSubmitDeptListData', {
-  code: 1,
-  data: [
-    { name: '镇江市', count: 6834299, percent: '78%' },
-    { name: '扬中市人社局', count: 1883650, percent: '22%' },
-    { name: '市编办', count: 2067, percent: '0%' },
-    { name: '市农业农村局', count: 0, percent: '0%' },
-    { name: '市教育局', count: 0, percent: '0%' },
-    { name: '市卫健委', count: 0, percent: '0%' },
-    { name: '市审计局', count: 0, percent: '0%' },
-    { name: '市政务服务办', count: 0, percent: '0%' },
-    { name: '市市场监督管理局', count: 0, percent: '0%' }
-  ]
-})
-
 Mock.mock(
-  '/overviewExchangeData?thisMonth',
-  {
-    code: 1,
-    data: {
-      // total: 8848,
-      getIn: 4480,
-      getInCorrect: '60%',
-      getOut: 4480,
-      getOutCorrect: '40%',
-      dockedNormal: 120,
-      dockedAbnormal: 80,
-      chartData: [
-        ['product', '归集', '输出'],
-        ['1月', 100, 120],
-        ['2月', 100, 120],
-        ['3月', 100, 120],
-        ['4月', 100, 120],
-        ['5月', 100, 120],
-        ['6月', 100, 120],
-        ['7月', 100, 120],
-        ['8月', 100, 120],
-        ['9月', 100, 120],
-        ['10月', 100, 120],
-        ['11月', 100, 120],
-        ['12月', 100, 120]
-      ]
-    }
-  }
-)
-Mock.mock(
-  '/overviewExchangeData?thisYear',
-  {
-    code: 0,
-    data: {
-      // total: 8848,
-      getIn: 5480,
-      getInCorrect: '50%',
-      getOut: 5480,
-      getOutCorrect: '50%',
-      dockedNormal: 220,
-      dockedAbnormal: 70,
-      chartData: [
-        ['product', '归集', '输出'],
-        ['1月', 110, 120],
-        ['2月', 110, 120],
-        ['3月', 110, 120],
-        ['4月', 110, 120],
-        ['5月', 110, 120],
-        ['6月', 110, 120],
-        ['7月', 110, 120],
-        ['8月', 110, 120],
-        ['9月', 110, 120],
-        ['10月', 110, 120],
-        ['11月', 110, 120],
-        ['12月', 110, 120]
-      ]
-    }
-  }
-)
-Mock.mock(
-  '/overviewUnionData',
-  {
-    code: 1,
-    data: {
-      memoCount: 0,
-      measureCount: 0,
-      deptCount: 0,
-      chartData: {
-        inner: [
-          { value: 0, name: '惩戒' },
-          { value: 0, name: '激励' }
-        ],
-        outer: [
-          { value: 0, name: '法人惩戒' },
-          { value: 0, name: '自然人惩戒' },
-          { value: 0, name: '法人激励' },
-          { value: 0, name: '自然人激励' }
-        ]
-      }
-    }
-  }
-)
-
-Mock.mock(
-  '/overviewRedBlackList',
-  {
-    code: 2,
-    data: {
-      redList: { signCom: 4456, taxpayer: 7413, corp: 1142, volunteer: 5541 },
-      blackList: { performed: 236, case: 713, unpaid: 112, lose: 141 }
-    }
-  }
-)
-
-Mock.mock(
-  '/summaryMonthAnalysisData',
+  '/overviewData',
   {
     code: 200,
     data: {
-      collection: 20,
-      appear: 30,
-      reflux: 40
-    }
-  }
-)
-Mock.mock(
-  '/summaryClassifyStatisticData',
-  {
-    code: 200,
-    data: {
-      lv1: 0,
-      lv2: 0,
-      resourceCount: 0,
-      deptCount: 0,
-      chartData: [
-        ['product', '信息量'],
-        ['基础信息', 80],
-        ['业务信息', 100],
-        ['司法信息', 20],
-        ['行政执法信息', 300],
-        ['公共事业信息', 400],
-        ['信用评级信息', 500],
-        ['其他信息', 600],
-        ['累计', 700]
+      union: {
+        memoCount: 2,
+        measureCount: 44,
+        deptCount: 55,
+        chartData: {
+          inner: [
+            { value: 0, name: '惩戒' },
+            { value: 0, name: '激励' }
+          ],
+          outer: [
+            { value: 0, name: '法人惩戒' },
+            { value: 0, name: '自然人惩戒' },
+            { value: 0, name: '法人激励' },
+            { value: 0, name: '自然人激励' }
+          ]
+        }
+      },
+      exchangeData: {
+        // total: 8848,
+        getIn: 0,
+        getInCorrect: '0%',
+        getOut: 0,
+        getOutCorrect: '0%',
+        dockedNormal: 79,
+        dockedAbnormal: 1,
+        chartData: [
+          ['product', '归集', '输出'],
+          ['6月', 4497783, 0]
+        ]
+      },
+      countNumList: [0, 8, 7, 2, 0, 0, 1, 6],
+      redList: { signCom: 0, taxpayer: 0, corp: 0, volunteer: 1 },
+      blackList: { performed: 0, case: 0, unpaid: 0, lose: 1 },
+      classStatistic: {
+        lv1: 8,
+        lv2: 40,
+        resourceCount: 57,
+        deptCount: 55,
+        chartData: [
+          ['product', '信息量'],
+          ['基础信息', 4794115],
+          ['业务信息', 1883668],
+          ['行政执法信息', 1685166],
+          ['政务信息', 2067],
+          ['司法信息', 0],
+          ['公共事业信息', 0],
+          ['信用评级信息', 0],
+          ['其他信息', 0]
+        ]
+      },
+      trendAnalysis: [
+        { product: '1月', count: 0 },
+        { product: '2月', count: 0 },
+        { product: '3月', count: 0 },
+        { product: '4月', count: 0 },
+        { product: '5月', count: 0 },
+        { product: '6月', count: 0 },
+        { product: '7月', count: 0 },
+        { product: '8月', count: 0 },
+        { product: '9月', count: 0 },
+        { product: '10月', count: 0 },
+        { product: '11月', count: 0 },
+        { product: '12月', count: 0 }
       ],
+      submitDeptList: [
+        { name: '镇江市', count: 6834299, percent: '78%' },
+        { name: '扬中市人社局', count: 1883650, percent: '22%' },
+        { name: '市编办', count: 2067, percent: '0%' },
+        { name: '市农业农村局', count: 0, percent: '0%' },
+        { name: '市教育局', count: 0, percent: '0%' },
+        { name: '市卫健委', count: 0, percent: '0%' },
+        { name: '市审计局', count: 0, percent: '0%' },
+        { name: '市政务服务办', count: 0, percent: '0%' },
+        { name: '市市场监督管理局', count: 0, percent: '0%' }
+      ],
+      mapData: [
+        [{
+          name: '句容区',
+          value: 2
+        }], [{
+          name: '丹徒区',
+          value: 3
+        }], [{
+          name: '润州区',
+          value: 4
+        }], [{
+          name: '扬中市',
+          value: 5
+        }], [{
+          name: '丹阳市',
+          value: 6
+        }]
+      ]
+    }
+  }
+)
+Mock.mock(
+  '/publicData',
+  {
+    code: 200,
+    data: {
       deptList: [
-        { name: '部门名称一', count: 8848, percent: 10 },
-        { name: '部门名称一', count: 8848, percent: 10 },
+        { name: '镇江市公安局', count: 1644424, percent: 10 },
+        { name: '句容市行政审批局', count: 8398, percent: 10 },
+        { name: '国家税务总局扬中市税务局', count: 3492, percent: 10 },
+        { name: '国家税务总局句容市税务局第一税务分局', count: 2861, percent: 10 },
+        { name: '丹阳市城管局', count: 2355, percent: 10 },
+        { name: '镇江市卫生健康委员会', count: 2083, percent: 10 },
+        { name: '镇江市城区地方海事处', count: 1907, percent: 10 },
+        { name: '丹阳地方海事处', count: 917, percent: 10 },
+        { name: '丹阳市住房和城乡建设局镇江市', count: 875, percent: 10 },
+        { name: '丹阳市公安局', count: 777, percent: 10 }
+      ],
+      week: [
+        ['product', '数量'],
+        ['1天', 10],
+        ['2天', 12],
+        ['3天', 13],
+        ['4天', 14],
+        ['5天', 15],
+        ['6天', 16],
+        ['7天', 15],
+      ],
+      collectionSituation: [
+        ['product', '行政许可', '行政处罚'],
+        ['6月', 12000, 12050],
+        ['7月', 13000, 15420],
+        ['8月', 12000, 11000]
+      ],
+      repair: [
+        ['product', '数量'],
+        ['1月', 10],
+        ['2月', 20],
+        ['3月', 30],
+        ['4月', 40],
+        ['5月', 50],
+        ['6月', 60],
+        ['7月', 70],
+        ['8月', 60],
+        ['9月', 50],
+        ['10月', 0],
+        ['11月', 0],
+        ['12月', 0]
+      ],
+      classify: {
+        outer: [
+          { value: 1678374, name: '普通' },
+          { value: 598, name: '特许' },
+          { value: 350, name: '认可' },
+          { value: 619, name: '核准' },
+          { value: 429, name: '登记' },
+          { value: 8, name: '其他' }
+        ],
+        inner: [
+          { value: 885265, name: '行政许可' }
+        ]
+      },
+      midSources: {
+        natualPersonLicense: 1649373,
+        natualPersonPunish: 16,
+        legalPersonLicense: 164,
+        legalPersonPunish: 16,
+      },
+      newAdd: {
+        adminLicense: 10,
+        adminPunish: 20
+      }
+    }
+  }
+)
+Mock.mock(
+  '/summaryData',
+  {
+    code: 200,
+    data: {
+      monthAnalysis: {
+        collection: 1,
+        appear: 0,
+        reflux: 0
+      },
+      classifyStatistic: {
+        lv1: 0,
+        lv2: 0,
+        resourceCount: 0,
+        deptCount: 0,
+        chartData: [
+          ['product', '信息量'],
+          ['基础信息', 80],
+          ['业务信息', 100],
+          ['司法信息', 20],
+          ['行政执法信息', 300],
+          ['公共事业信息', 400],
+          ['信用评级信息', 500],
+          ['其他信息', 600],
+          ['累计', 700]
+        ],
+        deptList: [
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 },
+          { name: '部门名称一', count: 8848, percent: 10 }
+        ]
+      },
+      summaryCounts: {
+        resource: 0,
+        collection: 0,
+        month: 0,
+        naturalPerson: 0,
+        legalPerson: 0,
+        focusPerson: 0,
+        passPercent: 80,
+        chartList: [
+          ['product','奖','惩'],
+          ['1月',1000,500],
+          ['2月',1400,600],
+          ['3月',2000,700],
+          ['4月',1500,500],
+          ['5月',1200,400],
+          ['6月',1300,500],
+          ['7月',1400,600],
+          ['8月',2000,500],
+          ['9月',2200,300],
+          ['10月',1600,500],
+          ['11月',1700,600],
+          ['12月',1400,400],
+        ]
+      },
+      source:[
+        ['product','数据来源'],
+        ['手工填报',10],
+        ['et对接',5],
+        ['内部接口',15],
+        ['其他',25]
+      ],
+      naturalPersonAnalysis: [
+        {
+          outer: [
+            { value: 335, name: '业务信息' },
+            { value: 310, name: '司法信息' },
+            { value: 234, name: '行政执法信息' },
+            { value: 235, name: '信用评价信息' },
+            { value: 248, name: '公共事业信息' },
+            { value: 248, name: '其他信息' },
+            { value: 248, name: '基本信息' }
+          ],
+          inner: [
+            { value: 535, name: '直接访问' }
+          ]
+        },
+        {
+          outer: [
+            { value: 365, name: '业务信息' },
+            { value: 340, name: '司法信息' },
+            { value: 264, name: '行政执法信息' },
+            { value: 225, name: '信用评价信息' },
+            { value: 218, name: '公共事业信息' },
+            { value: 228, name: '其他信息' },
+            { value: 218, name: '基本信息' }
+          ],
+          inner: [
+            { value: 635, name: '直接访问' }
+          ]
+        }
+      ],
+      newestFillInDept: [
         { name: '部门名称一', count: 8848, percent: 10 },
         { name: '部门名称一', count: 8848, percent: 10 },
         { name: '部门名称一', count: 8848, percent: 10 },
         { name: '部门名称一', count: 8848, percent: 10 },
         { name: '部门名称一', count: 8848, percent: 10 }
       ]
-    }
+    },
   }
 )
 Mock.mock(
-  '/summaryCountsData',
+  '/unionData',
   {
     code: 200,
     data: {
-      resource: 0,
-      collection: 0,
-      month: 0,
-      naturalPerson: 0,
-      legalPerson: 0,
-      focusPerson: 0,
-      passPercent: 80,
-      chartList: [
-        ['product','奖','惩'],
-        ['1月',1000,500],
-        ['2月',1400,600],
-        ['3月',2000,700],
-        ['4月',1500,500],
-        ['5月',1200,400],
-        ['6月',1300,500],
-        ['7月',1400,600],
-        ['8月',2000,500],
-        ['9月',2200,300],
-        ['10月',1600,500],
-        ['11月',1700,600],
-        ['12月',1400,400],
+      union: {
+        rpTotal: 0,
+        memoTotal: 2,
+        deptTotal: 55,
+        naturalPerson: 0,
+        naturalPersonReward: 0,
+        naturalPersonPunish: 0,
+        legalPerson: 0,
+        legalPersonReward: 0,
+        legalPersonPunish: 0
+      },
+      rbNameList: {
+        redList: { signCom: 0, taxpayer: 0, corp: 0, volunteer: 1 },
+        blackList: { performed: 0, case: 0, unpaid: 0, lose: 1 }
+      },
+      trend: [
+        ['product', '惩戒', '激励'],
+        ['1月', 500, 600],
+        ['2月', 800, 700],
+        ['3月', 1200, 800],
+        ['4月', 1100, 1200],
+        ['5月', 400, 1100],
+        ['6月', 500, 700]
+      ],
+      classify: [
+        ['product', '惩戒'],
+        ['市统计局',600],
+        [ '市商务局',500],
+        [ '镇江海关',520],
+        ['市地方金融监督管理局',420],
+        ['市银保监分局',400],
+        ['人行镇江市中心支行',600],
+        ['市组织部',650],
+        ['市发改委',800]
+      ],
+      feedbackClassify: [
+        ['product', '惩戒'],
+        ['市统计局',600],
+        [ '市商务局',500],
+        [ '镇江海关',520],
+        ['市地方金融监督管理局',420],
+        ['市银保监分局',400],
+        ['人行镇江市中心支行',600],
+        ['市组织部',650],
+        ['市发改委',800]
+      ],
+      memoTrend: [
+        ['product', '反馈数'],
+        ['1月', 500],
+        ['2月', 800],
+        ['3月', 1200],
+        ['4月', 1100],
+        ['5月', 400],
+        ['6月', 500]
+      ],
+      memoStatusList: [
+        { name: '房产交易', count: 8848},
+        { name: '规划设计方案', count: 8848},
+        { name: '股票交易', count: 8848},
+        { name: '不动产转移', count: 8848}
+      ],
+      punishRewardList: [
+        {
+          "name": "李杰",
+          "info": "模拟信息2",
+          "dept": "模拟部门2",
+          "time": "1982-10-07"
+        },
+        {
+          "name": "秦桂英",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1987-09-02"
+        },
+        {
+          "name": "易刚",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "1976-10-21"
+        },
+        {
+          "name": "常静",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "2020-03-16"
+        },
+        {
+          "name": "贾明",
+          "info": "模拟信息2",
+          "dept": "模拟部门1",
+          "time": "1974-02-04"
+        },
+        {
+          "name": "雷娜",
+          "info": "模拟信息2",
+          "dept": "模拟部门2",
+          "time": "1982-12-07"
+        },
+        {
+          "name": "马强",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1970-11-18"
+        },
+        {
+          "name": "金敏",
+          "info": "模拟信息2",
+          "dept": "模拟部门2",
+          "time": "1992-12-07"
+        },
+        {
+          "name": "毛秀英",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "2016-07-12"
+        },
+        {
+          "name": "郝磊",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "1973-08-01"
+        },
+        {
+          "name": "姜艳",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1978-11-06"
+        },
+        {
+          "name": "熊勇",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "2004-03-04"
+        },
+        {
+          "name": "汤强",
+          "info": "模拟信息2",
+          "dept": "模拟部门1",
+          "time": "1987-08-03"
+        },
+        {
+          "name": "彭强",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "2016-06-17"
+        },
+        {
+          "name": "夏磊",
+          "info": "模拟信息1",
+          "dept": "模拟部门2",
+          "time": "2002-11-28"
+        },
+        {
+          "name": "金军",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1980-12-22"
+        },
+        {
+          "name": "程娟",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1973-11-25"
+        },
+        {
+          "name": "万秀英",
+          "info": "模拟信息2",
+          "dept": "模拟部门2",
+          "time": "2004-03-31"
+        },
+        {
+          "name": "蔡杰",
+          "info": "模拟信息2",
+          "dept": "模拟部门1",
+          "time": "2013-10-04"
+        },
+        {
+          "name": "汤军",
+          "info": "模拟信息1",
+          "dept": "模拟部门1",
+          "time": "1983-11-21"
+        }
+      ],
+      measure: [
+        ['措施名', '数量'],
+        ['措施名称1', 500],
+        ['措施名称2', 400],
+        ['措施名称3', 450],
+        ['措施名称4', 300],
+        ['措施名称5', 460],
+        ['措施名称6', 600],
+        ['措施名称7', 400],
+        ['措施名称8', 360]
+      ],
+      quitTrend: [
+        ['product', '名单数'],
+        ['1月', 500],
+        ['2月', 800],
+        ['3月', 1200],
+        ['4月', 1100],
+        ['5月', 400],
+        ['6月', 500]
       ]
     }
   }
 )
 Mock.mock(
-  '/summarySourceData',
+  '/affairData',
   {
     code: 200,
-    data: [
-      ['product','数据来源'],
-      ['手工填报',10],
-      ['et对接',5],
-      ['内部接口',15],
-      ['其他',25]
-    ]
-  }
-)
-Mock.mock(
-  '/summaryNaturalPersonAnalysisData',
-  {
-    code: 200,
-    data: [
-      {
-        outer: [
-          { value: 335, name: '业务信息' },
-          { value: 310, name: '司法信息' },
-          { value: 234, name: '行政执法信息' },
-          { value: 235, name: '信用评价信息' },
-          { value: 248, name: '公共事业信息' },
-          { value: 248, name: '其他信息' },
-          { value: 248, name: '基本信息' }
-        ],
-        inner: [
-          { value: 535, name: '直接访问' }
-        ]
-      },
-      {
-        outer: [
-          { value: 365, name: '业务信息' },
-          { value: 340, name: '司法信息' },
-          { value: 264, name: '行政执法信息' },
-          { value: 225, name: '信用评价信息' },
-          { value: 218, name: '公共事业信息' },
-          { value: 228, name: '其他信息' },
-          { value: 218, name: '基本信息' }
-        ],
-        inner: [
-          { value: 635, name: '直接访问' }
-        ]
-      }
-    ]
-  }
-)
-Mock.mock(
-  '/summaryNewestFillInDeptData',
-  {
-    code: 200,
-    data: [
-      { name: '部门名称一', count: 8848, percent: 10 },
-      { name: '部门名称一', count: 8848, percent: 10 },
-      { name: '部门名称一', count: 8848, percent: 10 },
-      { name: '部门名称一', count: 8848, percent: 10 },
-      { name: '部门名称一', count: 8848, percent: 10 }
-    ]
+    data: {
+      mapData: [
+        [{
+          name: '句容区',
+          value: 2
+        }], [{
+          name: '丹徒区',
+          value: 3
+        }], [{
+          name: '润州区',
+          value: 4
+        }], [{
+          name: '扬中市',
+          value: 5
+        }], [{
+          name: '丹阳市',
+          value: 6
+        }]
+      ]
+    }
   }
 )
 Mock.setup({ timeout: '1-200' })

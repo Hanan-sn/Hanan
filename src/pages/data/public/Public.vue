@@ -7,10 +7,10 @@
             <template slot="title">
               <div flex="main:justify" style="margin-top: 20px;">
                 <span>部门双公示数据统计情况</span>
-                <span class="handle-date" flex="main:justify">
+                <!--<span class="handle-date" flex="main:justify">
                   <i class="tab" :class="dateTab === 0 ? 'active' : ''" @click="dateTab = 0">本月</i>
                   <i class="tab" :class="dateTab === 1 ? 'active' : ''" @click="dateTab = 1">本年</i>
-                  <!--<b-date-picker
+                  &lt;!&ndash;<b-date-picker
                     placement="bottom-end"
                     :open="open"
                     :value="date"
@@ -22,8 +22,8 @@
                         <template v-if="date === ''">请选择日期</template>
                         <template v-else>{{ date }}</template>
                       </a>
-                    </b-date-picker>-->
-                </span>
+                    </b-date-picker>&ndash;&gt;
+                </span>-->
               </div>
             </template>
             <template slot="content">
@@ -32,7 +32,7 @@
                   <span>部门名称</span>
                   <span>资源信息</span>
                 </div>
-                <div class="table-row" v-for="(item, index) in newClassifyList" :key="index" flex="main:justify">
+                <div class="table-row" v-for="(item, index) in deptList" :key="index" flex="main:justify">
                   <span>{{ item.name }}</span>
                   <span>{{ item.count }}</span>
                 </div>
@@ -44,7 +44,7 @@
               <span>双公示数据7天提报数量</span>
             </template>
             <template slot="content">
-              <chart ref="chart1" :options="classify" style="width: 100%; height: 326px;"></chart>
+              <chart ref="chart1" :options="returnBar(week)" style="width: 100%; height: 326px;"></chart>
             </template>
           </Card>
         </div>
@@ -70,7 +70,7 @@
                   <img src="~@/assets/images/public/icon01.png" alt="">
                   <span>
                     <i>自然人行政许可</i><br>
-                    <i class="num">1,649,373</i><i>（个）</i>
+                    <i class="num">{{midSources.natualPersonLicense}}</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -86,7 +86,7 @@
                   <img src="~@/assets/images/public/icon02.png" alt="">
                   <span>
                     <i>法人行政许可</i><br>
-                    <i class="num">30,404</i><i>（个）</i>
+                    <i class="num">{{midSources.legalPersonLicense}}</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -102,7 +102,7 @@
                   <img src="~@/assets/images/public/icon03.png" alt="">
                   <span>
                     <i>自然人行政处罚</i><br>
-                    <i class="num">3,224</i><i>（个）</i>
+                    <i class="num">{{midSources.natualPersonPunish}}</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -118,7 +118,7 @@
                   <img src="~@/assets/images/public/icon04.png" alt="">
                   <span>
                     <i>法人行政处罚</i><br>
-                    <i class="num">2,165</i><i>（个）</i>
+                    <i class="num">{{midSources.legalPersonPunish}}</i><i>（个）</i>
                   </span>
                 </div>
                 <span class="light-corner"></span>
@@ -140,7 +140,7 @@
             <span>双公示采集情况</span>
           </template>
           <template slot="content">
-            <chart ref="chart2" :options="trend" style="width: 100%; height: 320px;"></chart>
+            <chart ref="chart2" :options="returnTrend(collectionSituation)" style="width: 100%; height: 320px;"></chart>
           </template>
         </Card>
       </template>
@@ -159,14 +159,14 @@
                     <img src="~@/assets/images/public/xuke.png" alt="">
                     <span>
                       <i class="white-font">行政许可数量</i><br>
-                      <i class="num">1,679,777</i><i>个</i>
+                      <i class="num">{{newAdd.adminLicense}}</i><i class="white-font">（个）</i>
                     </span>
                   </div>
                   <div class="new-item" flex="space:around cross:center">
                     <img src="~@/assets/images/public/chufa.png" alt="">
                     <span>
                       <i class="white-font">行政处罚数量</i><br>
-                      <i class="num">5,389</i><i>个</i>
+                      <i class="num">{{newAdd.adminPunish}}</i><i class="white-font">（个）</i>
                     </span>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
               <span>处罚修复数据统计</span>
             </template>
             <template slot="content">
-              <chart ref="chart3" :options="punishRepair" style="width: 100%; height: 320px;"></chart>
+              <chart ref="chart3" :options="returnRepairBar(repair)" style="width: 100%; height: 320px;"></chart>
             </template>
           </Card>
           <Card>
@@ -187,7 +187,7 @@
               <span></span>
             </template>
             <template slot="content">
-              <chart ref="chart4" :options="pie" style="width: 100%; height: 350px;"></chart>
+              <chart ref="chart4" :options="returnPie(classify)" style="width: 100%; height: 350px;"></chart>
             </template>
           </Card>
         </div>
@@ -200,6 +200,7 @@
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
   import Card from '../../../components/Card/Card'
+  import {mapState} from 'vuex'
   // 统一变量
   const xyLineColor = '#535e83'
   const splitLineColor = '#283353'
@@ -213,42 +214,70 @@
       return {
         dateTab: 0,
         open: false,
-        date: '',
-        newClassifyList: [
-          { name: '镇江市公安局', count: 1644424, percent: 10 },
-          { name: '句容市行政审批局', count: 8398, percent: 10 },
-          { name: '国家税务总局扬中市税务局', count: 3492, percent: 10 },
-          { name: '国家税务总局句容市税务局第一税务分局', count: 2861, percent: 10 },
-          { name: '丹阳市城管局', count: 2355, percent: 10 },
-          { name: '镇江市卫生健康委员会', count: 2083, percent: 10 },
-          { name: '镇江市城区地方海事处', count: 1907, percent: 10 },
-          { name: '丹阳地方海事处', count: 917, percent: 10 },
-          { name: '丹阳市住房和城乡建设局镇江市', count: 875, percent: 10 },
-          { name: '丹阳市公安局', count: 777, percent: 10 }
-        ],
-        trend: {
+        date: ''
+      }
+    },
+    computed: {
+      ...mapState({
+        deptList: state => state.publicModule.deptList,
+        week: state => state.publicModule.week,
+        collectionSituation: state => state.publicModule.collectionSituation,
+        repair: state => state.publicModule.repair,
+        classify: state => state.publicModule.classify,
+        midSources: state => state.publicModule.midSources,
+        newAdd: state => state.publicModule.newAdd
+      })
+    },
+    created() {
+      this.initData()
+    },
+    mounted() {
+      window.onresize = () => {
+        this.$refs.chart2.resize()
+      }
+    },
+    methods: {
+      initData() {
+        this.$store.dispatch('getPublicData')
+      },
+      handleClick() {
+        this.open = !this.open
+      },
+      handleChange(date) {
+        this.date = date
+      },
+      handleClear() {
+        this.open = false
+      },
+      handleOk() {
+        this.open = false
+      },
+      returnTrend(data){
+        return  {
           color: ['#02b7f4', '#2646c5'],
-          tooltip: {
+            tooltip: {
             trigger: 'axis',
-            axisPointer: {
+              axisPointer: {
               type: 'cross',
-              label: {
+                label: {
                 backgroundColor: '#6a7985'
               }
             }
           },
+          dataset: {
+            source: data
+          },
           grid: {
             left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
           },
           xAxis: [
             {
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'category',
-              boundaryGap: false,
-              data: ['6月']
+              boundaryGap: false
             }
           ],
           yAxis: [
@@ -257,16 +286,7 @@
               splitLine: { lineStyle: { color: splitLineColor } },
               axisLine: { lineStyle: { color: xyLineColor } },
               type: 'value',
-              name: '（个）',
-              max: 500
-            },
-            {
-              position: 'right',
-              splitLine: { lineStyle: { color: splitLineColor } },
-              axisLine: { lineStyle: { color: xyLineColor } },
-              type: 'value',
-              name: '（个）',
-              max: 500
+              name: '（个）'
             }
           ],
           series: [
@@ -274,50 +294,40 @@
               smooth: true,
               name: '行政许可',
               type: 'line',
-              areaStyle: {},
-              yAxisIndex: 1,
-              data: [1679777]
+              areaStyle: {}
             },
             {
               smooth: true,
               name: '行政处罚',
               type: 'line',
-              areaStyle: {},
-              data: [5389]
+              areaStyle: {}
             }
           ]
-        },
-        classify: {
+        }
+      },
+      returnBar(data){
+        return {
           color: '#00abfb',
-          tooltip: {
-            trigger: 'axis',
+            tooltip: {
+          trigger: 'axis',
             axisPointer: {
-              type: 'shadow'
-            }
-          },
+            type: 'shadow'
+          }
+        },
           grid: {
             left: '3%',
-            right: '4%',
-            bottom: '6%',
-            containLabel: true
+              right: '4%',
+              bottom: '6%',
+              containLabel: true
           },
           dataset: {
-            source: [
-              ['product', '数据量'],
-              ['1天', 3],
-              ['2天', 14],
-              ['3天', 11],
-              ['4天', 3],
-              ['5天', 1],
-              ['6天', 3],
-              ['7天', 1]
-            ]
+            source: data
           },
           yAxis: {
             name: '（个）',
-            type: 'value',
-            boundaryGap: [0, 0.01],
-            axisLine: {
+              type: 'value',
+              boundaryGap: [0, 0.01],
+              axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
@@ -326,12 +336,11 @@
           },
           xAxis: {
             type: 'category',
-            axisLine: {
+              axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
-            },
-            inverse: true
+            }
           },
           series: [
             {
@@ -349,43 +358,31 @@
               }
             }
           ]
-        },
-        punishRepair: {
+        }
+      },
+      returnRepairBar(data){
+        return {
           color: '#00abfb',
-          tooltip: {
+            tooltip: {
             trigger: 'axis',
-            axisPointer: {
+              axisPointer: {
               type: 'shadow'
             }
           },
           grid: {
             left: '3%',
-            right: '4%',
-            bottom: '6%',
-            containLabel: true
+              right: '4%',
+              bottom: '6%',
+              containLabel: true
           },
           dataset: {
-            source: [
-              ['product', '数量'],
-              ['1月', 0],
-              ['2月', 0],
-              ['3月', 0],
-              ['4月', 0],
-              ['5月', 0],
-              ['6月', 0],
-              ['7月', 0],
-              ['8月', 0],
-              ['9月', 0],
-              ['10月', 0],
-              ['11月', 0],
-              ['12月', 0]
-            ]
+            source: data
           },
           yAxis: {
             name: '（个）',
-            type: 'value',
-            boundaryGap: [0, 0.01],
-            axisLine: {
+              type: 'value',
+              boundaryGap: [0, 0.01],
+              axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
@@ -394,7 +391,7 @@
           },
           xAxis: {
             type: 'category',
-            axisLine: {
+              axisLine: {
               lineStyle: {
                 color: xyLineColor
               }
@@ -416,12 +413,14 @@
               }
             }
           ]
-        },
-        pie: {
+        }
+      },
+      returnPie(data){
+        return {
           color: ['#553cff', '#fe3b3c', '#fb952f', '#4dcea7', '#00ccff', '#0e31e3', '#1167e2'],
-          tooltip: {
+            tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
+              formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
           series: [
             {
@@ -439,14 +438,7 @@
               labelLine: {
                 show: false
               },
-              data: [
-                { value: 1678374, name: '普通' },
-                { value: 598, name: '特许' },
-                { value: 350, name: '认可' },
-                { value: 619, name: '核准' },
-                { value: 429, name: '登记' },
-                { value: 8, name: '其他' }
-              ]
+              data: data.outer
             },
             {
               name: '合计',
@@ -464,31 +456,10 @@
               labelLine: {
                 show: false
               },
-              data: [
-                { value: 885265, name: '行政许可' }
-              ]
+              data: data.inner
             }
           ]
         }
-      }
-    },
-    mounted() {
-      window.onresize = () => {
-        this.$refs.chart2.resize()
-      }
-    },
-    methods: {
-      handleClick() {
-        this.open = !this.open
-      },
-      handleChange(date) {
-        this.date = date
-      },
-      handleClear() {
-        this.open = false
-      },
-      handleOk() {
-        this.open = false
       }
     }
   }

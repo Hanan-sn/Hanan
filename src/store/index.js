@@ -1,12 +1,11 @@
 /* vuex的核心管理对象 */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import state from './state'
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
 import overview from './modules/overview'
 import summary from './modules/summary'
+import publicModule from './modules/publicModule'
+import union from './modules/union'
+import affair from './modules/affair'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,6 +15,9 @@ export default new Vuex.Store({
   // getters,
   modules: {
     overview,
-    summary
+    summary,
+    publicModule,
+    union,
+    affair
   }
 })

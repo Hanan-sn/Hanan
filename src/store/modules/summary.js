@@ -1,18 +1,8 @@
 import {
-  reqSummaryMonthAnalysisData,
-  reqSummaryClassifyStatisticData,
-  reqSummaryCountsData,
-  reqSummarySourceData,
-  reqSummaryNaturalPersonAnalysisData,
-  reqSummaryNewestFillInDeptData,
+  reqSummaryData,
 } from '../../api'
 import {
-  SummaryMonthAnalysis,
-  SummaryClassifyStatistic,
-  SummaryCounts,
-  SummarySource,
-  SummaryNaturalPersonAnalysis,
-  SummaryNewestFillInDept,
+  SummaryData,
 } from '../mutation-types'
 
 export default {
@@ -117,7 +107,14 @@ export default {
       { name: '部门名称一', count: 8848, percent: 10 }
     ] // 最新填报部门
   },
-  mutations: {},
+  mutations: {
+    [SummaryData](state, {result}){
+      const { data } = result
+      for (let key in data){
+        state[key] = data[key]
+      }
+    }
+  },
   actions: {
     // 交互
     /*async getOverviewDataExchange({ commit }, params) {
@@ -125,29 +122,9 @@ export default {
       commit(OverviewDataExchange, { result })
     },*/
     // 初始
-    async getSummaryMonthAnalysisData({ commit }) {
-      const result = await reqSummaryMonthAnalysisData()
-      commit(SummaryMonthAnalysis, { result })
-    },
-    async getSummaryClassifyStatisticData({ commit }) {
-      const result = await reqSummaryClassifyStatisticData()
-      commit(SummaryClassifyStatistic, { result })
-    },
-    async getSummaryCountsData({ commit }) {
-      const result = await reqSummaryCountsData()
-      commit(SummaryCounts, { result })
-    },
-    async getSummarySourceData({ commit }) {
-      const result = await reqSummarySourceData()
-      commit(SummarySource, { result })
-    },
-    async getSummaryNaturalPersonAnalysisData({ commit }) {
-      const result = await reqSummaryNaturalPersonAnalysisData()
-      commit(SummaryNaturalPersonAnalysis, { result })
-    },
-    async getSummaryNewestFillInDeptData({ commit }) {
-      const result = await reqSummaryNewestFillInDeptData()
-      commit(SummaryNewestFillInDept, { result })
-    },
+    async getSummaryData({commit}){
+      const result = await reqSummaryData()
+      commit(SummaryData, {result})
+    }
   }
 }

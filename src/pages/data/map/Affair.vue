@@ -13,7 +13,7 @@
               </span>
             </div>
             <div class="square-bg" style="flex: 1; padding: 0 10px; line-height: 76px; color: #fff; text-align: right">
-              <i>0</i><i>（人）</i>
+              <i>{{civil}}</i><i>（人）</i>
             </div>
           </div>
           <chart ref="chart1" :options="returnRing(servantChartData)"
@@ -24,8 +24,8 @@
           <div class="title" flex="main:justify">
             <span>数据报送情况</span>
             <span class="handle-btn" flex>
-              <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
-              <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>
+              <!-- <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
+              <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>-->
               <!--<b-date-picker type="date"
                              :open="dateOpen1"
                              :value="date1"
@@ -299,12 +299,12 @@
       // this.initData()
     },
     mounted() {
-      this.renderMap({ id: 'map' })
+      this.renderMap({ id: 'map', data: this.mapData })
     },
     computed: {
       ...mapState({
-        union: state => state.union,
-        exchangeData: state => state.exchangeData
+        civil: state => state.affair.civil,
+        mapData: state => state.affair.mapData,
       })
     },
     watch: {
@@ -339,14 +339,6 @@
     },
     methods: {
       initData() {
-        this.$store.dispatch('getOverviewExchangeData').then((res) => {
-          // console.log(res)
-          // _self.dataExchange = JSON.parse(JSON.stringify(res.data))
-        })
-        this.$store.dispatch('getOverviewUnionData').then((res) => {
-          // console.log(res)
-          // _self.union = JSON.parse(JSON.stringify(res.data))
-        })
       },
       reDeptBarChart(data) {
         return {
@@ -731,7 +723,6 @@
         var flyLine = '#ffffff'
         var border = '#105689'
         var bg = 'rgba(2,10,34,0.8)'
-        var bg1 = '#040c22'
         var chinaGeoCoordMap = {
           '句容区': [119.167135, 31.947355],
           '丹徒区': [119.433883, 32.088972],
@@ -740,24 +731,7 @@
           '扬中市': [119.828054, 32.237266],
           '丹阳市': [119.581911, 31.991459]
         }
-        var chinaDatas = [
-          [{
-            name: '句容区',
-            value: 0
-          }], [{
-            name: '丹徒区',
-            value: 0
-          }], [{
-            name: '润州区',
-            value: 0
-          }], [{
-            name: '扬中市',
-            value: 0
-          }], [{
-            name: '丹阳市',
-            value: 0
-          }]
-        ]
+        var chinaDatas = paramObj.data
         var convertData = function (data) {
           var res = []
           for (var i = 0; i < data.length; i++) {

@@ -19,7 +19,7 @@
   export default {
     name: 'Map',
     mounted() {
-      this.renderMap({ id: 'map' })
+      this.renderMap({ id: 'affair.js' })
     },
     components: {
       Panel
@@ -217,7 +217,7 @@
                   color: '#02cbff'
                 }
               },
-              data: item[1].map(function(dataItem) {
+              data: item[1].affair(function(dataItem) {
                 return {
                   name: dataItem[0].name,
                   value: chinaGeoCoordMap[dataItem[0].name].concat([dataItem[0].value])

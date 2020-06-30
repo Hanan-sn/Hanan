@@ -22,10 +22,10 @@
                  style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" flex="main:justify">
             <span> 数据交换流向分析</span>
-            <span class="handle-btn" flex>
+            <!--<span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab1 === 0 ? 'active' : ''" @click="handleBtnTab1 = 0">本月</i>
               <i class="btn" :class="handleBtnTab1 === 1 ? 'active' : ''" @click="handleBtnTab1 = 1">本年</i>
-              <!--<b-date-picker type="date"
+              &lt;!&ndash;<b-date-picker type="date"
                              :open="dateOpen1"
                              :value="date1"
                              confirm
@@ -37,8 +37,8 @@
                   <template v-if="date1 === ''">选择日期</template>
                   <template v-else>{{ date1 }}</template>
                 </a>
-              </b-date-picker>-->
-            </span>
+              </b-date-picker>&ndash;&gt;
+            </span>-->
           </div>
           <div class="count-wrapper nowrap" style="padding: 0 8px 20px">
             <span class="square-bg data-change">
@@ -101,7 +101,7 @@
             <div class="red-list">
               <img src="~@/assets/images/overview/icon_hong.png" alt="">
               <i class="white-font">红名单</i>
-              <i class="num">0</i>
+              <i class="num">{{reTotal(redList)}}</i>
               <i class="white-font">（个）</i>
             </div>
             <div class="msg-list" flex="wrap:wrap">
@@ -116,7 +116,7 @@
                 <img class="rb-icon" src="~@/assets/images/overview/icon_ajnsr.png" alt="">
                 <span>
                   <p class="white-font">A级纳税人</p>
-                  <p><i class="num">{{ redList.taxpayer  }}</i><i class="white-font">（个）</i></p>
+                  <p><i class="num">{{ redList.taxpayer }}</i><i class="white-font">（个）</i></p>
                 </span>
               </div>
               <div class="msg-list-item" flex="main:center">
@@ -139,7 +139,7 @@
             <div class="red-list">
               <img src="~@/assets/images/overview/icon_hei.png" alt="">
               <i class="white-font">黑名单</i>
-              <i class="num">0</i>
+              <i class="num">{{reTotal(blackList)}}</i>
               <i class="white-font">（个）</i>
             </div>
             <div class="msg-list" flex="wrap:wrap">
@@ -204,10 +204,10 @@
                  style="width: 100%; height: 220px;display:block;"></chart>
           <div class="title" style="margin-top: 10px;" flex="main:justify">
             <span>信用报告查询趋势分析</span>
-            <span class="handle-btn" flex>
+            <!--<span class="handle-btn" flex>
               <i class="btn" :class="handleBtnTab2 === 0 ? 'active' : ''" @click="handleBtnTab2 = 0">本月</i>
               <i class="btn" :class="handleBtnTab2 === 1 ? 'active' : ''" @click="handleBtnTab2 = 1">本年</i>
-              <!--<b-date-picker type="date"
+              &lt;!&ndash;<b-date-picker type="date"
                              :open="dateOpen2"
                              :value="date2"
                              confirm
@@ -221,8 +221,8 @@
                   <template v-if="date2 === ''">选择日期</template>
                   <template v-else>{{ date2 }}</template>
                 </a>
-              </b-date-picker>-->
-            </span>
+              </b-date-picker>&ndash;&gt;
+            </span>-->
           </div>
           <div class="chart-msg-bar">信用报告查询总次数：
             {{ reSum(trendAnalysis, 'count') }}
@@ -283,14 +283,15 @@
     },
     mounted() {
       this.numChange(this.$store.state.overview.countNumList)
-      this.renderMap({ id: 'map' })
+      this.renderMap({ id: 'map', data: this.mapData })
     },
     computed: {
       ...mapState({
+        mapData: state => state.overview.mapData,
         union: state => state.overview.union,
         exchangeData: state => state.overview.exchangeData,
         countNumList: state => state.overview.countNumList,
-        redList: state => state.overview.exchangeData,
+        redList: state => state.overview.redList,
         blackList: state => state.overview.blackList,
         classStatistic: state => state.overview.classStatistic,
         trendAnalysis: state => state.overview.trendAnalysis,
@@ -299,7 +300,6 @@
     },
     watch: {
       date1: function (n, o) {
-        // console.log(n)
         if (n !== '') {
           this.handleBtnTab1 = 2
         }
@@ -329,14 +329,7 @@
     },
     methods: {
       initData(){
-        this.$store.dispatch('getOverviewUnionData')
-        this.$store.dispatch('getOverviewExchangeData')
-        this.$store.dispatch('getOverviewCountNumListData')
-        this.$store.dispatch('getOverviewRedListData')
-        this.$store.dispatch('getOverviewBlackListData')
-        this.$store.dispatch('getOverviewClassStatisticData')
-        this.$store.dispatch('getOverviewTrendAnalysisData')
-        this.$store.dispatch('getOverviewSubmitDeptListData')
+        this.$store.dispatch('getOverviewData')
       },
       reBarChart(data) {
         return {
@@ -445,6 +438,13 @@
             break
         }
         this.$store.dispatch('getOverviewExchangeData', param).then()
+      },
+      reTotal(obj){
+        let sum = 0
+        for (let key in obj){
+          sum += obj[key]
+        }
+        return sum
       },
       reSum(arr, key) {
         let sum = 0
@@ -633,24 +633,7 @@
           '扬中市': [119.828054, 32.237266],
           '丹阳市': [119.581911, 31.991459]
         }
-        var chinaDatas = [
-          [{
-            name: '句容区',
-            value: 1
-          }], [{
-            name: '丹徒区',
-            value: 1
-          }], [{
-            name: '润州区',
-            value: 1
-          }], [{
-            name: '扬中市',
-            value: 1
-          }], [{
-            name: '丹阳市',
-            value: 1
-          }]
-        ]
+        var chinaDatas = paramObj.data
         var convertData = function (data) {
           var res = []
           for (var i = 0; i < data.length; i++) {
