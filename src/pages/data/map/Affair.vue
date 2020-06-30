@@ -54,8 +54,8 @@
               <div class="tip-item-inner" flex="space:around cross:center">
                 <img src="~@/assets/images/summary/icon_zyxx.png" alt="">
                 <span class="tip-item-font">
-                  <i>资源信息数量</i><br>
-                  <i class="num">7,108,657</i><i>（个）</i>
+                  <i>数据归集总量</i><br>
+                  <i class="num">{{total.resource}}</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -67,8 +67,8 @@
               <div class="tip-item-inner" flex="space:around cross:center">
                 <img src="~@/assets/images/summary/icon_sjgj.png" alt="">
                 <span class="tip-item-font">
-                  <i>资源信息数量</i><br>
-                  <i class="num">0</i><i>（个）</i>
+                  <i>公务员信用信息总量</i><br>
+                  <i class="num">{{total.civil}}</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -80,8 +80,8 @@
               <div class="tip-item-inner" flex="space:around cross:center">
                 <img src="~@/assets/images/summary/icon_bygj.png" alt="">
                 <span class="tip-item-font">
-                  <i>资源信息数量</i><br>
-                  <i class="num">187</i><i>（个）</i>
+                  <i>机关事业单位信息总量</i><br>
+                  <i class="num">{{total.dept}}</i><i>（个）</i>
                 </span>
               </div>
               <span class="light-corner"></span>
@@ -112,12 +112,12 @@
             <div class="msg-list" flex="wrap:wrap">
               <div class="msg-list-item" flex style="flex-direction: column">
                 <span flex="space:around" style="align-items: center">
-                  <p class="white-font">总量</p>
-                  <p><i class="num">{{ item.total }}</i></p>
+                  <p class="white-font" style="width: 70px">总量</p>
+                  <p style="flex: 1;text-align: right"><i class="num">{{ item.total }}</i></p>
                 </span>
                 <span flex="space:around" style="align-items: center">
-                  <p class="white-font">本月新增</p>
-                  <p><i class="num">{{ item.new }}</i></p>
+                  <p class="white-font" style="width: 70px">本月新增</p>
+                  <p style="flex: 1;text-align: right"><i class="num">{{ item.new }}</i></p>
                 </span>
               </div>
             </div>
@@ -173,7 +173,7 @@
 
 <script>
   import echarts from 'echarts'
-  import 'echarts/map/js/china'
+  import 'echarts/map/js/zhenjiang'
   import Panel from '../../../components/Panel/Panel'
   // import RangeSelect from '../../../components/RangeSelect/RangeSelect'
   import { mapState } from 'vuex'
@@ -184,18 +184,6 @@
     name: 'Affair',
     data() {
       return {
-        evaluateDept: [
-          ['product', '数量'],
-          ['A', 748],
-          ['B', 3],
-          ['C', 0]
-        ],
-        submissionList: [
-          { name: '机关单位登记（变更）', total: 187, new: 187 },
-          { name: '事业单位登记（变更）', total: 0, new: 0 },
-          { name: '事业单位评价', total: 753, new: 753 },
-          { name: '公务人员基本信息', total: 0, new: 0 }
-        ],
         color: ['#1167e2', '#4dcea7', '#fc9530', '#ff3b3c', '#563cff', '#0fbce0', '#0c31e2'],
         // 左右侧时间选择
         handleBtnTab1: 0,
@@ -204,91 +192,6 @@
         date2: '',
         dateOpen1: false,
         dateOpen2: false,
-
-        // 动态数据
-        countNumList: [0, 8, 7, 2, 0, 0, 1, 6], // 归集总量
-        redList: { signCom: 0, taxpayer: 0, corp: 0, volunteer: 0 }, // 红名单
-        blackList: { performed: 0, case: 0, unpaid: 0, lose: 0 }, // 黑名单
-        classStatistic: {
-          lv1: 8,
-          lv2: 40,
-          resourceCount: 57,
-          deptCount: 55,
-          chartData: [
-            ['product', '信息量'],
-            ['基础信息', 4794115],
-            ['业务信息', 1883668],
-            ['行政执法信息', 1685166],
-            ['政务信息', 2067],
-            ['司法信息', 0],
-            ['公共事业信息', 0],
-            ['信用评级信息', 0],
-            ['其他信息', 0]
-          ]
-        }, // 资源信息分类统计
-        trendAnalysis: [
-          { product: '1月', count: 0 },
-          { product: '2月', count: 0 },
-          { product: '3月', count: 0 },
-          { product: '4月', count: 0 },
-          { product: '5月', count: 0 },
-          { product: '6月', count: 0 },
-          { product: '7月', count: 0 },
-          { product: '8月', count: 0 },
-          { product: '9月', count: 0 },
-          { product: '10月', count: 0 },
-          { product: '11月', count: 0 },
-          { product: '12月', count: 0 }
-        ],
-        submitDeptList: [
-          { name: '镇江市', count: 6834299, percent: '78%' },
-          { name: '扬中市人社局', count: 1883650, percent: '22%' },
-          { name: '市编办', count: 2067, percent: '0%' },
-          { name: '市农业农村局', count: 0, percent: '0%' },
-          { name: '市教育局', count: 0, percent: '0%' },
-          { name: '市卫健委', count: 0, percent: '0%' },
-          { name: '市审计局', count: 0, percent: '0%' },
-          { name: '市政务服务办', count: 0, percent: '0%' },
-          { name: '市市场监督管理局', count: 0, percent: '0%' }
-        ],
-        evaluateDeptList: [
-          { name: '镇江市财政干部培训中心', lv: 'A' },
-          { name: '镇江市标准化研究中心', lv: 'A' },
-          { name: '镇江消费报社', lv: 'A' },
-          { name: '江苏科技大学海洋装备研究院', lv: 'A' },
-          { name: '镇江市殡葬管理处', lv: 'A' },
-          { name: '镇江市公共信用信息中心', lv: 'A' },
-          { name: '长江镇江航道处', lv: 'A' },
-          { name: '京口区江苏大学社区卫生服务站', lv: 'A' },
-          { name: '镇江市消费者申诉举报受理中心', lv: 'A' },
-          { name: '江苏省丹徒中等专业学校', lv: 'A' }
-        ],
-        servantChartData: [
-          { value: 0, name: '行政编制' },
-          { value: 0, name: '事业编制' },
-          { value: 0, name: '其他' }
-        ],
-        servantDistributeChartData: {
-          inner: [
-            { value: 0, name: '总数' }
-          ],
-          outer: [
-            { value: 0, name: '基本信息' },
-            { value: 0, name: '业务信息' },
-            { value: 0, name: '司法信息' },
-            { value: 0, name: '行政执法信息' },
-            { value: 0, name: '信用评价信息' },
-            { value: 0, name: '公共事业信息' },
-            { value: 0, name: '其他信息' }
-          ]
-        },
-        submission: [
-          ['product', '信息类别'],
-          ['公务员（含参公事业编）基本信息（变更）', '0'],
-          ['机关单位登记（变更）信息', '0'],
-          ['事业单位登记（变更）信息', '0'],
-          ['事业单位（变更）信息', '0']
-        ]
       }
     },
     components: {
@@ -296,15 +199,25 @@
       // RangeSelect
     },
     created() {
-      // this.initData()
-    },
-    mounted() {
-      this.renderMap({ id: 'map', data: this.mapData })
+      this.initData()
     },
     computed: {
       ...mapState({
         civil: state => state.affair.civil,
+        countNumList: state => state.affair.countNumList,
+        redList: state => state.affair.redList,
+        blackList: state => state.affair.blackList,
+        classStatistic: state => state.affair.classStatistic,
+        trendAnalysis: state => state.affair.trendAnalysis,
+        submitDeptList: state => state.affair.submitDeptList,
+        evaluateDeptList: state => state.affair.evaluateDeptList,
+        servantChartData: state => state.affair.servantChartData,
+        servantDistributeChartData: state => state.affair.servantDistributeChartData,
+        submission: state => state.affair.submission,
         mapData: state => state.affair.mapData,
+        evaluateDept: state => state.affair.evaluateDept,
+        submissionList: state => state.affair.submissionList,
+        total: state => state.affair.total
       })
     },
     watch: {
@@ -339,6 +252,9 @@
     },
     methods: {
       initData() {
+        this.$store.dispatch('getAffairData').then(()=>{
+          this.renderMap({ id: 'map', data: this.mapData })
+        })
       },
       reDeptBarChart(data) {
         return {
@@ -543,6 +459,15 @@
               orient: 'vertical',
               textStyle: {
                 color: '#fff'
+              },
+              formatter: function (name) {
+                let res = ''
+                data.forEach(item => {
+                  if(item.name === name){
+                    res = name + ' : ' + item.value
+                  }
+                })
+                return res
               }
             },
             series: [
@@ -569,7 +494,7 @@
             color: ['#34aec5', '#4065f1', '#fc9530', '#f93b3b'],
             tooltip: {
               trigger: 'item',
-              formatter: '{a} <br/>{b}: {c} ({d}%)'
+              formatter: '{b}: {c} （个） ({d}%)'
             },
             series: [
               {
@@ -591,12 +516,6 @@
                 label: {
                   formatter: p => p.name + ' : ' + p.value
                 },
-                /* data: [
-                  { value: 400, name: '法人惩戒' },
-                  { value: 600, name: '自然人惩戒' },
-                  { value: 1400, name: '法人激励' },
-                  { value: 600, name: '自然人激励' }
-                ], */
                 data: data.outer
               }
             ]
@@ -639,16 +558,16 @@
               axisLabel: {
                 width: 100,
                 formatter: function (params) {
-                  var newParamsName = ''// 最终拼接成的字符串
-                  var paramsNameNumber = params.length// 实际标签的个数
-                  var provideNumber = 7// 每行能显示的字的个数
-                  var rowNumber = Math.ceil(paramsNameNumber / provideNumber)// 换行的话，需要显示几行，向上取整
+                  var newParamsName = '' // 最终拼接成的字符串
+                  var paramsNameNumber = params.length // 实际标签的个数
+                  var provideNumber = 7 // 每行能显示的字的个数
+                  var rowNumber = Math.ceil(paramsNameNumber / provideNumber) // 换行的话，需要显示几行，向上取整
                   // 条件等同于rowNumber>1
                   if (paramsNameNumber > provideNumber) {
                     for (var p = 0; p < rowNumber; p++) {
-                      var tempStr = ''// 表示每一次截取的字符串
-                      var start = p * provideNumber// 开始截取的位置
-                      var end = start + provideNumber// 结束截取的位置
+                      var tempStr = '' // 表示每一次截取的字符串
+                      var start = p * provideNumber // 开始截取的位置
+                      var end = start + provideNumber // 结束截取的位置
                       // 此处特殊处理最后一行的索引值
                       if (p === rowNumber - 1) {
                         // 最后一次不换行
@@ -657,7 +576,7 @@
                         // 每一次拼接字符串并换行
                         tempStr = params.substring(start, end) + '\n'
                       }
-                      newParamsName += tempStr// 最终拼成的字符串
+                      newParamsName += tempStr // 最终拼成的字符串
                     }
                   } else {
                     // 将旧标签的值赋给新标签
@@ -674,27 +593,15 @@
             series: [
               {
                 type: 'bar',
-                barWidth: 8,
+                barWidth: 14,
                 barGap: 0,
                 itemStyle: {
+                  barBorderRadius: [0, 5, 5, 0],
                   color: new echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
+                    1, 0, 0, 0,
                     [
                       { offset: 0, color: '#00befc' },
-                      { offset: 1, color: '#00befc33' }
-                    ]
-                  )
-                }
-              },
-              {
-                type: 'bar',
-                barWidth: 8,
-                itemStyle: {
-                  color: new echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                      { offset: 0, color: '#294bd5' },
-                      { offset: 1, color: '#294bd533' }
+                      { offset: 1, color: '#2280f2' }
                     ]
                   )
                 }
@@ -1362,7 +1269,7 @@
 
       .tip-item-inner
         height: 100%
-        padding-left: 20px
+        padding-left: 10px
         line-height: 30px
 
       &:nth-of-type(1)
@@ -1371,6 +1278,7 @@
 
           .num
             color inherit
+            font-weight: 700
 
       &:nth-of-type(2)
         .tip-item-font
@@ -1378,6 +1286,7 @@
 
           .num
             color inherit
+            font-weight: 700
 
       &:nth-of-type(3)
         .tip-item-font
@@ -1385,6 +1294,7 @@
 
           .num
             color inherit
+            font-weight: 700
 
   @keyframes rotate3d {
     0% {
