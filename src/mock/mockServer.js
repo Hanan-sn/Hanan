@@ -615,18 +615,6 @@ Mock.mock(
         { name: '股票交易', count: 8848, time: 9527 },
         { name: '不动产转移', count: 8848, time: 9527 }
       ],
-      /* punishRewardList: [
-        { name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周树人', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周星星', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周迅', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周一围', info: '产权交易', dept: '广电总局', time: '2020-06-02' },
-        { name: '周海媚', info: '产权交易', dept: '广电总局', time: '2020-06-02' }
-      ], */
       'punishRewardList': [
         { 'name': '万平', 'info': '模拟信息1', 'dept': '模拟部门1', 'time': '2007-11-11' },
         { 'name': '常艳', 'info': '模拟信息1', 'dept': '模拟部门2', 'time': '1973-08-15' },

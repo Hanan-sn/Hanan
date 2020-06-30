@@ -473,7 +473,6 @@
           '内蒙古': [110.3467, 41.4899],
           '吉林': [125.8154, 44.2584],
           '北京市': [116.4551, 40.2539],
-          '徐州市': [117.192941, 34.269397],
           '辽宁': [123.1238, 42.1216],
           '河北': [115.4995, 38.1006],
           '天津': [117.4219, 39.4189],
@@ -509,7 +508,7 @@
             var dataItem = data[i]
             var fromCoord = chinaGeoCoordMap[dataItem[0].name]
             // 中心点坐标
-            var toCoord = [117.192941, 34.269397]
+            var toCoord = [116.4551, 40.2539]
             if (fromCoord && toCoord) {
               res.push([
                 {
@@ -525,7 +524,7 @@
           return res
         }
         var series = [];
-        [['徐州市', chinaDatas]].forEach(function (item, i) {
+        [['北京市', chinaDatas]].forEach(function (item, i) {
           series.push(
             {
               type: 'lines',
@@ -562,7 +561,11 @@
                   offset: [8, 0], // 偏移设置
                   // 圆环显示文字
                   formatter: function (params) {
-                    return params.data.name
+                    if(params.data.name !== '北京市'){
+                      return params.data.name
+                    } else {
+                      return ''
+                    }
                   },
                   fontSize: 13
                 },
@@ -637,9 +640,13 @@
               // 根据业务自己拓展要显示的内容
               var res = ''
               var name = params.name
-              var value = params.value[params.seriesIndex + 1]
-              res = '<span style=\'color:#fff;\'>' + name + '</span><br/>数据：' + value
-              return res
+              if (name !== '北京市'){
+                var value = params.value[params.seriesIndex + 1]
+                res = '<span style=\'color:#fff;\'>' + name + '</span><br/>数据：' + value
+                return res
+              } else {
+                return '<span style=\'color:#fff;\'>' + name + '</span><br/>数据：' + params.value
+              }
             }
           },
           geo: {
