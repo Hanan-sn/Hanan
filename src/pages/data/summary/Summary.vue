@@ -252,9 +252,6 @@
     created(){
       this.initData()
     },
-    mounted() {
-      this.renderBall()
-    },
     computed: {
       ...mapState({
         monthAnalysis: state=>state.summary.monthAnalysis,
