@@ -1,6 +1,6 @@
 <template>
-  <div id="app" v-cloak>
-    <div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
+  <div id="app" flex="column" v-cloak>
+    <div v-if="this.$route.path !== '/home'" class="page-title-wrapper">
       <span class="page-title">
         {{ returnRouteName() }}
       </span>
@@ -8,7 +8,7 @@
           <router-link to="/home">返回</router-link>
       </span>
     </div>
-    <router-view/>
+    <router-view flex-box="1"/>
   </div>
 </template>
 <script>
@@ -36,5 +36,41 @@
 <style lang="stylus">
   [v-cloak] {
     display: none;
+  }
+  div{
+    box-sizing border-box
+  }
+  html, body, #app{
+    height: 100%
+    padding: 0
+    margin: 0
+  }
+  body{
+    background-color: #0f1e3d
+  }
+  #app{
+    padding: 20px 0 0
+    box-sizing border-box
+  }
+  [flex] {
+    display flex
+  }
+  [flex-box='1']{
+    flex: 1
+  }
+  [flex~='column']{
+    flex-direction column
+  }
+  .page-title-wrapper{
+    font-size: 30px
+    font-weight: 700
+    color #fff
+    text-align center
+    letter-spacing 4px
+    position relative
+  }
+  .to-home{
+    position absolute
+    right 30px
   }
 </style>
