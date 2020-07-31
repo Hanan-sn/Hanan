@@ -7,8 +7,8 @@ import store from './store'
 import './mock/mockServer'
 import './assets/js/walden'
 import Echarts from 'vue-echarts/components/ECharts'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/bar'
+// import 'echarts/lib/chart/pie'
+// import 'echarts/lib/chart/bar'
 Vue.component('chart', Echarts)
 new Vue({
   router,

@@ -35,12 +35,14 @@
     -moz-border-radius: $bdrs
     border-radius: $bdrs
     padding 10px
+    &:last-child
+      margin-bottom: 0
   .card-title
     background-repeat: no-repeat
     background-position: left bottom
     height 50px
     line-height: 50px
-    margin-bottom: 10px
+    margin-bottom: 6px
     width 100%
     position relative
     padding-left: 80px
@@ -50,7 +52,7 @@
       z-index 10
       display inline-block
       font-weight: 700
-      font-size: 24px
+      font-size: 20px
       background: linear-gradient(to bottom, #fff 50%, #6290ff 100%);
       -webkit-background-clip: text;
       color: transparent;

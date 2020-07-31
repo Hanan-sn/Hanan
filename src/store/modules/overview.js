@@ -196,7 +196,61 @@ export default {
       { name: '综合整治部门', count: 30, percent: '0%' },
       { name: '行政监督部门', count: 20, percent: '0%' },
       { name: '经济管理部门', count: 100, percent: '0%' }
-    ]
+    ],
+    collection: {
+      lv1: 0,
+      lv2: 0,
+      resourceCount: 0,
+      deptCount: 0,
+      chartData: [
+        ['product', '信息量'],
+        ['基础信息', 100],
+        ['业务信息', 200],
+        ['司法信息', 300],
+        ['行政执法信息', 400],
+        ['公共事业信息', 550],
+        ['信用评级信息', 450],
+        ['其他信息', 600],
+        ['累计', 350]
+      ]
+    },
+    redBlackList: {
+      redList: {
+        signCom: 0,
+        taxpayer: 0,
+        corp: 0,
+        volunteer: 0
+      },
+      blackList: {
+        performed: 0,
+        case: 0,
+        unpaid: 0,
+        lose: 0
+      }
+    },
+    dataExchange: {
+      getIn: 0,
+      getOut: 0,
+      getInCorrect: '0%',
+      getOutCorrect: '0%',
+      dockedAbnormal: 0,
+      dockedNormal: 0,
+      chartData: [
+        ['product', '归集', '输出'],
+        ['1月', 10, 30],
+        ['2月', 10, 20],
+        ['3月', 20, 10],
+        ['4月', 20, 40],
+        ['5月', 30, 30],
+        ['6月', 30, 10],
+        ['7月', 40, 20],
+        ['8月', 40, 40],
+        ['9月', 20, 20],
+        ['10月', 20, 40],
+        ['11月', 30, 50],
+        ['12月', 10, 60]
+      ]
+    }
   },
   getters: {},
   actions: {},

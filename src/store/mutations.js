@@ -1,10 +1,11 @@
 import {
-  Overview
+  Overview,
+  Summary
 } from './mutation-types'
 
 export default {
-  [Overview](state, { result }) {
-    const {overview} = result
-    state.overview = overview
+  [Summary](state, { result }) {
+    const {summary} = result
+    state.summary = summary
   }
 }

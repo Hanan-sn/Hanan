@@ -49,7 +49,7 @@
     background-color: #0f1e3d
   }
   #app{
-    padding: 20px 0 0
+    padding: 15px 0 0
     box-sizing border-box
   }
   [flex] {
@@ -61,16 +61,60 @@
   [flex~='column']{
     flex-direction column
   }
+  [flex~='cross-center']{
+    align-items center
+  }
+  [flex~='wrap']{
+    flex-wrap wrap
+  }
+  [flex~='space:between']{
+    justify-content space-between
+  }
+  [flex~='space:around']{
+    justify-content space-around
+  }
+  [flex~='center']{
+    justify-content center
+  }
   .page-title-wrapper{
-    font-size: 30px
+    font-size: 28px
     font-weight: 700
     color #fff
     text-align center
     letter-spacing 4px
     position relative
+    margin-bottom: 5px
+  }
+  .num{
+    font-size: 24px;
+    color #6ad4ff
   }
   .to-home{
     position absolute
     right 30px
+    a{
+      font-size: 22px
+      color #fff
+      text-decoration none
+      position relative
+      &::after{
+        content: '《《'
+        letter-spacing -4px
+        position absolute
+        left: 0
+        top: 0
+        opacity 0
+        transition ease-in-out 1s
+      }
+      &:hover{
+        &:after{
+          opacity 1
+          left: -50px
+        }
+      }
+    }
+  }
+  i{
+    font-style normal
   }
 </style>

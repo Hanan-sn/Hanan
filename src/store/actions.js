@@ -1,12 +1,15 @@
 import {
-  reqOverviewData
+  reqOverviewData,
+  reqSummaryData
 } from '../api'
 import {
-  Overview
+  Overview,
+  Summary
 } from './mutation-types'
 
-export default {async getOverview({ commit }) {
-    const result = await reqOverviewData()
-    commit(Overview, { result })
-  },
+export default {
+  // async getSummary({ commit }) {
+  //   const result = await reqSummaryData()
+  //   commit(Summary, { result })
+  // },
 }
