@@ -6,7 +6,7 @@ import Mock from 'mockjs'
 // import shiwu_data from './shiwu_data.json'
 // import shouye_data from './shouye_data.json'
 import data from './json/mockG2'
-
+// import relationMap from './json/les-miserables.gexf'
 // 返回data的接口
 
 /*
@@ -45,3 +45,9 @@ Mock.mock(
     data: data
   }
 )
+// Mock.mock(
+//   '/relationMap',
+//   {
+//     data: relationMap
+//   }
+// )

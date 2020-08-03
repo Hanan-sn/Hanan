@@ -13,3 +13,4 @@ export const reqMapData = () => ajax('/mapData')
 export const reqPublicData = () => ajax('/publicData')
 
 export const reqSummaryData = () => ajax('/summaryData')
+// export const reqRelationData = () => ajax('/relationData')
