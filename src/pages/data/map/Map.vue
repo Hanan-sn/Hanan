@@ -336,13 +336,7 @@
             }, {
               target: "某一级公司",
               source: "某二级公司3",
-              label: {
-                show: true
-              }
-            }, {
-              target: "某一级公司",
-              source: "某二级公司3",
-              category: "经营"
+              category: "参股"
             }]
           }],
 

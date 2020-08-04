@@ -20,8 +20,7 @@
     data(){
       return {
         mouse:{x: 0, y: 0 },
-        navText: ['信用大数据分析', 'Big-Data'],
-        animationFlag: true
+        navText: ['信用大数据分析', 'Big-Data']
       }
     },
     mounted(){
@@ -47,10 +46,10 @@
         clearInterval()
         cancelAnimationFrame(null)
         this.navText = [event.target.innerText]
-        console.dir(window)
       },
       createCvsBg(words){
         var _self = this
+        _self.animationFlag = false
         var __extends = this && this.__extends || function () {
           var extendStatics = function (d, b) {
             extendStatics = Object.setPrototypeOf ||
@@ -223,8 +222,8 @@
               position: position,
               radius: 1,
               center: position,
-              stiffness: 0.03,
-              damping: 0.25
+              stiffness: 0.03, // 刚度
+              damping: 0.25 // 阻尼
             });
           });
           var switchWord = function () {
@@ -234,9 +233,9 @@
           };
           var maxRadius = Math.sqrt(textureA.width / 2 * textureA.width / 2);
           var backgroundColor = getBackgroundColor(context, width, height);
-          var PIXEL_SIZE = 8;
-          var STROKE_OPACITY = 0.3;
-          var ANIMATION_STEP = 0.02;
+          var PIXEL_SIZE = 8; // 像素尺寸
+          var STROKE_OPACITY = 0.3; // 虚化
+          var ANIMATION_STEP = 0.04; // 动画步长
           var COLOR_OFFSET = -0.3;
           var animationProgress = 0;
           var prevPhase = -1;
@@ -269,9 +268,6 @@
             context.restore();
             requestAnimationFrame(step);
           };
-          requestAnimationFrame(() => {if(_self.animationFlag){
-            return step(context)
-          }});
           step(context);
         }
         function getTextTexture(text, fontSize) {
@@ -292,8 +288,10 @@
           });
           return gradient;
         }
+        // 粒子变化动画
         function mutateParticles(particles, positions, defaultPosition) {
           if (defaultPosition === void 0) {defaultPosition = { x: 0, y: 0 };}
+          // 重组
           shuffleArray(particles).forEach(function (particle, i) {
             var _a = positions[i % positions.length] || defaultPosition,x = _a.x,y = _a.y;
             var angle = particle.position.angleTo(defaultPosition);
@@ -301,6 +299,7 @@
             particle.center = { x: x, y: y };
           });
         }
+
         function shuffleArray(array) {
           var _a;
           if (array.length <= 1) {
@@ -316,6 +315,7 @@
         main()
       },
       createCvsRoundBg(){
+        var _self = this
         var ctx, w, h, cx, cy, PI, PI_HALF, cos, sin, random, lineWidth, C,
           rings, ringsLength, data;
         var dom = document.getElementById('round')
