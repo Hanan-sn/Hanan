@@ -27,6 +27,8 @@
     <Panel flex-box="1" style="margin-left: 0; margin-right: 0;padding: 0;">
       <template slot="inner">
         <div flex="column" style="height: 100%;">
+
+          {{test.a[2]}}
           <chart :options="returnRalationMap()" theme="walden"></chart>
         </div>
       </template>
@@ -71,7 +73,9 @@
     },
     data(){
       return{
-
+        test:{
+          a: [1,2,3]
+        }
       }
     },
     methods: {
@@ -344,6 +348,11 @@
           animationDurationUpdate: 100                    // 数据更新动画的时长。[ default: 300 ]
         }
       }
+    },
+    mounted() {
+      setTimeout(()=>{
+        this.test.a[2] = 2
+      },1000)
     }
   }
 </script>
