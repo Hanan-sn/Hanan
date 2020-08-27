@@ -7,7 +7,6 @@
 <script>
   import { mapState } from 'vuex'
   import * as THREE from 'three'
-  import a from '~@/assets/images/dark.svg'
   export default {
     name: 'Overview',
     data() {
@@ -31,54 +30,53 @@
     },
     methods: {
       renderBall(dom){
-        var w = 1200, h =600;//场景高宽
-        var camera_deg = 45, aspect = w / h, near = .1, far = 10000;//相机参数
-        var container = document.getElementById('earth');
-        var renderer = new THREE.WebGLRenderer({ alpha: true });
-        var camera = new THREE.PerspectiveCamera(
+        // 场景高宽
+        const w = 600, h = 600
+        // 相机参数
+        const camera_deg = 45, aspect = w / h, near = 0.1, far = 10000
+        // var container = document.getElementById('earth')
+        const renderer = new THREE.WebGLRenderer({ alpha: true })
+        const camera = new THREE.PerspectiveCamera(
           camera_deg, aspect, near, far
-        );
-        var scene = new THREE.Scene();
+        )
+        const scene = new THREE.Scene()
         scene.add(camera)
-        camera.position.z = 200;
+        camera.position.z = 200
 
-        renderer.setSize(w, h);
+        renderer.setSize(w, h)
 
-        //附加DOM元素
-        container.append(renderer.domElement);
-        //设置球体的值
-        var radius = 60, segemnt = 60, rings = 60;
-        // var img = require '~@/assets/images/dark.svg'
-        var png = new THREE.TextureLoader().load(a);
-        var texture = new THREE.CanvasTexture(png)
-        // 使用echarts作为canvas贴图
-        var sphereMaterial = new THREE.MeshBasicMaterial({map: texture, fog:true});
+        // 附加DOM元素
+        dom.append(renderer.domElement)
 
-        var sphere = new THREE.Mesh(
+        // 设置球体的值
+        const radius = 50, segemnt = 60, rings = 60
+        const earth_png = new THREE.TextureLoader().load('~@/assets/images/earth.png')
+        const sphereMaterial = new THREE.MeshBasicMaterial({ map: earth_png })
+
+        const sphere = new THREE.Mesh(
           new THREE.SphereGeometry(radius, segemnt, rings),
           sphereMaterial
-        );
-        //let sphereGeometry = new THREE.SphereGeometry(1000, 50, 50);//球几何体创建
-        //sphereGeometry.scale(-1, 1, 1);//球形几何网格进行x轴反转，使所有的面点向内
+        )
 
-        sphere.geometry.verticesNeedUpdate = true;
-        sphere.geometry.normalsNeedUpdate = true;
+        sphere.geometry.verticesNeedUpdate = true
+        sphere.geometry.normalsNeedUpdate = true
 
-        scene.add(sphere);
+        scene.add(sphere)
 
-        var pointLight = new THREE.PointLight(0Xffffff);
+        const pointLight = new THREE.PointLight(0X000000)
 
-        pointLight.position.x = 10;
-        pointLight.position.y = 50;
-        pointLight.position.z = 150;
+        pointLight.position.x = 10
+        pointLight.position.y = 50
+        pointLight.position.z = 150
 
-        //scene.add(pointLight);
-        function animate(){
-          requestAnimationFrame(animate);
-          //画图
-          //sphere.rotation.x+=.1;
-          sphere.rotation.y+=.005;//延Y轴旋转
-          renderer.render(scene, camera);
+        // scene.add(pointLight)
+        function animate() {
+          requestAnimationFrame(animate)
+          // 画图
+          // sphere.rotation.x += 0.1
+          // 延Y轴旋转
+          sphere.rotation.y += 0.01
+          renderer.render(scene, camera)
         }
         animate()
       }
@@ -87,5 +85,7 @@
 </script>
 
 <style lang="stylus" scoped>
-
+.earth
+  width: 600px
+  height: 600px
 </style>
