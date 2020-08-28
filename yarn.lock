@@ -832,6 +832,11 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@tweenjs/tween.js@^18.6.0":
+  version "18.6.0"
+  resolved "https://registry.npm.taobao.org/@tweenjs/tween.js/download/@tweenjs/tween.js-18.6.0.tgz#9160ca987e75ab751d0c48d5100339bd9cd0c301"
+  integrity sha1-kWDKmH51q3UdDEjVEAM5vZzQwwE=
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.npmjs.org/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -10737,6 +10742,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tween@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npm.taobao.org/tween/download/tween-0.9.0.tgz#f856c7a9c9ab85ca9a2bc02282591aa2513a20ed"
+  integrity sha1-+FbHqcmrhcqaK8AiglkaolE6IO0=
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

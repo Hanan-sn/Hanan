@@ -37,4 +37,21 @@
   [v-cloak] {
     display: none;
   }
+  body, html
+    display block
+    min-height: 100%
+    height: 100%
+    margin: 0
+    padding: 0
+  canvas
+    display block
+    padding: 0
+    margin: 0
+  #app
+    width: 100%
+    height: 100%
+    display flex
+    flex-direction column
+    div:not(.page-title-wrapper)
+      flex: 1
 </style>
