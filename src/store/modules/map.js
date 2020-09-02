@@ -183,6 +183,7 @@ export default {
       const result = await reqMapData()
       commit(Map, { result })
     },
+
   },
   mutations: {
     [Map](state, { result }) {

@@ -7,7 +7,6 @@ import Mock from 'mockjs'
 // import shouye_data from "./shouye_data.json"
 
 // 返回data的接口
-
 Mock.mock(
   '/overviewData',
   // 返回数据格式
@@ -76,7 +75,7 @@ Mock.mock(
           unpaid: 0,
           lose: 0
         }
-      }, // 红黑名称
+      }, // 红黑名单
       collection: {
         lv1: 0,
         lv2: 0,
@@ -120,6 +119,108 @@ Mock.mock(
         { name: '部门名称', count: 56987, percent: '95%' }
       ]
     } // 数据体
+  }
+)
+// 概况/联合奖惩
+Mock.mock(
+  '/overviewUnion',
+  {
+    code: 200, // 状态码
+    data: {
+      memoCount: 0,
+      measureCount: 0,
+      deptCount: 0,
+      chartData: {
+        inner: [
+          { value: 1000, name: '惩戒' },
+          { value: 2000, name: '激励' }
+        ],
+        outer: [
+          { value: 400, name: '法人惩戒' },
+          { value: 600, name: '自然人惩戒' },
+          { value: 1400, name: '法人激励' },
+          { value: 600, name: '自然人激励' }
+        ]
+      }
+    } // 联合奖惩
+  }
+)
+// 概况/红黑名单
+Mock.mock(
+  '/overviewRB',
+  {
+    code: 200, // 状态码
+    data: {
+      redList: {
+        signCom: 1,
+        taxpayer: 0,
+        corp: 0,
+        volunteer: 0
+      },
+      blackList: {
+        performed: 0,
+        case: 0,
+        unpaid: 0,
+        lose: 0
+      } // 红黑名单
+    }
+  }
+)
+// 概况/数据提报部门
+Mock.mock(
+  '/overviewBag',
+  {
+    code: 200, // 状态码
+    data: [
+      { name: '部门名称', count: 56987, percent: '95%' },
+      { name: '部门名称', count: 56987, percent: '95%' },
+      { name: '部门名称', count: 56987, percent: '95%' },
+      { name: '部门名称', count: 56987, percent: '95%' },
+      { name: '部门名称', count: 56987, percent: '95%' },
+      { name: '部门名称', count: 56987, percent: '95%' }
+    ] // 数据提报
+  }
+)
+// 概况/分类统计
+Mock.mock(
+  '/overviewClassify',
+  {
+    code: 200, // 状态码
+    data: {
+      lv1: 0,
+      lv2: 0,
+      resourceCount: 0,
+      deptCount: 0,
+      chartData: [
+        ['product', '信息量'],
+        ['基础信息', 80],
+        ['业务信息', 100],
+        ['司法信息', 20],
+        ['行政执法信息', 300],
+        ['公共事业信息', 400],
+        ['信用评级信息', 500],
+        ['其他信息', 600],
+        ['累计', 700]
+      ]
+    } // 部门数据归集统计
+  }
+)
+// 概况/分类统计
+Mock.mock(
+  '/overviewAggregateData',
+  {
+    code: 200, // 状态码
+    data: {
+      total: [0, 0, 0, 0, 0, 0, 0, 0],
+      rotateData: [
+        { name: '法人基础数量', value: 0 },
+        { name: '自然人基础数量', value: 0 },
+        { name: '法人信用信息', value: 0 },
+        { name: '自然人信用信息', value: 0 },
+        { name: '法人人均数量', value: 0 },
+        { name: '自然人人均数量', value: 0 }
+      ],
+    }
   }
 )
 

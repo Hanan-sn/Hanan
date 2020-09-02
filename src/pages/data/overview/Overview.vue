@@ -323,7 +323,17 @@
     },
     created() {
       // 初始化页面数据
-      this.$store.dispatch('getOverview').then(() => {
+      /* this.$store.dispatch('getOverview').then(() => {
+        this.numChange(this.$store.state.overview.total)
+      }) */
+
+      this.$store.dispatch('getOverviewDataExchange')
+      this.$store.dispatch('getOverviewReport')
+      this.$store.dispatch('getOverviewUnion')
+      this.$store.dispatch('getOverviewRB')
+      this.$store.dispatch('getOverviewClassify')
+      this.$store.dispatch('getOverviewBag')
+      this.$store.dispatch('getOverviewAggregateData').then(() => {
         this.numChange(this.$store.state.overview.total)
       })
     },

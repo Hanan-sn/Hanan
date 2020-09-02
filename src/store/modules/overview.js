@@ -1,5 +1,23 @@
-import { reqOverviewData, reqOverviewDataExchange, reqOverviewReport } from '../../api'
-import { Overview, OverviewReport, OverviewDataExchange } from '../mutation-types'
+import {
+  reqOverviewData,
+  reqOverviewDataExchange,
+  reqOverviewReport,
+  reqOverviewUnion,
+  reqOverviewRB,
+  reqOverviewClassify,
+  reqOverviewBag,
+  reqOverviewAggregateData
+} from '../../api'
+import {
+  Overview,
+  OverviewReport,
+  OverviewDataExchange,
+  OverviewUnion,
+  OverviewRB,
+  OverviewClassify,
+  OverviewBag,
+  OverviewAggregateData
+} from '../mutation-types'
 
 export default {
   state: {
@@ -120,9 +138,43 @@ export default {
       const result = await reqOverviewReport(params)
       commit(OverviewReport, { result })
     },
+    async getOverviewUnion({ commit }) {
+      const result = await reqOverviewUnion()
+      commit(OverviewUnion, { result })
+    },
+    async getOverviewRB({ commit }) {
+      const result = await reqOverviewRB()
+      commit(OverviewRB, { result })
+    },
+    async getOverviewClassify({ commit }) {
+      const result = await reqOverviewClassify()
+      commit(OverviewClassify, { result })
+    },
+    async getOverviewBag({ commit }) {
+      const result = await reqOverviewBag()
+      commit(OverviewBag, { result })
+    },
+    async getOverviewAggregateData({ commit }) {
+      const result = await reqOverviewAggregateData()
+      commit(OverviewAggregateData, { result })
+    },
     // 初始
     async getOverview({ commit }) {
       const result = await reqOverviewData()
+      /*
+      Promise.all([
+        this.getOverviewDataExchange,
+        this.getOverviewReport,
+        this.getOverviewUnion,
+        this.getOverviewRB,
+        this.getOverviewClassify,
+        this.getOverviewBag,
+        this.getOverviewAggregateData
+      ]).then((res)=>{
+        console.log(res)
+      })
+      const a = await reqOverviewData()
+      */
       commit(Overview, { result })
     }
   },
@@ -140,6 +192,27 @@ export default {
     [OverviewDataExchange](state, { result }) {
       const { data } = result
       state.dataExchange = data
+    },
+    [OverviewUnion](state,{result}){
+      const { data } = result
+      state.union = data
+    },
+    [OverviewRB](state,{result}){
+      const { data } = result
+      state.redBlackList = data
+    },
+    [OverviewClassify](state,{result}){
+      const { data } = result
+      state.collection = data
+    },
+    [OverviewBag](state,{result}){
+      const { data } = result
+      state.submission = data
+    },
+    [OverviewAggregateData](state,{result}){
+      const { data } = result
+      state.rotateData = data.rotateData
+      state.total = data.total
     }
   }
 }

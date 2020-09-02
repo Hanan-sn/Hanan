@@ -211,6 +211,7 @@
   import echarts from 'echarts'
   import Panel from '../../../components/Panel/Panel'
   import Card from '../../../components/Card/Card'
+  import * as THREE from 'three'
   import 'echarts/map/js/china'
   // 统一变量
   const xyLineColor = '#535e83'
