@@ -36,10 +36,10 @@
         img.onload = () => {
           let cvs = document.createElement('canvas')
           let ctx = cvs.getContext('2d')
-          let imgData = ctx.getImageData(0, 0, img.width, img.height)
+          let imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
           cvs.width = img.width
           cvs.height = img.height
-          ctx.drawImage(img, 0, 0, img.width, img.height)
+          ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
           this.createBasicScene() // 基本渲染容器
           this.createEarthParticles(img, imgData) // 渲染地球粒子
           this.animate()
