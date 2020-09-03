@@ -52,6 +52,8 @@
     height: 100%
     display flex
     flex-direction column
+    background: url('~@/assets/images/common/bg.jpg') 100% 100%
+    -webkit-background-size: cover
     div:not(.page-title-wrapper)
       flex: 1
 </style>

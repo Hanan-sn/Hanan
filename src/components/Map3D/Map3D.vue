@@ -23,23 +23,29 @@
           BLINT_SPEED: 0.05,
           HEXAGON_RADIUS: 5,
           radius: 100
-        }
+        },
+        animation: null
       }
     },
+    /* created(){
+      var cubeGeometry = new THREE.CubeGeometry(4,4,4);
+      var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+      this.geo = new THREE.Mesh(cubeGeometry, cubeMaterial)
+    }, */
     mounted() {
       this.main()
     },
     methods: {
       main() {
-        let img = document.createElement('img')
-        img.src = require('@/assets/images/earth.jpg')
+        const img = document.createElement('img')
+        img.src = require('@/assets/images/map3d/earth.jpg')
         img.onload = () => {
-          let cvs = document.createElement('canvas')
-          let ctx = cvs.getContext('2d')
-          let imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
+          const cvs = document.createElement('canvas')
+          const ctx = cvs.getContext('2d')
           cvs.width = img.width
           cvs.height = img.height
           ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
+          const imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
           this.createBasicScene() // 基本渲染容器
           this.createEarthParticles(img, imgData) // 渲染地球粒子
           this.animate()
@@ -47,16 +53,18 @@
       },
       createBasicScene() {
         let _self = this
-        let { offsetWidth, offsetHeight } = this.$refs.modelContainer
         /* this.scene = new THREE.Scene()
         this.camera = new THREE.PerspectiveCamera(45, offsetWidth / offsetHeight, 0.1, 10000)
         this.camera.position.z = 500
         this.renderer = new THREE.WebGLRenderer() */
+        let width = this.$refs.modelContainer.offsetWidth
+        let height = this.$refs.modelContainer.offsetHeight
         _self.scene = new THREE.Scene()
-        _self.camera = new THREE.PerspectiveCamera(45, offsetWidth / offsetHeight, 0.1, 10000)
-        _self.camera.position.z = 500
-        _self.renderer = new THREE.WebGLRenderer()
-        _self.renderer.setSize(offsetWidth, offsetHeight)
+        _self.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000)
+        _self.camera.position.z = 350
+        _self.renderer = new THREE.WebGLRenderer({ alpha: true })
+        _self.renderer.setSize(width, height)
+        _self.renderer.setClearColor(0xEEEEEE, 0.0)
         _self.renderer.autoClearColor = new THREE.Color(1, 0, 0, 0)
         this.$refs.modelContainer.appendChild(this.renderer.domElement)
         _self.clock = new THREE.Clock()
@@ -67,13 +75,13 @@
         _self.axes = new THREE.AxesHelper(this.options.CITY_RADIUS + 10)
         // scene.add(axes)
         _self.earthParticles = new THREE.Object3D()
-        window.addEventListener('resize', _self.resize(offsetWidth, offsetHeight))
+        // window.addEventListener('resize', _self.resize(width, height))
       },
-      resize(w, h) {
+      /* resize(w, h) {
         this.renderer.setSize(w, h)
         this.camera.aspect = w / h
         this.camera.updateProjectionMatrix()
-      },
+      }, */
       isLandByUV(img, imgData, c, f) {
         if (!imgData) { // 底图数据
           console.error('data error!')
@@ -96,7 +104,10 @@
           let mat = new THREE.PointsMaterial()
           mat.size = 5
           mat.color = new THREE.Color('#079cd1')
-          mat.map = new THREE.TextureLoader().load('@/assets/images/earth/dot.png')
+          let img = require('@/assets/images/map3d/dot.png')
+          mat.map = new THREE.TextureLoader().load(img)
+          // const cvs = document.createElement('canvas')
+          // mat.map = new THREE.CanvasRenderer ().load('../../assets/images/dot.png')
           mat.depthWrite = false
           mat.transparent = true
           mat.opacity = 0
@@ -147,7 +158,7 @@
           for (let j = 0; j < size.sizes.length; j++) {
             typedArr2[j] = size.sizes[j]
           }
-          bufferGeom.setAttribute("position", new THREE.BufferAttribute(typedArr1, 3))
+          bufferGeom.setAttribute('position', new THREE.BufferAttribute(typedArr1, 3))
           bufferGeom.setAttribute('size', new THREE.BufferAttribute(typedArr2, 1))
           bufferGeom.computeBoundingSphere()
           let particle = new THREE.Points(bufferGeom, materials[i])
@@ -170,6 +181,7 @@
           material.opacity = (Math.sin(material.t_) * material.delta_ + material.min_) * material.opacity_coef_
           material.needsUpdate = true
         })
+        this.earthParticles.rotation.y += 0.01
         this.render()
       }
     }
@@ -178,6 +190,6 @@
 
 <style lang="stylus" scoped>
   .model-container
-    width: 1200px
+    width: 800px
     height: 800px
 </style>
