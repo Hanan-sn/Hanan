@@ -66,7 +66,7 @@
         _self.renderer.setSize(width, height)
         _self.renderer.setClearColor(0xEEEEEE, 0.0)
         _self.renderer.autoClearColor = new THREE.Color(1, 0, 0, 0)
-        this.$refs.modelContainer.appendChild(this.renderer.domElement)
+        _self.$refs.modelContainer.appendChild(this.renderer.domElement)
         _self.clock = new THREE.Clock()
         // control = new THREE.TrackballControls(camera)
         // control.rotateSpeed = 1.0

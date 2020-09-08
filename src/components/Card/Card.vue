@@ -16,16 +16,15 @@
 </script>
 
 <style lang="stylus" scoped>
+.card
+  padding 10px 20px 0
   .card-title
-    background-image: url('~@/assets/images/summary/t_bg.png')
+    line-height: 40px
+    color #fff
+    font-size: 16px
+    background-image: url('~@/assets/images/common/title_top.png')
     background-repeat: no-repeat
-    background-position: left bottom
-    height 36px
-    margin-top: 6px
-
-    span
-      font-size: 18px
-      font-weight: 700
-      color #fff
-      line-height: 28px
+    background-size: 100% 40px;
+    padding: 0 20px
+    margin-bottom: 20px
 </style>
