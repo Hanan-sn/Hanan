@@ -62,6 +62,8 @@
     align-items flex-end
   [flex~='wrap:no']
     flex-wrap nowrap
+  [flex~='wrap:yes']
+    flex-wrap wrap
   [flex-box~='1']
     flex: 1
   [flex-box~='2']

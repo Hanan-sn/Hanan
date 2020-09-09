@@ -6,7 +6,7 @@
       </span>
     </div>
     <div class="page-body-wrapper">
-      <SidePanel>
+      <SidePanel flex="dir:col">
         <template slot="inner">
           <Card>
             <template slot="title"><i class="card-title-font">联合奖惩</i></template>
@@ -32,7 +32,7 @@
               </div>
             </template>
           </Card>
-          <Card>
+          <Card flex-box="1">
             <template slot="title">
               <i class="card-title-font">数据交换流向分析</i>
             </template>
@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 <div class="chart">
-                  <v-chart :options="exchangeOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                  <v-chart :options="exchangeOption" theme="macarons" style="width: 100%; height: 100%;"></v-chart>
                 </div>
               </div>
             </template>
@@ -85,7 +85,147 @@
       </SidePanel>
       <MiddlePanel>
         <template slot="outer">
-          <Map3D style="width: 100%"></Map3D>
+          <Map3D style="height: 600px"></Map3D>
+          <div class="count-list">
+            <div class="total-wrapper">
+              <i class="title">数据归集总量：</i>
+              <i class="num-list-item" v-for="(item, i) in countList.total" :key="i">{{item}}</i>
+              <i class="title">（条）</i>
+            </div>
+            <div class="count-wrapper" flex="dir:col justify:around align:center">
+              <div class="couple-row" flex="justify:between">
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>自然人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>法人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+              </div>
+              <div class="couple-row" flex="justify:between">
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>自然人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>法人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+              </div>
+              <div class="couple-row" flex="justify:between">
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>自然人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+                <div class="item" flex="dir:col">
+                  <span>
+                    <i>法人基础信息</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template slot="inner">
+          <div class="red-black-list">
+            <Card>
+              <template slot="title">
+                <i class="card-title-font">红黑名单统计</i>
+              </template>
+              <template slot="content">
+                <div class="list-inner-wrapper" flex="justify:between">
+                  <div class="list-item">
+                    <div class="item-title">
+                      <span>
+                        <i class="red-title">红名单</i>
+                        <i class="num">
+                          125668
+                        </i>
+                        <i>（个）</i>
+                      </span>
+                    </div>
+                    <div class="list-box" flex="wrap:yes">
+                      <div class="box red" flex="dir:col">
+                        <span><i>海关认证企业</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box red" flex="dir:col">
+                        <span><i>A级纳税人</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box red" flex="dir:col">
+                        <span><i>社会法人诚实守信</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box red" flex="dir:col">
+                        <span><i>优秀青年志愿者</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-item">
+                    <div class="item-title">
+                      <span>
+                        <i class="black-title">红名单</i>
+                        <i class="num">
+                          125668
+                        </i>
+                        <i>（个）</i>
+                      </span>
+                    </div>
+                    <div class="list-box" flex="wrap:yes">
+                      <div class="box black" flex="dir:col">
+                        <span><i>海关认证企业</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box black" flex="dir:col">
+                        <span><i>A级纳税人</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box black" flex="dir:col">
+                        <span><i>社会法人诚实守信</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                      <div class="box black" flex="dir:col">
+                        <span><i>优秀青年志愿者</i></span>
+                        <span><i class="num">15689</i><i>（个）</i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </Card>
+          </div>
         </template>
       </MiddlePanel>
       <SidePanel>
@@ -136,6 +276,9 @@
           treasureCount: 0,
           implementDeptCount: 0
         },
+        countList: {
+          total: [1,2,5,6,9,8,7,5,1]
+        },
         unionOption: {
           tooltip: {
             trigger: 'item',
@@ -156,7 +299,7 @@
               emphasis: {
                 label: {
                   show: true,
-                  fontSize: '30',
+                  fontSize: '24',
                   fontWeight: 'bold'
                 }
               },
@@ -271,6 +414,9 @@
             padding: 4px 20px
 
       .overview-exchange
+        display flex
+        flex-direction column
+        height: 100%
         .info-board
           .row
             width: 100%
@@ -290,4 +436,191 @@
                 padding-left: 20px
                 line-height: 22px
 
+        .chart
+          flex: 1
+          padding-bottom: 20px
+      .model-container
+        top: 40%
+      .count-list
+        position absolute
+        width: 100%
+        height: 800px
+        top: 42%
+        left: 50%
+        transform translate(-50%, -50%)
+        .total-wrapper
+          display flex
+          justify-content center
+          .title
+            display inline-block
+            color #fff
+            font-size: 26px
+            line-height: 70px
+          .num-list-item
+            display inline-block
+            text-align center
+            line-height: 70px
+            font-size: 46px
+            margin-right: 10px
+            width: 60px
+            -webkit-background-size: 100% 100%
+            background-size: 100% 100%
+            height: 70px
+            color #41f2e2
+            background-repeat: no-repeat
+            background-image: url('~@/assets/images/overview/no_bg.png')
+        .count-wrapper
+          .couple-row
+            padding-top: 70px
+            height: 120px
+            &:nth-child(1)
+              width 800px
+            &:nth-child(2)
+              width 950px
+            &:nth-child(3)
+              width 800px
+            .item
+              width 110px
+              height: 56px
+              padding 12px 20px
+              background-color: rgba(5,37,55,0.8)
+              box-shadow 1px 1px 2px rgba(0,0,0,0.5)
+              span
+                font-size: 14px
+                color #fff
+      .red-black-list
+        width 100%
+        padding-bottom: 20px
+        position absolute
+        bottom: 0
+        left: 0
+        .list-inner-wrapper
+          .list-item
+            width 48%
+            .item-title
+              color #fff
+              background-color: rgba(0,33,47,0.8)
+              width 200px
+              text-align center
+              margin 0 auto
+              border: 1px solid rgba(255,255,255,0.1)
+              height: 40px
+              line-height: 40px
+              margin-bottom: 10px
+              .red-title
+                color #f52a6c
+            .list-box
+              .box
+                width 46%
+                box-sizing border-box
+                padding 10px 20px
+                padding-left: 50px
+                position relative
+                z-index 1
+                background-image: url('~@/assets/images/overview/md_bg.png')
+                background-repeat: no-repeat
+                background-size: 100% 100%;
+                margin 0 20px 10px 0
+                span
+                  position relative
+                  z-index 1
+                  color #fff
+              .red
+                &:nth-child(1)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon01.png')
+                &:nth-child(2)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon02.png')
+                &:nth-child(3)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon03.png')
+                &:nth-child(4)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon03.png')
+              .black
+                &:nth-child(1)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon01.png')
+                &:nth-child(2)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon02.png')
+                &:nth-child(3)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon03.png')
+                &:nth-child(4)
+                  &:before
+                    content ''
+                    display block
+                    width: 100%
+                    height: 100%
+                    position absolute
+                    top: 15px
+                    left: 20px
+                    z-index 0
+                    background-repeat: no-repeat
+                    background-image: url('~@/assets/images/overview/md_icon03.png')
 </style>

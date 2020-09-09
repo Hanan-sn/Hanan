@@ -192,4 +192,13 @@
   .model-container
     width: 800px
     height: 800px
+    position relative
+    left: 50%
+    top: 50%
+    transform translate(-50%, -50%)
+    >*
+      position absolute
+      left: 50%
+      top: 50%
+      transform translate(-50%, -50%)
 </style>

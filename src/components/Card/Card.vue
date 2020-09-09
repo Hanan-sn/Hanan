@@ -18,6 +18,8 @@
 <style lang="stylus" scoped>
 .card
   padding 10px 20px 0
+  display flex
+  flex-direction column
   .card-title
     line-height: 40px
     color #fff
@@ -27,4 +29,6 @@
     background-size: 100% 40px;
     padding: 0 20px
     margin-bottom: 20px
+  .count-wrapper
+    flex: 1
 </style>
