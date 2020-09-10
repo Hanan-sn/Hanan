@@ -9,6 +9,8 @@ import './mock/mockServer'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/tooltip'
+import BinUI from 'bin-ui'
+Vue.use(BinUI)
 Vue.component('v-chart', ECharts)
 new Vue({
   router,

@@ -1,18 +1,19 @@
 <template>
   <div id="app" v-cloak>
-    <div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
+   <!-- <div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
       <span class="page-title">
         {{ returnRouteName() }}
       </span>
       <span class="to-home">
           <router-link to="/home">返回</router-link>
       </span>
-    </div>
+    </div>-->
     <router-view/>
   </div>
 </template>
 <script>
   import './common/utils/macarons'
+  import 'bin-ui/lib/styles/index.css'
   export default {
     name: 'app',
     methods: {
@@ -83,20 +84,20 @@
   #app
     width: 100%
     height: 100%
-    min-width 1920px
-    min-height 934px
+    min-width 1898px
+    min-height 924px
     display flex
     flex-direction column
     background: url('~@/assets/images/common/bg.jpg') 100% 100%
     -webkit-background-size: cover
+    color #fff
     >div:not(.page-title-wrapper)
       flex: 1
-
+      overflow hidden
     .page-title-wrapper
       display flex
       justify-content center
       align-items center
-
       .header-title
         display inline-block
         text-align center

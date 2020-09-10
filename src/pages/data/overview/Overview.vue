@@ -1,5 +1,5 @@
 <template>
-  <div class="overview" flex>
+  <div class="overview" flex="dir:col">
     <div class="page-title-wrapper">
       <span class="header-title">
         <i>系统概况专题</i>
@@ -249,12 +249,27 @@
                   </div>
                 </div>
                 <div class="chart">
-                  <v-chart :options="unionOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                  <v-chart :options="classicOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
                 </div>
               </div>
             </template>
           </Card>
-          <Card></Card>
+          <Card>
+            <template slot="title"><i class="card-title-font">信用报告查询趋势分析</i></template>
+            <template slot="content">
+              <div class="overview-trend">
+                <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 220px;"></v-chart>
+              </div>
+            </template>
+          </Card>
+          <Card>
+            <template slot="title"><i class="card-title-font">数据提报部门</i></template>
+            <template slot="content">
+              <div class="overview-dept">
+                <b-table :columns="columns" :data="listData" height="160" stripe></b-table>
+              </div>
+            </template>
+          </Card>
         </template>
       </SidePanel>
     </div>
@@ -267,6 +282,7 @@
   import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
   import Card from '../../../components/Card/Card'
   import Map3D from '../../../components/Map3D/Map3D'
+
   export default {
     name: 'Overview',
     data() {
@@ -277,7 +293,7 @@
           implementDeptCount: 0
         },
         countList: {
-          total: [1,2,5,6,9,8,7,5,1]
+          total: [1, 2, 5, 6, 9, 8, 7, 5, 1]
         },
         unionOption: {
           tooltip: {
@@ -338,7 +354,7 @@
             }
           ]
         },
-        exchangeOption:{
+        exchangeOption: {
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -364,7 +380,107 @@
               }
             }
           ]
-        }
+        },
+        classicOption: {
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+          },
+          yAxis: {
+            type: 'category',
+            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息']
+          },
+          series: [
+            {
+              name: '2011年',
+              type: 'bar',
+              data: [1820, 2489, 2034, 1970, 1744, 1230, 1230]
+            }
+          ]
+        },
+        trendOption: {
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            areaStyle: {}
+          }]
+        },
+        columns: [
+          {
+            title: '部门名称',
+            key: 'name'
+          },
+          {
+            title: '数量',
+            key: 'count'
+          },
+          {
+            title: '入库率',
+            key: 'percent'
+          }
+        ],
+        listData: [
+          {
+            name: '模拟部门名称 1',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 2',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 3',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 4',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 5',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 6',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 7',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 8',
+            count: '100',
+            percent: '10%'
+          }
+        ]
       }
     },
     components: {
@@ -394,16 +510,13 @@
     height: 100%
 
   .overview
-    display flex
-    flex-direction column
     .page-body-wrapper
       flex: 1
       display flex
-
+      overflow hidden
       .overview-union
         .info-bar
           display flex
-
           .info-item
             color #fff
             flex: 1
@@ -417,20 +530,25 @@
         display flex
         flex-direction column
         height: 100%
+
         .info-board
           .row
             width: 100%
+
             .cell
               color #fff
               background-color: #012032
               margin 5px
               padding 6px 0
+
               &:first-child
                 width 120px
+
               .icon
                 width 30px
                 height: 30px
                 padding-bottom: 6px
+
               .inner-cell
                 padding-top: 10px
                 padding-left: 20px
@@ -439,23 +557,27 @@
         .chart
           flex: 1
           padding-bottom: 20px
+
       .model-container
         top: 40%
       .count-list
         position absolute
         width: 100%
-        height: 800px
-        top: 42%
+        height: 600px
+        top: 36%
         left: 50%
         transform translate(-50%, -50%)
+
         .total-wrapper
           display flex
           justify-content center
+
           .title
             display inline-block
             color #fff
             font-size: 26px
             line-height: 70px
+
           .num-list-item
             display inline-block
             text-align center
@@ -469,49 +591,61 @@
             color #41f2e2
             background-repeat: no-repeat
             background-image: url('~@/assets/images/overview/no_bg.png')
+
         .count-wrapper
           .couple-row
             padding-top: 70px
             height: 120px
+
             &:nth-child(1)
               width 800px
+
             &:nth-child(2)
               width 950px
+
             &:nth-child(3)
               width 800px
+
             .item
-              width 110px
-              height: 56px
+              width 150px
+              height: 70px
               padding 12px 20px
-              background-color: rgba(5,37,55,0.8)
-              box-shadow 1px 1px 2px rgba(0,0,0,0.5)
+              background-color: rgba(5, 37, 55, 0.8)
+              box-shadow 1px 1px 2px rgba(0, 0, 0, 0.5)
+
               span
                 font-size: 14px
                 color #fff
+
       .red-black-list
         width 100%
+        height: 292px
         padding-bottom: 20px
         position absolute
         bottom: 0
         left: 0
+
         .list-inner-wrapper
           .list-item
             width 48%
+
             .item-title
               color #fff
-              background-color: rgba(0,33,47,0.8)
+              background-color: rgba(0, 33, 47, 0.8)
               width 200px
               text-align center
               margin 0 auto
-              border: 1px solid rgba(255,255,255,0.1)
+              border: 1px solid rgba(255, 255, 255, 0.1)
               height: 40px
               line-height: 40px
               margin-bottom: 10px
+
               .red-title
                 color #f52a6c
+
             .list-box
               .box
-                width 46%
+                width 45%
                 box-sizing border-box
                 padding 10px 20px
                 padding-left: 50px
@@ -521,10 +655,12 @@
                 background-repeat: no-repeat
                 background-size: 100% 100%;
                 margin 0 20px 10px 0
+
                 span
                   position relative
                   z-index 1
                   color #fff
+
               .red
                 &:nth-child(1)
                   &:before
@@ -538,6 +674,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon01.png')
+
                 &:nth-child(2)
                   &:before
                     content ''
@@ -550,6 +687,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon02.png')
+
                 &:nth-child(3)
                   &:before
                     content ''
@@ -562,6 +700,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon03.png')
+
                 &:nth-child(4)
                   &:before
                     content ''
@@ -574,6 +713,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon03.png')
+
               .black
                 &:nth-child(1)
                   &:before
@@ -587,6 +727,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon01.png')
+
                 &:nth-child(2)
                   &:before
                     content ''
@@ -599,6 +740,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon02.png')
+
                 &:nth-child(3)
                   &:before
                     content ''
@@ -611,6 +753,7 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon03.png')
+
                 &:nth-child(4)
                   &:before
                     content ''
@@ -623,4 +766,21 @@
                     z-index 0
                     background-repeat: no-repeat
                     background-image: url('~@/assets/images/overview/md_icon03.png')
+      .overview-classic
+        .info-bar
+          display flex
+          .info-item
+            flex: 1
+            margin 0 10px
+            display flex
+            flex-direction column
+            color #fff
+            background-color: #011e2c
+      .overview-dept
+        >>>.bin-table th, >>>.bin-table td
+          height: 32px
+        >>>.bin-table th, >>>.bin-table td, >>>.bin-table
+          background-color: transparent
+        >>>.bin-table-cell
+          color #fff
 </style>
