@@ -1,6 +1,8 @@
 <template>
     <div class="side-panel">
-      <slot name="inner"></slot>
+      <slot name="inner">
+
+      </slot>
     </div>
 </template>
 
@@ -14,5 +16,4 @@
   .side-panel
     width: 450px
     height: 100%
-    color: #000
 </style>
