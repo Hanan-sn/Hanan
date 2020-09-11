@@ -2900,6 +2900,11 @@ commander@*:
   resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
   integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
+commander@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.npm.taobao.org/commander/download/commander-0.5.2.tgz#f270326709a115a126cfed5623852439b8e4a3b5"
+  integrity sha1-8nAyZwmhFaEmz+1WI4UkObjko7U=
+
 commander@2.17.x:
   version "2.17.1"
   resolved "https://registry.npmjs.org/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
@@ -3443,6 +3448,11 @@ dashdash@^1.12.0:
   integrity sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=
   dependencies:
     assert-plus "^1.0.0"
+
+dat.gui@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.npm.taobao.org/dat.gui/download/dat.gui-0.7.7.tgz#7f96dbd21621a76385203659aebfa264ee6ae89b"
+  integrity sha1-f5bb0hYhp2OFIDZZrr+iZO5q6Js=
 
 date-fns@^1.27.2:
   version "1.30.1"
@@ -10117,6 +10127,18 @@ static-extend@^0.1.1:
   dependencies:
     define-property "^0.2.5"
     object-copy "^0.1.0"
+
+stats-js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/stats-js/download/stats-js-1.0.1.tgz#377c36490c1935b9a4e68bf3acc3afeb59878f66"
+  integrity sha1-N3w2SQwZNbmk5ovzrMOv61mHj2Y=
+
+stats@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/stats/download/stats-1.0.0.tgz#4a3f63d81bd52cdecee313dacf1572aff57b7d29"
+  integrity sha1-Sj9j2BvVLN7O4xPazxVyr/V7fSk=
+  dependencies:
+    commander "0.5.2"
 
 "statuses@>= 1.4.0 < 2", "statuses@>= 1.5.0 < 2", statuses@~1.5.0:
   version "1.5.0"

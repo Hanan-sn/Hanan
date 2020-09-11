@@ -287,10 +287,11 @@
   import SidePanel from '../../../components/SidePanel/SidePanel'
   import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
   import Card from '../../../components/Card/Card'
-  import {graphic} from 'echarts'
+  import { graphic } from 'echarts'
+
   export default {
     name: 'Union',
-    data(){
+    data() {
       return {
         queryOption: {
           tooltip: {
@@ -420,7 +421,7 @@
                 show: true,
                 position: [14, -10],
                 color: '#fff',
-                formatter: (p)=>p.name
+                formatter: (p) => p.name
               },
               itemStyle: {
                 color: new graphic.LinearGradient(0, 0, 1, 0, [{
@@ -513,11 +514,11 @@
                 show: false
               },
               data: [
-                {value: 335, name: '直接访问'},
-                {value: 310, name: '邮件营销'},
-                {value: 234, name: '联盟广告'},
-                {value: 135, name: '视频广告'},
-                {value: 1548, name: '搜索引擎'}
+                { value: 335, name: '直接访问' },
+                { value: 310, name: '邮件营销' },
+                { value: 234, name: '联盟广告' },
+                { value: 135, name: '视频广告' },
+                { value: 1548, name: '搜索引擎' }
               ]
             }
           ]
@@ -531,74 +532,91 @@
 </script>
 
 <style lang="stylus" scoped>
-.union
-  .union-base
-    color #fff
-    .row
-      margin-bottom: 10px
-      .item
-        background-color: #062738
-        padding 10px 10px
-      &:nth-child(1)
-        .item
-          flex: 1
-          margin-right 10px
-          &:last-child
-            margin-right: 0
-      &:nth-child(n + 2)
-        .item:first-child
-          width: 150px
-          margin-right: 10px
-        .item:last-child
-          flex 1
-          text-align center
-          .label
-            margin-right: 30px
-  .union-statistic
-    .inner
-      .item
-        width: 49%
-        .title
-          padding-bottom: 10px
-          text-align center
-          span
-            display inline-block
-            background-color: #012130
-            text-align center
-            padding 10px 20px
-            border-top: 1px solid #123357
-            border-bottom: 1px solid #123357
-          .red
-            color #f5295c
-            margin-right: 20px
-        .list
-          .inner-box
-            width 48%
-            padding-top: 20px
-            margin-bottom: 10px
-            background-repeat: no-repeat
-            -webkit-background-size: 100% 100%
-            background-size: 100% 100%
-            background-image: url('~@/assets/images/overview/md_bg.png')
-            .inner-content
-              height: 64px
-              padding-left: 70px
-              background-repeat: no-repeat
-              background-position: 20px 12px
-            &:nth-child(1)
-              .inner-content
-                background-image: url('~@/assets/images/overview/md_icon01.png')
-            &:nth-child(2)
-              .inner-content
-                background-image: url('~@/assets/images/overview/md_icon01.png')
-            &:nth-child(3)
-              .inner-content
-                background-image: url('~@/assets/images/overview/md_icon01.png')
-            &:nth-child(4)
-              .inner-content
-                background-image: url('~@/assets/images/overview/md_icon01.png')
+  .union
+    .union-base
+      color #fff
 
-  .union-distribute
-    .item
-      width: 50%
+      .row
+        margin-bottom: 10px
+
+        .item
+          background-color: #062738
+          padding 10px 10px
+
+        &:nth-child(1)
+          .item
+            flex: 1
+            margin-right 10px
+
+            &:last-child
+              margin-right: 0
+
+        &:nth-child(n + 2)
+          .item:first-child
+            width: 150px
+            margin-right: 10px
+
+          .item:last-child
+            flex 1
+            text-align center
+
+            .label
+              margin-right: 30px
+
+    .union-statistic
+      .inner
+        .item
+          width: 49%
+
+          .title
+            padding-bottom: 10px
+            text-align center
+
+            span
+              display inline-block
+              background-color: #012130
+              text-align center
+              padding 10px 20px
+              border-top: 1px solid #123357
+              border-bottom: 1px solid #123357
+
+            .red
+              color #f5295c
+              margin-right: 20px
+
+          .list
+            .inner-box
+              width 48%
+              padding-top: 20px
+              margin-bottom: 10px
+              background-repeat: no-repeat
+              -webkit-background-size: 100% 100%
+              background-size: 100% 100%
+              background-image: url('~@/assets/images/overview/md_bg.png')
+
+              .inner-content
+                height: 64px
+                padding-left: 70px
+                background-repeat: no-repeat
+                background-position: 20px 12px
+
+              &:nth-child(1)
+                .inner-content
+                  background-image: url('~@/assets/images/overview/md_icon01.png')
+
+              &:nth-child(2)
+                .inner-content
+                  background-image: url('~@/assets/images/overview/md_icon01.png')
+
+              &:nth-child(3)
+                .inner-content
+                  background-image: url('~@/assets/images/overview/md_icon01.png')
+
+              &:nth-child(4)
+                .inner-content
+                  background-image: url('~@/assets/images/overview/md_icon01.png')
+
+    .union-distribute
+      .item
+        width: 50%
 </style>
