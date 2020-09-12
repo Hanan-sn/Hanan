@@ -10,7 +10,11 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/tooltip'
 import BinUI from 'bin-ui'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 Vue.use(BinUI)
+Vue.use(VueAwesomeSwiper /* { default options with global component } */)
 Vue.component('v-chart', ECharts)
 new Vue({
   router,

@@ -282,7 +282,6 @@
   import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
   import Card from '../../../components/Card/Card'
   import Map3D from '../../../components/Map3D/Map3D'
-
   export default {
     name: 'Overview',
     data() {
