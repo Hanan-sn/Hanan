@@ -13,6 +13,7 @@
     methods: {
       renderParticleFont(){
         const ctx = this.$refs.particleFont.getContext('2d')
+        ctx.textAlign = 'center'
         console.dir(ctx)
       }
     }
