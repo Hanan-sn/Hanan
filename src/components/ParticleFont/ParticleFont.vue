@@ -36,6 +36,15 @@
             this.y = centerY;
             this.radius = radius;
           }
+          paint(){
+            context.save();
+            context.beginPath();
+            var scale = focallength / (focallength + this.z);
+            context.arc(canvas.width / 2 + (this.x - canvas.width / 2) * scale, canvas.height / 2 + (this.y - canvas.height / 2) * scale, this.radius * scale, 0, 2 * Math.PI);
+            context.fillStyle = "rgba(50,50,50," + scale + ")";
+            context.fill();
+            context.restore();
+          }
         }
         for (let x = 0; x < imgData.width; x+=6) {
           for (let y = 0; y < imgData.height; y+=6) {
