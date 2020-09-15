@@ -6,6 +6,7 @@
 <!--    <CityModel></CityModel>-->
     <div class="site-title">
       <i>信用大数据可视化分析</i>
+      <ParticleFont></ParticleFont>
     </div>
     <div class="links">
       <router-link class="nav-item" to="/overview">系统概况</router-link><br>
@@ -19,6 +20,7 @@
 <script>
   import Map3DCloud from '../../../components/Map3D/Map3DCloud'
   import CityModel from '../../../components/CityModel/CityModel'
+  import ParticleFont from '../../../components/ParticleFont/ParticleFont'
   /* eslint-disable */
   export default {
     name: 'Home',
@@ -28,7 +30,8 @@
     },
     components: {
       Map3DCloud,
-      CityModel
+      CityModel,
+      ParticleFont
     },
     mounted(){},
     methods:{
