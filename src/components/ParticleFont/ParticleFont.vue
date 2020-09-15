@@ -25,7 +25,16 @@
         context.clearRect(0,0,w,h)
         class Dot{
           constructor(centerX, centerY, centerZ, radius){
-            
+            this.dx = centerX;
+            this.dy = centerY;
+            this.dz = centerZ;
+            this.tx = 0;
+            this.ty = 0;
+            this.tz = 0;
+            this.z = centerZ;
+            this.x = centerX;
+            this.y = centerY;
+            this.radius = radius;
           }
         }
         for (let x = 0; x < imgData.width; x+=6) {
