@@ -119,7 +119,7 @@ gl_FragColor = vec4( texColor.rgb * diffuse, _a );
         let material = new THREE.XRayMaterial({
             map: map,
             alphaProportion: 0.05,
-            color: new THREE.Color('rgba(7,156,209,0.4)'),
+            color: new THREE.Color('#079cd1'),
             opacity: 0,
             gridOffsetSpeed: 0.6
           })
