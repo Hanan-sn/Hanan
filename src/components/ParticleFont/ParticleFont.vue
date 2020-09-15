@@ -20,12 +20,17 @@
         const dots = get
       },
       getImgData(w, h) {
-        const imgData = context.getImgData(0,0,w,h)
+        const Dot = 
+        const imgData = context.getImageData(0,0,w,h)
         context.clearRect(0,0,w,h)
         const dots = []
         for (let x = 0; x < imgData.width; x+=6) {
           for (let y = 0; y < imgData.height; y+=6) {
-            
+            let i = (y*imgData.width + x) * 4
+            if(imgData.data[i] >= 128){
+              var dot = new Dot(x - 3,y - 3, 0, 3)
+              dots.push(dot)
+            }
           }
         }
       }
