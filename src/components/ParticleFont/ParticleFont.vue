@@ -17,12 +17,12 @@
         // 焦距
         focalllength = 250
         // 文字内容转点阵数据
-        const dots = get
+        const dots = this.getImgData(canvas.width, canvas.height)
       },
       getImgData(w, h) {
-        const Dot =
         const imgData = context.getImageData(0,0,w,h)
         context.clearRect(0,0,w,h)
+        let dots = []
         class Dot{
           constructor(centerX, centerY, centerZ, radius){
             this.dx = centerX;
@@ -40,7 +40,7 @@
             context.save();
             context.beginPath();
             var scale = focallength / (focallength + this.z);
-            context.arc(canvas.width / 2 + (this.x - canvas.width / 2) * scale, canvas.height / 2 + (this.y - canvas.height / 2) * scale, this.radius * scale, 0, 2 * Math.PI);
+            context.arc(w / 2 + (this.x - w / 2) * scale, h / 2 + (this.y - h / 2) * scale, this.radius * scale, 0, 2 * Math.PI);
             context.fillStyle = "rgba(50,50,50," + scale + ")";
             context.fill();
             context.restore();
