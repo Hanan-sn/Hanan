@@ -31,7 +31,9 @@
       CityModel
     },
     mounted(){},
-    methods:{}
+    methods:{
+
+    }
   }
 </script>
 

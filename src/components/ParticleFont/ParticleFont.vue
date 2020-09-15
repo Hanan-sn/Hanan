@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div class="particle-font">
+
+    </div>
 </template>
 
 <script>
@@ -8,6 +10,6 @@
     }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 
 </style>
