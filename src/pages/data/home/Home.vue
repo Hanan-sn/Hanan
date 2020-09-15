@@ -4,6 +4,9 @@
     <Map3DCloud class="bg"></Map3DCloud>
 <!--    <Map3D class="bg"></Map3D>-->
 <!--    <CityModel></CityModel>-->
+    <div class="site-title">
+      <i>信用大数据可视化分析</i>
+    </div>
     <div class="links">
       <router-link class="nav-item" to="/overview">系统概况</router-link><br>
       <router-link class="nav-item" to="/summary">归集分析</router-link><br>
