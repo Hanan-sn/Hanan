@@ -37,7 +37,7 @@
           this.x = x;
           this.y = y;
           this.color = colors[Math.floor(Math.random() * colors.length)]; //'bleack'//
-          this.futurRadius = randomInt(1.1, 2.1);
+          this.futurRadius = randomInt(4.1, 5.1);
           this.radius = 1.1;
           this.dying = false;
           this.base = [x, y];
@@ -69,7 +69,7 @@
               this.x = this.base[0];
               this.y = this.base[1];
               this.dying = false;
-              this.futurRadius = randomInt(1.1, 2.1);
+              this.futurRadius = randomInt(4.1, 5.1);
             }
           }
         }
