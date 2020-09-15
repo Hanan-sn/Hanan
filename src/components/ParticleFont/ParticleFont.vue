@@ -12,7 +12,7 @@
     },
     methods: {
       renderParticleFont(){
-        const ctx = this.$refs.particleFont
+        const ctx = this.$refs.particleFont.getContext('2d')
         console.dir(ctx)
       }
     }
