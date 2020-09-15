@@ -19,7 +19,7 @@
         // 文字内容转点阵数据
         const dots = this.getImgData(canvas.width, canvas.height)
       },
-      getImgData(w, h) {
+      getImgData(w, h, fl) {
         const imgData = context.getImageData(0,0,w,h)
         context.clearRect(0,0,w,h)
         let dots = []
@@ -39,7 +39,7 @@
           paint(){
             context.save();
             context.beginPath();
-            var scale = focallength / (focallength + this.z);
+            var scale = fl / (fl + this.z);
             context.arc(w / 2 + (this.x - w / 2) * scale, h / 2 + (this.y - h / 2) * scale, this.radius * scale, 0, 2 * Math.PI);
             context.fillStyle = "rgba(50,50,50," + scale + ")";
             context.fill();
@@ -50,7 +50,7 @@
           for (let y = 0; y < imgData.height; y+=6) {
             let i = (y*imgData.width + x) * 4
             if(imgData.data[i] >= 128){
-              var dot = new Dot(x - 3,y - 3, 0, 3)
+              let dot = new Dot(x - 3,y - 3, 0, 3)
               dots.push(dot)
             }
           }
