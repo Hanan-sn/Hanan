@@ -15,7 +15,7 @@
         const context = this.$refs.particleFont.getContext('2d')
         context.textAlign = 'center'
         context.font = "18px arial";
-        context.fillText(this.text, this.x, this.y);
+        context.fillText('hello', this.x, this.y);
       }
     }
   }
