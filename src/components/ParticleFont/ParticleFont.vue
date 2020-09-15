@@ -15,9 +15,9 @@
         const canvas = this.$refs.particleFont
         const context = canvas.getContext('2d')
         // 焦距
-        focalllength = 250
+        let focalllength = 250
         // 文字内容转点阵数据
-        const dots = this.getImgData(canvas.width, canvas.height)
+        const dots = this.getImgData(canvas.width, canvas.height, focalllength)
       },
       getImgData(w, h, fl) {
         const imgData = context.getImageData(0,0,w,h)
