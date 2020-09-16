@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-cloak>
+  <div id="app" v-cloak :class="this.$route.path === '/home' ? 'home-bg' : 'common-bg'">
    <!-- <div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
       <span class="page-title">
         {{ returnRouteName() }}
@@ -88,9 +88,13 @@
     min-height 924px
     display flex
     flex-direction column
-    background: url('~@/assets/images/common/bg.jpg') 100% 100%
-    -webkit-background-size: cover
     color #fff
+    background-size: cover;
+    background-repeat: no-repeat
+    &.common-bg
+      background-image: url('~@/assets/images/common/bg.jpg')
+    &.home-bg
+      background-image: url('~@/assets/images/home/bg.jpg')
     >div:not(.page-title-wrapper)
       flex: 1
       overflow hidden
