@@ -114,8 +114,10 @@
   position absolute
   top: 65%
   left: 50%
+  width: 1200px
+  display flex
+  justify-content space-between
   transform translate(-50%,-50%)
-  justify-content center
 .site-title
   position absolute
   top: 200px
