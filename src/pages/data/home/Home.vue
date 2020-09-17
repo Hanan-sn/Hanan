@@ -7,26 +7,26 @@
       <img src="~@/assets/images/home/title.png" alt="">
     </div>
 
-    <ParticleFont :route-font="routeFont" ref="particleFont"></ParticleFont>
-    <div class="links" @mouseover="">
+    <ParticleFont class="particle-font" :route-font="routeFont" ref="particleFont"></ParticleFont>
+    <div class="links" @mouseover="" flex>
       <router-link class="nav-item" to="/overview">
         <span @mouseover="routeFont = '系统概况'" @mouseleave="routeFont = ''">
-          <img src="title_xtgk.png" alt="">
+          <img src="~@/assets/images/home/title_xtgk.png" alt="">
         </span>
       </router-link><br>
       <router-link class="nav-item" to="/summary">
         <span @mouseover="routeFont = '归集分析'" @mouseleave="routeFont = ''">
-          归集分析
+          <img src="~@/assets/images/home/title_fxpg.png" alt="">
         </span>
       </router-link><br>
       <router-link class="nav-item" to="/public">
         <span @mouseover="routeFont = '双公示'" @mouseleave="routeFont = ''">
-          双公示
+          <img src="~@/assets/images/home/title_sgs.png" alt="">
         </span>
       </router-link><br>
       <router-link class="nav-item" to="/union">
         <span @mouseover="routeFont = '联合奖惩'" @mouseleave="routeFont = ''">
-          联合奖惩
+          <img src="~@/assets/images/home/title_lhjc.png" alt="">
         </span>
       </router-link><br>
 <!--      <router-link class="nav-item" to="/map">to map</router-link><br>-->
@@ -83,14 +83,60 @@
   font-size: 30px
   line-height: 50px
   text-decoration none
+  position relative
+  width: 200px
+  height: 200px
+  display flex
+  justify-content center
+  &::before
+    content ''
+    display block
+    width: 199px
+    height: 199px
+    position absolute
+    background-repeat: no-repeat
+    background-image: url('~@/assets/images/home/yuanquan.png')
+    top: 0
+    left: 0
+    animation rotate 6s linear infinite
+    z-index 10
+  span
+    position relative
+    z-index 100
+
+    width: 200px
+    line-height: 200px
+    text-align center
+    display flex
+    justify-content center
+    align-items center
 .links
   position absolute
-  top: 50%
-  left: 100px
-  transform translateY(-50%)
+  top: 65%
+  left: 50%
+  transform translate(-50%,-50%)
+  justify-content center
 .site-title
   position absolute
   top: 200px
   left: 50%
   transform translateX(-50%)
+.particle-font
+  width: 100%
+  height: 100%
+  transform translateY(-2%)
+@keyframes rotate{
+  0% {
+    transform-origin 50% 50%
+    transform rotate(0deg)
+  }
+  50% {
+    transform-origin 50% 50%
+    transform rotate(180deg)
+  }
+  100% {
+    transform-origin 50% 50%
+    transform rotate(360deg)
+  }
+}
 </style>
