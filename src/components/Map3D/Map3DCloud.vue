@@ -55,6 +55,7 @@
       },
       createCloudGrid() {
         const cloud = new THREE.Object3D()
+        // 使用自定义材质，return ShaderMaterial
         THREE.XRayMaterial = function(options) {
           let uniforms = {
             uTex: {

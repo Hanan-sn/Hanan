@@ -1,7 +1,7 @@
 <template>
   <div class="middle-panel">
-      <slot name="inner"></slot>
-      <slot name="outer"></slot>
+    <slot name="outer"></slot>
+    <slot name="inner"></slot>
   </div>
 </template>
 

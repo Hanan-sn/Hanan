@@ -63,6 +63,11 @@
       </template>
     </SidePanel>
     <MiddlePanel>
+      <template slot="outer">
+        <div class="center-container" style="height: 585px;">
+
+        </div>
+      </template>
       <template slot="inner">
         <Card>
           <template slot="title">
@@ -70,7 +75,7 @@
           </template>
           <template slot="content">
             <div class="summary-trend">
-
+              <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
             </div>
           </template>
         </Card>
@@ -260,6 +265,29 @@
               ]
             }
           ]
+        },
+        trendOption: {
+          color: [ '#a48f5e', '#097c86'],
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [820, 932, 901, 901, 934, 1290, 1190, 1330, 1230, 1320, 1120, 1220],
+              type: 'line',
+              areaStyle: {}
+            },
+            {
+              data: [320, 432, 501, 634, 490, 830, 620, 401, 534, 690, 830, 820],
+              type: 'line',
+              areaStyle: {}
+            }
+          ]
         }
       }
     },
@@ -294,4 +322,44 @@
         background-color: #042f40
   .newest-swiper, .dept-swiper
     height: 320px
+  .center-container
+    height: 585px
+    position relative
+    overflow hidden
+
+    &::after
+      content ''
+      display block
+      width: 100%
+      height: 100%
+      position absolute
+      background-image: url('~@/assets/images/summary/pic.png')
+      background-repeat: no-repeat
+      background-position: center center;
+      z-index 8
+    &::before
+      content ''
+      display block
+      width: 100%
+      height: 100%
+      position absolute
+      background-image: url('~@/assets/images/summary/mid.png')
+      background-repeat: no-repeat
+      background-position: center center;
+      /* animation rotate infinite 20s linear */
+      z-index 10
+  @keyframes rotate{
+    0%{
+      transform rotate(0deg)
+      opacity 0.8
+    }
+    50%{
+      transform rotate(180deg)
+      opacity 1
+    }
+    100%{
+      transform rotate(360deg)
+      opacity 0.8
+    }
+  }
 </style>

@@ -39,7 +39,18 @@
     <MiddlePanel>
       <template slot="outer">
         <div class="show-geo">
-
+            <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+            </span>
+            <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+            </span>
+            <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+            </span>
+            <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+            </span>
         </div>
       </template>
       <template slot="inner">
@@ -107,8 +118,7 @@
       MiddlePanel,
       SidePanel,
       Swiper,
-      SwiperSlide,
-      directive
+      SwiperSlide
     },
     directives: {
       swiper: directive
@@ -139,6 +149,7 @@
           }]
         },
         gatherOption: {
+          color: ['#d2aa6e', '#31a3b2'],
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -252,4 +263,21 @@
       // &:nth-type-of(even)
     .public-swiper
       height: 320px
+  .show-geo
+    display flex
+  .item-count-bar
+    height 80px
+    width 260px
+    display flex
+    background-image: url('~@/assets/images/overview/md_bg.png')
+    background-repeat: no-repeat
+    align-items center
+    justify-content space-between
+    padding-bottom: 10px
+    padding-left: 20px
+    box-sizing border-box
+    .icon
+      display block
+      width 50px
+      height: 50px
 </style>
