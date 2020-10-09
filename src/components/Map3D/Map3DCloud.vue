@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="model-container" ref="modelContainer">
 
@@ -6,6 +5,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import * as THREE from 'three'
   export default {
     name: 'Map3D',
