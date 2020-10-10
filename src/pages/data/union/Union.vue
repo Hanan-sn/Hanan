@@ -2,7 +2,7 @@
   <div class="union" flex="dir:col">
     <div class="page-title-wrapper">
       <span class="header-title">
-        <i>系统概况专题</i>
+        <i>联合奖惩专题</i>
       </span>
     </div>
     <div class="page-body-wrapper" flex>

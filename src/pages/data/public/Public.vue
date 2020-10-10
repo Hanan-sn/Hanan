@@ -1,108 +1,115 @@
 <template>
-  <div class="public" flex>
-    <SidePanel>
-      <template slot="inner">
-        <Card>
-          <template slot="title">
-            <i class="card-title-font">部门双公示数据统计情况</i>
-          </template>
-          <template slot="content">
-            <div class="public-statistic">
-              <div class="row table-header" flex="justify:between">
-                <span><i>部门名称</i></span>
-                <span><i>归集数量（条）</i></span>
+  <div class="public" flex="dir:col">
+    <div class="page-title-wrapper">
+      <span class="header-title">
+        <i>双公示专题</i>
+      </span>
+    </div>
+    <div class="page-body-wrapper" flex>
+      <SidePanel>
+        <template slot="inner">
+          <Card>
+            <template slot="title">
+              <i class="card-title-font">部门双公示数据统计情况</i>
+            </template>
+            <template slot="content">
+              <div class="public-statistic">
+                <div class="row table-header" flex="justify:between">
+                  <span><i>部门名称</i></span>
+                  <span><i>归集数量（条）</i></span>
+                </div>
+                <Swiper ref="mySwiper" class="public-swiper" :options="swiperOptions">
+                  <SwiperSlide class="slide-wrapper" v-for="(item, i) in 20" :key="i">
+                    <div class="row table-body-row" flex="justify:between">
+                      <span>模拟部门{{item}}</span>
+                      <span>10000</span>
+                    </div>
+                  </SwiperSlide>
+                  <div class="swiper-pagination" slot="pagination"></div>
+                </Swiper>
               </div>
-              <Swiper ref="mySwiper" class="public-swiper" :options="swiperOptions">
-                <SwiperSlide class="slide-wrapper" v-for="(item, i) in 20" :key="i">
-                  <div class="row table-body-row" flex="justify:between">
-                    <span>模拟部门{{item}}</span>
-                    <span>10000</span>
+            </template>
+          </Card>
+          <Card>
+            <template slot="title">
+              <i class="card-title-font">双公示数据7天提报率</i>
+            </template>
+            <template slot="content">
+              <div class="public-submit">
+                <v-chart :options="submitOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+              </div>
+            </template>
+          </Card>
+        </template>
+      </SidePanel>
+      <MiddlePanel>
+        <template slot="outer">
+          <div class="show-geo">
+              <span class="item-count-bar">
+                <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              </span>
+              <span class="item-count-bar">
+                <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              </span>
+              <span class="item-count-bar">
+                <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              </span>
+              <span class="item-count-bar">
+                <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              </span>
+          </div>
+        </template>
+        <template slot="inner">
+          <Card>
+            <template slot="title">
+              <i class="card-title-font">双公示采集情况</i>
+            </template>
+            <template slot="content">
+              <div class="public-gather">
+                <v-chart :options="gatherOption" theme="macarons" style="width: 100%; height: 300px;"></v-chart>
+              </div>
+            </template>
+          </Card>
+        </template>
+      </MiddlePanel>
+      <SidePanel>
+        <template slot="inner">
+          <Card>
+            <template slot="title"><i class="card-title-font">1周新增</i></template>
+            <template slot="content">
+              <div class="public-newly">
+                <div class="board" flex>
+                  <div flex="dir:col">
+                    <span><i>行政许可数量</i></span>
+                    <span><i class="num">565854</i><i>（条）</i></span>
                   </div>
-                </SwiperSlide>
-                <div class="swiper-pagination" slot="pagination"></div>
-              </Swiper>
-            </div>
-          </template>
-        </Card>
-        <Card>
-          <template slot="title">
-            <i class="card-title-font">双公示数据7天提报率</i>
-          </template>
-          <template slot="content">
-            <div class="public-submit">
-              <v-chart :options="submitOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
-            </div>
-          </template>
-        </Card>
-      </template>
-    </SidePanel>
-    <MiddlePanel>
-      <template slot="outer">
-        <div class="show-geo">
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
-            </span>
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
-            </span>
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
-            </span>
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
-            </span>
-        </div>
-      </template>
-      <template slot="inner">
-        <Card>
-          <template slot="title">
-            <i class="card-title-font">双公示采集情况</i>
-          </template>
-          <template slot="content">
-            <div class="public-gather">
-              <v-chart :options="gatherOption" theme="macarons" style="width: 100%; height: 300px;"></v-chart>
-            </div>
-          </template>
-        </Card>
-      </template>
-    </MiddlePanel>
-    <SidePanel>
-      <template slot="inner">
-        <Card>
-          <template slot="title"><i class="card-title-font">1周新增</i></template>
-          <template slot="content">
-            <div class="public-newly">
-              <div class="board" flex>
-                <div flex="dir:col">
-                  <span><i>行政许可数量</i></span>
-                  <span><i class="num">565854</i><i>（条）</i></span>
-                </div>
-                <div flex="dir:col">
-                  <span><i>行政许可数量</i></span>
-                  <span><i class="num">565854</i><i>（条）</i></span>
+                  <div flex="dir:col">
+                    <span><i>行政许可数量</i></span>
+                    <span><i class="num">565854</i><i>（条）</i></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Card>
-        <Card>
-          <template slot="title"><i class="card-title-font">处罚修复数据统计</i></template>
-          <template slot="content">
-            <div class="public-repair">
-              <v-chart :options="repairOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
-            </div>
-          </template>
-        </Card>
-        <Card>
-          <template slot="title"><i class="card-title-font">行政许可种类分布</i></template>
-          <template slot="content">
-            <div class="public-permission">
-              <v-chart :options="permissionOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
-            </div>
-          </template>
-        </Card>
-      </template>
-    </SidePanel>
+            </template>
+          </Card>
+          <Card>
+            <template slot="title"><i class="card-title-font">处罚修复数据统计</i></template>
+            <template slot="content">
+              <div class="public-repair">
+                <v-chart :options="repairOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+              </div>
+            </template>
+          </Card>
+          <Card>
+            <template slot="title"><i class="card-title-font">行政许可种类分布</i></template>
+            <template slot="content">
+              <div class="public-permission">
+                <v-chart :options="permissionOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+              </div>
+            </template>
+          </Card>
+        </template>
+      </SidePanel>
+    </div>
   </div>
 </template>
 

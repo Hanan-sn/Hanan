@@ -102,6 +102,8 @@
       display flex
       justify-content center
       align-items center
+      padding-top: 30px
+      padding-bottom: 20px
       .header-title
         display inline-block
         text-align center
