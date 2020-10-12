@@ -58,6 +58,7 @@
                 <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
               </span>
           </div>
+          <div class="cube" ref="cube"></div>
         </template>
         <template slot="inner">
           <Card>
@@ -118,6 +119,8 @@
   import SidePanel from '../../../components/SidePanel/SidePanel'
   import Card from '../../../components/Card/Card'
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+  import * as THREE from 'three'
+
   export default {
     name: 'Public',
     components: {
@@ -241,6 +244,55 @@
           ]
         }
       }
+    },
+    mounted() {
+      this.renderCube()
+    },
+    methods: {
+      renderCube() {
+        const { offsetWidth, offsetHeight } = this.$refs.cube
+        let scene = new THREE.Scene()
+        let camera = new THREE.PerspectiveCamera(750, offsetWidth / offsetHeight, 0.1, 1000)
+        let renderer = new THREE.WebGLRenderer({ alpha: true })
+        renderer.setSize(offsetWidth, offsetHeight)
+        let light = new THREE.AmbientLight(0x404040) // soft white light
+        let geometry = new THREE.BoxGeometry(40, 40, 40)
+        let loader = new THREE.TextureLoader()
+        let texture = loader.load(require('@/assets/images/cube_bg.png'))
+
+        let material = [
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true, visible: false }),
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
+          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true })
+        ]
+        let cube = new THREE.Mesh(geometry, material)
+        camera.position.z = 100
+        let group = new THREE.Group()
+        let point = new THREE.SphereGeometry()
+        let pointLoader = new THREE.TextureLoader()
+        let pointTexture = pointLoader.load(require('@/assets/images/light-point.png'))
+        let pointMaterial = new THREE.PointsMaterial({ size: 4, color: 0xffffff, map: pointTexture })
+        point.vertices.push(new THREE.Vector3(1, 1, 0))
+
+        geometry.colors.push(new THREE.Color('#ffffff'))
+        let cloud = new THREE.Points(point, pointMaterial)
+        group.add(cube)
+        group.add(cloud)
+        scene.add(light)
+        scene.add(group)
+        group.rotation.x = 10
+        let animate = function () {
+          requestAnimationFrame(animate)
+          group.rotation.y += 0.01
+          renderer.render(scene, camera)
+        }
+        animate()
+        renderer.render(scene, camera)
+        this.$refs.cube.appendChild(renderer.domElement)
+      }
     }
   }
 </script>
@@ -272,6 +324,10 @@
       height: 320px
   .show-geo
     display flex
+  .cube
+    display block
+    height 400px
+    width 600px
   .item-count-bar
     height 80px
     width 260px

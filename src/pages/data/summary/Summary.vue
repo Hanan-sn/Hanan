@@ -71,14 +71,41 @@
       <MiddlePanel>
         <template slot="outer">
           <div class="show-geo" flex="justify:center">
-            <span class="item-count-bar">
+            <span class="item-count-bar" flex>
               <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <span class="data" flex="dir:col">
+                <span class="label">
+                  <i>资源信息数量</i>
+                </span>
+                <span class="value">
+                  <i class="num">100000</i>
+                  <i>（条）</i>
+                </span>
+              </span>
             </span>
             <span class="item-count-bar">
               <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <span class="data" flex="dir:col">
+                <span class="label">
+                  <i>资源信息数量</i>
+                </span>
+                <span class="value">
+                  <i class="num">100000</i>
+                  <i>（条）</i>
+                </span>
+              </span>
             </span>
             <span class="item-count-bar">
               <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <span class="data" flex="dir:col">
+                <span class="label">
+                  <i>资源信息数量</i>
+                </span>
+                <span class="value">
+                  <i class="num">100000</i>
+                  <i>（条）</i>
+                </span>
+              </span>
             </span>
           </div>
           <div class="center-container" ref="centerContainer" flex="justify:center">
@@ -131,7 +158,7 @@
                   <span><i>部门名称</i></span>
                   <span><i>归集数量（条）</i></span>
                 </div>
-                <Swiper ref="mySwiper" class="newest-swiper" :options="swiperOptions">
+                <Swiper ref="mySwiper" class="newest-swiper" :options="newestSwiperOptions">
                   <SwiperSlide class="slide-wrapper" v-for="(item, i) in 20" :key="i">
                     <div class="row table-body-row" flex="justify:between">
                       <span>模拟部门{{item}}</span>
@@ -162,6 +189,12 @@
         swiperOptions: {
           direction: 'vertical',
           slidesPerView: 8,
+          loop: true
+          // Some Swiper option/callback...
+        },
+        newestSwiperOptions: {
+          direction: 'vertical',
+          slidesPerView: 5,
           loop: true
           // Some Swiper option/callback...
         },
@@ -511,10 +544,12 @@
     &:nth-child(even)
       .table-body-row
         background-color: #042f40
-  .newest-swiper, .dept-swiper
+  .dept-swiper
     height: 320px
+  .newest-swiper
+    height: 200px
   .center-container
-    height: 585px
+    height: 490px
     position relative
     overflow hidden
 
@@ -524,6 +559,8 @@
       width: 100%
       height: 100%
       position absolute
+      -webkit-background-size: contain
+      background-size: contain
       background-image: url('~@/assets/images/summary/pic.png')
       background-repeat: no-repeat
       background-position: center center;
@@ -542,21 +579,27 @@
 
   .show-geo
     display flex
-  .item-count-bar
-    height 80px
-    width 260px
-    display flex
-    background-image: url('~@/assets/images/overview/md_bg.png')
-    background-repeat: no-repeat
-    align-items center
-    justify-content space-between
-    padding-bottom: 10px
-    padding-left: 20px
-    box-sizing border-box
-    .icon
-      display block
-      width 50px
-      height: 50px
+    .item-count-bar
+      height 80px
+      width 260px
+      display flex
+      background-image: url('~@/assets/images/overview/md_bg.png')
+      background-repeat: no-repeat
+      align-items center
+      padding-bottom: 10px
+      padding-left: 20px
+      box-sizing border-box
+      .icon
+        display block
+        width 50px
+        height: 50px
+        margin-right: 10px
+      .data
+        .value
+          .num
+            font-size: 26px
+
+
   @keyframes rotate{
     0%{
       transform rotate(0deg)
