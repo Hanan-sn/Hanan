@@ -491,11 +491,11 @@
           legend: {
             orient: 'vertical',
             left: 10,
-            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            data: ['金融', '保险', '建筑', '环保', '其他']
           },
           series: [
             {
-              name: '访问来源',
+              name: '行业类型',
               type: 'pie',
               radius: ['50%', '70%'],
               avoidLabelOverlap: false,
@@ -514,11 +514,11 @@
                 show: false
               },
               data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
+                { value: 335, name: '金融' },
+                { value: 310, name: '保险' },
+                { value: 234, name: '建筑' },
+                { value: 135, name: '环保' },
+                { value: 1548, name: '其他' }
               ]
             }
           ]

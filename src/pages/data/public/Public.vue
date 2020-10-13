@@ -36,7 +36,7 @@
             </template>
             <template slot="content">
               <div class="public-submit">
-                <v-chart :options="submitOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                <v-chart :options="submitOption" theme="macarons" style="width: 100%; height: 270px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -44,21 +44,39 @@
       </SidePanel>
       <MiddlePanel>
         <template slot="outer">
-          <div class="show-geo">
+          <div class="center-container">
+            <div class="show-geo">
               <span class="item-count-bar">
                 <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+                <span class="count-square">
+                  <span>自然人行政许可</span>
+                  <span><i class="num">10000</i><i>（条）</i></span>
+                </span>
               </span>
               <span class="item-count-bar">
                 <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+                <span class="count-square">
+                  <span>法人行政许可</span>
+                  <span><i class="num">10000</i><i>（条）</i></span>
+                </span>
               </span>
               <span class="item-count-bar">
                 <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+                <span class="count-square">
+                  <span>自然人行政处罚</span>
+                  <span><i class="num">10000</i><i>（条）</i></span>
+                </span>
               </span>
               <span class="item-count-bar">
                 <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+                <span class="count-square">
+                  <span>法人行政处罚</span>
+                  <span><i class="num">10000</i><i>（条）</i></span>
+                </span>
               </span>
+            </div>
+            <Animation3D class="bg-3d" />
           </div>
-          <div class="cube" ref="cube"></div>
         </template>
         <template slot="inner">
           <Card>
@@ -80,11 +98,11 @@
             <template slot="content">
               <div class="public-newly">
                 <div class="board" flex>
-                  <div flex="dir:col">
+                  <div flex="dir:col align:center">
                     <span><i>行政许可数量</i></span>
                     <span><i class="num">565854</i><i>（条）</i></span>
                   </div>
-                  <div flex="dir:col">
+                  <div flex="dir:col align:center">
                     <span><i>行政许可数量</i></span>
                     <span><i class="num">565854</i><i>（条）</i></span>
                   </div>
@@ -104,7 +122,7 @@
             <template slot="title"><i class="card-title-font">行政许可种类分布</i></template>
             <template slot="content">
               <div class="public-permission">
-                <v-chart :options="permissionOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                <v-chart :options="permissionOption" theme="macarons" style="width: 100%; height: 300px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -118,8 +136,8 @@
   import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
   import SidePanel from '../../../components/SidePanel/SidePanel'
   import Card from '../../../components/Card/Card'
+  import Animation3D from '../../../components/Animation3D/Animation3D'
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-  import * as THREE from 'three'
 
   export default {
     name: 'Public',
@@ -128,7 +146,8 @@
       MiddlePanel,
       SidePanel,
       Swiper,
-      SwiperSlide
+      SwiperSlide,
+      Animation3D
     },
     directives: {
       swiper: directive
@@ -206,7 +225,7 @@
           },
           series: [
             {
-              name: '访问来源',
+              name: '行政许可种类',
               type: 'pie',
               radius: ['50%', '70%'],
               avoidLabelOverlap: false,
@@ -217,15 +236,15 @@
                 show: true
               },
               data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
+                { value: 335, name: '种类一' },
+                { value: 310, name: '种类二' },
+                { value: 234, name: '种类三' },
+                { value: 135, name: '种类四' },
+                { value: 1548, name: '种类五' }
               ]
             },
             {
-              name: '访问来源',
+              name: '主体类型',
               type: 'pie',
               radius: ['0%', '40%'],
               avoidLabelOverlap: false,
@@ -238,60 +257,11 @@
                 show: true
               },
               data: [
-                { value: 335, name: '直接访问' }
+                { value: 335, name: '自然人' }
               ]
             }
           ]
         }
-      }
-    },
-    mounted() {
-      this.renderCube()
-    },
-    methods: {
-      renderCube() {
-        const { offsetWidth, offsetHeight } = this.$refs.cube
-        let scene = new THREE.Scene()
-        let camera = new THREE.PerspectiveCamera(750, offsetWidth / offsetHeight, 0.1, 1000)
-        let renderer = new THREE.WebGLRenderer({ alpha: true })
-        renderer.setSize(offsetWidth, offsetHeight)
-        let light = new THREE.AmbientLight(0x404040) // soft white light
-        let geometry = new THREE.BoxGeometry(40, 40, 40)
-        let loader = new THREE.TextureLoader()
-        let texture = loader.load(require('@/assets/images/cube_bg.png'))
-
-        let material = [
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true, visible: false }),
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true }),
-          new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, transparent: true })
-        ]
-        let cube = new THREE.Mesh(geometry, material)
-        camera.position.z = 100
-        let group = new THREE.Group()
-        let point = new THREE.SphereGeometry()
-        let pointLoader = new THREE.TextureLoader()
-        let pointTexture = pointLoader.load(require('@/assets/images/light-point.png'))
-        let pointMaterial = new THREE.PointsMaterial({ size: 4, color: 0xffffff, map: pointTexture })
-        point.vertices.push(new THREE.Vector3(1, 1, 0))
-
-        geometry.colors.push(new THREE.Color('#ffffff'))
-        let cloud = new THREE.Points(point, pointMaterial)
-        group.add(cube)
-        group.add(cloud)
-        scene.add(light)
-        scene.add(group)
-        group.rotation.x = 10
-        let animate = function () {
-          requestAnimationFrame(animate)
-          group.rotation.y += 0.01
-          renderer.render(scene, camera)
-        }
-        animate()
-        renderer.render(scene, camera)
-        this.$refs.cube.appendChild(renderer.domElement)
       }
     }
   }
@@ -322,15 +292,28 @@
       // &:nth-type-of(even)
     .public-swiper
       height: 320px
-  .show-geo
-    display flex
-  .cube
-    display block
-    height 400px
-    width 600px
+  .center-container
+    position relative
+    .show-geo
+      width 100%
+      height: 100%
+      position absolute
+      .item-count-bar:nth-child(1)
+        top: 0
+        left: 40px
+      .item-count-bar:nth-child(2)
+        top: 0
+        right: 40px
+      .item-count-bar:nth-child(3)
+        bottom: 0
+        left: 40px
+      .item-count-bar:nth-child(4)
+        bottom: 0
+        right: 40px
   .item-count-bar
+    position absolute
     height 80px
-    width 260px
+    width 220px
     display flex
     background-image: url('~@/assets/images/overview/md_bg.png')
     background-repeat: no-repeat
@@ -343,4 +326,16 @@
       display block
       width 50px
       height: 50px
+    .count-square
+      flex: 1
+      padding-left: 10px
+  .public-newly
+    .board
+      display flex
+      justify-content space-between
+      >div
+        padding 4px 8px
+        background-color: #042433
+        width: 48%
+        margin-right: 2px
 </style>
