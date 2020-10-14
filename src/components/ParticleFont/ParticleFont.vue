@@ -15,16 +15,22 @@
         // 帧速率
         // derection: true,
         // 暂停
-        pause: false
+        pause: false,
+        dots: []
       }
     },
     watch: {
-      routeFont(n, o) {
+      routeFont(n) {
         if (n !== '') {
-            this.animateRunning = false
-            this.renderParticleFont(n)
+          this.animateRunning = false
+          this.renderParticleFont(n)
         } else {
-            this.animateRunning = false
+          this.dots = []
+          const ctx = this.$refs.particleFont.getContext('2d')
+          const { clientWidth, clientHeight } = ctx.canvas
+          ctx.clearRect(0, 0, clientWidth, clientHeight)
+          console.log(clientWidth)
+          this.animateRunning = false
           this.pause = false
         }
       }
@@ -38,28 +44,27 @@
 
     },
     methods: {
-      render(e) {
-        console.log(e)
-      },
       renderParticleFont(text) {
-        const canvas = this.$refs.particleFont
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-        const context = canvas.getContext('2d')
-        // 焦距
-        let focalLength = 1000
-        // 文字内容转点阵数据
-        let w = canvas.width
-        let h = canvas.height
-        this.drawText(text, context, w, h)
-        const dots = this.getImgData(w, h, context, focalLength)
-        this.initAnimate(canvas, dots, focalLength)
+        if (text !== '') {
+          const canvas = this.$refs.particleFont
+          canvas.width = window.innerWidth
+          canvas.height = window.innerHeight
+          const context = canvas.getContext('2d')
+          // 焦距
+          let focalLength = 1000
+          // 文字内容转点阵数据
+          let w = canvas.width
+          let h = canvas.height
+          this.drawText(text, context, w, h)
+          const dots = this.getImgData(w, h, context, focalLength)
+          this.initAnimate(canvas, dots, focalLength)
+        }
       },
       initAnimate(cvs, dots, fl) {
         const _self = this
         const ctx = cvs.getContext('2d')
         if (cvs) {
-          dots.forEach(dot => {
+          _self.dots.forEach(dot => {
             dot.x = Math.random() * cvs.width
             dot.y = Math.random() * cvs.height
             dot.z = Math.random() * fl * 4 - fl
@@ -76,7 +81,7 @@
           _self.animateRunning = true
           _self.thisTime = new Date()
           ctx.clearRect(0, 0, cvs.width, cvs.height)
-          dots.forEach(dot => {
+          _self.dots.forEach(dot => {
             if (derection) {
               if (Math.abs(dot.dx - dot.x) < 0.1 && Math.abs(dot.dy - dot.y) < 0.1 && Math.abs(dot.dz - dot.z) < 0.1) {
                 dot.x = dot.dx
@@ -117,13 +122,12 @@
         ctx.fillStyle = 'rgba(255,255,255,1)'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillText(text, w / 4, h / 4)
+        ctx.fillText(text, w / 4, (h / 4) - 40)
         ctx.restore()
       },
       getImgData(w, h, ctx, fl) {
         const imgData = ctx.getImageData(0, 0, w, h)
         ctx.clearRect(0, 0, w, h)
-        let dots = []
         // 粒子点
         class Dot {
           // 三维中心 + 圆角
@@ -154,11 +158,11 @@
             let i = (y * imgData.width + x) * 2
             if (imgData.data[i] >= 128) {
               let dot = new Dot(x - 2, y - 2, 0, 2)
-              dots.push(dot)
+              this.dots.push(dot)
             }
           }
         }
-        return dots
+        return this.dots
       }
     }
   }

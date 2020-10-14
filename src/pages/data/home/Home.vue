@@ -6,9 +6,8 @@
     <div class="site-title">
       <img src="~@/assets/images/home/title.png" alt="">
     </div>
-
     <ParticleFont class="particle-font" :route-font="routeFont" ref="particleFont"></ParticleFont>
-    <div class="links" @mouseover="" flex>
+    <div class="links" flex>
       <router-link class="nav-item" to="/overview">
         <span @mouseover="routeFont = '系统概况'" @mouseleave="routeFont = ''">
           <img src="~@/assets/images/home/title_xtgk.png" alt="">
@@ -34,7 +33,7 @@
   </div>
 </template>
 <script>
-  import Map3DCloud from '../../../components/Map3D/Map3DCloud'
+  // import Map3DCloud from '../../../components/Map3D/Map3DCloud'
   import Map3D from '../../../components/Map3D/Map3D'
   import CityModel from '../../../components/CityModel/CityModel'
   import ParticleFont from '../../../components/ParticleFont/ParticleFont'
@@ -75,7 +74,7 @@
   overflow hidden
 .bg
   position absolute
-  top: 110%
+  top: 115%
   left: 50%
   transform translate(-50%, -50%) scale(1.4)
 .nav-item
@@ -84,18 +83,20 @@
   line-height: 50px
   text-decoration none
   position relative
-  width: 200px
-  height: 200px
+  width: 160px
+  height: 160px
   display flex
   justify-content center
   &::before
     content ''
     display block
-    width: 199px
-    height: 199px
+    width: 160px
+    height: 160px
     position absolute
     background-repeat: no-repeat
     background-image: url('~@/assets/images/home/yuanquan.png')
+    -webkit-background-size: 100% 100%
+    background-size: 100% 100%
     top: 0
     left: 0
     animation rotate 6s linear infinite
@@ -103,16 +104,15 @@
   span
     position relative
     z-index 100
-
-    width: 200px
-    line-height: 200px
+    width: 160px
+    line-height: 160px
     text-align center
     display flex
     justify-content center
     align-items center
 .links
   position absolute
-  top: 65%
+  top: 60%
   left: 50%
   width: 1200px
   display flex
@@ -120,7 +120,7 @@
   transform translate(-50%,-50%)
 .site-title
   position absolute
-  top: 200px
+  top: 100px
   left: 50%
   transform translateX(-50%)
 .particle-font
