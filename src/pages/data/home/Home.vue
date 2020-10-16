@@ -9,11 +9,14 @@
   </div>
 </template>
 <script>
-  import particles from 'particles.js'
   import * as Three from 'three'
+  import Earth3D from '../../../components/Animation3D/Earth3D'
   /* eslint-disable */
   export default {
-    name: 'Home'
+    name: 'Home',
+    components: {
+      Earth3D
+    }
   }
 </script>
 

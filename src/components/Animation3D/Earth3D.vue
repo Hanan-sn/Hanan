@@ -1,202 +1,204 @@
 <template>
-  <div class="point-cloud" ref="pointCloud"></div>
+  <div class="model-container" ref="modelContainer">
+
+  </div>
 </template>
 
 <script>
   import * as THREE from 'three'
   export default {
-    name: 'PointCloud',
+    name: 'Map3D',
     data() {
       return {
-        render: null
+        scene: null,
+        camera: null,
+        renderer: null,
+        clock: null,
+        control: null,
+        axes: null,
+        earthParticles: null,
+        options: {
+          CITY_RADIUS: 100,
+          CITY_MARGIN: 1,
+          BLINT_SPEED: 0.05,
+          HEXAGON_RADIUS: 5,
+          radius: 100
+        },
+        animation: null
       }
     },
+    /* created(){
+      var cubeGeometry = new THREE.CubeGeometry(4,4,4);
+      var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+      this.geo = new THREE.Mesh(cubeGeometry, cubeMaterial)
+    }, */
+    mounted() {
+      this.main()
+    },
     methods: {
-      render() {
-        var camera
-
-        function initCamera() {
-          camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200)
-          camera.position.set(0, 0, 50)
+      main() {
+        const img = document.createElement('img')
+        img.src = require('@/assets/images/map3d/earth.jpg')
+        img.onload = () => {
+          const cvs = document.createElement('canvas')
+          const ctx = cvs.getContext('2d')
+          cvs.width = img.width
+          cvs.height = img.height
+          ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
+          const imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
+          this.createBasicScene() // 基本渲染容器
+          this.createEarthParticles(img, imgData) // 渲染地球粒子
+          this.animate()
         }
-
-        var scene
-
-        function initScene() {
-          scene = new THREE.Scene()
+      },
+      createBasicScene() {
+        let _self = this
+        /* this.scene = new THREE.Scene()
+        this.camera = new THREE.PerspectiveCamera(45, offsetWidth / offsetHeight, 0.1, 10000)
+        this.camera.position.z = 500
+        this.renderer = new THREE.WebGLRenderer() */
+        let width = this.$refs.modelContainer.offsetWidth
+        let height = this.$refs.modelContainer.offsetHeight
+        _self.scene = new THREE.Scene()
+        _self.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000)
+        _self.camera.position.z = 350
+        _self.renderer = new THREE.WebGLRenderer({ alpha: true })
+        _self.renderer.setSize(width, height)
+        _self.renderer.setClearColor(0xEEEEEE, 0.0)
+        _self.renderer.autoClearColor = new THREE.Color(1, 0, 0, 0)
+        _self.$refs.modelContainer.appendChild(this.renderer.domElement)
+        _self.clock = new THREE.Clock()
+        // control = new THREE.TrackballControls(camera)
+        // control.rotateSpeed = 1.0
+        // control.zoomSpeed = 1.0
+        // control.panSpeed = 1.0
+        _self.axes = new THREE.AxesHelper(this.options.CITY_RADIUS + 10)
+        // scene.add(axes)
+        _self.earthParticles = new THREE.Object3D()
+        // window.addEventListener('resize', _self.resize(width, height))
+      },
+      /* resize(w, h) {
+        this.renderer.setSize(w, h)
+        this.camera.aspect = w / h
+        this.camera.updateProjectionMatrix()
+      }, */
+      isLandByUV(img, imgData, c, f) {
+        if (!imgData) { // 底图数据
+          console.error('data error!')
         }
-
-        var light
-
-        function initLight() {
-          scene.add(new THREE.AmbientLight(0x404040))
-
-          light = new THREE.DirectionalLight(0xffffff)
-          light.position.set(1, 1, 1)
-          scene.add(light)
+        let n = parseInt(img.width * c) // 根据横纵百分比计算图象坐标系中的坐标
+        let o = parseInt(img.height * f) // 根据横纵百分比计算图象坐标系中的坐标
+        return imgData.data[4 * (o * imgData.width + n)] === 0 // 查找底图中对应像素点的rgba值并判断
+      },
+      createEarthParticles(img, imgData) {
+        let positions = []
+        let materials = []
+        let sizes = []
+        for (let i = 0; i < 2; i++) {
+          positions[i] = {
+            positions: []
+          }
+          sizes[i] = {
+            sizes: []
+          }
+          let mat = new THREE.PointsMaterial()
+          mat.size = 5
+          mat.color = new THREE.Color('#079cd1')
+          let img = require('@/assets/images/map3d/dot.png')
+          mat.map = new THREE.TextureLoader().load(img)
+          // const cvs = document.createElement('canvas')
+          // mat.map = new THREE.CanvasRenderer ().load('../../assets/images/dot.png')
+          mat.depthWrite = false
+          mat.transparent = true
+          mat.opacity = 0
+          mat.side = THREE.FrontSide
+          mat.blending = THREE.AdditiveBlending
+          let n = i / 2
+          mat.t_ = n * Math.PI * 2
+          mat.speed_ = this.options.BLINT_SPEED
+          mat.min_ = 0.2 * Math.random() + 0.5
+          mat.delta_ = 0.1 * Math.random() + 0.1
+          mat.opacity_coef_ = 1
+          materials.push(mat)
         }
-
-        function initModel() {
-          // 轴辅助 （每一个轴的长度）
-          var object = new THREE.AxesHelper(500)
-          // scene.add(object);
-        }
-
-        // 初始化性能插件
-        var stats
-
-        function initStats() {
-          stats = new Stats()
-          document.body.appendChild(stats.dom)
-        }
-
-        // 生成gui设置配置项
-        var controls, knot
-        function initGui() {
-          // 声明一个保存需求修改的相关数据的对象
-          controls = {
-            'radius': 13,
-            'tube': 1.7,
-            'radialSegments': 156,
-            'tubularSegments': 12,
-            'p': 3,
-            'q': 4,
-            'heightScale': 3.5,
-            'asParticles': false,
-            'rotate': false,
-            redraw: function () {
-              // 删除掉原有的模型
-              if (knot) scene.remove(knot)
-              // 创建一个环形结构
-              /// <param name ="radius" type="float">环形结半径</param>
-              /// <param name ="tube" type="float">环形结弯管半径</param>
-              /// <param name ="radialSegments" type="int">环形结圆周上细分线段数</param>
-              /// <param name ="tubularSegments" type="int">环形结弯管圆周上的细分线段数</param>
-              /// <param name ="p" type="float">p\Q:对knot(节)状方式有效,控制曲线路径缠绕的圈数,P决定垂直方向的参数.</param>
-              /// <param name ="q" type="float">p\Q:对knot(节)状方式有效,控制曲线路径缠绕的圈数,Q决定水平方向的参数.</param>
-              /// <param name ="heightScale" type="float">环形结高方向上的缩放.默认值是1</param>
-              var geom = new THREE.TorusKnotGeometry(controls.radius, controls.tube, Math.round(controls.radialSegments), Math.round(controls.tubularSegments), Math.round(controls.p), Math.round(controls.q), controls.heightScale)
-
-              // 判断绘制的模型
-              if (controls.asParticles) {
-                knot = createPointCloud(geom)
-              } else {
-                knot = createMesh(geom)
+        const spherical = new THREE.Spherical()
+        spherical.radius = this.options.radius
+        const step = 250
+        for (let i = 0; i < step; i++) {
+          let vec = new THREE.Vector3()
+          let radians = step * (1 - Math.sin(i / step * Math.PI)) / step + 0.5
+          for (let j = 0; j < step; j += radians) {
+            let c = j / step
+            let f = i / step
+            let index = Math.floor(2 * Math.random())
+            let pos = positions[index]
+            let size = sizes[index]
+            if (this.isLandByUV(img, imgData, c, f)) { // 根据横纵百分比判断在底图中的像素值
+              spherical.theta = c * Math.PI * 2 - Math.PI / 2 // 横纵百分比转换为theta和phi夹角
+              spherical.phi = f * Math.PI // 横纵百分比转换为theta和phi夹角
+              vec.setFromSpherical(spherical) // 夹角转换为世界坐标
+              pos.positions.push(vec.x)
+              pos.positions.push(vec.y)
+              pos.positions.push(vec.z)
+              if (j % 3 === 0) {
+                size.sizes.push(6.0)
               }
-
-              // 将新创建的模型添加进去
-              scene.add(knot)
             }
           }
-          var gui = new dat.GUI()
-          // 将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）gui.add(controls, 'size', 0, 10).onChange(controls.redraw);
-          gui.add(controls, 'radius', 0, 40).onChange(controls.redraw)
-          gui.add(controls, 'tube', 0, 40).onChange(controls.redraw)
-          gui.add(controls, 'radialSegments', 0, 400).step(1).onChange(controls.redraw)
-          gui.add(controls, 'tubularSegments', 1, 20).step(1).onChange(controls.redraw)
-          gui.add(controls, 'p', 1, 10).step(1).onChange(controls.redraw)
-          gui.add(controls, 'q', 1, 15).step(1).onChange(controls.redraw)
-          gui.add(controls, 'heightScale', 0, 5).onChange(controls.redraw)
-          gui.add(controls, 'asParticles').onChange(controls.redraw)
-          gui.add(controls, 'rotate').onChange(controls.redraw)
-
-          controls.redraw()
         }
-
-        var step = 0
-        function render() {
-          stats.update()
-
-          if (controls.rotate) {
-            knot.rotation.y = step += 0.01
+        for (let i = 0; i < positions.length; i++) {
+          let pos = positions[i]
+          let size = sizes[i]
+          let bufferGeom = new THREE.BufferGeometry()
+          let typedArr1 = new Float32Array(pos.positions.length)
+          let typedArr2 = new Float32Array(size.sizes.length)
+          for (let j = 0; j < pos.positions.length; j++) {
+            typedArr1[j] = pos.positions[j]
           }
-
-          renderer.render(scene, camera)
+          for (let j = 0; j < size.sizes.length; j++) {
+            typedArr2[j] = size.sizes[j]
+          }
+          bufferGeom.setAttribute('position', new THREE.BufferAttribute(typedArr1, 3))
+          bufferGeom.setAttribute('size', new THREE.BufferAttribute(typedArr2, 1))
+          bufferGeom.computeBoundingSphere()
+          let particle = new THREE.Points(bufferGeom, materials[i])
+          this.earthParticles.add(particle)
         }
+        this.scene.add(this.earthParticles)
       },
-      // 使用canvas创建纹理
-      generateSprite() {
-        var canvas = document.createElement('canvas')
-        canvas.width = 16
-        canvas.height = 16
-
-        var context = canvas.getContext('2d')
-        var gradient = context.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2)
-        gradient.addColorStop(0, 'rgba(255,255,255,1)')
-        gradient.addColorStop(0.2, 'rgba(0,255,255,1)')
-        gradient.addColorStop(0.4, 'rgba(0,0,64,1)')
-        gradient.addColorStop(1, 'rgba(0,0,0,1)')
-
-        context.fillStyle = gradient
-        context.fillRect(0, 0, canvas.width, canvas.height)
-
-        var texture = new THREE.Texture(canvas)
-        texture.needsUpdate = true
-        return texture
-      },
-      // 创建粒子系统
-      createPointCloud(geom) {
-        var material = new THREE.PointCloudMaterial({
-          color: 0xffffff,
-          size: 3,
-          transparent: true,
-          blending: THREE.AdditiveBlending,
-          map: generateSprite(),
-          depthTest: false
-        })
-
-        var cloud = new THREE.Points(geom, material)
-        cloud.sortParticles = true
-        return cloud
-      },
-      // 创建模型
-      createMesh(geom) {
-        // 创建两面都显示的纹理
-        var meshMaterial = new THREE.MeshNormalMaterial({})
-        meshMaterial.side = THREE.DoubleSide
-
-        // 生成模型
-        var mesh = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial])
-
-        return mesh
-      },
-      // 窗口变动触发的函数
-      onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight
-        camera.updateProjectionMatrix()
-
-        render()
-        renderer.setSize(window.innerWidth, window.innerHeight)
+      render() {
+        let delta = this.clock.getDelta()
+        // control.update(delta)
+        this.renderer.render(this.scene, this.camera)
       },
       animate() {
-        render()
-
-        // 更新性能插件
-        stats.update()
-        requestAnimationFrame(animate)
-      },
-      initRender() {
-        renderer = new THREE.WebGLRenderer({ antialias: true })
-        renderer.setClearColor(new THREE.Color(0x000000)) // 设置背景颜色
-        renderer.setSize(window.innerWidth, window.innerHeight)
-        document.body.appendChild(renderer.domElement)
-      },
-      draw() {
-        initRender()
-        initScene()
-        initCamera()
-        initLight()
-        initModel()
-        initStats()
-        initGui()
-
-        animate()
-        window.onresize = onWindowResize
+        requestAnimationFrame(this.animate)
+        // 球面粒子闪烁
+        let objects = this.earthParticles.children
+        objects.forEach(obj => {
+          let material = obj.material
+          material.t_ += material.speed_
+          material.opacity = (Math.sin(material.t_) * material.delta_ + material.min_) * material.opacity_coef_
+          material.needsUpdate = true
+        })
+        this.earthParticles.rotation.y += 0.01
+        this.render()
       }
     }
   }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  .model-container
+    width: 800px
+    height: 800px
+    position relative
+    left: 50%
+    top: 50%
+    transform translate(-50%, -50%)
+    >*
+      position absolute
+      left: 50%
+      top: 50%
+      transform translate(-50%, -50%)
 </style>
