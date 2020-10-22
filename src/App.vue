@@ -45,4 +45,10 @@
   #app
     height: 100%
     background-color: #062a5a
+  [flex]
+    display flex
+  [flex~='dir:col']
+    flex-direction column
+  [flex~='align:center']
+    align-items center
 </style>
