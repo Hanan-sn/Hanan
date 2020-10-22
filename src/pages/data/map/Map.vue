@@ -1,10 +1,16 @@
 <template>
-  <div class="map" flex>Map</div>
+  <div class="map" flex>Map
+    <City />
+  </div>
 </template>
 
 <script>
+  import City from '../../../components/Animation3D/City'
   export default {
-    name: 'Map'
+    name: 'Map',
+    components: {
+      City
+    }
   }
 </script>
 

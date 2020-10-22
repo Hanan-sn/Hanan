@@ -6,6 +6,7 @@
 
 <script>
   import * as THREE from 'three'
+
   export default {
     name: 'Map3D',
     data() {
@@ -38,7 +39,7 @@
     methods: {
       main() {
         const img = document.createElement('img')
-        img.src = require('@/assets/images/map3d/earth.jpg')
+        img.src = require('@/assets/images/img-for-3d/earth.jpg')
         img.onload = () => {
           const cvs = document.createElement('canvas')
           const ctx = cvs.getContext('2d')
@@ -104,7 +105,7 @@
           let mat = new THREE.PointsMaterial()
           mat.size = 5
           mat.color = new THREE.Color('#079cd1')
-          let img = require('@/assets/images/map3d/dot.png')
+          let img = require('@/assets/images/img-for-3d/dot.png')
           mat.map = new THREE.TextureLoader().load(img)
           // const cvs = document.createElement('canvas')
           // mat.map = new THREE.CanvasRenderer ().load('../../assets/images/dot.png')
@@ -192,11 +193,8 @@
   .model-container
     width: 800px
     height: 800px
-    position relative
-    left: 50%
-    top: 50%
-    transform translate(-50%, -50%)
-    >*
+
+    > *
       position absolute
       left: 50%
       top: 50%

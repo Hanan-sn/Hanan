@@ -1,10 +1,11 @@
 <template>
   <div class="overview" flex>
-    Overview
+    <SpritModel />
   </div>
 </template>
 
 <script>
+  import SpritModel from '../../../components/Animation3D/SpriteModel'
   import { mapState } from 'vuex'
   export default {
     name: 'Overview',
@@ -13,7 +14,7 @@
       }
     },
     components: {
-      // Panel
+      SpritModel
     },
     created() {
       // 初始化页面数据
