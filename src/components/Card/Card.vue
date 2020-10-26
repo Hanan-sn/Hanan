@@ -3,7 +3,7 @@
     <div class="card-title">
       <slot name="title"></slot>
     </div>
-    <div class="count-wrapper">
+    <div class="card-content">
       <slot name="content"></slot>
     </div>
   </div>
@@ -16,13 +16,18 @@
 </script>
 
 <style lang="stylus" scoped>
+.card
+  padding 20px
+  box-sizing border-box
+  border: 1px solid rgba(20,60,140,0.6)
+  background-color: #072056
+  color: #ffffff
   .card-title
-    background-image: url('~@/assets/images/summary/t_bg.png')
-    background-repeat: no-repeat
-    background-position: left bottom
     height 36px
-    margin-top: 6px
-
+    color #fff
+    text-shadow 0 0 3px #ffffff
+    font-weight: 700
+    text-align center
     span
       font-size: 18px
       font-weight: 700

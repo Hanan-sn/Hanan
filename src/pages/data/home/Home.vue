@@ -116,18 +116,4 @@ i
   -webkit-background-size: cover
   background-size: cover
   height: 100%
-.header
-  height 70px
-  background-image: url('~@/assets/images/home/top_bg.png')
-  background-repeat: no-repeat;
-  -webkit-background-size: 100% 100%
-  background-size: 100% 100%
-  text-align center
-  padding-top: 16px
-  box-sizing border-box
-  i
-    color: #00fff7;
-    font-size 24px
-    font-weight: 700
-    letter-spacing 10px
 </style>
