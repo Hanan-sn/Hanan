@@ -191,8 +191,8 @@
 
 <style lang="stylus" scoped>
   .model-container
-    width: 800px
-    height: 800px
+    width: 750px
+    height: 750px
 
     > *
       position absolute

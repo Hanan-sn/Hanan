@@ -1,5 +1,5 @@
 <template>
-<div class="side-panel">
+<div class="side-panel" flex="dir:col">
   <slot name="content"></slot>
 </div>
 </template>
@@ -13,5 +13,6 @@ export default {
 <style lang="stylus" scoped>
 .side-panel
   width: 450px
+  height: 100%
   margin: 0 20px
 </style>

@@ -1,103 +1,116 @@
 <template>
-  <div class="public">
-    <div class="header"><i>双公示专题</i></div>
-    <div flex>
-      <SidePanel>
-        <template #content>
-          <Card>
-            <template #title>
-              部门双公示数据统计情况
-            </template>
-            <template #content>
-              <div class="table-wrapper" flex="wrap justify:between">
-                <span>部门名称</span>
-                <span>数量（条）</span>
-                <span>入库率</span>
-              </div>
-              <swiper :options="swiperOptions"
-                      style="height: 160px; overflow: hidden">
-                <swiper-slide class="swiper-item"
-                              v-for="(item, index) in subList"
-                              :key="index"
-                              flex="wrap justify:between">
-                  <span>{{item.name}}</span>
-                  <span>{{item.count}}</span>
-                  <span class="percent">{{item.percent}}</span>
-                </swiper-slide>
-              </swiper>
-            </template>
-          </Card>
-          <Card>
-            <template #title>
-              双公示数据7天提报率
-            </template>
-            <template #content>
-              <chart theme="westeros" :options="submitBarOptions" style="width: 100%; height: 200px;"></chart>
-            </template>
-          </Card>
-        </template>
-      </SidePanel>
-      <CenterPanel>
-        <template #content>
-          <div class="center-board">
-            <Pyramid class="center-3d-bg" />
+  <div class="public" flex>
+    <SidePanel>
+      <template #content>
+        <Card style="margin-bottom: 10px;">
+          <template #title>
+            部门双公示数据统计情况
+          </template>
+          <template #content>
+            <div class="table-wrapper" flex="wrap justify:between">
+              <span>部门名称</span>
+              <span>数量（条）</span>
+              <span>入库率</span>
+            </div>
+            <swiper :options="swiperOptions"
+                    style="height: 280px; width: 100%; overflow: hidden">
+              <swiper-slide class="swiper-item"
+                            v-for="(item, index) in subList"
+                            :key="index"
+                            flex="wrap justify:between">
+                <span>{{item.name}}</span>
+                <span>{{item.count}}</span>
+                <span class="percent">{{item.percent}}</span>
+              </swiper-slide>
+            </swiper>
+          </template>
+        </Card>
+        <Card style="flex: 1;">
+          <template #title>
+            双公示数据7天提报率
+          </template>
+          <template #content>
+            <chart theme="westeros" :options="submitBarOptions" style="width: 100%; flex: 1;"></chart>
+          </template>
+        </Card>
+      </template>
+    </SidePanel>
+    <CenterPanel>
+      <template #content>
+        <div class="center-board" style="flex: 1;">
+          <Pyramid class="center-3d-bg" />
+          <div class="count-tip" flex="dir:col">
+            <span><i>法人行政许可</i></span>
+            <span><i class="num">100</i><i class="unit">(条)</i></span>
           </div>
-          <Card>
-            <template #title>
-              双公示采集情况
-            </template>
-            <template #content>
-              <chart style="width: 100%; height: 190px;"
-                     theme="westeros"
-                     :options="resLineOptions"></chart>
-            </template>
-          </Card>
-        </template>
-      </CenterPanel>
-      <SidePanel>
-        <template #content>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              一周新增
-            </template>
-            <template #content>
-              <div class="week-data" flex>
-                <div class="inner-container" flex="align:center">
-                  <div class="icon-container"><i class="iconfont icon-gongshixuke" style="font-size: 32px"></i></div>
-                  <div flex="dir:col">
-                    <span><i class="sub">行政许可数量</i></span>
-                    <span><i class="num">3500</i><i class="unit">(条)</i></span>
-                  </div>
-                </div>
-                <div class="inner-container" flex="align:center">
-                  <div class="icon-container" ><i class="iconfont icon-winfo-icon-hangzhengchufa"></i></div>
-                  <div flex="dir:col">
-                    <span><i class="sub">行政处罚数量</i></span>
-                    <span><i class="num">3500</i><i class="unit">(条)</i></span>
-                  </div>
+          <div class="count-tip" flex="dir:col">
+            <span><i>法人行政处罚</i></span>
+            <span><i class="num">100</i><i class="unit">(条)</i></span>
+          </div>
+          <div class="count-tip" flex="dir:col">
+            <span><i>自然人行政许可</i></span>
+            <span><i class="num">100</i><i class="unit">(条)</i></span>
+          </div>
+          <div class="count-tip" flex="dir:col">
+            <span><i>自然人行政处罚</i></span>
+            <span><i class="num">100</i><i class="unit">(条)</i></span>
+          </div>
+        </div>
+        <Card>
+          <template #title>
+            双公示采集情况
+          </template>
+          <template #content>
+            <chart style="width: 100%; height: 190px;"
+                   theme="westeros"
+                   :options="resLineOptions"></chart>
+          </template>
+        </Card>
+      </template>
+    </CenterPanel>
+    <SidePanel>
+      <template #content>
+        <Card style="margin-bottom: 10px;">
+          <template #title>
+            一周新增
+          </template>
+          <template #content>
+            <div class="week-data" flex>
+              <div class="inner-container" flex="align:center">
+                <div class="icon-container"><i class="iconfont icon-gongshixuke" style="font-size: 32px"></i></div>
+                <div flex="dir:col">
+                  <span><i class="sub">行政许可数量</i></span>
+                  <span><i class="num">3500</i><i class="unit">(条)</i></span>
                 </div>
               </div>
-            </template>
-          </Card>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              处罚修复数据统计
-            </template>
-            <template #content>
-              <chart theme="westeros" :options="repairBarOptions" style="width: 100%; height: 200px;"></chart>
-            </template>
-          </Card>
-          <Card>
-            <template #title>
-              行政许可种类分布
-            </template>
-            <template #content>
-              <chart theme="westeros" :options="resPieOptions" style="width: 100%; height: 200px;"></chart>
-            </template>
-          </Card>
-        </template>
-      </SidePanel>
-    </div>
+              <div class="inner-container" flex="align:center">
+                <div class="icon-container" ><i class="iconfont icon-winfo-icon-hangzhengchufa"></i></div>
+                <div flex="dir:col">
+                  <span><i class="sub">行政处罚数量</i></span>
+                  <span><i class="num">3500</i><i class="unit">(条)</i></span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </Card>
+        <Card style="margin-bottom: 10px; flex: 1;">
+          <template #title>
+            处罚修复数据统计
+          </template>
+          <template #content>
+            <chart theme="westeros" :options="repairBarOptions" style="width: 100%; flex: 1;"></chart>
+          </template>
+        </Card>
+        <Card style="flex: 1;">
+          <template #title>
+            行政许可种类分布
+          </template>
+          <template #content>
+            <chart theme="westeros" :options="resPieOptions" style="width: 100%; flex: 1;"></chart>
+          </template>
+        </Card>
+      </template>
+    </SidePanel>
   </div>
 </template>
 
@@ -114,7 +127,7 @@
         swiperOptions: {
           direction: 'vertical',
           loop: true,
-          slidesPerView: 6
+          slidesPerView: 8
         },
         resLineOptions: {
           xAxis: {
@@ -171,8 +184,8 @@
             type: 'value'
           },
           grid: {
-            top: '16%',
-            bottom: '16%'
+            top: 40,
+            bottom: 40
           },
           series: [{
             data: [120, 150, 80, 70, 110, 130],
@@ -202,8 +215,8 @@
             type: 'value'
           },
           grid: {
-            top: '16%',
-            bottom: '16%'
+            top: 40,
+            bottom: 40
           },
           series: [{
             data: [120, 150, 80, 70, 110, 130],
@@ -234,13 +247,6 @@
               type: 'pie',
               radius: ['50%', '70%'],
               avoidLabelOverlap: false,
-              emphasis: {
-                label: {
-                  show: true,
-                  fontSize: '30',
-                  fontWeight: 'bold'
-                }
-              },
               labelLine: {
                 show: false
               },
@@ -288,22 +294,32 @@
       top: 50%
       left: 50%
       transform translate(-50%, -50%)
-.table-wrapper
-  background-color: rgba(15,60,150,0.4)
-  height: 31px
-  line-height: 31px
-  span
-    flex: 1
-    text-align center
-.swiper-item
-  line-height: 30px
-  &:nth-child(even)
-    background-color: rgba(15,60,150,0.4)
-  span
-    flex: 1
-    text-align center
-    &:nth-child(3)
-      color: #17C2EA;
+
+    .count-tip
+      position absolute
+      color: #fff;
+      padding: 10px 20px
+      background-color: rgba(100,120,250,0.4)
+      border: 1px solid rgba(100,120,250,0.8)
+      text-align right
+      width: 160px
+      height: 72px
+      line-height: 26px
+      -webkit-border-radius: 2px
+      -moz-border-radius: 2px
+      border-radius: 2px
+      &:nth-child(2)
+        left: 10%
+        top: 80px
+      &:nth-child(3)
+        left: 10%
+        bottom: 80px
+      &:nth-child(4)
+        right: 10%
+        top: 80px
+      &:nth-child(5)
+        right: 10%
+        bottom: 80px
 .week-data
   .inner-container
     width: 50%

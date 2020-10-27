@@ -22,15 +22,14 @@
     }
     echarts.registerTheme('westeros', {
         "color": [
-            "#a5adf0",
-            "#19939e",
-            "#e2416a",
-            "#fcc729",
-            "#de862d",
-            "#90e6c3",
-            "#28a4a6"
+          "#00ccff",
+          "#0087f0",
+          "#e2416a",
+          "#fcc729",
+          "#de862d",
+          "#90e6c3",
+          "#28a4a6"
         ],
-        "backgroundColor": "#052361",
         "textStyle": {},
         "title": {
             "textStyle": {

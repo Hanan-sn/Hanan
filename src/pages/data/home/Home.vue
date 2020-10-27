@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <div class="header"><i>信用大数据可视化分析</i></div>
-    <div class="bg">
+    <div class="absolute">
       <Earth3D />
     </div>
 <!--    Home<br>-->
@@ -77,12 +76,7 @@
 </script>
 
 <style lang="stylus" scoped>
-.bg
-  position absolute
-  top: 50%
-  left: 50%
-  transform translate(-50%, -50%)
-  z-index 1
+
 .swiper-menu
   position absolute
   top: 50%
@@ -111,9 +105,10 @@ i
   i
     color: #00fff7
     line-height: 36px
-.home
-  background-image: url('~@/assets/images/home/bg.jpg')
-  -webkit-background-size: cover
-  background-size: cover
-  height: 100%
+.absolute
+  position absolute
+  top: 50%
+  left: 50%
+  transform translate(-50%, -50%)
+  z-index 1
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-cloak>
+  <div id="app" :class="this.$route.path === '/home' ? 'bg' : ''" v-cloak flex="dir:col">
     <!--<div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
       <span class="page-title">
         {{ returnRouteName() }}
@@ -8,10 +8,12 @@
           <router-link to="/home">返回</router-link>
       </span>
     </div>-->
+    <Header :title="returnRouteName()"></Header>
     <router-view/>
   </div>
 </template>
 <script>
+  import Header from './components/Header/Header'
   export default {
     name: 'app',
     methods: {
@@ -28,8 +30,13 @@
             return '联合奖惩专题'
           case '/map':
             return '区域数据归集'
+          case '/home':
+            return '信用大数据展示系统'
         }
       }
+    },
+    components: {
+      Header
     }
   }
 </script>
@@ -49,6 +56,13 @@
   #app
     height: 100%
     background-color: #062a5a
+    min-width 1920px
+    min-height 978px
+  .bg
+    background-image: url('~@/assets/images/home/bg.jpg')
+    -webkit-background-size: cover
+    background-size: cover
+    height: 100%
   [flex]
     display flex
   [flex~='dir:col']
@@ -63,20 +77,6 @@
     justify-content space-between
   [flex~='justify:center']
     justify-content center
-  .header
-    height 70px
-    background-image: url('~@/assets/images/home/top_bg.png')
-    background-repeat: no-repeat;
-    -webkit-background-size: 100% 100%
-    background-size: 100% 100%
-    text-align center
-    padding-top: 16px
-    box-sizing border-box
-    i
-      color: #00fff7;
-      font-size 24px
-      font-weight: 700
-      letter-spacing 10px
   .sub
     color #fff
     font-size 12px
@@ -87,4 +87,20 @@
     color: #17C2EA
     font-weight: 700
     font-size 18px
+  .table-wrapper
+    background-color: #103c95
+    height: 31px
+    line-height: 31px
+    span
+      flex: 1
+      text-align center
+  .swiper-item
+    line-height: 30px
+    &:nth-child(odd)
+      background-color: #103c95
+    span
+      flex: 1
+      text-align center
+      &:nth-child(3)
+        color: #17C2EA;
 </style>

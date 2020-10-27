@@ -1,146 +1,143 @@
 <template>
-  <div class="summary">
-    <div class="header"><i>数据归集专题</i></div>
+  <div class="summary" flex>
     <!--<SpritModel />-->
-    <div flex>
-      <SidePanel>
-        <template #content>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              联合奖惩
-            </template>
-            <template #content>
-              <div class="inner-wrapper" flex>
-                <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
-                  <span><i class="iconfont icon-shujuku"></i></span>
-                  <span><i class="sub">归集数量</i><i class="unit">(个)</i></span>
-                  <span><i class="num">5600</i></span>
-                </div>
-                <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
-                  <span><i class="iconfont icon-kehushangbao"></i></span>
-                  <span><i class="sub">上报数据量</i><i class="unit">(个)</i></span>
-                  <span><i class="num">1000</i></span>
-                </div>
-                <div class="count-card" flex="dir:col align:center">
-                  <span><i class="iconfont icon-jiaohuan"></i></span>
-                  <span><i class="sub">回流数据量</i><i class="unit">(个)</i></span>
-                  <span><i class="num">100</i></span>
-                </div>
+    <SidePanel>
+      <template #content>
+        <Card style="margin-bottom: 10px;">
+          <template #title>
+            联合奖惩
+          </template>
+          <template #content>
+            <div class="inner-wrapper" flex>
+              <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
+                <span><i class="iconfont icon-shujuku"></i></span>
+                <span><i class="sub">归集数量</i><i class="unit">(个)</i></span>
+                <span><i class="num">5600</i></span>
               </div>
-            </template>
-          </Card>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              资源信息分类统计
-            </template>
-            <template #content>
-              <div class="inner-wrapper" flex>
-                <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
-                  <span><i class="sub">一级分类</i><i class="unit">(个)</i></span>
-                  <span><i class="num">5600</i></span>
-                </div>
-                <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
-                  <span><i class="sub">二级分类</i><i class="unit">(个)</i></span>
-                  <span><i class="num">1000</i></span>
-                </div>
-                <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
-                  <span><i class="sub">资源数</i><i class="unit">(个)</i></span>
-                  <span><i class="num">1000</i></span>
-                </div>
-                <div class="count-card" flex="dir:col align:center">
-                  <span><i class="sub">部门数</i><i class="unit">(个)</i></span>
-                  <span><i class="num">100</i></span>
-                </div>
+              <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
+                <span><i class="iconfont icon-kehushangbao"></i></span>
+                <span><i class="sub">上报数据量</i><i class="unit">(个)</i></span>
+                <span><i class="num">1000</i></span>
               </div>
-              <chart theme="westeros" :options="resBarOptions" style="width: 100%; height: 160px;"></chart>
-            </template>
-          </Card>
-          <Card>
-            <template #title>
-              部门数据归集分类统计
-            </template>
-            <template #content>
-              <div class="table-wrapper" flex="wrap justify:between">
-                <span>部门名称</span>
-                <span>数量（条）</span>
-                <span>入库率</span>
+              <div class="count-card" flex="dir:col align:center">
+                <span><i class="iconfont icon-jiaohuan"></i></span>
+                <span><i class="sub">回流数据量</i><i class="unit">(个)</i></span>
+                <span><i class="num">100</i></span>
               </div>
-              <swiper :options="swiperOptions"
-                      style="height: 160px; overflow: hidden">
-                <swiper-slide class="swiper-item"
-                              v-for="(item, index) in subList"
-                              :key="index"
-                              flex="wrap justify:between">
-                  <span>{{item.name}}</span>
-                  <span>{{item.count}}</span>
-                  <span class="percent">{{item.percent}}</span>
-                </swiper-slide>
-              </swiper>
-            </template>
-          </Card>
-        </template>
-      </SidePanel>
-      <CenterPanel>
-        <template #content>
-          <div class="msg-wrapper">
+            </div>
+          </template>
+        </Card>
+        <Card style="margin-bottom: 10px; flex: 1;">
+          <template #title>
+            资源信息分类统计
+          </template>
+          <template #content>
+            <div class="inner-wrapper" flex>
+              <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
+                <span><i class="sub">一级分类</i><i class="unit">(个)</i></span>
+                <span><i class="num">5600</i></span>
+              </div>
+              <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
+                <span><i class="sub">二级分类</i><i class="unit">(个)</i></span>
+                <span><i class="num">1000</i></span>
+              </div>
+              <div class="count-card" flex="dir:col align:center" style="margin-right: 8px;">
+                <span><i class="sub">资源数</i><i class="unit">(个)</i></span>
+                <span><i class="num">1000</i></span>
+              </div>
+              <div class="count-card" flex="dir:col align:center">
+                <span><i class="sub">部门数</i><i class="unit">(个)</i></span>
+                <span><i class="num">100</i></span>
+              </div>
+            </div>
+            <chart theme="westeros" :options="resBarOptions" style="width: 100%; flex: 1;"></chart>
+          </template>
+        </Card>
+        <Card style="margin-bottom: 10px;">
+          <template #title>
+            部门数据归集分类统计
+          </template>
+          <template #content>
+            <div class="table-wrapper" flex="wrap justify:between">
+              <span>部门名称</span>
+              <span>数量（条）</span>
+              <span>入库率</span>
+            </div>
+            <swiper :options="swiperOptions"
+                    style="height: 160px; width: 100%; overflow: hidden">
+              <swiper-slide class="swiper-item"
+                            v-for="(item, index) in subList"
+                            :key="index"
+                            flex="wrap justify:between">
+                <span>{{item.name}}</span>
+                <span>{{item.count}}</span>
+                <span class="percent">{{item.percent}}</span>
+              </swiper-slide>
+            </swiper>
+          </template>
+        </Card>
+      </template>
+    </SidePanel>
+    <CenterPanel>
+      <template #content>
+        <div class="msg-wrapper">
 
-          </div>
-          <Card style="height: 270px;">
-            <template #title>资源信息归集趋势</template>
-            <template #content>
-              <chart style="width: 100%; height: 190px;"
-                     theme="westeros"
-                     :options="resLineOptions"></chart>
-            </template>
-          </Card>
-        </template>
-      </CenterPanel>
-      <SidePanel>
-        <template #content>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              数据归集来源对比
-            </template>
-            <template #content>
-              <chart style="width: 100%; height: 152px;"
-                     theme="westeros"
-                     :options="resRoseOptions"></chart>
-            </template>
-          </Card>
-          <Card style="margin-bottom: 10px;">
-            <template #title>
-              数据提报部门
-            </template>
-            <template #content>
-              <chart theme="westeros" :options="resPieOptions" style="width: 100%; height: 153px;"></chart>
-            </template>
-          </Card>
-          <Card>
-            <template #title>
-              数据提报部门
-            </template>
-            <template #content>
-              <div class="table-wrapper" flex="wrap justify:between">
-                <span>部门名称</span>
-                <span>数量（条）</span>
-                <span>入库率</span>
-              </div>
-              <swiper :options="swiperOptions"
-                      style="height: 160px; overflow: hidden">
-                <swiper-slide class="swiper-item"
-                              v-for="(item, index) in subList"
-                              :key="index"
-                              flex="wrap justify:between">
-                  <span>{{item.name}}</span>
-                  <span>{{item.count}}</span>
-                  <span class="percent">{{item.percent}}</span>
-                </swiper-slide>
-              </swiper>
-            </template>
-          </Card>
-        </template>
-      </SidePanel>
-    </div>
+        </div>
+        <Card style="height: 270px; margin-bottom: 10px;">
+          <template #title>资源信息归集趋势</template>
+          <template #content>
+            <chart style="width: 100%; height: 190px;"
+                   theme="westeros"
+                   :options="resLineOptions"></chart>
+          </template>
+        </Card>
+      </template>
+    </CenterPanel>
+    <SidePanel>
+      <template #content>
+        <Card style="flex: 1;">
+          <template #title>
+            数据归集来源对比
+          </template>
+          <template #content>
+            <chart style="width: 100%; flex: 1;"
+                   theme="westeros"
+                   :options="resRoseOptions"></chart>
+          </template>
+        </Card>
+        <Card style="flex: 1;">
+          <template #title>
+            数据提报部门
+          </template>
+          <template #content>
+            <chart theme="westeros" :options="resPieOptions" style="width: 100%; flex: 1;"></chart>
+          </template>
+        </Card>
+        <Card>
+          <template #title>
+            数据提报部门
+          </template>
+          <template #content>
+            <div class="table-wrapper" flex="wrap justify:between">
+              <span>部门名称</span>
+              <span>数量(个)</span>
+              <span>入库率</span>
+            </div>
+            <swiper :options="swiperOptions"
+                    style="height: 160px; width: 100%; overflow: hidden">
+              <swiper-slide class="swiper-item"
+                            v-for="(item, index) in subList"
+                            :key="index"
+                            flex="wrap justify:between">
+                <span>{{item.name}}</span>
+                <span>{{item.count}}</span>
+                <span class="percent">{{item.percent}}</span>
+              </swiper-slide>
+            </swiper>
+          </template>
+        </Card>
+      </template>
+    </SidePanel>
   </div>
 </template>
 
@@ -205,15 +202,6 @@
           tooltip: {
             trigger: 'item',
               formatter: '{a} <br/>{b} : {c} ({d}%)'
-          },
-
-          visualMap: {
-            show: false,
-              min: 80,
-              max: 600,
-              inRange: {
-              colorLightness: [0, 1]
-            }
           },
           series: [
             {
@@ -325,7 +313,7 @@
 
 <style lang="stylus" scoped>
 .summary
-  height: 100%
+  flex: 1
   box-sizing border-box
   .count-card
     flex: 1
@@ -336,21 +324,6 @@
       font-size 28px
       color: #17C2EA
   .msg-wrapper
-    height: 480px
-.table-wrapper
-  background-color: rgba(15,60,150,0.4)
-  height: 31px
-  line-height: 31px
-  span
     flex: 1
-    text-align center
-.swiper-item
-  line-height: 30px
-  &:nth-child(even)
-    background-color: rgba(15,60,150,0.4)
-  span
-    flex: 1
-    text-align center
-    &:nth-child(3)
-      color: #17C2EA;
+
 </style>

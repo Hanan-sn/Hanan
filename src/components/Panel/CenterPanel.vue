@@ -1,5 +1,5 @@
 <template>
-<div class="center-panel">
+<div class="center-panel" flex="dir:col">
   <slot name="content"></slot>
 </div>
 </template>
@@ -13,4 +13,5 @@ name: 'CenterPanel'
 <style lang="stylus" scoped>
 .center-panel
   flex: 1
+  height: 100%
 </style>
