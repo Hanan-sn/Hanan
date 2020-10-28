@@ -80,8 +80,8 @@
 
         spotLight.target = cylinderCopy
         this.scene.add(spotLight)
-        this.camera.position.z = 8
-        this.camera.position.y = 3
+        this.camera.position.z = 7
+        this.camera.position.y = 2.5
         this.group.rotation.x = 0.2
         this.animate()
       },

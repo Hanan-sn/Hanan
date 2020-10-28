@@ -11,37 +11,122 @@
               <div class="row" flex>
                 <div class="cell" flex="dir:col">
                   <span><i>总计奖惩</i></span>
-                  <span><i class="num">1000</i><i>(个)</i></span>
+                  <span><i class="num">1000</i><i>（个）</i></span>
                 </div>
                 <div class="cell" flex="dir:col">
                   <span><i>总计奖惩</i></span>
-                  <span><i class="num">1000</i><i>(个)</i></span>
+                  <span><i class="num">1000</i><i>（个）</i></span>
                 </div>
                 <div class="cell" flex="dir:col">
                   <span><i>总计奖惩</i></span>
-                  <span><i class="num">1000</i><i>(个)</i></span>
+                  <span><i class="num">1000</i><i>（个）</i></span>
                 </div>
               </div>
               <div class="row" flex>
-                <div class="cell" flex="dir:col">
-                  <span><i>总计奖惩</i></span>
-                  <span><i class="num">1000</i><i>(个)</i></span>
+                <div class="cell" flex="dir:col align:center">
+                  <span><i>自然人</i></span>
+                  <span><i class="num">20000</i><i>（个）</i></span>
                 </div>
                 <div class="cell" flex="dir:col">
-                  <span><i>总计奖惩</i></span>
-                  <span><i class="num">1000</i><i>(个)</i></span>
+                  <span flex="justify:around"><i>激励</i><i class="num">10000</i><i>（个）</i></span>
+                  <span flex="justify:around"><i>惩戒</i><i class="num">10000</i><i>（个）</i></span>
+                </div>
+              </div>
+              <div class="row" flex>
+                <div class="cell" flex="dir:col align:center">
+                  <span flex="justify:center"><i>法人</i></span>
+                  <span><i class="num">20000</i><i>（个）</i></span>
+                </div>
+                <div class="cell" flex="dir:col">
+                  <span flex="justify:around"><i>激励</i><i class="num">10000</i><i>（个）</i></span>
+                  <span flex="justify:around"><i>惩戒</i><i class="num">10000</i><i>（个）</i></span>
                 </div>
               </div>
             </div>
           </template>
         </Card>
-        <Card>
+        <Card style="flex: 1;" class="special-card">
           <template #title>
             红黑名单统计
           </template>
           <template #content>
             <div class="inner-wrapper">
-              1
+              <div class="red-list">
+                <i style="color:orangered;">红名单</i>
+                <i class="num">145315</i>
+                <i class="unit">（个）</i>
+              </div>
+              <div class="row" flex>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-renzheng"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>海关认证企业</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-zhiyuan"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>A级纳税人</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row" flex>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-chengxin"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>社会法人诚实守信</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-wj-zyzdj"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>优秀青年志愿者</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="inner-wrapper">
+              <div class="red-list">
+                <i>黑名单</i>
+                <i class="num">145315</i>
+                <i class="unit">（个）</i>
+              </div>
+              <div class="row" flex>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-shixin"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>失信被执行人</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-offence"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>重大税收违法案件</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row" flex>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-wodegongzi"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>拖欠农民工工资</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+                <div class="cell" flex="align:center justify:around">
+                  <i class="iconfont icon-shixin"></i>
+                  <div flex="dir:col">
+                    <span class="label"><i>严重失信债务人</i></span>
+                    <span><i class="num">10000</i><i class="unit">（个）</i></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </template>
         </Card>
@@ -351,14 +436,34 @@ export default {
   box-sizing border-box
   padding-top: 10px
   height: 100%
+  .special-card
+    >>>.card-content
+      display flex
+      flex-direction column
+      justify-content space-around
   .inner-wrapper
+    margin-bottom: 20px
+    .red-list, .black-list
+      background-color: #22408e
+      width: 220px
+      margin: 0 auto
+      padding 6px 10px
+      display flex
+      justify-content space-around
+      align-items center
+      margin-bottom: 20px
     .row
+      margin-bottom: 8px
       .cell
         flex: 1
+        padding: 4px 10px
         background-color: #305DD2
         margin-right: 6px
         &:last-child
           margin-right: 0
+        .label
+          display block
+          width: 130px
   .swiper-item
     &:nth-child(odd)
       background-color: transparent

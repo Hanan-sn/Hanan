@@ -58,7 +58,9 @@
           loop: true, // 循环模式选项
           effect : 'coverflow',
           slidesPerView: 3,
-          autoPlay: {}
+          autoplay: {
+            delay: 4000,
+          }
         }
       }
     },

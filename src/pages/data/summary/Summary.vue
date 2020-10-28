@@ -80,8 +80,61 @@
     </SidePanel>
     <CenterPanel>
       <template #content>
-        <div class="msg-wrapper">
-
+        <div class="msg-wrapper" flex>
+          <div class="left" flex="dir:col">
+            <div class="left-inner" flex="dir:col">
+              <div class="bd-container">
+                <span><i>资源信息数量</i></span>
+                <span><i class="num">14895</i><i class="unit">（个）</i></span>
+              </div>
+            </div>
+            <div class="left-inner" flex="dir:col">
+              <div class="bd-container">
+                <span><i>数据归集总量</i></span>
+                <span><i class="num">14895</i><i class="unit">（个）</i></span>
+              </div>
+            </div>
+            <div class="left-inner" flex="dir:col">
+              <div class="bd-container">
+                <span><i>本月归集总量</i></span>
+                <span><i class="num">14895</i><i class="unit">（个）</i></span>
+              </div>
+            </div>
+          </div>
+          <div class="right" flex="wrap">
+            <div class="item">
+              <div class="inner">
+                <div class="light-container" flex="dir:col">
+                  <span><i>自然人数据总量</i></span>
+                  <span><i class="num">56124</i><i>（个）</i></span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="inner">
+                <div class="light-container" flex="dir:col">
+                  <span><i>法人数据总量</i></span>
+                  <span><i class="num">56124</i><i>（个）</i></span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="inner">
+                <div class="light-container" flex="dir:col">
+                  <span><i>重点人群数据总量</i></span>
+                  <span><i class="num">56124</i><i>（个）</i></span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="inner">
+                <div class="light-container" flex="dir:col">
+                  <span><i>验证通过</i></span>
+                  <span><i class="num">56124</i><i>（个）</i></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <Card style="height: 270px; margin-bottom: 10px;">
           <template #title>资源信息归集趋势</template>
@@ -325,5 +378,56 @@
       color: #17C2EA
   .msg-wrapper
     flex: 1
+    color: #fff;
+    .left
+      justify-content space-around
+      width: 150px
+      align-items center
+      line-height: 30px
+      .left-inner
+        border: 1px solid #6e738b
+        height: 80px
+        width: 130px
+        .bd-container
+          display block
+          transform translateY(-1px)
+          height 120%
+          width: 90%
+          margin: 0 auto
+          padding: 0px 6px;
+          background-color: #062a5a
+          line-height: 40px
+          span
+            display block
+    .right
+      flex: 1
+      padding: 0 50px
+      .item
+        width: 50%
+        height 45%
+        position relative
+        .inner
+          position absolute
+          width: 224px
+          height: 200px
+          top: 50%
+          left: 50%
+          transform translate(-50%, -50%)
+          background-image: url('~@/assets/images/summary/tuopan.png')
+          background-repeat: no-repeat;
+          background-position: 0 bottom
+          .light-container
+            align-items center
+            line-height: 30px
+            width: 150px
+            position absolute
+            top: 10%
+            left: 50%
+            padding: 10px 8px
+            transform translateX(-50%)
+            //background-image: url('~@/assets/images/summary/guang.png')
+            //background-repeat: no-repeat;
+            //background-size: cover;
+            //background-position: center 0
 
 </style>

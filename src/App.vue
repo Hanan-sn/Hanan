@@ -58,6 +58,7 @@
     background-color: #062a5a
     min-width 1920px
     min-height 978px
+    position relative
   .bg
     background-image: url('~@/assets/images/home/bg.jpg')
     -webkit-background-size: cover

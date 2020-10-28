@@ -257,6 +257,7 @@
             bottom: '6%',
             containLabel: true
           },
+          barWidth: 20,
           xAxis: {
             type: 'value',
             boundaryGap: [0, 0.01]
