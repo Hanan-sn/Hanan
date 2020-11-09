@@ -1,5 +1,7 @@
 # 大数据展示项目
 
+[当前版本已添加多版至v1.0.3](https://github.com/Mario343214420/big-data-demo/blob/v1.0.3/docs/guide/index.md)
+
 [预览](https://www.github.io/***)
 
 基于vue-cli编写开发，添加粒子等风格动效的数据展示系统，不断优化数据切换及显示效果，提高友好度与美观度。
