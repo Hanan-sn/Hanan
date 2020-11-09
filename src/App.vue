@@ -1,6 +1,7 @@
 <template>
   <div id="app" v-cloak>
-    <div v-if="this.$route.path !== '/home' && this.$route.path !== '/home2'" class="page-title-wrapper">
+    <div v-if="this.$route.path !== '/home'" class="page-title-wrapper">
+      <Header />
       <span class="page-title">
         {{ returnRouteName() }}
       </span>
@@ -12,8 +13,15 @@
   </div>
 </template>
 <script>
+  import Header from './components/Header/Header'
+
   export default {
     name: 'app',
+    data() {
+      return {
+        router: this.$router
+      }
+    },
     methods: {
       returnRouteName() {
         let route = this.$route.path
@@ -30,6 +38,9 @@
             return '区域数据归集'
         }
       }
+    },
+    components: {
+      Header
     }
   }
 </script>
@@ -37,4 +48,20 @@
   [v-cloak] {
     display: none;
   }
+
+  html, body
+    width: 100%
+    height: 100%
+    padding: 0
+    margin: 0
+
+  #app
+    background-color: #16171c
+    width: 100%
+    height: 100%
+    color #fff
+
+  .border-box
+    border: 1px solid #232831
+    margin: 8px
 </style>

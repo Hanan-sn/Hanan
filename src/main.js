@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 // mock
 import './mock/mockServer'
-
+import './assets/styles/base/base.styl'
 new Vue({
   router,
   store,
