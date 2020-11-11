@@ -1,15 +1,9 @@
 <template>
-  <div id="app" v-cloak>
+  <div id="app" v-cloak flex="dir:col">
     <div v-if="this.$route.path !== '/home'" class="page-title-wrapper">
       <Header />
-      <span class="page-title">
-        {{ returnRouteName() }}
-      </span>
-      <span class="to-home">
-          <router-link to="/home">返回</router-link>
-      </span>
     </div>
-    <router-view/>
+    <router-view flex-box="1" flex="dir:col" />
   </div>
 </template>
 <script>

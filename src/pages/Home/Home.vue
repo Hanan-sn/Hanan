@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Wave />
     <div class="links">
       <router-link to="/overview">系统概况专题</router-link>
       <router-link to="/summary">数据归集专题</router-link>
@@ -10,8 +11,12 @@
 </template>
 
 <script>
+  import Wave from '../../components/Wave/Wave'
     export default {
-        name: 'Home'
+        name: 'Home',
+      components: {
+        Wave
+      }
     }
 </script>
 
