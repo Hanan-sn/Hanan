@@ -76,9 +76,9 @@
             <chart style="width: 100%; height: 100%;" theme="my" :options="unionPieOptions" />
           </div>
           <div class="border-box" flex-box="1">
+            <chart style="width: 100%; height: 100%;" theme="my" :options="classicBarOptions"></chart>
           </div>
           <div class="border-box" style="width: 400px; box-sizing: border-box">
-
           </div>
         </div>
         <div class="inner-wrapper" flex-box="1" flex>
@@ -86,7 +86,7 @@
             <chart style="width: 100%; height: 100%;" theme="my" :options="exchangeBarOptions"></chart>
           </div>
           <div class="border-box" flex-box="1">
-
+            <chart style="height: 100%; width: 100%;" theme="my" :options="exchangeLineOptions"></chart>
           </div>
           <div class="border-box" style="width: 400px;">
 
@@ -177,8 +177,78 @@
               data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
             }
           ]
+        },
+        classicBarOptions: {
+          dataset: {
+            source: [
+              ['score', '条', 'product'],
+              [89.3, 58212, '基础信息'],
+              [57.1, 78254, '业务信息'],
+              [74.4, 41032, '司法信息'],
+              [50.1, 12755, '行政执法信息'],
+              [89.7, 20145, '公共事业信息'],
+              [68.1, 79146, '信用评级信息'],
+              [19.6, 91852, '其他信息']
+            ]
+          },
+          grid: { containLabel: true },
+          xAxis: { name: '条', nameTextStyle: { color: '#fff' } },
+          yAxis: { type: 'category' },
+          series: [
+            {
+              type: 'bar',
+              encode: {
+                // Map the "amount" column to X axis.
+                x: 'amount',
+                // Map the "product" column to Y axis
+                y: 'product'
+              }
+            }
+          ]
+        },
+        exchangeLineOptions: {
+          title: {
+            text: '信用报告查询总次数: 300000'
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#6a7985'
+              }
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: [
+            {
+              type: 'category',
+              boundaryGap: false,
+              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value'
+            }
+          ],
+          series: [
+            {
+              type: 'line',
+              stack: '总量',
+              areaStyle: {},
+              data: [120, 132, 101, 134, 90, 230, 132, 101, 134, 90, 230, 210]
+            }
+          ]
         }
       }
+    },
+    mounted () {
     },
     methods: {
       curring () {

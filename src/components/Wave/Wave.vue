@@ -17,6 +17,7 @@
         particles: [],
         particle: null,
         separation: 100,
+        animation: null,
         amountX: 50,
         amountY: 50,
         count: 0
@@ -24,6 +25,9 @@
     },
     mounted() {
       this.init()
+    },
+    beforeDestroy() {
+      cancelAnimationFrame(this.animation)
     },
     methods: {
       // 初始化
@@ -35,7 +39,7 @@
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000)
         this.material = new THREE.SpriteMaterial({ map })
         this.group = new THREE.Group()
-        this.renderer = new THREE.WebGLRenderer()
+        this.renderer = new THREE.WebGLRenderer({ alpha: true })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.camera.lookAt(this.scene.position)
         let i = 0
@@ -55,7 +59,7 @@
       },
       // 动画
       animate() {
-        requestAnimationFrame(this.animate)
+        this.animation = requestAnimationFrame(this.animate)
         this.render()
       },
       // 渲染
