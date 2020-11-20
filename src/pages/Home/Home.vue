@@ -22,15 +22,26 @@
 
 <style lang="stylus" scoped>
 .home
+  position absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
   .wave
-    position relative
+    position absolute
     z-index 10
   .links
     position absolute
-    top: 0
-    left: 0
+    font-size: 24px
+    line-height: 50px
+    top: 100px
+    left: 100px
     z-index 12
     display flex
     flex-direction column
-
+    a
+      transition text-shadow linear 0.6s, transform linear 0.6s
+      &:hover
+        transform translate(1px, 1px)
+        text-shadow -2px -1px 2px #24ecec
 </style>

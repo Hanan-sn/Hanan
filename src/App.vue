@@ -1,9 +1,13 @@
 <template>
   <div id="app" v-cloak flex="dir:col">
-    <div v-if="this.$route.path !== '/home'" class="page-title-wrapper">
-      <Header />
-    </div>
-    <router-view flex-box="1" flex="dir:col" />
+    <transition name="fade">
+      <div v-show="this.$route.path !== '/home'" class="page-title-wrapper">
+        <Header />
+      </div>
+    </transition>
+    <transition :name="transitionName">
+      <router-view class="child-view" flex-box="1" flex="dir:col" />
+    </transition>
   </div>
 </template>
 <script>
@@ -11,9 +15,18 @@
 
   export default {
     name: 'app',
+    watch: {
+      '$route' (to, from) {
+        //    console.log('现在路由:',to.path.split('/')[1],'来自路由:',from.path.split('/')[1],'现在的动画:',this.transitionName)
+        const toDepth = to.path.split('/').length
+        const fromDepth = from.path.split('/').length
+        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+      }
+    },
     data() {
       return {
-        router: this.$router
+        router: this.$router,
+        transitionName: 'slide-left'
       }
     },
     methods: {
@@ -123,4 +136,17 @@
             line-height: 40px
             box-sizing border-box
             padding 0 20px
+
+  .fade-enter-active, .fade-leave-active
+    transition: opacity .5s;
+  .fade-enter, .fade-leave-to
+    opacity 0
+  .child-view
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+  .slide-left-enter, .slide-right-leave-active
+    opacity: 0;
+    transform: translate(30px, 0);
+  .slide-left-leave-active, .slide-right-enter
+    opacity: 0;
+    transform: translate(-30px, 0);
 </style>
