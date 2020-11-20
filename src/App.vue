@@ -58,4 +58,33 @@
   .border-box
     border: 1px solid #232831
     margin: 8px
+    padding: 10px
+    overflow hidden
+    box-sizing: border-box
+    position relative
+
+  .num-box
+    padding 10px 0 2px
+    i
+      &.num
+        display inline-block
+        vertical-align bottom
+        font-size: 30px
+        color #ffffff
+        background-color: #c96857
+        margin 0 4px
+        padding 4px 10px
+        -webkit-border-radius: 2px
+        -moz-border-radius: 2px
+        border-radius: 2px
+
+  .bb-title
+    position absolute
+    z-index 20
+    top: 10px
+    left: 2px
+    font-size: 18px
+    font-weight: 700
+    padding-left: 16px
+    border-left: 4px solid #1d69cc
 </style>
