@@ -87,4 +87,40 @@
     font-weight: 700
     padding-left: 16px
     border-left: 4px solid #1d69cc
+
+  .table-container
+    height: 100%
+    width: 100%
+    position absolute
+    top: 0
+    left: 0
+    box-sizing border-box
+    padding-top: 40px
+    overflow hidden
+    .table
+      overflow hidden
+      width: 100%
+      position relative
+      padding-top: 40px
+      .table-header
+        position absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 40px
+        background-color: #20242d
+        padding 0 20px
+        line-height: 40px
+        box-sizing border-box
+      .swiper-wrapper
+        width: 100%
+        .slide-item
+          height: 30px
+          line-height: 30px
+          &:nth-child(even)
+            background-color: #20242d
+          .row
+            line-height: 40px
+            box-sizing border-box
+            padding 0 20px
 </style>

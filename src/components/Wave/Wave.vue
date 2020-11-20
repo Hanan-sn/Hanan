@@ -52,7 +52,6 @@
           }
         }
         this.group.position.z = -500
-        console.log(this.group.position.z)
         this.scene.add(this.group)
         container.appendChild(this.renderer.domElement)
         this.animate()
