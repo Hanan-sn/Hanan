@@ -608,7 +608,7 @@
             .item
               width 150px
               height: 70px
-              padding 12px 20px
+              padding 12px 10px
               background-color: rgba(5, 37, 55, 0.8)
               box-shadow 1px 1px 2px rgba(0, 0, 0, 0.5)
 
