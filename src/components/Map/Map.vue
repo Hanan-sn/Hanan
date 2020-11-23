@@ -14,10 +14,99 @@
     name: 'SummaryMap',
     data() {
       return {
-        open: false,
-        date: '',
-        dateTab: 0,
-        chartTab: 0
+        mapData: [
+          [{
+            name: '黑龙江',
+            value: 1
+          }], [{
+            name: '北京市',
+            value: 3
+          }], [{
+            name: '内蒙古',
+            value: 1
+          }], [{
+            name: '吉林',
+            value: 1
+          }], [{
+            name: '辽宁',
+            value: 1
+          }], [{
+            name: '河北',
+            value: 2
+          }], [{
+            name: '天津',
+            value: 2
+          }], [{
+            name: '山西',
+            value: 1
+          }], [{
+            name: '陕西',
+            value: 1
+          }], [{
+            name: '甘肃',
+            value: 1
+          }], [{
+            name: '宁夏',
+            value: 1
+          }], [{
+            name: '青海',
+            value: 1
+          }], [{
+            name: '新疆',
+            value: 1
+          }], [{
+            name: '西藏',
+            value: 1
+          }], [{
+            name: '四川',
+            value: 2
+          }], [{
+            name: '重庆',
+            value: 2
+          }], [{
+            name: '山东',
+            value: 1
+          }], [{
+            name: '河南',
+            value: 1
+          }], [{
+            name: '江苏',
+            value: 2
+          }], [{
+            name: '安徽',
+            value: 1
+          }], [{
+            name: '湖北',
+            value: 2
+          }], [{
+            name: '浙江',
+            value: 2
+          }], [{
+            name: '福建',
+            value: 2
+          }], [{
+            name: '江西',
+            value: 1
+          }], [{
+            name: '湖南',
+            value: 2
+          }], [{
+            name: '贵州',
+            value: 1
+          }], [{
+            name: '广西',
+            value: 1
+          }], [{
+            name: '海南',
+            value: 2
+          }], [{
+            name: '上海',
+            value: 3
+          }], [{
+            name: '云南',
+            value: 1
+          }]
+        ]
       }
     },
     mounted() {
@@ -123,7 +212,7 @@
                   offset: [8, 0], // 偏移设置
                   // 圆环显示文字
                   formatter: function (params) {
-                    if(params.data.name !== '北京市'){
+                    if (params.data.name !== '北京市') {
                       return params.data.name
                     } else {
                       return ''
@@ -202,7 +291,7 @@
               // 根据业务自己拓展要显示的内容
               var res = ''
               var name = params.name
-              if (name !== '北京市'){
+              if (name !== '北京市') {
                 var value = params.value[params.seriesIndex + 1]
                 res = '<span style=\'color:#fff;\'>' + name + '</span><br/>数据：' + value
                 return res

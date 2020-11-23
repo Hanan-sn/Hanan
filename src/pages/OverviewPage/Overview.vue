@@ -187,7 +187,7 @@
           </div>
           <div class="border-box" style="width: 500px;" flex="dir:col">
             <i class="bb-title">数据提报部门</i>
-            <div class="table-container" flex="dir:col" flex-box="1">
+            <div class="table-container" style="padding: 50px 10px 10px"  flex="dir:col" flex-box="1">
               <div class="table" flex-box="1">
                 <div class="table-header" flex="justify:between">
                   <span>部门名称</span>
@@ -224,7 +224,7 @@
           series: [
             {
               type: 'pie',
-              radius: '30%',
+              radius: '40%',
               label: {
                 position: 'inside'
               },
@@ -243,7 +243,7 @@
             },
             {
               type: 'pie',
-              radius: ['35%', '60%'],
+              radius: ['50%', '60%'],
               center: ['50%', '50%'],
               label: {
                 color: '#fff'

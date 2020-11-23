@@ -109,8 +109,8 @@
       <div style="width: 500px;" flex="dir:col">
         <div class="border-box" flex-box="1">
           <i class="bb-title">奖惩执行情况</i>
-          <div class="table-container" flex="dir:col">
-            <div class="table" flex-box="1" style="padding: 50px 0 10px">
+          <div class="table-container" style="padding: 40px 10px 10px" flex="dir:col">
+            <div class="table" flex-box="1">
               <div class="table-header" flex="justify:between" style="top: 10px;">
                 <span>部门名称</span>
                 <span>数量（条）</span>

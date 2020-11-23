@@ -54,7 +54,7 @@
       <div  style="width: 400px;" flex="dir:col">
         <div class="border-box" flex-box="1">
           <i class="bb-title">部门双公示数据统计情况</i>
-          <div class="table-container" flex="dir:col" flex-box="1">
+          <div class="table-container" style="padding: 50px 10px 10px" flex="dir:col" flex-box="1">
             <div class="table" flex-box="1">
               <div class="table-header" flex="justify:between">
                 <span>部门名称</span>
@@ -81,7 +81,7 @@
         </div>
         <div class="border-box" flex-box="1">
           <i class="bb-title">数据提报部门</i>
-          <div class="table-container" flex="dir:col" flex-box="1">
+          <div class="table-container" style="padding: 50px 10px 10px" flex="dir:col" flex-box="1">
             <div class="table" flex-box="1">
               <div class="table-header" flex="justify:between">
                 <span>部门名称</span>
