@@ -129,10 +129,10 @@
     "@antv/util" "~2.0.0"
     detect-browser "^4.6.0"
 
-"@antv/g2@^4.0.14":
-  version "4.0.14"
-  resolved "https://registry.npm.taobao.org/@antv/g2/download/@antv/g2-4.0.14.tgz?cache=0&sync_timestamp=1595829483979&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40antv%2Fg2%2Fdownload%2F%40antv%2Fg2-4.0.14.tgz#c64818ce42822e748889bd7bc594ecce12bfad7e"
-  integrity sha1-xkgYzkKCLnSIib17xZTszhK/rX4=
+"@antv/g2@^4.0.15":
+  version "4.0.15"
+  resolved "https://registry.npm.taobao.org/@antv/g2/download/@antv/g2-4.0.15.tgz?cache=0&sync_timestamp=1605953174993&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40antv%2Fg2%2Fdownload%2F%40antv%2Fg2-4.0.15.tgz#68eeee5befd9f2e654f7655f8d3d2935cdd526b8"
+  integrity sha1-aO7uW+/Z8uZU92VfjT0pNc3VJrg=
   dependencies:
     "@antv/adjust" "^0.2.1"
     "@antv/attr" "^0.3.1"
