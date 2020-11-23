@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <Wave class="wave"/>
-    <div class="links">
-      <router-link to="/overview">系统概况专题</router-link>
-      <router-link to="/summary">数据归集专题</router-link>
-      <router-link to="/public">双公示专题</router-link>
-      <router-link to="/union">联合奖惩专题</router-link>
+    <div class="links special-button">
+      <router-link to="/overview" style="position: relative"><span>系统概况专题</span></router-link>
+      <router-link to="/summary" style="position: relative"><span>数据归集专题</span></router-link>
+      <router-link to="/public" style="position: relative"><span>双公示专题</span></router-link>
+      <router-link to="/union" style="position: relative"><span>联合奖惩专题</span></router-link>
     </div>
   </div>
 </template>
@@ -34,14 +34,12 @@
     position absolute
     font-size: 24px
     line-height: 50px
-    top: 100px
-    left: 100px
+    top: 50%
+    left: 0
+    box-sizing border-box
+    padding 0 100px
+    width: 100%
     z-index 12
     display flex
-    flex-direction column
-    a
-      transition text-shadow linear 0.6s, transform linear 0.6s
-      &:hover
-        transform translate(1px, 1px)
-        text-shadow -2px -1px 2px #24ecec
+    justify-content space-around
 </style>

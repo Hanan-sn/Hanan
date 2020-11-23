@@ -8,6 +8,7 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
 import './assets/styles/base/base.styl'
+import './assets/styles/special-button.css'
 import './common/utils/chart-theme'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import style (<= Swiper 5.x)
