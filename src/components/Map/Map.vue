@@ -338,4 +338,5 @@
   height: 100%
   position relative
   z-index 5
+  overflow hidden
 </style>

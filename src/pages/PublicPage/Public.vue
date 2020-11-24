@@ -63,7 +63,17 @@
               </div>
               <swiper style="height: 100%; position: relative" :options="swiperOptions">
                 <swiper-slide class="slide-item" v-for="(item, index) in list" :key="index">
-                  <div class="row">{{item.label+ index}}</div>
+                  <div class="row">
+                    <span>
+                      {{item.label+ index}}
+                    </span>
+                    <span>
+                      {{item.count}}
+                    </span>
+                    <span>
+                      {{item.per}}
+                    </span>
+                  </div>
                 </swiper-slide>
               </swiper>
             </div>
@@ -71,13 +81,17 @@
         </div>
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">双公示数据7天提报率</i>
-          <chart ref="exchangeLine" theme="my" :options="exchangeBarOptions" flex-box="1" style="width: 100%;"></chart>
+          <div class="chart-container">
+            <chart ref="publicLine" theme="my" :options="exchangeBarOptions" flex-box="1" style="width: 100%;"></chart>
+          </div>
         </div>
       </div>
       <div flex-box="1" flex="dir:col">
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">数据归集情况</i>
-          <chart ref="exchangeLine" theme="my" :options="exchangeLineOptions" flex-box="1" style="width: 100%;"></chart>
+          <div class="chart-container">
+            <chart ref="summaryLine" theme="my" :options="exchangeLineOptions" flex-box="1" style="width: 100%;"></chart>
+          </div>
         </div>
         <div class="border-box" flex-box="1">
           <i class="bb-title">数据提报部门</i>
@@ -90,7 +104,17 @@
               </div>
               <swiper style="height: 100%; position: relative" :options="swiperOptions">
                 <swiper-slide class="slide-item" v-for="(item, index) in list" :key="index">
-                  <div class="row">{{item.label+ index}}</div>
+                  <div class="row">
+                    <span>
+                      {{item.label+ index}}
+                    </span>
+                    <span>
+                      {{item.count}}
+                    </span>
+                    <span>
+                      {{item.per}}
+                    </span>
+                  </div>
                 </swiper-slide>
               </swiper>
             </div>
@@ -100,11 +124,15 @@
       <div style="width: 400px;" flex="dir:col">
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">自然人资源数据分类统计</i>
-          <chart ref="unionPie" theme="my" :options="unionPieOptions" style="width: 100%;"/>
+          <div class="chart-container">
+            <chart ref="natPie" theme="my" :options="unionPieOptions" style="width: 100%;"/>
+          </div>
         </div>
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">最新填报部门</i>
-          <chart ref="unionPie" theme="my" :options="unionPieOptions" style="width: 100%;" />
+          <div class="chart-container">
+            <chart ref="newPie" theme="my" :options="unionPieOptions" style="width: 100%;" />
+          </div>
         </div>
       </div>
     </div>
@@ -251,31 +279,64 @@
             },
             list: [
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               },
               {
-                label: '模拟内容'
+                label: '模拟内容',
+                count: 100,
+                per: '10%'
               }
             ]
           }
+      },
+      mounted () {
+        window.onresize = () => {
+          this.winResizeListener()
+        }
+      },
+      methods: {
+        winResizeListener () {
+          let t = null
+          clearTimeout(t)
+          t = setTimeout(() => {
+            this.$refs.publicLine.resize()
+            this.$refs.summaryLine.resize()
+            this.$refs.natPie.resize()
+            this.$refs.newPie.resize()
+          }, 300)
+        }
       }
     }
 </script>

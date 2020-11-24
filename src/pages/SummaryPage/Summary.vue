@@ -42,7 +42,9 @@
       <div  style="width: 400px;" flex="dir:col">
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">联合奖惩</i>
-          <chart ref="classicBar" theme="my" :options="classicBarOptions" flex-box="1" style="width: 100%;"></chart>
+          <div class="chart-container">
+            <chart ref="unionBar" theme="my" :options="classicBarOptions" flex-box="1" style="width: 100%;"></chart>
+          </div>
         </div>
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">部门数据归集统计分析</i>
@@ -55,7 +57,17 @@
               </div>
               <swiper style="height: 100%; position: relative" :options="swiperOptions">
                 <swiper-slide class="slide-item" v-for="(item, index) in list" :key="index">
-                  <div class="row">{{item.label+ index}}</div>
+                  <div class="row">
+                    <span>
+                      {{item.label+ index}}
+                    </span>
+                    <span>
+                      {{item.count}}
+                    </span>
+                    <span>
+                      {{item.per}}
+                    </span>
+                  </div>
                 </swiper-slide>
               </swiper>
             </div>
@@ -71,13 +83,15 @@
               <span><i class="num">565854</i><i>（条）</i></span>
             </div>
           </div>
-          <Map style="width: 100%" flex-box="1" />
+          <Map class="chart" style="width: 100%" flex-box="1" />
         </div>
       </div>
       <div style="width: 400px;" flex="dir:col">
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">自然人资源数据分类统计</i>
-          <chart ref="unionPie" theme="my" :options="unionPieOptions" flex-box="1" style="width: 100%;"></chart>
+          <div class="chart-container">
+            <chart ref="natPie" theme="my" :options="unionPieOptions" flex-box="1" style="width: 100%;"></chart>
+          </div>
         </div>
         <div class="border-box" flex-box="1" flex="dir:col">
           <i class="bb-title">最新填报部门</i>
@@ -90,7 +104,17 @@
               </div>
               <swiper style="height: 100%; position: relative" :options="swiperOptions">
                 <swiper-slide class="slide-item" v-for="(item, index) in list" :key="index">
-                  <div class="row">{{item.label+ index}}</div>
+                  <div class="row">
+                    <span>
+                      {{item.label+ index}}
+                    </span>
+                    <span>
+                      {{item.count}}
+                    </span>
+                    <span>
+                      {{item.per}}
+                    </span>
+                  </div>
                 </swiper-slide>
               </swiper>
             </div>
@@ -203,34 +227,66 @@
         },
         list: [
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           }
         ]
       }
     },
     components: {
       Map
+    },
+    mounted () {
+      window.onresize = () => {
+        this.winResizeListener()
+      }
+    },
+    methods: {
+      winResizeListener () {
+        let t = null
+        clearTimeout(t)
+        t = setTimeout(() => {
+          this.$refs.unionBar.resize()
+          this.$refs.natPie.resize()
+          this.$refs.newPie.resize()
+        }, 300)
+      }
     }
   }
 </script>

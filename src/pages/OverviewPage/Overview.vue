@@ -196,7 +196,17 @@
                 </div>
                 <swiper style="height: 100%; position: relative" :options="swiperOptions">
                   <swiper-slide class="slide-item" v-for="(item, index) in list" :key="index">
-                    <div class="row">{{item.label+ index}}</div>
+                    <div class="row">
+                    <span>
+                      {{item.label+ index}}
+                    </span>
+                      <span>
+                      {{item.count}}
+                    </span>
+                      <span>
+                      {{item.per}}
+                    </span>
+                    </div>
                   </swiper-slide>
                 </swiper>
               </div>
@@ -392,30 +402,46 @@
         },
         list: [
           {
-            label: '模拟内容'
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
           },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            },
-            {
-              label: '模拟内容'
-            }
-          ]
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          },
+          {
+            label: '模拟内容',
+            count: 100,
+            per: '10%'
+          }
+        ]
       }
     },
     mounted () {

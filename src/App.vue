@@ -129,13 +129,14 @@
         width: 100%
         .slide-item
           height: 30px
-          line-height: 30px
           &:nth-child(even)
             background-color: #20242d
           .row
-            line-height: 40px
             box-sizing border-box
             padding 0 20px
+            display flex
+            justify-content space-between
+            align-items center
 
   .fade-enter-active, .fade-leave-active
     transition: opacity .5s;
