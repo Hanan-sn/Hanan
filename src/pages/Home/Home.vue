@@ -7,6 +7,8 @@
       <router-link to="/public" style="position: relative"><span>双公示专题</span></router-link>
       <router-link to="/union" style="position: relative"><span>联合奖惩专题</span></router-link>
     </div>
+    <a class="link-to-home" href="https://github.com/Mario343214420">Move To Github</a>
+    <i class="version-tip">v 1.0.3</i>
   </div>
 </template>
 
@@ -42,4 +44,30 @@
     z-index 12
     display flex
     justify-content space-around
+.link-to-home
+  position absolute
+  top: 0
+  right: 0
+  z-index 40
+  display block
+  padding 10px 100px
+  transform rotate(42deg) translate(30%, -80%)
+  background-color: rgba(240, 240, 240, 0.8)
+  box-shadow 1px 1px 4px #6b6b6b
+  color #6b6b6b
+  font-size: 18px
+  font-weight: 700
+  transition all linear 0.6s
+  border: 4px dotted #fff
+  text-indent 0
+  &:hover
+    box-shadow 0 0 2px #6b6b6b
+    background-color: rgba(240, 240, 240, 0.2)
+    color #fff
+.version-tip
+  position absolute
+  right: 0
+  bottom: 0
+  padding-right: 10px
+  padding-bottom: 4px
 </style>
