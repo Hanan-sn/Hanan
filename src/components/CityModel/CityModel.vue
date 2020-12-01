@@ -11,8 +11,8 @@
   import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
   // import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-  import Stats from 'stats-js'
-  import dat from 'dat.gui'
+  // import Stats from 'stats-js'
+  // import dat from 'dat.gui'
   export default {
     name: 'CityModel',
     data() {

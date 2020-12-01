@@ -181,7 +181,7 @@
   import SidePanel from '../../../components/SidePanel/SidePanel'
   import Card from '../../../components/Card/Card'
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-  import Stats from 'stats.js'
+  // import Stats from 'stats.js'
   export default {
     name: 'Summary',
     data() {
