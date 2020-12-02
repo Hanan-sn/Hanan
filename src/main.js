@@ -14,6 +14,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import style (<= Swiper 5.x)
 import 'swiper/css/swiper.css'
 
+import FlatSurfaceShader from 'vue-flat-surface-shader'
+Vue.use(FlatSurfaceShader)
 Vue.use(VueAwesomeSwiper)
 
 Vue.component('chart', ECharts)

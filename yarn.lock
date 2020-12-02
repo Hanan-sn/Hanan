@@ -4822,6 +4822,11 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
+flat-surface-shader-unofficial@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/flat-surface-shader-unofficial/download/flat-surface-shader-unofficial-0.1.0.tgz#371136e3de8a61e7d6d8d941a92f37e7abd4fdb0"
+  integrity sha1-NxE2496KYefW2NlBqS8356vU/bA=
+
 flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
@@ -11104,6 +11109,13 @@ vue-eslint-parser@^5.0.0:
     espree "^4.1.0"
     esquery "^1.0.1"
     lodash "^4.17.11"
+
+vue-flat-surface-shader@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/vue-flat-surface-shader/download/vue-flat-surface-shader-1.0.5.tgz#b3388b796fc1856d2f84d15adf1d30e8d3938a36"
+  integrity sha1-sziLeW/BhW0vhNFa3x0w6NOTijY=
+  dependencies:
+    flat-surface-shader-unofficial "^0.1.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

@@ -1,18 +1,23 @@
 <template>
     <div class="overview" flex="dir:col">
+      <ShaderTest class="shader-bg"></ShaderTest>
     </div>
 </template>
 
 <script>
+  import ShaderTest from '../../components/Shader/ShaderTest'
   export default {
     name: 'Overview',
+    components: {
+      ShaderTest
+    },
     mounted () {
-      window.onresize = () => {
+      /* window.onresize = () => {
         this.winResizeListener()
-      }
+      } */
     },
     methods: {
-      winResizeListener () {
+      /* winResizeListener () {
         let t = null
         clearTimeout(t)
         t = setTimeout(() => {
@@ -21,7 +26,7 @@
           // this.$refs.exchangeBar.resize()
           // this.$refs.exchangeLine.resize()
         }, 300)
-      }
+      } */
     }
   }
 </script>
@@ -30,4 +35,7 @@
 .overview
   width: 100%
   height: 100%
+  .shader-bg
+    width: 100%
+    height: 100%
 </style>
