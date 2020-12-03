@@ -1,15 +1,20 @@
 <template>
   <div class="summary" flex="dir:col">
+    <ShaderSummary class="shader-bg" />
   </div>
 </template>
 
 <script>
+  import ShaderSummary from '../../components/Shader/ShaderSummary'
   export default {
     name: 'Summary',
     mounted () {
       window.onresize = () => {
         this.winResizeListener()
       }
+    },
+    components: {
+      ShaderSummary
     },
     methods: {
       winResizeListener () {

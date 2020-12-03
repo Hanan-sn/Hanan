@@ -1,11 +1,16 @@
 <template>
   <div class="union" flex="dir:col">
+    <ShaderUnion class="shader-bg"></ShaderUnion>
   </div>
 </template>
 
 <script>
+  import ShaderUnion from '../../components/Shader/ShaderUnion'
     export default {
       name: 'Union',
+      components: {
+        ShaderUnion
+      },
       mounted () {
           window.onresize = this.winResizeListener
       },

@@ -150,4 +150,8 @@
   .slide-left-leave-active, .slide-right-enter
     opacity: 0;
     transform: translate(-30px, 0);
+
+  .shader-bg
+    width: 100%
+    height: 100%
 </style>

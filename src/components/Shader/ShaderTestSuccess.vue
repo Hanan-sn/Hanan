@@ -20,65 +20,47 @@
           }
         `
         var fragmentShader = `
-float circle(vec2 st,float radius){
-    float d=length(st-.5);
-    return smoothstep(radius,radius-.01,d);
-
-}
-
-// change pattern variable to get different patterns
-float generator (vec2 cell,float mult) {
-    float pattern;
-    pattern=mult*(sin(cell.x*iTime/7.)+sin(cell.y*iTime/7.));
-    return fract(pattern);
-}
-
-void main() {
-    varying vec2 vUv;
-    uniform vec3 iResolution;
-    uniform float iTime;
-    vec2 uv = gl_FragCoord.xy/iResolution.xy;
-    uv.x*=iResolution.x/iResolution.y;
-    float multiplier=0.8754;
-    float Ncircles=12.;
-    uv *= Ncircles;
-    vec2 posInt = floor(uv)+1.;  //(i,j) integerr coordinates
-    vec2 posFloat = fract(uv); //(u,v) decimal cell coordinates
-    vec3 color =generator(posInt,multiplier) *vec3(1.,.5+.5*cos(iTime),.5+.5*sin(iTime));
-    color*=circle(posFloat,.5);
-    gl_FragColor = vec4(color,1.0);
-}
-`
+          varying vec2 vUv;
+          uniform float iTime;
+          uniform vec3 iResolution;
+          uniform float ratio;
+          void main(){
+            vec3 col = 0.5 + 0.5*cos(iTime+vUv.xyx+vec3(0,2,4));
+            gl_FragColor = vec4(col,0.4);
+          }
+        `
         var uniforms = {
           iTime: { value: 0 },
           iResolution: { value: new THREE.Vector3(100, 100, 1) }
         }
         var shadertoy = new THREE.ShaderMaterial({
           vertexShader,
-          fragmentShader,
+          fragmentShader: fragmentShader,
+          transparent: true,
           uniforms,
           side: 2
         })
         const scene = new THREE.Scene()
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
         camera.position.z = 5
-        const renderer = new THREE.WebGLRenderer()
+        const renderer = new THREE.WebGLRenderer({ alpha: true })
         renderer.setSize(window.innerWidth, window.innerHeight)
         this.$refs.container.appendChild(renderer.domElement)
         const box = new THREE.Mesh(
-          new THREE.PlaneBufferGeometry(2, 2),
+          // new THREE.PlaneBufferGeometry(2, 2),
+          new THREE.BoxBufferGeometry(2, 2, 2),
           shadertoy
         )
         scene.add(box)
         renderer.render(scene, camera)
         const animate = () => {
           requestAnimationFrame(animate)
-          // box.rotation.x += 0.01
-          // box.rotation.y += 0.01
+          box.rotation.x += 0.01
+          box.rotation.y += 0.01
           uniforms.iTime.value += 0.01
           renderer.render(scene, camera)
         }
-        // animate()
+        animate()
       }
     }
   }

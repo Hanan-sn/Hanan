@@ -1,11 +1,16 @@
 <template>
   <div class="public" flex="dir:col">
+    <ShaderPublic class="shader-bg"></ShaderPublic>
   </div>
 </template>
 
 <script>
+  import ShaderPublic from '../../components/Shader/ShaderPublic'
     export default {
       name: 'Public',
+      components: {
+        ShaderPublic
+      },
       mounted () {
         window.onresize = () => {
           this.winResizeListener()

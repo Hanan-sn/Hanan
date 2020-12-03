@@ -1,15 +1,15 @@
 <template>
     <div class="overview" flex="dir:col">
-      <ShaderTest class="shader-bg"></ShaderTest>
+      <ShaderStore class="shader-bg"></ShaderStore>
     </div>
 </template>
 
 <script>
-  import ShaderTest from '../../components/Shader/ShaderTest'
+  import ShaderStore from '../../components/Shader/ShaderStore'
   export default {
     name: 'Overview',
     components: {
-      ShaderTest
+      ShaderStore
     },
     mounted () {
       /* window.onresize = () => {
@@ -35,7 +35,4 @@
 .overview
   width: 100%
   height: 100%
-  .shader-bg
-    width: 100%
-    height: 100%
 </style>
