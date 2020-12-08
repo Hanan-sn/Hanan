@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ShaderUnion from '../../components/Shader/ShaderTest'
+  import ShaderUnion from '../../components/Shader/ShaderUnion'
     export default {
       name: 'Union',
       components: {
