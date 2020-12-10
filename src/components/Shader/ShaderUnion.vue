@@ -47,7 +47,7 @@
           this.uniforms.time.value += 0.005
           this.renderer.render(this.scene, this.camera)
         }
-         animate()
+        animate()
       },
       render() {
         const vertexShader = `

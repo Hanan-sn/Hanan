@@ -1,15 +1,15 @@
 <template>
   <div class="union" flex="dir:col">
-    <ShaderUnion class="shader-bg"></ShaderUnion>
+    <ShaderKabi class="shader-bg"></ShaderKabi>
   </div>
 </template>
 
 <script>
-  import ShaderUnion from '../../components/Shader/ShaderTest'
+  import ShaderKabi from '../../components/Shader/ShaderKabi'
     export default {
       name: 'Union',
       components: {
-        ShaderUnion
+        ShaderKabi
       },
       mounted () {
           window.onresize = this.winResizeListener

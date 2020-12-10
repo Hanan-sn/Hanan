@@ -6,7 +6,7 @@
   import * as THREE from 'three'
   import Stats from 'three/examples/jsm/libs/stats.module'
   export default {
-    name: 'ShaderUnion',
+    name: 'ShaderInThree',
     data() {
       return {
         camera: null,
