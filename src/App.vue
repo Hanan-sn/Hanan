@@ -64,6 +64,7 @@
 
   #app
     background-color: #16171c
+    // background-image: linear-gradient(#00d2ff, #3a7bd5)
     width: 100%
     height: 100%
     color #fff
