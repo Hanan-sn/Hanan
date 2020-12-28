@@ -1,15 +1,21 @@
 <template>
-    <div class="overview" flex="dir:col">
-      <ShaderStore class="shader-bg"></ShaderStore>
+    <div class="overview" flex>
+      <Map style="height: 100%"></Map>
+      <!--<ShaderStore class="shader-bg"></ShaderStore>-->
+      <BottomNav></BottomNav>
     </div>
 </template>
 
 <script>
   import ShaderStore from '../../components/Shader/ShaderStore'
+  import Map from '../../components/Map/Map'
+  import BottomNav from '../../components/BottomNav/BottomNav'
   export default {
     name: 'Overview',
     components: {
-      ShaderStore
+      ShaderStore,
+      Map,
+      BottomNav
     },
     mounted () {
       /* window.onresize = () => {
