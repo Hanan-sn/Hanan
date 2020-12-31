@@ -7,13 +7,13 @@
 </template>
 
 <script>
-  import ShaderStore from '../../components/Shader/ShaderStore'
+  // import ShaderStore from '../../components/Shader/ShaderStore'
   import Map from '../../components/Map/Map'
   import BottomNav from '../../components/BottomNav/BottomNav'
   export default {
     name: 'Overview',
     components: {
-      ShaderStore,
+      // ShaderStore,
       Map,
       BottomNav
     },

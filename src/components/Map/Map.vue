@@ -7,11 +7,8 @@
 <script>
   import echarts from 'echarts'
   import 'echarts/map/js/china'
-  // 统一变量
-  const xyLineColor = '#535e83'
-  const splitLineColor = '#283353'
   export default {
-    name: 'SummaryMap',
+    name: 'Map',
     data() {
       return {
         mapData: [
@@ -128,7 +125,7 @@
             enterable: true,
             transitionDuration: 0,
             extraCssText: 'z-index:100',
-            formatter: (item)=> `${item.data.name}:  ${item.data.value}`
+            formatter: (item) => `${item.data.name}:  ${item.data.value}`
           },
           series: [
             {
@@ -172,7 +169,7 @@
                 { 'name': '青海', 'value': 10 },
                 { 'name': '新疆', 'value': 10 },
                 { 'name': '西藏', 'value': 10 },
-                {'name': '吉林','value': 10 },
+                { 'name': '吉林', 'value': 10 },
                 { 'name': '宁夏', 'value': 10 }
               ],
               itemStyle: {
@@ -212,6 +209,6 @@
   width: 100%
   height: 100%
   position relative
-  z-index 5
+  z-index 2
   overflow hidden
 </style>

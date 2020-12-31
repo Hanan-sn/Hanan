@@ -2,7 +2,7 @@
   <div class="header">
     <i class="title">{{ returnPathName }}</i>
     <div class="back-btn special-button">
-      <router-link to="/home"><span><i class="iconfont icon-houtui" style="font-size: 34px; padding-right: 10px;"></i>返回</span></router-link>
+      <router-link to><span><i @click="$router.back(-1)" class="iconfont icon-houtui" style="font-size: 34px; padding-right: 10px;"></i>返回</span></router-link>
     </div>
   </div>
 </template>
@@ -10,6 +10,9 @@
 <script>
   export default {
     name: 'Header',
+    mounted() {
+      console.log(this.$router)
+    },
     computed: {
       returnPathName() {
         let name = ''

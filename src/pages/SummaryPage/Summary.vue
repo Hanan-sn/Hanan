@@ -31,4 +31,7 @@
 </script>
 
 <style lang="stylus" scoped>
+  .summary
+    position relative
+    z-index 4
 </style>
