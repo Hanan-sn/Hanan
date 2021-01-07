@@ -26,7 +26,7 @@
 <style lang="stylus" scoped>
 .bottom-nav
   width 800px
-  height: 200px
+  height: 160px
   margin: 0 auto
   position absolute
   bottom: 0
@@ -37,12 +37,14 @@
     content: ''
     width: 100%
     height: 100%
-    position absolute
+    display block
     bottom: 0
     left: 0
-    transform-style preserve-3d
-    transform perspective(100px) rotateX(20deg)
-    background-image: radial-gradient(#1a61a0 50%, #0d396a 90%)
+    background-image: url('~@/assets/images/large-width/bg.png')
+    background-repeat: no-repeat
+    background-position: center bottom
+    -webkit-background-size: 100% 80px
+    background-size: 100% 80px
   .inner
     z-index 20
     position absolute
@@ -55,11 +57,12 @@
     a
       text-align center
       display block
-      height: 120px
+      height: 122px
       width: 120px
       position relative
       z-index 100
       background-position: center center
+      background-repeat: no-repeat
       &:nth-child(1)
         background-image: url('~@/assets/images/large-width/xtgk.png')
       &:nth-child(2)

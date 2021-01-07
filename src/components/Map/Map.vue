@@ -159,6 +159,7 @@
                 { name: '江西', value: 10 },
                 { name: '湖北', value: 10 },
                 { name: '山西', value: 10 },
+                { name: '陕西', value: 10 },
                 { name: '辽宁', value: 10 },
                 { 'name': '台湾', 'value': 10 },
                 { 'name': '黑龙江', 'value': 10 },
