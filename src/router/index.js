@@ -7,7 +7,6 @@ const Public = () => import('../pages/data/public/Public')
 const Union = () => import('../pages/data/union/Union')
 const Map = () => import('../pages/data/map/Map')
 
-
 Vue.use(VueRouter)
 
 const router = new VueRouter({

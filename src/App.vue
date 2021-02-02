@@ -38,6 +38,11 @@
 <style lang="stylus">
   html
     font-size: 12px
+    background-color: #00101d
+    body
+      display flex
+      justify-content center
+      align-items center
   i
     font-style normal
   .num
@@ -82,10 +87,12 @@
     padding: 0
     margin: 0
   #app
-    width: 100%
-    height: 100%
-    min-width 1898px
-    min-height 924px
+    //width: 100%
+    //height: 100%
+    //min-width 1898px
+    //min-height 924px
+    width: 1900px
+    height: 990px
     display flex
     flex-direction column
     color #fff

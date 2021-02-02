@@ -68,7 +68,6 @@
         this.container.appendChild(this.renderer.domElement)
         const dom = this.$refs.cityModel
         dom.appendChild(this.container)
-        const renderScene = new RenderPass(this.scene, this.camera)
 
         const bloomPass = new UnrealBloomPass(
           new THREE.Vector2(window.innerWidth, window.innerHeight),
@@ -80,37 +79,6 @@
         bloomPass.threshold = this.params.bloomThreshold
         bloomPass.strength = this.params.bloomStrength
         bloomPass.radius = this.params.bloomRadius
-        console.log(this.params)
-        // this.composer = new EffectComposer(this.renderer)
-        // let r = this.renderer
-        // console.log(EffectComposer(r))
-        // this.composer.setSize(window.innerWidth, window.innerHeight)
-        // this.composer.addPass(renderScene)
-        // this.composer.addPass(bloomPass)
-
-        // const controls = new OrbitControls(this.camera, this.renderer.domElement)
-
-        (function () {
-          const gui = new dat.GUI()
-          gui.add(this.params, 'exposure', 0.1, 2.0).onChange(value => {
-            this.renderer.toneMappingExposure = Math.pow(value, 4.0)
-          })
-          gui.add(this.params, 'bloomThreshold', 0.0, 1.0).onChange(value => {
-            bloomPass.threshold = Number(value)
-          })
-          gui.add(this.params, 'bloomStrength', 0.0, 20.0).onChange(value => {
-            bloomPass.strength = Number(value)
-          })
-          gui.add(this.params, 'light', 0.0, 1.0).onChange(value => {
-            bloomPass.light = Number(value)
-          })
-          gui
-            .add(this.params, 'bloomRadius', 0.0, 1.0)
-            .step(0.01)
-            .onChange(function (value) {
-              bloomPass.radius = Number(value)
-            })
-        })()
       },
       animate() {
         requestAnimationFrame(this.animate)

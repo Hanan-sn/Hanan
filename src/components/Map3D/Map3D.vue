@@ -1,7 +1,5 @@
 <template>
-  <div class="model-container" ref="modelContainer">
-
-  </div>
+  <div class="model-container" ref="modelContainer"></div>
 </template>
 
 <script>
@@ -181,7 +179,7 @@
           material.opacity = (Math.sin(material.t_) * material.delta_ + material.min_) * material.opacity_coef_
           material.needsUpdate = true
         })
-        this.earthParticles.rotation.y += 0.01
+        this.earthParticles.rotation.y += 0.005
         this.render()
       }
     }

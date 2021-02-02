@@ -258,7 +258,7 @@
             <template slot="title"><i class="card-title-font">信用报告查询趋势分析</i></template>
             <template slot="content">
               <div class="overview-trend">
-                <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 220px;"></v-chart>
+                <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -266,7 +266,7 @@
             <template slot="title"><i class="card-title-font">数据提报部门</i></template>
             <template slot="content">
               <div class="overview-dept">
-                <b-table :columns="columns" :data="listData" height="160" stripe></b-table>
+                <SlideTable :header="columns" :body="listData" :bodyHeight="160"></SlideTable>
               </div>
             </template>
           </Card>
@@ -278,208 +278,17 @@
 
 <script>
   import { mapState } from 'vuex'
-  import SidePanel from '../../../components/SidePanel/SidePanel'
-  import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
-  import Card from '../../../components/Card/Card'
-  import Map3D from '../../../components/Map3D/Map3D'
+  import SidePanel from '@/components/SidePanel/SidePanel'
+  import MiddlePanel from '@/components/MiddlePanel/MiddlePanel'
+  import Card from '@/components/Card/Card'
+  import Map3D from '@/components/Map3D/Map3D'
+  // import { graphic } from 'echarts/lib/export'
+  import SlideTable from '@/components/SlideTable/SlideTable'
   export default {
     name: 'Overview',
     data() {
       return {
-        union: {
-          memoCount: 0,
-          treasureCount: 0,
-          implementDeptCount: 0
-        },
-        countList: {
-          total: [1, 2, 5, 6, 9, 8, 7, 5, 1]
-        },
-        unionOption: {
-          tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
-          },
-          series: [
-            {
-              name: '访问来源',
-              type: 'pie',
-              radius: ['50%', '60%'],
-              avoidLabelOverlap: false,
 
-              label: {
-                position: 'outer',
-                alignTo: 'none',
-                bleedMargin: 5
-              },
-              emphasis: {
-                label: {
-                  show: true,
-                  fontSize: '24',
-                  fontWeight: 'bold'
-                }
-              },
-              data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
-              ]
-            },
-            {
-              name: '访问来源',
-              type: 'pie',
-              radius: ['0%', '35%'],
-              avoidLabelOverlap: false,
-              label: {
-                position: 'inner',
-                alignTo: 'none',
-                bleedMargin: 5
-              },
-              emphasis: {
-                label: {
-                  show: true,
-                  fontSize: '30',
-                  fontWeight: 'bold'
-                }
-              },
-              data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
-              ]
-            }
-          ]
-        },
-        exchangeOption: {
-          xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [
-            {
-              data: [120, 200, 150, 80, 70, 110, 130],
-              type: 'bar',
-              showBackground: true,
-              backgroundStyle: {
-                color: 'rgba(220, 220, 220, 0.8)'
-              }
-            },
-            {
-              data: [110, 180, 120, 90, 80, 100, 120],
-              type: 'bar',
-              showBackground: true,
-              backgroundStyle: {
-                color: 'rgba(220, 220, 220, 0.8)'
-              }
-            }
-          ]
-        },
-        classicOption: {
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'shadow'
-            }
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-          },
-          xAxis: {
-            type: 'value',
-            boundaryGap: [0, 0.01]
-          },
-          yAxis: {
-            type: 'category',
-            data: ['基础信息', '业务信息', '司法信息', '行政执法信息', '公共事业信息', '信用评级信息', '其他信息']
-          },
-          series: [
-            {
-              name: '2011年',
-              type: 'bar',
-              data: [1820, 2489, 2034, 1970, 1744, 1230, 1230]
-            }
-          ]
-        },
-        trendOption: {
-          xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line',
-            areaStyle: {}
-          }]
-        },
-        columns: [
-          {
-            title: '部门名称',
-            key: 'name'
-          },
-          {
-            title: '数量',
-            key: 'count'
-          },
-          {
-            title: '入库率',
-            key: 'percent'
-          }
-        ],
-        listData: [
-          {
-            name: '模拟部门名称 1',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 2',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 3',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 4',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 5',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 6',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 7',
-            count: '100',
-            percent: '10%'
-          },
-          {
-            name: '模拟部门名称 8',
-            count: '100',
-            percent: '10%'
-          }
-        ]
       }
     },
     components: {
@@ -487,15 +296,23 @@
       SidePanel,
       MiddlePanel,
       Card,
-      Map3D
+      Map3D,
+      SlideTable
     },
-    created() {
-    },
+    created() {},
     mounted() {
+      this.$store.dispatch('getOverview')
     },
     computed: {
       ...mapState({
-        a: state => state.overview.a
+        union: state => state.overview.union,
+        countList: state => state.overview.countList,
+        unionOption: state => state.overview.unionOption,
+        exchangeOption: state => state.overview.exchangeOption,
+        classicOption: state => state.overview.classicOption,
+        trendOption: state => state.overview.trendOption,
+        columns: state => state.overview.columns,
+        listData: state => state.overview.listData
       })
     },
     watch: {},

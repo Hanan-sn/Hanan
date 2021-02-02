@@ -38,6 +38,24 @@
             </template>
             <template slot="content">
               <div class="summary-classify">
+                <div class="inner-wrapper">
+                  <span>
+                    <i>一级分类(个)</i>
+                    <i class="num">7</i>
+                  </span>
+                  <span>
+                    <i>二级分类(个)</i>
+                    <i class="num">7</i>
+                  </span>
+                  <span>
+                    <i>资源数(条)</i>
+                    <i class="num">365</i>
+                  </span>
+                  <span>
+                    <i>部门数(个)</i>
+                    <i class="num">7</i>
+                  </span>
+                </div>
                 <v-chart :options="classifyOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
               </div>
             </template>
@@ -47,32 +65,59 @@
               <i class="card-title-font">部门数据归集统计分析</i>
             </template>
             <template slot="content">
-              <div class="summary-dept">
-                <div class="row table-header" flex="justify:between">
-                  <span><i>部门名称</i></span>
-                  <span><i>归集数量（条）</i></span>
-                  <span><i>入库率</i></span>
-                </div>
-                <Swiper ref="mySwiper" class="dept-swiper" :options="swiperOptions">
-                  <SwiperSlide class="slide-wrapper" v-for="(item, i) in 20" :key="i">
-                    <div class="row table-body-row" flex="justify:between">
-                      <span>模拟部门{{item}}</span>
-                      <span>10000</span>
-                      <span>95%</span>
-                    </div>
-                  </SwiperSlide>
-                  <div class="swiper-pagination" slot="pagination"></div>
-                </Swiper>
-              </div>
+              <SlideTable :header="columns" :body="listData" :body-height="270"></SlideTable>
             </template>
           </Card>
         </template>
       </SidePanel>
       <MiddlePanel>
         <template slot="outer">
-          <div class="show-geo" flex="justify:center">
+          <div>
+            <div class="corner-card">
+              <div class="top">
+                <div class="card">
+                  <span>
+                    <i>自然人数据总量</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+                <div class="card">
+                  <span>
+                    <i>法人数据总量</i>
+                  </span>
+                  <span>
+                    <i class="num">565854</i>
+                    <i>（条）</i>
+                  </span>
+                </div>
+              </div>
+              <div class="bot">
+                <div class="card">
+                <span>
+                  <i>重点人群数据总量</i>
+                </span>
+                  <span>
+                  <i class="num">565854</i>
+                  <i>（条）</i>
+                </span>
+                </div>
+                <div class="card">
+                <span>
+                  <i>验证通过数据总量</i>
+                </span>
+                  <span>
+                  <i class="num">565854</i>
+                  <i>（条）</i>
+                </span>
+                </div>
+              </div>
+            </div>
+            <div class="show-geo" flex="justify:center">
             <span class="item-count-bar" flex>
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <img class="icon" src="~@/assets/images/overview/md_icon07.png" alt="">
               <span class="data" flex="dir:col">
                 <span class="label">
                   <i>资源信息数量</i>
@@ -83,11 +128,11 @@
                 </span>
               </span>
             </span>
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon07.png" alt="">
               <span class="data" flex="dir:col">
                 <span class="label">
-                  <i>资源信息数量</i>
+                  <i>数据归集总量</i>
                 </span>
                 <span class="value">
                   <i class="num">100000</i>
@@ -95,11 +140,11 @@
                 </span>
               </span>
             </span>
-            <span class="item-count-bar">
-              <img class="icon" src="~@/assets/images/overview/md_icon01.png" alt="">
+              <span class="item-count-bar">
+              <img class="icon" src="~@/assets/images/overview/md_icon07.png" alt="">
               <span class="data" flex="dir:col">
                 <span class="label">
-                  <i>资源信息数量</i>
+                  <i>本月归集数量</i>
                 </span>
                 <span class="value">
                   <i class="num">100000</i>
@@ -107,10 +152,11 @@
                 </span>
               </span>
             </span>
-          </div>
-          <div class="center-container" ref="centerContainer" flex="justify:center">
-            <canvas ref="centerCvs"></canvas>
-            <canvas ref="radarCvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"></canvas>
+            </div>
+            <div class="center-container" ref="centerContainer" flex="justify:center">
+              <canvas ref="centerCvs"></canvas>
+              <canvas ref="radarCvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"></canvas>
+            </div>
           </div>
         </template>
         <template slot="inner">
@@ -120,7 +166,7 @@
             </template>
             <template slot="content">
               <div class="summary-trend">
-                <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                <v-chart :options="trendOption" theme="macarons" style="width: 100%; height: 240px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -154,19 +200,7 @@
             </template>
             <template slot="content">
               <div class="summary-newest">
-                <div class="row table-header" flex="justify:between">
-                  <span><i>部门名称</i></span>
-                  <span><i>归集数量（条）</i></span>
-                </div>
-                <Swiper ref="mySwiper" class="newest-swiper" :options="newestSwiperOptions">
-                  <SwiperSlide class="slide-wrapper" v-for="(item, i) in 20" :key="i">
-                    <div class="row table-body-row" flex="justify:between">
-                      <span>模拟部门{{item}}</span>
-                      <span>10000</span>
-                    </div>
-                  </SwiperSlide>
-                  <div class="swiper-pagination" slot="pagination"></div>
-                </Swiper>
+                <SlideTable :header="completeColumns" :body="completeListData" :body-height="220" :href="true"></SlideTable>
               </div>
             </template>
           </Card>
@@ -177,11 +211,12 @@
 </template>
 <script>
   /* eslint-disable */
-  import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
-  import SidePanel from '../../../components/SidePanel/SidePanel'
-  import Card from '../../../components/Card/Card'
+  import MiddlePanel from '@/components/MiddlePanel/MiddlePanel'
+  import SidePanel from '@/components/SidePanel/SidePanel'
+  import Card from '@/components/Card/Card'
+  import SlideTable from '@/components/SlideTable/SlideTable'
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-  // import Stats from 'stats.js'
+  import {graphic} from "echarts/lib/export"
   export default {
     name: 'Summary',
     data() {
@@ -199,7 +234,6 @@
           // Some Swiper option/callback...
         },
         classifyOption: {
-
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -218,13 +252,28 @@
           },
           yAxis: {
             type: 'category',
-            data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+            data: ['其他信息', '信用评级信息', '公共事业信息', '行政执法信息', '司法信息', '业务信息', '基础信息']
           },
           series: [
             {
-              name: '2011年',
+              name: '2021年',
               type: 'bar',
-              data: [18203, 23489, 29034, 104970, 131744, 630230]
+              barWidth: 10,
+              showBackground: true,
+              backgroundStyle: {
+                color: 'rgba(180, 180, 180, 0.2)'
+              },
+              itemStyle: {
+                color: new graphic.LinearGradient(0, 0, 1, 0, [{
+                  offset: 0,
+                  color: 'rgba(11,61,73, 0.8)'
+                }, {
+                  offset: 1,
+                  color: 'rgb(60,250,230,1.0)'
+                }]),
+                barBorderRadius: [10, 10, 10, 10] // 设置柱状图圆角
+              },
+              data: [98203, 123489, 98203, 99034, 104970, 131744, 130230]
             }
           ]
         },
@@ -243,16 +292,15 @@
           },
           series: [
             {
-              name: '访问来源',
+              name: '来源',
               type: 'pie',
               radius: ['35%', '70%'],
               center: ['50%', '50%'],
               data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 274, name: '联盟广告' },
-                { value: 235, name: '视频广告' },
-                { value: 400, name: '搜索引擎' }
+                { value: 335, name: '手工填报' },
+                { value: 310, name: 'et对接' },
+                { value: 274, name: '内部接口' },
+                { value: 235, name: '其他' }
               ].sort(function (a, b) { return a.value - b.value }),
               roseType: 'radius',
               label: {
@@ -281,7 +329,7 @@
           },
           series: [
             {
-              name: '访问来源',
+              name: '分类',
               type: 'pie',
               radius: ['50%', '70%'],
               avoidLabelOverlap: false,
@@ -293,15 +341,17 @@
                 show: true
               },
               data: [
-                { value: 335, name: '直接访问' },
-                { value: 310, name: '邮件营销' },
-                { value: 234, name: '联盟广告' },
-                { value: 135, name: '视频广告' },
-                { value: 1548, name: '搜索引擎' }
+                { value: 335, name: '基本信息' },
+                { value: 310, name: '业务信息' },
+                { value: 234, name: '司法信息' },
+                { value: 135, name: '行政执法信息' },
+                { value: 1548, name: '信用评价信息' },
+                { value: 1548, name: '公共事业信息' },
+                { value: 1548, name: '其他信息' }
               ]
             },
             {
-              name: '访问来源',
+              name: '分类',
               type: 'pie',
               radius: ['0%', '40%'],
               avoidLabelOverlap: false,
@@ -321,6 +371,13 @@
         },
         trendOption: {
           color: ['#a48f5e', '#097c86'],
+          legend: {
+            data: ['自然人', '法人及其他组织'],
+            bottom: 0
+          },
+          grid: {
+            bottom: 60
+          },
           xAxis: {
             type: 'category',
             boundaryGap: false,
@@ -331,21 +388,121 @@
           },
           series: [
             {
+              name: '自然人',
               data: [820, 932, 901, 901, 934, 1290, 1190, 1330, 1230, 1320, 1120, 1220],
               type: 'line',
               areaStyle: {}
             },
             {
+              name: '法人及其他组织',
               data: [320, 432, 501, 634, 490, 830, 620, 401, 534, 690, 830, 820],
               type: 'line',
               areaStyle: {}
             }
           ]
-        }
+        },
+        columns: [
+          {
+            title: '部门名称',
+            key: 'name'
+          },
+          {
+            title: '归集数量（条）',
+            key: 'count'
+          },
+          {
+            title: '入库率',
+            key: 'percent'
+          }
+        ],
+        listData: [
+          {
+            name: '模拟部门名称 1',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 2',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 3',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 4',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 5',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 6',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 7',
+            count: '100',
+            percent: '10%'
+          },
+          {
+            name: '模拟部门名称 8',
+            count: '100',
+            percent: '10%'
+          }
+        ],
+        completeColumns: [
+          {
+            title: '部门名称',
+            key: 'name'
+          },
+          {
+            title: '资源信息',
+            key: 'text'
+          }
+        ],
+        completeListData: [
+          {
+            name: '模拟部门名称 1',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          },
+          {
+            name: '模拟部门名称 2',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          },
+          {
+            name: '模拟部门名称 3',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          },
+          {
+            name: '模拟部门名称 4',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          },
+          {
+            name: '模拟部门名称 5',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          },
+          {
+            name: '模拟部门名称 6',
+            text: '资源信息',
+            href: 'https://www.baidu.com'
+          }
+        ]
       }
     },
     directives: directive,
-    components: { MiddlePanel, Card, SidePanel, Swiper, SwiperSlide },
+    components: { MiddlePanel, Card, SidePanel, Swiper, SwiperSlide, SlideTable },
     methods: {
       renderStats() {
         var stats = new Stats();
@@ -549,10 +706,9 @@
   .newest-swiper
     height: 200px
   .center-container
-    height: 490px
+    height: 460px
     position relative
     overflow hidden
-
     &::after
       content ''
       display block
@@ -600,6 +756,38 @@
             font-size: 26px
 
 
+  .summary-classify
+    .inner-wrapper
+      display flex
+      span
+        flex: 1
+        padding: 6px 0
+        margin: 2px
+        background-color: #022133
+        display flex
+        flex-direction column
+        align-items center
+  .corner-card
+    display flex
+    flex-direction column
+    justify-content space-between
+    width: 100%
+    height: 290px
+    position absolute
+    top: 160px
+    left: 0
+    .top, .bot
+      display flex
+      justify-content space-between
+      padding: 0 60px
+      .card
+        background-color: #062738
+        display flex
+        flex-direction column
+        padding: 10px
+        width: 160px;
+        span
+          text-align center
   @keyframes rotate{
     0%{
       transform rotate(0deg)

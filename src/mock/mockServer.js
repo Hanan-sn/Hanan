@@ -1,3 +1,4 @@
+
 import Mock from 'mockjs'
 // import data from './data.json'
 // import data_nav from './data_nav.json'
@@ -162,7 +163,8 @@ Mock.mock(
     switch (param) {
       case '?thisYear':
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             getIn: 10,
             getOut: 10,
             getInCorrect: '0%',
@@ -188,7 +190,8 @@ Mock.mock(
         }
       case '?thisMonth':
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             getIn: 20,
             getOut: 10,
             getInCorrect: '0%',
@@ -214,7 +217,8 @@ Mock.mock(
         }
       default:
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             getIn: 30,
             getOut: 30,
             getInCorrect: '0%',
@@ -250,7 +254,8 @@ Mock.mock(
     switch (param) {
       case '?thisYear':
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 900],
@@ -270,7 +275,8 @@ Mock.mock(
         }
       case '?thisMonth':
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 950],
@@ -290,7 +296,8 @@ Mock.mock(
         }
       default:
         return {
-          code: 0, data: {
+          code: 0,
+          data: {
             chartData: [
               ['product', '数量'],
               ['1月', 1006],
@@ -368,7 +375,7 @@ Mock.mock(
           ['9月', 2200, 300],
           ['10月', 1600, 500],
           ['11月', 1700, 600],
-          ['12月', 1400, 400],
+          ['12月', 1400, 400]
         ]
       }, // 中心数据
       source: [
@@ -408,16 +415,6 @@ Mock.mock(
           ]
         }
       ],
-      /*[
-        ['product','分类'],
-        ['基本信息',2365466],
-        ['业务信息',5466],
-        ['司法信息',5638],
-        ['行政执法信息',3256],
-        ['信用评价信息',3256],
-        ['公共事业信息',5456],
-        ['其他信息',5456]
-      ], */
       // 自然人资源数据分类数据分析
       newestFillInDept: [
         { name: '部门名称一', count: 8848, percent: 10 },
@@ -476,7 +473,7 @@ Mock.mock(
         naturalPersonPermit: 2,
         legalPersonPermit: 2,
         naturalPersonPunish: 2,
-        legalPersonPunish: 2,
+        legalPersonPunish: 2
       },
       weekCase: {
         permit: 0,
@@ -575,7 +572,7 @@ Mock.mock(
         ['部门5', 600],
         ['部门6', 500],
         ['部门7', 400],
-        ['部门8', 300],
+        ['部门8', 300]
       ],
       feedback: [
         ['product', '次数'],
@@ -586,7 +583,7 @@ Mock.mock(
         ['部门5', 600],
         ['部门6', 500],
         ['部门7', 400],
-        ['部门8', 300],
+        ['部门8', 300]
       ],
       memoTrend: [
         ['product', '趋势'],

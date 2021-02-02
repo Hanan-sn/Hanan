@@ -39,8 +39,6 @@
         points.push(new THREE.Vector3(-20, -20, 0))
         points.push(new THREE.Vector3(20, -20, 0))
         points.push(new THREE.Vector3(20, -15, 0))
-        // let sphere = new THREE.SphereBufferGeometry(5, 5, 5)
-        // let line = new THREE.Line( lineGeometry, lineMaterial );
 
         let reLineGeo = (arr) => {
           let points = []
@@ -55,10 +53,6 @@
         let line2 = reLineGeo([[ -10, -20, 0 ], [20, -20, 0], [20, -15, 0]])
         let line3 = reLineGeo([[ -20, 20, 20 ], [20, 20, 20], [20, 20, -20], [-20, 20, -20], [-20, -20, -20], [20, -20, -20], [20, -20, 20], [-20, -20, 20], [-20, -20, -20], [-20, -20, 20], [-20, 20, 20], [-20, 20, 20], [20, 20, 20], [20, -20, 20], [20, -20, -20], [20, 20, -20], [-20, 20, -20], [-20, 20, 20]])
 
-        // console.log(sphere)
-        // sphere.morphTargetsRelative = true
-        // sphere.morphTargets.push(...[new THREE.SphereBufferGeometry  (8, 5, 5),new THREE.SphereBufferGeometry  (5, 5, 5),new THREE.SphereBufferGeometry  (8, 5, 5),new THREE.SphereBufferGeometry  (5, 5, 5)])
-
         let pointLoader = new THREE.TextureLoader()
         let pointTexture = pointLoader.load(require('@/assets/images/light-point.png'))
         let pointMaterial = new THREE.PointsMaterial({
@@ -66,17 +60,9 @@
           color: 0xffffff,
           map: pointTexture
         })
-        // point.vertices.push(new THREE.Vector3(1, 1, 0))
+
         let cloud1 = new THREE.Points(line1.geometry, pointMaterial)
         let cloud2 = new THREE.Points(line2.geometry, pointMaterial)
-
-        // var torusGeometry = new THREE.TorusGeometry( 60, 10, 16, 80 );
-        // var torusMaterial = new THREE.MeshBasicMaterial( { color: "#1d3a37", wireframe: true, opacity: 0.4 } );
-        // var torus = new THREE.Mesh( torusGeometry, torusMaterial );
-        // torus.position.z = -100
-        // torus.position.y = -40
-        // torus.rotation.x = -1.5
-        // scene.add( torus );
 
         group.add(cube)
         group.add(line1)

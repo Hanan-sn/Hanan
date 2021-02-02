@@ -161,39 +161,65 @@
           // Some Swiper option/callback...
         },
         submitOption: {
+          tooltip: {},
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['1天', '2天', '3天', '4天', '5天', '6天', '7天']
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
+            max: v => v.max + 50
           },
           series: [{
             data: [120, 200, 150, 80, 70, 110, 130],
             type: 'bar',
+            barWidth: 16,
             showBackground: true,
             backgroundStyle: {
-              color: 'rgba(220, 220, 220, 0.8)'
+              color: 'rgba(14,67,88, 0.4)'
             }
           }]
         },
         gatherOption: {
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              lineStyle: {
+                color: '#4af1e8'
+              },
+              crossStyle: {
+                color: '#4af1e8'
+              },
+              label: {
+                backgroundColor: '#6a7985'
+              }
+            }
+          },
           color: ['#d2aa6e', '#31a3b2'],
+          legend: {
+            bottom: 0
+          },
+          grid: {
+            bottom: 60
+          },
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月']
           },
           yAxis: {
             type: 'value'
           },
           series: [
             {
+              name: '行政许可',
               data: [820, 932, 901, 934, 1290, 1330, 1320],
               type: 'line',
               areaStyle: {},
               smooth: true
             },
             {
+              name: '行政处罚',
               data: [520, 632, 401, 734, 1190, 1030, 820],
               type: 'line',
               areaStyle: {},
@@ -204,17 +230,19 @@
         repairOption: {
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
+            max: v => v.max + 50
           },
           series: [{
-            data: [120, 200, 150, 80, 70, 110, 130],
+            data: [120, 200, 150, 80, 90, 110, 140, 160, 110, 70, 110, 130],
             type: 'bar',
+            barWidth: 12,
             showBackground: true,
             backgroundStyle: {
-              color: 'rgba(220, 220, 220, 0.8)'
+              color: 'rgba(14,67,88, 0.4)'
             }
           }]
         },

@@ -252,8 +252,7 @@
             </template>
             <template slot="content">
               <div class="union-execute">
-                <v-chart :options="quitOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
-
+                <SlideTable :header="columns" :body="listData" :bodyHeight="180"></SlideTable>
               </div>
             </template>
           </Card>
@@ -263,7 +262,7 @@
             </template>
             <template slot="content">
               <div class="union-quit">
-                <v-chart :options="quitOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                <v-chart :options="quitOption" theme="macarons" style="width: 100%; height: 230px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -273,7 +272,7 @@
             </template>
             <template slot="content">
               <div class="measure">
-                <v-chart :options="measureOption" theme="macarons" style="width: 100%; height: 200px;"></v-chart>
+                <v-chart :options="measureOption" theme="macarons" style="width: 100%; height: 230px;"></v-chart>
               </div>
             </template>
           </Card>
@@ -284,9 +283,10 @@
 </template>
 
 <script>
-  import SidePanel from '../../../components/SidePanel/SidePanel'
-  import MiddlePanel from '../../../components/MiddlePanel/MiddlePanel'
-  import Card from '../../../components/Card/Card'
+  import SidePanel from '@/components/SidePanel/SidePanel'
+  import MiddlePanel from '@/components/MiddlePanel/MiddlePanel'
+  import Card from '@/components/Card/Card'
+  import SlideTable from '@/components/SlideTable/SlideTable'
   import { graphic } from 'echarts'
 
   export default {
@@ -377,13 +377,19 @@
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
           },
           yAxis: {
             type: 'value'
           },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
           series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [820, 932, 901, 934, 932, 901, 934, 932, 934, 1290, 1330, 1320],
             type: 'line',
             smooth: false,
             areaStyle: {}
@@ -397,12 +403,14 @@
             }
           },
           grid: {
-            left: 0,
+            left: -40,
             right: '4%',
-            bottom: '3%',
+            top: 10,
+            bottom: 0,
             containLabel: true
           },
           xAxis: {
+            show: false,
             type: 'value',
             boundaryGap: [0, 0.01]
           },
@@ -419,7 +427,7 @@
               barWidth: 12,
               label: {
                 show: true,
-                position: [14, -10],
+                position: [12, -12],
                 color: '#fff',
                 formatter: (p) => p.name
               },
@@ -522,11 +530,67 @@
               ]
             }
           ]
-        }
+        },
+        columns: [
+          {
+            title: '被拦截人',
+            key: 'name'
+          },
+          {
+            title: '应用事项',
+            key: 'event'
+          },
+          {
+            title: '执行部门',
+            key: 'dept'
+          },
+          {
+            title: '执行时间',
+            key: 'time'
+          }
+        ],
+        listData: [
+          {
+            name: '模拟部门名称 1',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-01'
+          },
+          {
+            name: '模拟部门名称 2',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-02'
+          },
+          {
+            name: '模拟部门名称 3',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-03'
+          },
+          {
+            name: '模拟部门名称 4',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-04'
+          },
+          {
+            name: '模拟部门名称 5',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-01'
+          },
+          {
+            name: '模拟部门名称 6',
+            event: '房产交易',
+            dept: '市住建局',
+            time: '2021-01-01'
+          }
+        ]
       }
     },
     components: {
-      MiddlePanel, SidePanel, Card
+      MiddlePanel, SidePanel, Card, SlideTable
     }
   }
 </script>
