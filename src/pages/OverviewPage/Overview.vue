@@ -14,7 +14,7 @@
                 <div style="margin-bottom: 20px;">
                   <i>备忘录数量</i>
                 </div>
-                <img src="~@/assets/images/large-width/memo.png" alt="">
+<!--                <img src="~@/assets/images/large-width/memo.png" alt="">-->
               </div>
               <div class="item">
                 <div class="line">
@@ -24,7 +24,7 @@
                 <div style="margin-bottom: 20px;">
                   <i>措施数量</i>
                 </div>
-                <img src="~@/assets/images/large-width/tresure.png" alt="">
+<!--                <img src="~@/assets/images/large-width/tresure.png" alt="">-->
               </div>
               <div class="item">
                 <div class="line">
@@ -34,7 +34,7 @@
                 <div style="margin-bottom: 20px;">
                   <i>实施部门数量</i>
                 </div>
-                <img src="~@/assets/images/large-width/implement_dept.png" alt="">
+<!--                <img src="~@/assets/images/large-width/implement_dept.png" alt="">-->
               </div>
             </div>
             <div class="chart-container">
@@ -45,7 +45,7 @@
             <div class="title"><i>信用报告查询分析趋势</i></div>
             <div class="divide-wrapper" flex>
               <div class="half" flex-box="1" flex="dir:col align:center">
-                <img src="~@/assets/images/large-width/data_exchange.png" alt="">
+<!--                <img src="~@/assets/images/large-width/data_exchange.png" alt="">-->
                 <span style="display: flex; flex-direction: column">
                   <span>
                     <i>交换数据总量</i>
@@ -57,7 +57,7 @@
                 </span>
               </div>
               <div class="half" flex-box="1" flex="dir:col align:center">
-                <img src="~@/assets/images/large-width/data_exchange.png" alt="">
+<!--                <img src="~@/assets/images/large-width/data_exchange.png" alt="">-->
                 <span style="display: flex; flex-direction: column">
                   <span>
                     <i>交换数据总量</i>
@@ -140,11 +140,11 @@
           <div class="title"><i>红黑名单统计</i></div>
           <div flex>
             <div flex="align:center" flex-box="1">
-              <img src="~@/assets/images/large-width/red_list.png" alt="">
+<!--              <img src="~@/assets/images/large-width/red_list.png" alt="">-->
               <span><i>红名单</i><i class="num">12456</i><i>（个）</i></span>
             </div>
             <div flex=" align:center" flex-box="1">
-              <img src="~@/assets/images/large-width/data.png" alt="">
+<!--              <img src="~@/assets/images/large-width/data.png" alt="">-->
               <span><i>黑名单</i><i class="num">12456</i><i>（个）</i></span>
             </div>
           </div>
