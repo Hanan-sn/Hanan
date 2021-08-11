@@ -18,7 +18,8 @@ module.exports = {
       '/union': { target: 'http://localhost:8082/' },
       '/map': { target: 'http://localhost:8082/' },
       '/summary': { target: 'http://localhost:8082/' }
-    }
+    },
+    disableHostCheck: true
   },
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV !== 'production',
